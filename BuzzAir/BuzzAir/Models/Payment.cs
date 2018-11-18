@@ -15,5 +15,7 @@ namespace BuzzAir.Models
         public string CardHolder { get; set; }
 
         public int CVC { get; set; }
+
+        public virtual Currency Currency { get; set; }
     }
 }

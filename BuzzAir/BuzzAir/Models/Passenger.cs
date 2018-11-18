@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BuzzAir.Models
 {
-    public class Passenger
+    public class Passenger : IPerson
     {
         public Passenger()
         {
@@ -12,7 +12,7 @@ namespace BuzzAir.Models
 
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
         public int SeatNumber { get; set; }
 

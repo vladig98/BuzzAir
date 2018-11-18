@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public int PassengersAvailability { get; set; }
+        public int NumberOfSeats { get; set; }
 
         public string Name { get; set; }
     }

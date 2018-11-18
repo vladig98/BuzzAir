@@ -17,5 +17,7 @@ namespace BuzzAir.Models
         public virtual Country Nationality { get; set; }
 
         public virtual Country BirthCountry { get; set; }
+
+        public virtual Gender Gender { get; set; }
     }
 }

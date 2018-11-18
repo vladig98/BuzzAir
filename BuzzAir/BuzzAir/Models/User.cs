@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BuzzAir.Models
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<int>, IPerson
     {
         public User()
         {
@@ -11,5 +11,11 @@ namespace BuzzAir.Models
         }
 
         public virtual ICollection<Booking> Bookings { get; set; }
+
+        public virtual Address Address { get; set; }
+
+        public string FullName { get; set; }
+
+        public virtual Gender Gender { get; set; }
     }
 }

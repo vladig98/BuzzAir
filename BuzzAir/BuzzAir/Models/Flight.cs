@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BuzzAir.Models
 {
     public class Flight
     {
+        public Flight()
+        {
+            this.Passengers = new HashSet<IPerson>();
+        }
+
         public int Id { get; set; }
 
         public virtual Airport Origin { get; set; }
@@ -16,8 +22,14 @@ namespace BuzzAir.Models
 
         public DateTime Departure { get; set; }
 
-        public DateTime Arriving { get; set; }
+        public DateTime Arrival { get; set; }
 
         public decimal Price { get; set; }
+
+        public int AvailableSeats => this.Aircraft.NumberOfSeats - this.Passengers.Count;
+
+        public int TakenSeats => this.Passengers.Count;
+
+        public virtual ICollection<IPerson> Passengers { get; set; }
     }
 }
