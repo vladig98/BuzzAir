@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace BuzzAir.Models
 {
-    public class User : IdentityUser<int>, IPerson
+    public class AppUser : IdentityUser<int>, IPerson
     {
-        public User()
+        public AppUser()
         {
             this.Bookings = new HashSet<Booking>();
         }
