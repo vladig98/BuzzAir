@@ -2,11 +2,9 @@
 
 namespace BuzzAir.Models
 {
-    public class DiscountClub : IService
+    public class DiscountClub : Service
     {
-        public int Id { get; set; }
-
-        public decimal Price { get => GetPrice(); set => SetPrice(); }
+        public override decimal Price { get => GetPrice(); set => SetPrice(); }
 
         public virtual DiscountClubType DiscountClubType { get; set; }
 

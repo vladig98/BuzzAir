@@ -2,11 +2,9 @@
 
 namespace BuzzAir.Models
 {
-    public class Seat : IService
+    public class Seat : Service
     {
-        public int Id { get; set; }
-
-        public decimal Price { get => GetPrice(); set => SetPrice(value); }
+        public override decimal Price { get => GetPrice(); set => SetPrice(value); }
 
         public virtual SeatType Type { get; set; }
 

@@ -1,9 +1,6 @@
 ﻿namespace BuzzAir.Models
 {
-    public class OnTimeArrival : IService
+    public class OnTimeArrival : Service
     {
-        public int Id { get; set; }
-
-        public decimal Price { get; set; }
     }
 }

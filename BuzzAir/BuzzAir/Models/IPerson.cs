@@ -1,9 +1,13 @@
-﻿namespace BuzzAir.Models
+﻿using System.Collections.Generic;
+
+namespace BuzzAir.Models
 {
     public interface IPerson
     {
         string FullName { get; set; }
 
         Gender Gender { get; set; }
+
+        ICollection<Service> Services { get; set; }
     }
 }

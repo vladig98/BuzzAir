@@ -8,7 +8,7 @@ namespace BuzzAir.Models
         public Booking()
         {
             this.Flights = new HashSet<Flight>();
-            this.Passengers = new HashSet<Passenger>();
+            this.Passengers = new HashSet<Person>();
         }
 
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace BuzzAir.Models
 
         public virtual ICollection<Flight> Flights { get; set; }
 
-        public virtual ICollection<Passenger> Passengers { get; set; }
+        public virtual ICollection<Person> Passengers { get; set; }
 
         public virtual Payment Payment { get; set; }
     }

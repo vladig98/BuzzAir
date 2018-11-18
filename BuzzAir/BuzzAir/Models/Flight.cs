@@ -7,7 +7,7 @@ namespace BuzzAir.Models
     {
         public Flight()
         {
-            this.Passengers = new HashSet<IPerson>();
+            this.Passengers = new HashSet<Person>();
         }
 
         public int Id { get; set; }
@@ -30,6 +30,6 @@ namespace BuzzAir.Models
 
         public int TakenSeats => this.Passengers.Count;
 
-        public virtual ICollection<IPerson> Passengers { get; set; }
+        public virtual ICollection<Person> Passengers { get; set; }
     }
 }

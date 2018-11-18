@@ -3,24 +3,18 @@ using System.Collections.Generic;
 
 namespace BuzzAir.Models
 {
-    public class Passenger : IPerson
+    public class Passenger : Person
     {
         public Passenger()
         {
-            this.Services = new HashSet<IService>();
+            this.Services = new HashSet<Service>();
         }
 
         public int Id { get; set; }
 
-        public string FullName { get; set; }
-
         public int SeatNumber { get; set; }
 
         public DateTime DateOfBirth { get; set; }
-
-        public virtual Gender Gender { get; set; }
-
-        public virtual ICollection<IService> Services { get; set; }
 
         public virtual TravelDocument Document { get; set; }
     }
