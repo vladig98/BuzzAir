@@ -620,9 +620,9 @@ namespace BuzzAir.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BuzzAir.Models.Airport", "Origin")
-                        .WithMany()
+                        .WithMany("Flights")
                         .HasForeignKey("OriginId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.FlightPassenger", b =>

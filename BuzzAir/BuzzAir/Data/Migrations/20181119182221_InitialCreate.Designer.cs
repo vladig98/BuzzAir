@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuzzAir.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181119180530_InitialCreate")]
+    [Migration("20181119182221_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -622,9 +622,9 @@ namespace BuzzAir.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BuzzAir.Models.Airport", "Origin")
-                        .WithMany()
+                        .WithMany("Flights")
                         .HasForeignKey("OriginId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.FlightPassenger", b =>

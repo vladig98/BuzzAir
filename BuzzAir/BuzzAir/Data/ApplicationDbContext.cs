@@ -47,12 +47,6 @@ namespace BuzzAir.Data
             .HasOne<Airport>(e => e.Origin)
             .WithMany(e => e.Flights)
             .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-            .Entity<Flight>()
-            .HasOne<Airport>(e => e.Destination)
-            .WithMany(e => e.Flights)
-            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

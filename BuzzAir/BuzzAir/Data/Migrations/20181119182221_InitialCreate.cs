@@ -178,7 +178,7 @@ namespace BuzzAir.Data.Migrations
                         column: x => x.OriginId,
                         principalTable: "Airports",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
