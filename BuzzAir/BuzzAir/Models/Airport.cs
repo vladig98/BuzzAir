@@ -8,7 +8,7 @@
 
         public string City { get; set; }
 
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
 
         public string Terminal { get; set; }
     }

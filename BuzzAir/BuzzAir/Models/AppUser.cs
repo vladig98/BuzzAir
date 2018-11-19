@@ -7,11 +7,11 @@ namespace BuzzAir.Models
     {
         public AppUser()
         {
-            this.Bookings = new HashSet<Booking>();
-            this.Services = new HashSet<Service>();
+            this.Bookings = new HashSet<UserBooking>();
+            this.Services = new HashSet<PersonService>();
         }
 
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<UserBooking> Bookings { get; set; }
 
         public virtual Address Address { get; set; }
 
@@ -19,6 +19,6 @@ namespace BuzzAir.Models
 
         public virtual Gender Gender { get; set; }
 
-        public virtual ICollection<Service> Services { get; set; }
+        public virtual ICollection<PersonService> Services { get; set; }
     }
 }

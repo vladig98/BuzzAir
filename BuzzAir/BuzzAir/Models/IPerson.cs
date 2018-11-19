@@ -8,6 +8,6 @@ namespace BuzzAir.Models
 
         Gender Gender { get; set; }
 
-        ICollection<Service> Services { get; set; }
+        ICollection<PersonService> Services { get; set; }
     }
 }

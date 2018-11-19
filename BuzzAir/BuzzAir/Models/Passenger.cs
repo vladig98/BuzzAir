@@ -7,10 +7,8 @@ namespace BuzzAir.Models
     {
         public Passenger()
         {
-            this.Services = new HashSet<Service>();
+            this.Services = new HashSet<PersonService>();
         }
-
-        public int Id { get; set; }
 
         public int SeatNumber { get; set; }
 

@@ -7,10 +7,12 @@ namespace BuzzAir.Models
     {
         public Flight()
         {
-            this.Passengers = new HashSet<Person>();
+            this.Passengers = new HashSet<FlightPassenger>();
         }
 
         public int Id { get; set; }
+
+        public string FlightNumber { get; set; }
 
         public virtual Airport Origin { get; set; }
 
@@ -26,10 +28,10 @@ namespace BuzzAir.Models
 
         public decimal Price { get; set; }
 
-        public int AvailableSeats => this.Aircraft.NumberOfSeats - this.Passengers.Count;
+        public int AvailableSeats => this.Aircraft.NumberOfSeats - this.TakenSeats;
 
         public int TakenSeats => this.Passengers.Count;
 
-        public virtual ICollection<Person> Passengers { get; set; }
+        public virtual ICollection<FlightPassenger> Passengers { get; set; }
     }
 }

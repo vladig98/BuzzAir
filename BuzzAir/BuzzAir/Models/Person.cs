@@ -6,11 +6,12 @@ namespace BuzzAir.Models
     {
         public Person()
         {
-            this.Services = new HashSet<Service>();
+            this.Services = new HashSet<PersonService>();
         }
 
+        public int Id { get; set; }
         public string FullName { get; set; }
-        public Gender Gender { get; set; }
-        public ICollection<Service> Services { get; set; }
+        public virtual Gender Gender { get; set; }
+        public virtual ICollection<PersonService> Services { get; set; }
     }
 }
