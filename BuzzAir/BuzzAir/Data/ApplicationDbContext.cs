@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using BuzzAir.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -30,6 +31,16 @@ namespace BuzzAir.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            foreach (var property in builder.Model.GetEntityTypes()
+                                                 .SelectMany(t => t.GetProperties())
+                                                 .Where(p => p.ClrType == typeof(decimal)))
+            {
+                property.Relational().ColumnType = "decimal(18, 6)";
+            }
         }
     }
 }
