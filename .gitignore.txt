@@ -1,0 +1,3 @@
+BuzzAir_BuzzAir_.vs/
+BuzzAir_BuzzAir_BuzzAir_bin/
+BuzzAir_BuzzAir_BuzzAir_obj/
