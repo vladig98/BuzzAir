@@ -8,6 +8,6 @@
         public virtual Flight Flight { get; set; }
 
         public int PersonId { get; set; }
-        public virtual IPerson Person { get; set; }
+        public virtual Person Person { get; set; }
     }
 }
