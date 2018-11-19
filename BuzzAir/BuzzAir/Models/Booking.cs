@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace BuzzAir.Models
@@ -11,14 +12,19 @@ namespace BuzzAir.Models
             this.Passengers = new HashSet<BookingPassenger>();
         }
 
+        [Required]
         public int Id { get; set; }
 
+        [Required]
         public decimal TotalPrice => (this.Flights.Sum(x => x.Flight.Price) + this.Passengers.Sum(x => x.Person.Services.Sum(y => y.Service.Price))) * this.Passengers.Count;
 
+        [Required]
         public virtual ICollection<BookingFlight> Flights { get; set; }
 
+        [Required]
         public virtual ICollection<BookingPassenger> Passengers { get; set; }
 
+        [Required]
         public virtual Payment Payment { get; set; }
     }
 }

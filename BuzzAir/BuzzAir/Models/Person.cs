@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BuzzAir.Models
 {
@@ -9,9 +10,15 @@ namespace BuzzAir.Models
             this.Services = new HashSet<PersonService>();
         }
 
+        [Required]
         public int Id { get; set; }
+
+        [Required]
         public string FullName { get; set; }
+
+        [Required]
         public virtual Gender Gender { get; set; }
+
         public virtual ICollection<PersonService> Services { get; set; }
     }
 }

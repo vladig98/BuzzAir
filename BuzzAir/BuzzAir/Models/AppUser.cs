@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BuzzAir.Models
 {
@@ -13,10 +14,13 @@ namespace BuzzAir.Models
 
         public virtual ICollection<UserBooking> Bookings { get; set; }
 
+        [Required]
         public virtual Address Address { get; set; }
 
+        [Required]
         public string FullName { get; set; }
 
+        [Required]
         public virtual Gender Gender { get; set; }
 
         public virtual ICollection<PersonService> Services { get; set; }
