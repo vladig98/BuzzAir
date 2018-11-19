@@ -19,6 +19,13 @@ namespace BuzzAir.Data
         public DbSet<Seat> Seats { get; set; }
         public DbSet<TravelDocument> TravelDocuments { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<BookingFlight> BookingFlights { get; set; }
+        public DbSet<BookingPassenger> BookingPassengers { get; set; }
+        public DbSet<FlightPassenger> FlightPassengers { get; set; }
+        public DbSet<PersonService> PersonServices { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<UserBooking> UserBookings { get; set; }
+        public DbSet<Person> People { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
