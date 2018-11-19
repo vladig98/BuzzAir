@@ -42,6 +42,17 @@ namespace BuzzAir.Data
             {
                 property.Relational().ColumnType = "decimal(18, 6)";
             }
+            builder
+            .Entity<Flight>()
+            .HasOne<Airport>(e => e.Origin)
+            .WithMany(e => e.Flights)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+            .Entity<Flight>()
+            .HasOne<Airport>(e => e.Destination)
+            .WithMany(e => e.Flights)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

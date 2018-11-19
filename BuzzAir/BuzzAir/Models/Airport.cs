@@ -1,9 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BuzzAir.Models
 {
     public class Airport
     {
+        public Airport()
+        {
+            this.Flights = new HashSet<Flight>();
+        }
+
         [Required]
         public int Id { get; set; }
 
@@ -18,5 +24,8 @@ namespace BuzzAir.Models
 
         [Required]
         public string Terminal { get; set; }
+
+        [Required]
+        public virtual ICollection<Flight> Flights { get; set; }
     }
 }
