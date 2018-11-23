@@ -16,6 +16,8 @@ namespace BuzzAir.Models
             this.Services = new HashSet<PersonService>();
         }
 
+        //usernam, email, password, phone | Properties from Identity
+
         public virtual ICollection<UserBooking> Bookings { get; set; }
 
         [Required]
