@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using BuzzAir.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BuzzAir.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-        {
-
-        }
-
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Airport> Airports { get; set; }
@@ -24,7 +20,7 @@ namespace BuzzAir.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<TravelDocument> TravelDocuments { get; set; }
-        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<ApplicationUser> AppUsers { get; set; }
         public DbSet<BookingFlight> BookingFlights { get; set; }
         public DbSet<BookingPassenger> BookingPassengers { get; set; }
         public DbSet<FlightPassenger> FlightPassengers { get; set; }
@@ -33,19 +29,18 @@ namespace BuzzAir.Data
         public DbSet<UserBooking> UserBookings { get; set; }
         public DbSet<Person> People { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
+
             foreach (var property in builder.Model.GetEntityTypes()
                                                  .SelectMany(t => t.GetProperties())
                                                  .Where(p => p.ClrType == typeof(decimal)))

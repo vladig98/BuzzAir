@@ -8,6 +8,24 @@ namespace BuzzAir.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "AddressId",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<string>(
+                name: "FullName",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<int>(
+                name: "Gender",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.CreateTable(
                 name: "Addresses",
                 columns: table => new
@@ -106,41 +124,6 @@ namespace BuzzAir.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TravelDocuments", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AppUsers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserName = table.Column<string>(nullable: true),
-                    NormalizedUserName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    NormalizedEmail = table.Column<string>(nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    AddressId = table.Column<int>(nullable: false),
-                    FullName = table.Column<string>(nullable: false),
-                    Gender = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AppUsers_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -256,16 +239,17 @@ namespace BuzzAir.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AppUserId = table.Column<int>(nullable: false),
+                    ApplicationUserId = table.Column<int>(nullable: false),
+                    ApplicationUserId1 = table.Column<string>(nullable: false),
                     BookingId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserBookings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserBookings_AppUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AppUsers",
+                        name: "FK_UserBookings_AspNetUsers_ApplicationUserId1",
+                        column: x => x.ApplicationUserId1,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -336,15 +320,15 @@ namespace BuzzAir.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     PersonId = table.Column<int>(nullable: false),
                     ServiceId = table.Column<int>(nullable: false),
-                    AppUserId = table.Column<int>(nullable: true)
+                    ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PersonServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PersonServices_AppUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AppUsers",
+                        name: "FK_PersonServices_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -362,8 +346,8 @@ namespace BuzzAir.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppUsers_AddressId",
-                table: "AppUsers",
+                name: "IX_AspNetUsers_AddressId",
+                table: "AspNetUsers",
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
@@ -422,9 +406,9 @@ namespace BuzzAir.Data.Migrations
                 column: "DocumentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonServices_AppUserId",
+                name: "IX_PersonServices_ApplicationUserId",
                 table: "PersonServices",
-                column: "AppUserId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonServices_PersonId",
@@ -437,18 +421,33 @@ namespace BuzzAir.Data.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserBookings_AppUserId",
+                name: "IX_UserBookings_ApplicationUserId1",
                 table: "UserBookings",
-                column: "AppUserId");
+                column: "ApplicationUserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserBookings_BookingId",
                 table: "UserBookings",
                 column: "BookingId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUsers_Addresses_AddressId",
+                table: "AspNetUsers",
+                column: "AddressId",
+                principalTable: "Addresses",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_AspNetUsers_Addresses_AddressId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
             migrationBuilder.DropTable(
                 name: "BookingFlights");
 
@@ -474,9 +473,6 @@ namespace BuzzAir.Data.Migrations
                 name: "Services");
 
             migrationBuilder.DropTable(
-                name: "AppUsers");
-
-            migrationBuilder.DropTable(
                 name: "Bookings");
 
             migrationBuilder.DropTable(
@@ -489,10 +485,23 @@ namespace BuzzAir.Data.Migrations
                 name: "TravelDocuments");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
-
-            migrationBuilder.DropTable(
                 name: "Payments");
+
+            migrationBuilder.DropIndex(
+                name: "IX_AspNetUsers_AddressId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "AddressId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "FullName",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Gender",
+                table: "AspNetUsers");
         }
     }
 }

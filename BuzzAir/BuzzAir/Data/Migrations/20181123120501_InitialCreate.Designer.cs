@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuzzAir.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181119182221_InitialCreate")]
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20181123120501_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,19 +81,20 @@ namespace BuzzAir.Data.Migrations
                     b.ToTable("Airports");
                 });
 
-            modelBuilder.Entity("BuzzAir.Models.AppUser", b =>
+            modelBuilder.Entity("BuzzAir.Models.ApplicationUser", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<int>("AddressId");
 
-                    b.Property<string>("ConcurrencyStamp");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
@@ -106,9 +107,11 @@ namespace BuzzAir.Data.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("NormalizedEmail");
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
 
-                    b.Property<string>("NormalizedUserName");
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash");
 
@@ -120,13 +123,22 @@ namespace BuzzAir.Data.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UserName");
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
-                    b.ToTable("AppUsers");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.Booking", b =>
@@ -291,7 +303,7 @@ namespace BuzzAir.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AppUserId");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<int>("PersonId");
 
@@ -299,7 +311,7 @@ namespace BuzzAir.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("PersonId");
 
@@ -359,13 +371,16 @@ namespace BuzzAir.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AppUserId");
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1")
+                        .IsRequired();
 
                     b.Property<int>("BookingId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("ApplicationUserId1");
 
                     b.HasIndex("BookingId");
 
@@ -414,57 +429,6 @@ namespace BuzzAir.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -567,7 +531,7 @@ namespace BuzzAir.Data.Migrations
                     b.HasDiscriminator().HasValue("Seat");
                 });
 
-            modelBuilder.Entity("BuzzAir.Models.AppUser", b =>
+            modelBuilder.Entity("BuzzAir.Models.ApplicationUser", b =>
                 {
                     b.HasOne("BuzzAir.Models.Address", "Address")
                         .WithMany()
@@ -642,9 +606,9 @@ namespace BuzzAir.Data.Migrations
 
             modelBuilder.Entity("BuzzAir.Models.PersonService", b =>
                 {
-                    b.HasOne("BuzzAir.Models.AppUser")
+                    b.HasOne("BuzzAir.Models.ApplicationUser")
                         .WithMany("Services")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("BuzzAir.Models.Person", "Person")
                         .WithMany("Services")
@@ -659,9 +623,9 @@ namespace BuzzAir.Data.Migrations
 
             modelBuilder.Entity("BuzzAir.Models.UserBooking", b =>
                 {
-                    b.HasOne("BuzzAir.Models.AppUser", "AppUser")
+                    b.HasOne("BuzzAir.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Bookings")
-                        .HasForeignKey("AppUserId")
+                        .HasForeignKey("ApplicationUserId1")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BuzzAir.Models.Booking", "Booking")
@@ -680,7 +644,7 @@ namespace BuzzAir.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("BuzzAir.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -688,7 +652,7 @@ namespace BuzzAir.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("BuzzAir.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -701,7 +665,7 @@ namespace BuzzAir.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("BuzzAir.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -709,7 +673,7 @@ namespace BuzzAir.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("BuzzAir.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

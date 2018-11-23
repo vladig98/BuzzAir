@@ -4,19 +4,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BuzzAir.Models;
 using BuzzAir.Data;
+using BuzzAir.Models;
 
 namespace BuzzAir.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(ApplicationDbContext _context)
+        public HomeController(AppDbContext _context)
         {
             context = _context;
         }
 
-        private readonly ApplicationDbContext context;
+        private readonly AppDbContext context;
 
         public IActionResult Search(string origin, string destination, int passengersNumber)
         {
