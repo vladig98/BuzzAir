@@ -13,6 +13,8 @@ using BuzzAir.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BuzzAir.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using BuzzAir.Areas.Identity.Services;
 
 namespace BuzzAir
 {
@@ -43,6 +45,9 @@ namespace BuzzAir
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
