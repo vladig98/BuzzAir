@@ -28,6 +28,7 @@ namespace BuzzAir.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<UserBooking> UserBookings { get; set; }
         public DbSet<Person> People { get; set; }
+        public DbSet<ApplicationRole> AppRoles { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

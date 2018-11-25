@@ -30,5 +30,7 @@ namespace BuzzAir.Models
         public virtual Gender Gender { get; set; }
 
         public virtual ICollection<PersonService> Services { get; set; }
+
+        public virtual ApplicationRole Role { get; set; }
     }
 }
