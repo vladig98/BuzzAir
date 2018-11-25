@@ -34,6 +34,11 @@ namespace BuzzAir.Controllers
             return View(model);
         }
 
+        public IActionResult Confirm()
+        {
+            return View();
+        }
+
         public IActionResult Index(IndexModel model)
         {
             model.Airports = this.context.Airports.ToList();

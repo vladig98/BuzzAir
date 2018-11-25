@@ -43,6 +43,12 @@ namespace BuzzAir
 
             services.AddDefaultIdentity<ApplicationUser>(config => {
                 config.SignIn.RequireConfirmedEmail = true;
+                config.Password.RequireDigit = false;
+                config.Password.RequiredLength = 3;
+                config.Password.RequiredUniqueChars = 0;
+                config.Password.RequireLowercase = false;
+                config.Password.RequireUppercase = false;
+                config.Password.RequireNonAlphanumeric = false;
             })
                 .AddEntityFrameworkStores<AppDbContext>();
 
