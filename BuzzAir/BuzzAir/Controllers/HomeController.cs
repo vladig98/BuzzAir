@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BuzzAir.Data;
 using BuzzAir.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace BuzzAir.Controllers
 {
@@ -49,7 +50,6 @@ namespace BuzzAir.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 

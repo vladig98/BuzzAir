@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using BuzzAir.Data;
 using BuzzAir.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -101,7 +102,8 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var address = new Address { City = Input.City, Country = Input.Country, PostalCode = Input.Postal, Street = Input.Street };
-                var user = new ApplicationUser { Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FullName = Input.FullName, Address = address, Gender = Input.Gender };
+                var role = new IdentityRole { Name = "User" };
+                var user = new ApplicationUser { Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FullName = Input.FullName, Address = address, Gender = Input.Gender, Role = role };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

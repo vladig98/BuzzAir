@@ -31,6 +31,6 @@ namespace BuzzAir.Models
 
         public virtual ICollection<PersonService> Services { get; set; }
 
-        public virtual ApplicationRole Role { get; set; }
+        public virtual IdentityRole Role { get; set; }
     }
 }

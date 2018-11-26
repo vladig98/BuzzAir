@@ -11,6 +11,11 @@ namespace BuzzAir.Data
 {
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
+        public AppDbContext()
+        {
+
+        }
+
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Airport> Airports { get; set; }
@@ -28,7 +33,6 @@ namespace BuzzAir.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<UserBooking> UserBookings { get; set; }
         public DbSet<Person> People { get; set; }
-        public DbSet<ApplicationRole> AppRoles { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
