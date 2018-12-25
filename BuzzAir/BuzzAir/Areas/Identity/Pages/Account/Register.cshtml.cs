@@ -98,7 +98,7 @@ namespace BuzzAir.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Home/Confirm");
+            returnUrl = returnUrl ?? Url.Content("~/Identity/Account/Confirm");
             if (ModelState.IsValid)
             {
                 var address = new Address { City = Input.City, Country = Input.Country, PostalCode = Input.Postal, Street = Input.Street };

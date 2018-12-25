@@ -16,5 +16,9 @@ namespace BuzzAir.Models
         public ICollection<Flight> Flights { get; set; }
 
         public string Selected { get; set; }
+
+        public string Greeting { get; set; }
+
+        public bool Authenticated { get; set; }
     }
 }

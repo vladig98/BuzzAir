@@ -6,6 +6,11 @@
     <h1>
         Welcome to BuzzAir
     </h1>
+    <h2>
+        <text>Hi</text>@Html.Raw(Model.Greeting)
+    </h2>
+    @if (Model.Authenticated)
+    {
     <form action="~/Home/Search" method="post">
         <section>
             <select id="origin" name="origin" required>
@@ -40,4 +45,9 @@
             <input type="submit" value="Search Flights" />
         </section>
     </form>
+    }
+    else
+    {
+        <img src="https://drive.google.com/open?id=1CA8iADHEDFz5OseFgbg3q-hAOG5uKtCX" alt="buzz" />
+    }
 </div>
