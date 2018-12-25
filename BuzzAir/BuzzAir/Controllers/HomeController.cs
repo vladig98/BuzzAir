@@ -31,16 +31,16 @@ namespace BuzzAir.Controllers
                 ViewData["UserRole"] = role;
                 if (role == "Admin")
                 {
-                    greeting = ", admin, " + User.Identity.Name;
+                    greeting = "Hi, admin, " + User.Identity.Name;
                 }
                 else
                 {
-                    greeting = ", " + User.Identity.Name;
+                    greeting = "Hi, " + User.Identity.Name;
                 }
             }
             else
             {
-                greeting = " there. <br /> <br />Please <a href=\"/Identity/Account/Login\">login</a> to book a ticket or <br/> <a href=\"/Identity/Account/Register\">register</a> if you don't have an account";
+                greeting = "<h5 class=\"text-center\"> Welcome to the world of opportunities. </h5> <br /> <br /> <p class=\"display-4\"><a href=\"/Identity/Account/Login\">Login</a> to book a ticket or <br/> <a href=\"/Identity/Account/Register\">Register</a> if you don't have an account</p>";
             }
             model.Greeting = greeting;
             return View(model);
