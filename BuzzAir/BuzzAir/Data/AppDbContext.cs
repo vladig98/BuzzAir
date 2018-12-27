@@ -33,6 +33,7 @@ namespace BuzzAir.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<UserBooking> UserBookings { get; set; }
         public DbSet<Person> People { get; set; }
+        public DbSet<AirportFlight> AirportFlights { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -52,9 +53,10 @@ namespace BuzzAir.Data
             {
                 property.Relational().ColumnType = "decimal(18, 6)";
             }
+
             builder
-            .Entity<Flight>()
-            .HasOne<Airport>(e => e.Origin)
+            .Entity<AirportFlight>()
+            .HasOne<Airport>(e => e.Airport)
             .WithMany(e => e.Flights)
             .OnDelete(DeleteBehavior.Restrict);
         }

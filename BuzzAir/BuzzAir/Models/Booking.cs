@@ -25,6 +25,7 @@ namespace BuzzAir.Models
         public virtual ICollection<BookingPassenger> Passengers { get; set; }
 
         [Required]
+        public int PaymentId { get; set; }
         public virtual Payment Payment { get; set; }
     }
 }

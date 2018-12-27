@@ -21,6 +21,7 @@ namespace BuzzAir.Models
         public virtual ICollection<UserBooking> Bookings { get; set; }
 
         [Required]
+        public int AddressId { get; set; }
         public virtual Address Address { get; set; }
 
         [Required]
@@ -31,6 +32,7 @@ namespace BuzzAir.Models
 
         public virtual ICollection<PersonService> Services { get; set; }
 
+        public string RoleId { get; set; }
         public virtual IdentityRole Role { get; set; }
     }
 }

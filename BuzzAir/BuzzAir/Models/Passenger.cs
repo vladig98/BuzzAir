@@ -18,6 +18,7 @@ namespace BuzzAir.Models
         public DateTime DateOfBirth { get; set; }
 
         [Required]
+        public int DocumentId { get; set; }
         public virtual TravelDocument Document { get; set; }
     }
 }

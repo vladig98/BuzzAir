@@ -41,6 +41,8 @@ namespace BuzzAir
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddDefaultIdentity<ApplicationUser>(config => {
                 config.SignIn.RequireConfirmedEmail = true;
                 config.Password.RequireDigit = false;

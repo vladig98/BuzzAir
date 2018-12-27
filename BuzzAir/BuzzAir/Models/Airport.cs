@@ -7,7 +7,7 @@ namespace BuzzAir.Models
     {
         public Airport()
         {
-            this.Flights = new HashSet<Flight>();
+            this.Flights = new HashSet<AirportFlight>();
         }
 
         [Required]
@@ -26,6 +26,6 @@ namespace BuzzAir.Models
         public string Terminal { get; set; }
 
         [Required]
-        public virtual ICollection<Flight> Flights { get; set; }
+        public virtual ICollection<AirportFlight> Flights { get; set; }
     }
 }
