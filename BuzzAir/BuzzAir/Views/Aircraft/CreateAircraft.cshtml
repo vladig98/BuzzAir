@@ -1,0 +1,15 @@
+﻿<h2 class="text-center">Create Aircraft</h2>
+<hr />
+<form method="post" class="w-50 mx-auto" asp-controller="Aircraft" asp-action="Create">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required placeholder="Name..." />
+    </div>
+    <div class="form-group">
+        <label for="seats">Seats</label>
+        <input type="number" class="form-control" id="seats" name="seats" required placeholder="Seats..." min="50" max="350" />
+    </div>
+    <div>
+        <button type="submit" class="btn bg-dark text-white">Create</button>
+    </div>
+</form>

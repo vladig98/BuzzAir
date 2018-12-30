@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using BuzzAir.Data;
@@ -21,17 +23,23 @@ namespace BuzzAir.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private AppDbContext context;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            AppDbContext _context, 
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            context = _context;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -101,13 +109,26 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/Identity/Account/Confirm");
             if (ModelState.IsValid)
             {
-                var address = new Address { City = Input.City, Country = Input.Country, PostalCode = Input.Postal, Street = Input.Street };
                 var role = new IdentityRole { Name = "User" };
+                if (!this.context.AppUsers.Any())
+                {
+                    role = new IdentityRole { Name = "Admin" };
+                }
+                bool x = await _roleManager.RoleExistsAsync(role.Name);
+                if (!x)
+                {
+                    await _roleManager.CreateAsync(role);
+                }
+                var address = new Address { City = Input.City, Country = Input.Country, PostalCode = Input.Postal, Street = Input.Street };
                 var user = new ApplicationUser { Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FullName = Input.FullName, Address = address, Gender = Input.Gender, Role = role };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                await _userManager.AddToRoleAsync(user, role.Name);
+                await _userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), role.Name));
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    this.context.UserRoles.Add(new IdentityUserRole<string> { RoleId = role.Id, UserId = user.Id });
+                    this.context.SaveChanges();
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(

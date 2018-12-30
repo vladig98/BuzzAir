@@ -1,0 +1,29 @@
+﻿<h2 class="text-center">Create Airport</h2>
+<hr />
+<form method="post" class="w-50 mx-auto" asp-controller="Airport" asp-action="Create">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required placeholder="Name..." />
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" required placeholder="City..." />
+    </div>
+    <div class="form-group">
+        <label for="country">Country</label>
+        <select class="form-control" name="country" id="country">
+            <option selected hidden disabled>Select Country</option>
+            @for (int i = 1; i <= Enum.GetValues(typeof(Country)).Length; i++)
+            {
+                <option>@((Country)i)</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="terminal">Terminal</label>
+        <input type="text" class="form-control" id="terminal" name="terminal" required placeholder="Terminal..." />
+    </div>
+    <div>
+        <button type="submit" class="btn bg-dark text-white">Create</button>
+    </div>
+</form>

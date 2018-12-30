@@ -52,6 +52,7 @@ namespace BuzzAir
                 config.Password.RequireUppercase = false;
                 config.Password.RequireNonAlphanumeric = false;
             })
+            .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

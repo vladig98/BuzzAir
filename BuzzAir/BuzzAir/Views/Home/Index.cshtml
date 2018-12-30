@@ -3,9 +3,93 @@
 }
 
 <div class="bg-BuzzAir p-4">
-    <h1 class="pt-4 text-center">
-        Welcome to BuzzAir
-    </h1>
-    <h5 class="text-center"> Welcome to the world of opportunities.</h5>
+    @if (User.IsInRole("Admin"))
+    {
+        <h1 class="pt-4 text-center">
+            Welcome back, admin @User.Identity.Name!
+        </h1>
+    }
+    else if (User.IsInRole("User"))
+    {
+        <h1 class="pt-4 text-center">
+            Welcome back, @User.Identity.Name!
+        </h1>
+    }
+    else
+    {
+        <h1 class="pt-4 text-center">
+            Welcome to BuzzAir
+        </h1>
+        <h5 class="text-center"> Welcome to the world of opportunities.</h5>
+    }
     <img src="~/images/logo.png" alt="buzz" class="img-fluid mt-3" />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2 class="text-center">Search Flights</h2>
+        <hr class="bg-dark w-50" />
+        <form method="post" class="w-50 mx-auto" asp-controller="Booking" asp-action="CreateBooking" id="bookingForm">
+            <div class="form-group flight">
+                <label for="origin">Origin</label>
+                <select class="form-control" id="origin" name="origin" onchange="showUser(this.value)">
+                    <option selected hidden disabled value="">Select Origin</option>
+                    @for (int i = 0; i < Model.Airports.Count; i++)
+                    {
+                        <option>@Model.Airports[i].Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group flight">
+                <label for="destination">Destination</label>
+                <select class="form-control" id="destination" name="destination">
+                    <option selected hidden disabled>Select Destination</option>
+                    @for (int i = 0; i < Model.Airports.Count; i++)
+                    {
+                        <option>@Model.Airports[i].Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group flight">
+                <label for="departure">Departure</label>
+                <input type="text" class="form-control datepicker-here" readonly id="departure" name="departure" data-language="en" data-position="top left" />
+            </div>
+            <div class="form-group flight">
+                <label for="arrival">Arrival</label>
+                <input type="text" class="form-control datepicker-here" readonly id="arrival" name="arrival" data-language="en" data-position="top left" />
+            </div>
+            <div class="form-group flight">
+                <label for="passenger">Passenger</label>
+                <input type="number" class="form-control" id="passenger" name="passenger" min="1" max="10" />
+            </div>
+            <button type="submit" class="btn bg-dark text-white">Search</button>
+        </form>
+    }
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<link href="~/lib/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+<script src="~/lib/air-datepicker-master/dist/js/datepicker.min.js"></script>
+<script src="~/lib/air-datepicker-master/dist/js/i18n/datepicker.en.js"></script>
+<script>
+    function showUser(str) {
+        if (str == "") {
+            document.getElementById("txtHint").innerHTML = "";
+            return;
+        } else {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "getuser.php?q=" + str, true);
+            xmlhttp.send();
+        }
+    }
+</script>

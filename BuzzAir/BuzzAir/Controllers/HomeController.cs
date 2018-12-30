@@ -8,6 +8,7 @@ using BuzzAir.Data;
 using BuzzAir.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace BuzzAir.Controllers
 {
@@ -22,7 +23,8 @@ namespace BuzzAir.Controllers
 
         public IActionResult Index(IndexModel model)
         {
-            return View();
+            model.Airports = this.db.Airports.ToList();
+            return View(model);
         }
 
         public IActionResult About()

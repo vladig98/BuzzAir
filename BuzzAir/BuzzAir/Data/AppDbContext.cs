@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BuzzAir.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using BuzzAir.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace BuzzAir.Data
 {
@@ -38,6 +34,11 @@ namespace BuzzAir.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        { 
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

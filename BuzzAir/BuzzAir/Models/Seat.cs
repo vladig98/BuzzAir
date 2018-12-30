@@ -4,24 +4,27 @@ namespace BuzzAir.Models
 {
     public class Seat : Service
     {
-        public override decimal Price { get => GetPrice(); set => SetPrice(value); }
+        public override decimal Price
+        {
+            get
+            {
+                if (Type == SeatType.Normal)
+                {
+                    return GlobalConstants.SeatPrice;
+                }
+                else
+                {
+                    return GlobalConstants.SeatPrice * 2;
+                }
+            }
+            set
+            {
+                base.Price = value;
+            }
+        }
 
         public virtual SeatType Type { get; set; }
 
         public int SeatNumber { get; set; }
-
-        private void SetPrice(decimal price)
-        {
-            this.Price = price;
-        }
-
-        private decimal GetPrice()
-        {
-            if (this.Type == SeatType.Extra_Leg_Room)
-            {
-                return this.Price * 2;
-            }
-            return this.Price;
-        }
     }
 }
