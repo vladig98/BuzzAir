@@ -17,8 +17,8 @@ namespace BuzzAir.Models
         public string FullName { get; set; }
 
         [Required]
-        public virtual Gender Gender { get; set; }
+        public Gender Gender { get; set; }
 
-        public virtual ICollection<PersonService> Services { get; set; }
+        public ICollection<PersonService> Services { get; set; }
     }
 }

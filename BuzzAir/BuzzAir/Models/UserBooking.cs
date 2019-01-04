@@ -8,13 +8,13 @@ namespace BuzzAir.Models
         public int Id { get; set; }
 
         [Required]
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         [Required]
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         [Required]
         public int BookingId { get; set; }
         [Required]
-        public virtual Booking Booking { get; set; }
+        public Booking Booking { get; set; }
     }
 }

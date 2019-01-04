@@ -10,11 +10,11 @@ namespace BuzzAir.Models
         [Required]
         public int FlightId { get; set; }
         [Required]
-        public virtual Flight Flight { get; set; }
+        public Flight Flight { get; set; }
 
         [Required]
         public int PersonId { get; set; }
         [Required]
-        public virtual Person Person { get; set; }
+        public Person Person { get; set; }
     }
 }

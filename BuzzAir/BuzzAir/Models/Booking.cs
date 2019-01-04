@@ -19,13 +19,13 @@ namespace BuzzAir.Models
         public decimal TotalPrice => (this.Flights.Sum(x => x.Flight.Price) + this.Passengers.Sum(x => x.Person.Services.Sum(y => y.Service.Price))) * this.Passengers.Count;
 
         [Required]
-        public virtual ICollection<BookingFlight> Flights { get; set; }
+        public ICollection<BookingFlight> Flights { get; set; }
 
         [Required]
-        public virtual ICollection<BookingPassenger> Passengers { get; set; }
+        public ICollection<BookingPassenger> Passengers { get; set; }
 
         [Required]
         public int PaymentId { get; set; }
-        public virtual Payment Payment { get; set; }
+        public Payment Payment { get; set; }
     }
 }

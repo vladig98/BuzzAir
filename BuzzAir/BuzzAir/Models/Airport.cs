@@ -20,12 +20,12 @@ namespace BuzzAir.Models
         public string City { get; set; }
 
         [Required]
-        public virtual Country Country { get; set; }
+        public Country Country { get; set; }
 
         [Required]
         public string Terminal { get; set; }
 
         [Required]
-        public virtual ICollection<AirportFlight> Flights { get; set; }
+        public ICollection<AirportFlight> Flights { get; set; }
     }
 }

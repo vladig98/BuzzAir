@@ -9,7 +9,7 @@ namespace BuzzAir.Models
         public int Id { get; set; }
 
         [Required]
-        public virtual CardType Card { get; set; }
+        public CardType Card { get; set; }
 
         [Required]
         public string CardNumber { get; set; }
@@ -24,7 +24,7 @@ namespace BuzzAir.Models
         public int CVC { get; set; }
 
         [Required]
-        public virtual Currency Currency { get; set; }
+        public Currency Currency { get; set; }
 
         [Required]
         public decimal Amount { get; set; }

@@ -1,0 +1,27 @@
+﻿<h2 class="text-center">All Bookings</h2>
+<hr class="bg-dark w-50" />
+<table class="table mx-auto table-hover">
+    <thead>
+        <tr class="row">
+            <th class="col-md-1">#</th>
+            <th class="col-md-2">Outbound</th>
+            <th class="col-md-2">Inbound</th>
+            <th class="col-md-1">Amount</th>
+            <th class="col-md-1">User</th>
+            <th class="col-md-5">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Bookings.Count; i++)
+        {
+            <tr class="row">
+                <td class="col-md-1">@(i + 1)</td>
+                <td class="col-md-2">@Model.Bookings[i].Outbound</td>
+                <td class="col-md-2">@(Model.Bookings[i].Inbound == null ? "One Way Ticket" : Model.Bookings[i].Inbound)</td>
+                <td class="col-md-1">@Model.Bookings[i].Amount</td>
+                <td class="col-md-1">@Model.Bookings[i].User</td>
+                <td class="col-md-5"><a class="btn bg-dark text-white mr-3" asp-controller="Booking" asp-action="Details" asp-route-id="@Model.Bookings[i].Id">Details</a><a class="btn bg-dark text-white mr-3">Edit</a><a class="btn bg-dark text-white">Boarding Pass</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

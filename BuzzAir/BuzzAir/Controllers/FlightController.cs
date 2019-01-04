@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BuzzAir.Data;
 using BuzzAir.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -54,46 +53,48 @@ namespace BuzzAir.Controllers
             var Departure = DateTime.ParseExact(d, "MM/dd/yyyy HH:mm", null);
             var Arrival = DateTime.ParseExact(a, "MM/dd/yyyy HH:mm", null);
 
-            var aircraft = this.db.Aircrafts.Where(x => x.Name == model.Aircraft).FirstOrDefault();
+            var airports = this.db.Airports.Where(x => x.Name == model.Origin || x.Name == model.Destination).ToList();
 
-            var origin = this.db.Airports.Where(x => x.Name == model.Origin).FirstOrDefault();
-            var destination = this.db.Airports.Where(x => x.Name == model.Destination).FirstOrDefault();
 
             var flight = new Flight
             {
-                FlightNumber = model.FlightNumber,
-                Aircraft = aircraft,
+                Aircraft = this.db.Aircrafts.Where(x => x.Name == model.Aircraft).FirstOrDefault(),
+                AircraftId = this.db.Aircrafts.Where(x => x.Name == model.Aircraft).Select(x => x.Id).FirstOrDefault(),
                 DurationInMinutes = int.Parse(model.DurationInMinutes),
+                Price = decimal.Parse(model.Price),
                 Departure = Departure,
                 Arrival = Arrival,
-                Price = decimal.Parse(model.Price)
+                FlightNumber = model.FlightNumber,
+                Airports = new List<AirportFlight>
+                {
+                    new AirportFlight
+                    {
+                        Airport = airports[0],
+                        AirportId = airports[0].Id,
+                        Type = AirportType.Origin
+                    },
+                    new AirportFlight
+                    {
+                        Airport = airports[1],
+                        AirportId = airports[1].Id,
+                        Type = AirportType.Destination
+                    }
+                }
             };
-
-            var originFlight = new AirportFlight
-            {
-                Airport = origin,
-                Flight = flight,
-                Type = AirportType.Origin
-            };
-
-            var destinationFlight = new AirportFlight
-            {
-                Airport = destination,
-                Flight = flight,
-                Type = AirportType.Destination
-            };
-
-            this.db.AirportFlights.Add(originFlight);
-
-            this.db.AirportFlights.Add(destinationFlight);
-
-            flight.Airports.Add(originFlight);
-            flight.Airports.Add(destinationFlight);
 
             this.db.Flights.Add(flight);
-
             this.db.SaveChanges();
 
+            var flightId = flight.Id;
+            var flightTemp = flight;
+
+            for (int i = 0; i < flight.Airports.Count(); i++)
+            {
+                flight.Airports.ToList()[i].FlightId = flightId;
+                flight.Airports.ToList()[i].Flight = flightTemp;
+            }
+
+            this.db.SaveChanges();
             return this.Redirect("/");
         }
     }

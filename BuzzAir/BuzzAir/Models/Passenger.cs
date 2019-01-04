@@ -19,6 +19,6 @@ namespace BuzzAir.Models
 
         [Required]
         public int DocumentId { get; set; }
-        public virtual TravelDocument Document { get; set; }
+        public TravelDocument Document { get; set; }
     }
 }

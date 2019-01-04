@@ -18,21 +18,21 @@ namespace BuzzAir.Models
 
         //usernam, email, password, phone | Properties from Identity
 
-        public virtual ICollection<UserBooking> Bookings { get; set; }
+        public ICollection<UserBooking> Bookings { get; set; }
 
         [Required]
         public int AddressId { get; set; }
-        public virtual Address Address { get; set; }
+        public Address Address { get; set; }
 
         [Required]
         public string FullName { get; set; }
 
         [Required]
-        public virtual Gender Gender { get; set; }
+        public Gender Gender { get; set; }
 
-        public virtual ICollection<PersonService> Services { get; set; }
+        public ICollection<PersonService> Services { get; set; }
 
         public string RoleId { get; set; }
-        public virtual IdentityRole Role { get; set; }
+        public IdentityRole Role { get; set; }
     }
 }

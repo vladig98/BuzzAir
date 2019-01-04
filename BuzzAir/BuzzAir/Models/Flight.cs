@@ -18,11 +18,11 @@ namespace BuzzAir.Models
         [Required]
         public string FlightNumber { get; set; }
 
-        public virtual ICollection<AirportFlight> Airports { get; set; }
+        public ICollection<AirportFlight> Airports { get; set; }
 
         [Required]
         public int AircraftId { get; set; }
-        public virtual Aircraft Aircraft { get; set; }
+        public Aircraft Aircraft { get; set; }
 
         [Required]
         public int DurationInMinutes { get; set; }
@@ -42,6 +42,6 @@ namespace BuzzAir.Models
         [Required]
         public int TakenSeats => this.Passengers.Count;
 
-        public virtual ICollection<FlightPassenger> Passengers { get; set; }
+        public ICollection<FlightPassenger> Passengers { get; set; }
     }
 }

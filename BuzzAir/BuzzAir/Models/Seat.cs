@@ -23,7 +23,7 @@ namespace BuzzAir.Models
             }
         }
 
-        public virtual SeatType Type { get; set; }
+        public SeatType Type { get; set; }
 
         public int SeatNumber { get; set; }
     }

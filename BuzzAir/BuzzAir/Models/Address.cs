@@ -11,7 +11,7 @@ namespace BuzzAir.Models
         public string City { get; set; }
 
         [Required]
-        public virtual Country Country { get; set; }
+        public Country Country { get; set; }
 
         [Required]
         public string PostalCode { get; set; }

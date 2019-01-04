@@ -23,11 +23,11 @@
         </div>*@
     @for (int i = 0; i < Model.Flights.Count; i++)
     {
-        <div class="form-group flights" id="flightT">
+        <div class="form-group flights" id="flightT@(i)">
             <label for="flight">Flight</label>
             <br />
-            <textarea class="form-control d-inline-block w-75" id="flight" name="flight" disabled readonly style="resize: none" rows="4">@Model.FlightsLists[i]</textarea>
-            <label class="ml-3 flightLabels" id="flightLabel@(i)"><input type="checkbox" class="form-control d-inline-block flightChecks" style="width: auto" name="flightCheck@(i)" id="flightCheck@(i)" /> <span class="flightLabelsSpan">Select</span></label>
+            <textarea class="form-control d-inline-block w-75" id="flight@(i)" name="flight" disabled readonly style="resize: none" rows="5">@Model.FlightsLists[i]</textarea>
+            <label class="ml-3 flightLabels" id="flightLabel@(i)"><input type="checkbox" checked class="form-control d-inline-block flightChecks" style="width: auto" name="flightCheck@(i)" id="flightCheck@(i)" /> <span class="flightLabelsSpan">Select</span></label>
             <div id="price@(i)" class="prices d-none">@Model.Flights[i].Price</div>
         </div>
     }
@@ -35,11 +35,11 @@
     {
         <div class="form-group d-none passengers">
             <label for="firstName@(i)" class="labels" id="firstLabel@(i)">First Name</label>
-            <input class="form-control firstNames" id="firstName@(i)" name="firstNames[]" />
+            <input class="form-control firstNames" id="firstName@(i)" name="firstNames@(i)" value="Vladi" />
         </div>
         <div class="form-group d-none passengers">
             <label for="lastName@(i)" class="labels">Last Name</label>
-            <input class="form-control lastNames" id="lastName@(i)" name="lastName@(i)" />
+            <input class="form-control lastNames" id="lastName@(i)" name="lastName@(i)" value="Gotsin" />
         </div>
         <div class="form-group d-none passengers">
             <label for="gender@(i)" class="labels">Gender</label>
@@ -47,13 +47,20 @@
                 <option selected hidden disabled>Select Gender</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Gender)).Length; j++)
                 {
-                    <option>@((Gender)j)</option>
+                    @if (j == 2)
+                    {
+                        <option selected>@((Gender)j)</option>
+                    }
+                    else
+                    {
+                        <option>@((Gender)j)</option>
+                    }
                 }
             </select>
         </div>
         <div class="form-group d-none passengers">
             <label for="dob@(i)" class="labels">Date of birth</label>
-            <input type="text" readonly class="form-control datepicker-here dobs" data-position="top left" data-language='en' id="dob@(i)" name="dob@(i)" />
+            <input type="text" readonly class="form-control datepicker-here dobs" value="12/11/2018" data-position="top left" data-language='en' id="dob@(i)" name="dob@(i)" />
         </div>
         <hr class="passengers d-none bg-dark" />
     }
@@ -67,21 +74,28 @@
                 <option selected hidden disabled>Select Document Type</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(DocumenType)).Length; j++)
                 {
-                    <option>@((DocumenType)j)</option>
+                    if (j == 2)
+                    {
+                        <option selected>@((DocumenType)j)</option>
+                    }
+                    else
+                    {
+                        <option>@((DocumenType)j)</option>
+                    }
                 }
             </select>
         </div>
         <div class="form-group docs d-none">
             <label for="docNumber@(i)" class="docLabels">Document Number</label>
-            <input class="form-control docNumbers" id="docNumber@(i)" name="docNumber@(i)" maxlength="10" />
+            <input class="form-control docNumbers" value="1234567891" id="docNumber@(i)" name="docNumber@(i)" maxlength="10" />
         </div>
         <div class="form-group docs d-none">
             <label for="issueDate@(i)" class="docLabels">Issue Date</label>
-            <input class="form-control issueDates datepicker-here" readonly id="issueDate@(i)" name="issueDate@(i)" data-language="en" data-position="top left" />
+            <input class="form-control issueDates datepicker-here" value="12/11/2018" readonly id="issueDate@(i)" name="issueDate@(i)" data-language="en" data-position="top left" />
         </div>
         <div class="form-group docs d-none">
             <label for="expiryDate@(i)" class="docLabels">Expiry Date</label>
-            <input class="form-control expiryDates datepicker-here" readonly id="expiryDate@(i)" name="expiryDate@(i)" data-language="en" data-position="top left" />
+            <input class="form-control expiryDates datepicker-here" value="12/28/2018" readonly id="expiryDate@(i)" name="expiryDate@(i)" data-language="en" data-position="top left" />
         </div>
         <div class="form-group docs d-none">
             <label for="nationality@(i)" class="docLabels">Nationality</label>
@@ -89,7 +103,14 @@
                 <option selected hidden disabled>Select Nationality</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Country)).Length; j++)
                 {
-                    <option>@((Country)j)</option>
+                    if (j == 2)
+                    {
+                        <option selected>@((Country)j)</option>
+                    }
+                    else
+                    {
+                        <option>@((Country)j)</option>
+                    }
                 }
             </select>
         </div>
@@ -99,7 +120,14 @@
                 <option selected hidden disabled>Select Your Birth Country</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Country)).Length; j++)
                 {
-                    <option>@((Country)j)</option>
+                    if (j == 2)
+                    {
+                        <option selected>@((Country)j)</option>
+                    }
+                    else
+                    {
+                        <option>@((Country)j)</option>
+                    }
                 }
             </select>
         </div>
@@ -109,7 +137,14 @@
                 <option selected hidden disabled>Select Gender</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Gender)).Length; j++)
                 {
-                    <option>@((Gender)j)</option>
+                    if (j == 2)
+                    {
+                        <option selected>@((Gender)j)</option>
+                    }
+                    else
+                    {
+                        <option>@((Gender)j)</option>
+                    }
                 }
             </select>
         </div>
@@ -144,7 +179,7 @@
         </div>
         <div class="form-group servicesResult d-none">
             <label for="serviceResult">Services</label>
-            <textarea class="form-control sResults" id="serviceResult" name="serviceResult" style="resize: none" disabled></textarea>
+            <textarea class="form-control sResults" id="serviceResult@(i)" name="serviceResult" style="resize: none" disabled></textarea>
         </div>
     }
     <h2 class="text-center d-none payment" id="paymentH2">Payment</h2>
@@ -155,25 +190,32 @@
             <option selected hidden disabled>Select Card</option>
             @for (int j = 1; j <= Enum.GetValues(typeof(CardType)).Length; j++)
             {
-                <option>@((CardType)j)</option>
+                if (j == 2)
+                {
+                    <option selected>@((CardType)j)</option>
+                }
+                else
+                {
+                    <option>@((CardType)j)</option>
+                }
             }
         </select>
     </div>
     <div class="form-group payment d-none">
         <label for="cardNumber">Card Number</label>
-        <input type="text" id="cardNumber" name="cardNumber" class="form-control" maxlength="16" pattern="\d*" />
+        <input type="text" id="cardNumber" name="cardNumber" value="1234567890123456" class="form-control" maxlength="16" pattern="\d*" />
     </div>
     <div class="form-group payment d-none">
         <label for="expiryDatePayment">Expiry Date</label>
-        <input type="text" id="expiryDatePayment" name="expiryDatePayment" class="form-control" maxlength="5" pattern="[0-9\/]*" />
+        <input type="text" id="expiryDatePayment" name="expiryDatePayment" value="12/22" class="form-control" maxlength="5" pattern="[0-9\/]*" />
     </div>
     <div class="form-group payment d-none">
         <label for="cardHolder">Card Holder</label>
-        <input type="text" id="cardHolder" name="cardHolder" class="form-control" />
+        <input type="text" id="cardHolder" name="cardHolder" value="Vladi Gotsin" class="form-control" />
     </div>
     <div class="form-group payment d-none">
         <label for="cvc">CVC</label>
-        <input type="text" id="cvc" name="cvc" class="form-control" maxlength="3" pattern="\d*" />
+        <input type="text" id="cvc" name="cvc" class="form-control" value="245" maxlength="3" pattern="\d*" />
     </div>
     <div class="form-group payment d-none">
         <label for="currency">Currency</label>
@@ -181,7 +223,14 @@
             <option selected hidden disabled>Select Currency</option>
             @for (int j = 1; j <= Enum.GetValues(typeof(Currency)).Length; j++)
             {
-                <option value="@((Currency)j)">@((Currency)j)</option>
+                if (j == 2)
+                {
+                    <option selected value="@((Currency)j)">@((Currency)j)</option>
+                }
+                else
+                {
+                    <option value="@((Currency)j)">@((Currency)j)</option>
+                }
             }
         </select>
     </div>
@@ -204,9 +253,15 @@
     <div>
         <a href="javascript:showNext();" class="btn bg-dark text-white" id="buttonSubmit">Next</a>
     </div>
+    <button type="submit" id="btnSumbit" class="btn bg-dark text-white d-none">Pay</button>
     @*<div>
             <button type="submit" class="btn bg-dark text-white">Create</button>
         </div>*@
+    <input type="text" class="d-none" name="namesResults" id="namesResults">
+    <input type="text" class="d-none" name="passportResults" id="passportResults">
+    <input type="text" class="d-none" name="servicesResults" id="servicesResults">
+    <input type="text" class="d-none" name="flightsResults" id="flightsResults">
+    <input type="text" class="d-none" name="paymentsResults" id="paymentsResults">
 </form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -267,6 +322,11 @@
             window.alert('Please select a flight');
             return;
         }
+        for (var i = 0; i < flightChecks.length; i++) {
+            if (flightChecks[i].checked == false) {
+                document.getElementById('flightT' + i).classList.add('d-none');
+            }
+        }
         for (var i = 0; i < flights.length; i++) {
             if (flightChecks[i].checked == true) {
                 flightLabelsSpan[i].textContent = 'Selected';
@@ -309,7 +369,7 @@
                 dobs[i].classList.add('d-none');
                 firstNames[i].disabled = true;
                 lastNames[i].classList.add('d-none');
-                firstNames[i].value += ' | ' + lastNames[i].value + ' ' + formatDate(d) + ' – ' + genders[i].value;
+                firstNames[i].value = " " + firstNames[i].value + ' | ' + lastNames[i].value + ' ' + formatDate(d) + ' – ' + genders[i].value;
                 for (var l of labels) {
                     l.classList.add('d-none');
                 }
@@ -412,12 +472,12 @@
                 docNumbers[i].classList.add('d-none');
                 docResults[i].classList.remove('d-none');
                 document.getElementById('labelDocResult' + i).innerHTML = getLabelDoc(docTypes[i]);
-                document.getElementById('docResult' + i).innerHTML = getDocType(docTypes[i]) + ': ' +
-                    number + '\r\nIssue Date: ' + formatDate(d1) +
-                    '\r\nExpiry Date: ' + formatDate(d2) +
-                    '\r\nNationality: ' + nationalities[i].value +
-                    '\r\nBirth Country: ' + birthCountries[i].value +
-                    '\r\nGender: ' + docGenders[i].value;
+                document.getElementById('docResult' + i).innerHTML = " " + getDocType(docTypes[i]) + ': ' +
+                    number + ' \r\nIssue Date: ' + formatDate(d1) +
+                    ' \r\nExpiry Date: ' + formatDate(d2) +
+                    ' \r\nNationality: ' + nationalities[i].value +
+                    ' \r\nBirth Country: ' + birthCountries[i].value +
+                    ' \r\nGender: ' + docGenders[i].value + " |";
                 for (var doc of docs) {
                     doc.classList.add('d-none');
                 }
@@ -482,7 +542,7 @@
         var extraLegRooms = toArray(document.getElementsByClassName('extraLegRoom'));
         var sResults = document.getElementsByClassName('sResults');
         for (var i = 0; i < baggages.length; i++) {
-            var result = '';
+            var result = ' ';
             if (kgs20[i].checked == true) {
                 result += '– Baggage 20kg \r\n';
                 price += parseFloat(document.getElementById('priceFor20kg').innerHTML);
@@ -540,17 +600,46 @@
         var currency = document.getElementById('currency');
         document.getElementById('paymentSummaryDiv').classList.remove('d-none');
         document.getElementById('paymentSummary').innerHTML = document.getElementById('cardType').value +
-            '\r\n' + document.getElementById('cardNumber').value +
-            '\r\n' + document.getElementById('expiryDatePayment').value +
-            '\r\n' + document.getElementById('cardHolder').value +
-            '\r\n' + document.getElementById('cvc').value +
-            '\r\n' + currency.options[currency.selectedIndex].value + ' ' +
+            ' \r\n' + document.getElementById('cardNumber').value +
+            ' \r\n' + document.getElementById('expiryDatePayment').value +
+            ' \r\n' + document.getElementById('cardHolder').value +
+            ' \r\n' + document.getElementById('cvc').value +
+            ' \r\n' + currency.options[currency.selectedIndex].value + ' ' +
             document.getElementById('total').innerHTML;
-        document.getElementById('buttonSubmit').innerHTML = 'Pay';
-        document.getElementById('buttonSubmit').setAttribute('href', 'javascript:Submit();');
+        document.getElementById('buttonSubmit').classList.add('d-none');
+        Submit();
+        document.getElementById('btnSumbit').classList.remove('d-none');
+        //document.getElementById('buttonSubmit').setAttribute('href', 'javascript:Submit();');
     }
     function Submit() {
-        document.getElementById('bookingForm').submit();
+        var firstNames = [];
+        var docsResults = [];
+        var servicesResults = [];
+        var flightsResults = [];
+        var flightChecks = document.getElementsByClassName('flightChecks');
+        for (var i = 0; i < @Model.Passenger; i++) {
+            firstNames.push(document.getElementById('firstName' + i).value);
+            docsResults.push(document.getElementById('docResult' + i).value);
+            servicesResults.push(document.getElementById('serviceResult' + i).value);
+            servicesResults.push(' | ');
+        }
+        document.getElementById('namesResults').value = firstNames.join('\r\n');
+        document.getElementById('passportResults').value = docsResults.join('\r\n');
+        document.getElementById('servicesResults').value = servicesResults.join('\r\n\r\n');
+        for (var i = 0; i < flightChecks.length; i++) {
+            if (flightChecks[i].checked == true) {
+                flightsResults.push(document.getElementById('flight' + i).innerHTML);
+            }
+        }
+        document.getElementById('flightsResults').value = flightsResults.join('\r\n\r\n');
+        document.getElementById('paymentsResults').value = document.getElementById('paymentSummary').innerHTML;
+        console.log(document.getElementById('namesResults').value);
+        console.log(document.getElementById('passportResults').value);
+        console.log(document.getElementById('servicesResults').value);
+        console.log(document.getElementById('flightsResults').value);
+        console.log(document.getElementById('paymentsResults').value);
+        //paymentsResults
+        //document.getElementById('bookingForm').submit();
     }
     document.getElementById('buttonSubmit').onclick = function () {
         document.getElementById('total').innerHTML = price;

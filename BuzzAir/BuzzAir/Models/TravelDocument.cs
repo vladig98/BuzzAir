@@ -9,7 +9,7 @@ namespace BuzzAir.Models
         public int Id { get; set; }
 
         [Required]
-        public virtual DocumenType Type { get; set; }
+        public DocumenType Type { get; set; }
 
         [Required]
         public string Number { get; set; }
@@ -21,12 +21,12 @@ namespace BuzzAir.Models
         public DateTime ExpiryDate { get; set; }
 
         [Required]
-        public virtual Country Nationality { get; set; }
+        public Country Nationality { get; set; }
 
         [Required]
-        public virtual Country BirthCountry { get; set; }
+        public Country BirthCountry { get; set; }
 
         [Required]
-        public virtual Gender Gender { get; set; }
+        public Gender Gender { get; set; }
     }
 }

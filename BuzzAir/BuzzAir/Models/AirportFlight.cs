@@ -5,11 +5,11 @@
         public int Id { get; set; }
 
         public int AirportId { get; set; }
-        public virtual Airport Airport { get; set; }
+        public Airport Airport { get; set; }
 
         public int FlightId { get; set; }
-        public virtual Flight Flight { get; set; }
+        public Flight Flight { get; set; }
 
-        public virtual AirportType Type { get; set; }
+        public AirportType Type { get; set; }
     }
 }
