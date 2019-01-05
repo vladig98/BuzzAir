@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BuzzAir.Data.Migrations
+namespace BuzzAir.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181123120501_InitialCreate")]
+    [Migration("20190105120501_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,6 +81,27 @@ namespace BuzzAir.Data.Migrations
                     b.ToTable("Airports");
                 });
 
+            modelBuilder.Entity("BuzzAir.Models.AirportFlight", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AirportId");
+
+                    b.Property<int>("FlightId");
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AirportId");
+
+                    b.HasIndex("FlightId");
+
+                    b.ToTable("AirportFlights");
+                });
+
             modelBuilder.Entity("BuzzAir.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -119,6 +140,8 @@ namespace BuzzAir.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("RoleId");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -138,6 +161,8 @@ namespace BuzzAir.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("AspNetUsers");
                 });
 
@@ -146,6 +171,8 @@ namespace BuzzAir.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Deleted");
 
                     b.Property<int>("PaymentId");
 
@@ -206,14 +233,10 @@ namespace BuzzAir.Data.Migrations
 
                     b.Property<DateTime>("Departure");
 
-                    b.Property<int>("DestinationId");
-
                     b.Property<int>("DurationInMinutes");
 
                     b.Property<string>("FlightNumber")
                         .IsRequired();
-
-                    b.Property<int>("OriginId");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 6)");
@@ -221,10 +244,6 @@ namespace BuzzAir.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AircraftId");
-
-                    b.HasIndex("DestinationId");
-
-                    b.HasIndex("OriginId");
 
                     b.ToTable("Flights");
                 });
@@ -329,6 +348,9 @@ namespace BuzzAir.Data.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
+                    b.Property<string>("Name")
+                        .IsRequired();
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 6)");
 
@@ -371,16 +393,14 @@ namespace BuzzAir.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1")
+                    b.Property<string>("ApplicationUserId")
                         .IsRequired();
 
                     b.Property<int>("BookingId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("BookingId");
 
@@ -531,12 +551,29 @@ namespace BuzzAir.Data.Migrations
                     b.HasDiscriminator().HasValue("Seat");
                 });
 
+            modelBuilder.Entity("BuzzAir.Models.AirportFlight", b =>
+                {
+                    b.HasOne("BuzzAir.Models.Airport", "Airport")
+                        .WithMany("Flights")
+                        .HasForeignKey("AirportId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("BuzzAir.Models.Flight", "Flight")
+                        .WithMany("Airports")
+                        .HasForeignKey("FlightId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("BuzzAir.Models.ApplicationUser", b =>
                 {
                     b.HasOne("BuzzAir.Models.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.Booking", b =>
@@ -579,16 +616,6 @@ namespace BuzzAir.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AircraftId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BuzzAir.Models.Airport", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BuzzAir.Models.Airport", "Origin")
-                        .WithMany("Flights")
-                        .HasForeignKey("OriginId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.FlightPassenger", b =>
@@ -625,7 +652,7 @@ namespace BuzzAir.Data.Migrations
                 {
                     b.HasOne("BuzzAir.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Bookings")
-                        .HasForeignKey("ApplicationUserId1")
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BuzzAir.Models.Booking", "Booking")

@@ -1,5 +1,6 @@
 ﻿using BuzzAir.Data;
 using BuzzAir.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace BuzzAir.Controllers
             this.db = db;
         }
 
+        [Authorize]
         public IActionResult BoardingPass(int id)
         {
 

@@ -47,6 +47,12 @@ namespace BuzzAir.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Fullname")]
+            public string Fullname { get; set; }
+
+            [Display(Name = "Geder")]
+            public string Gender { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -60,13 +66,17 @@ namespace BuzzAir.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var fullname = user.FullName;
+            var gender = user.Gender.ToString();
 
             Username = userName;
 
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Fullname = fullname,
+                Gender = gender
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BuzzAir.Data;
 using BuzzAir.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuzzAir.Controllers
@@ -17,12 +18,14 @@ namespace BuzzAir.Controllers
             this.db = db;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateAircraft()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(AircraftCreateViewModel model)
         {
             var aircraft = new Aircraft

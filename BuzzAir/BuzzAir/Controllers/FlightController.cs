@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BuzzAir.Data;
 using BuzzAir.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuzzAir.Controllers
@@ -16,6 +17,7 @@ namespace BuzzAir.Controllers
             this.db = db;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateFlight(CreateFlightIndexViewModel model)
         {
             model.Aircrafts = this.db.Aircrafts.ToList();
@@ -24,6 +26,7 @@ namespace BuzzAir.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(CreateFlightViewModel model)
         {
             var d = string.Empty;

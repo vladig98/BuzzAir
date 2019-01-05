@@ -1,5 +1,6 @@
 ﻿using BuzzAir.Data;
 using BuzzAir.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,7 @@ namespace BuzzAir.Controllers
             this.db = db;
         }
 
+        [Authorize]
         public IActionResult Delete (int id)
         {
             var booking = this.db.Bookings.Where(x => x.Id == id).FirstOrDefault();
@@ -26,6 +28,7 @@ namespace BuzzAir.Controllers
             return this.Redirect("/Booking/All");
         }
 
+        [Authorize]
         public IActionResult Details (int id)
         {
             var booking = this.db.Bookings.Where(x => x.Id == id)
@@ -84,6 +87,7 @@ namespace BuzzAir.Controllers
             return this.View(model);
         }
 
+        [Authorize]
         public IActionResult All()
         {
             var bookings = this.db.Bookings
@@ -172,6 +176,7 @@ namespace BuzzAir.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(CreateBookingViewModel model)
         {
@@ -473,6 +478,7 @@ namespace BuzzAir.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult CreateBooking(CreateBookingIndexViewModel model)
         {
             if (string.IsNullOrEmpty(model.Origin) || string.IsNullOrEmpty(model.Passenger) ||
