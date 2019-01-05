@@ -3,7 +3,7 @@
 <form method="post" class="w-50 mx-auto" asp-controller="Flight" asp-action="Create">
     <div class="form-group">
         <label for="flightNumber">Flight Number</label>
-        <input type="text" class="form-control" id="flightNumber" name="flightNumber" required placeholder="Flight number..."/>
+        <input type="text" class="form-control" id="flightNumber" name="flightNumber" required placeholder="Flight number..." />
     </div>
     <div class="form-group">
         <label for="aircraft">Aircraft</label>
@@ -11,7 +11,7 @@
             <option selected hidden disabled>Select Aircraft</option>
             @for (int i = 0; i < Model.Aircrafts.Count; i++)
             {
-            <option>@Model.Aircrafts[i].Name</option>
+                <option>@Model.Aircrafts[i].Name</option>
             }
         </select>
     </div>
@@ -42,24 +42,18 @@
     <div class="form-group">
         <label for="departure">Departure</label>
         <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="departure" name="departure" placeholder="Pick a date..." />
-            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
+            <input data-timepicker="true" readonly data-language="en" data-position="top left" type="text" class="form-control datepicker-here" id="departure" name="departure" placeholder="Pick a date..." />
         </div>
     </div>
     <div class="form-group">
         <label for="arrival">Arrival</label>
         <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="arrival" name="arrival" placeholder="Pick a date..." />
-            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
+            <input data-timepicker="true" readonly data-language="en" data-position="top left" type="text" class="form-control datepicker-here" id="arrival" name="arrival" placeholder="Pick a date..." />
         </div>
     </div>
     <div class="form-group">
         <label for="price">Price</label>
-        <input type="number" step="0.01" class="form-control" id="price" name="price" required placeholder="Price..." min="9.99"/>
+        <input type="number" step="0.01" class="form-control" id="price" name="price" required placeholder="Price..." min="9.99" />
     </div>
     <div>
         <button type="submit" class="btn bg-dark text-white">Create</button>
@@ -70,16 +64,8 @@
 @*
     =========================       Scripts       =========================
 *@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-    });
-    $(function () {
-        $('#datetimepicker2').datetimepicker();
-    });
-</script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<link href="~/lib/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+<script src="~/lib/air-datepicker-master/dist/js/datepicker.min.js"></script>
+<script src="~/lib/air-datepicker-master/dist/js/i18n/datepicker.en.js"></script>
 

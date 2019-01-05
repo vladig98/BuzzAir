@@ -12,5 +12,9 @@ namespace BuzzAir.Models
 
         [Required]
         public virtual string Name { get; set; }
+
+        public int? Kilos { get; set; }
+
+        public SeatType? Type { get; set; }
     }
 }

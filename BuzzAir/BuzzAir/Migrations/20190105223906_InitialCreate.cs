@@ -95,8 +95,9 @@ namespace BuzzAir.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Price = table.Column<decimal>(type: "decimal(18, 6)", nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false),
+                    Kilos = table.Column<int>(nullable: true),
                     Type = table.Column<int>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
                     SeatNumber = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

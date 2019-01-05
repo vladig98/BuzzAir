@@ -74,7 +74,7 @@ namespace BuzzAir.Controllers
                 for (int j = 0; j < services.Count(); j++)
                 {
                     var service = services[j].Service;
-                    resultsPassengers += Environment.NewLine + "          - " + service.Name;
+                    resultsPassengers += Environment.NewLine + "          - " + (service.Name == "Baggage" ? service.Name + " " + service.Kilos : service.Name == "Seat" ? service.Name + " " + service.Type : service.Name);
                 }
             }
             var model = new DetailsViewModel
@@ -350,9 +350,9 @@ namespace BuzzAir.Controllers
                 travelDocs.Add(new TravelDocument
                 {
                     BirthCountry = birthCountry,
-                    ExpiryDate = DateTime.ParseExact(docs[2].Trim(), "dd MMMM yyyy", null),
+                    ExpiryDate = DateTime.ParseExact(docs[2].Trim(), "d MMMM yyyy", null),
                     Gender = genderDoc,
-                    IssueDate = DateTime.ParseExact(docs[1].Trim(), "dd MMMM yyyy", null),
+                    IssueDate = DateTime.ParseExact(docs[1].Trim(), "d MMMM yyyy", null),
                     Nationality = nationality,
                     Number = tokens[1].Trim(),
                     Type = tokens[0].Trim() == "P" ? DocumenType.Passport : DocumenType.National_Id
@@ -374,7 +374,7 @@ namespace BuzzAir.Controllers
                 Random rnd = new Random();
                 passengers.Add(new Passenger
                 {
-                    DateOfBirth = DateTime.ParseExact(dobs[i].Trim(), "dd/MMMM/yyyy", null),
+                    DateOfBirth = DateTime.ParseExact(dobs[i].Trim(), "d/MMMM/yyyy", null),
                     DocumentId = travelDocs[i].Id,
                     FullName = firstNames[i].Trim() + " " + lastNames[i].Trim(),
                     Gender = pGender,

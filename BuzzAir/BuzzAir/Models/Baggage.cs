@@ -2,8 +2,6 @@
 {
     public class Baggage : Service
     {
-        public int Kilos { get; set; }
-
         public override string Name => this.GetType().Name;
 
         public override decimal Price

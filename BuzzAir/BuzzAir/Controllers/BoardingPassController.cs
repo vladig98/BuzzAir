@@ -35,10 +35,6 @@ namespace BuzzAir.Controllers
                                 .Departure
                                 .ToString("HH:mm")
                     + " " +
-                            (booking
-                                .Flights
-                                .Count() > 1
-                            ?
                             booking
                                 .Flights
                                 .ToList()[0]
@@ -56,8 +52,6 @@ namespace BuzzAir.Controllers
                                 .Where(x => x.Type == AirportType.Destination)
                                 .Select(x => x.Airport.Name)
                                 .FirstOrDefault()
-                            :
-                                "One Way Ticket")
                     + " " +
                             booking
                                 .Flights
@@ -84,6 +78,9 @@ namespace BuzzAir.Controllers
                                 .Airport
                                 .Terminal;
             model.Arrival = booking
+                           .Flights
+                           .Count() > 1 ?
+                           booking
                            .Flights
                            .ToList()[1]
                            .Flight
@@ -137,7 +134,7 @@ namespace BuzzAir.Controllers
                            .Airports
                            .ToList()[1]
                            .Airport
-                           .Terminal;
+                           .Terminal : "";
             return View(model);
         }
     }

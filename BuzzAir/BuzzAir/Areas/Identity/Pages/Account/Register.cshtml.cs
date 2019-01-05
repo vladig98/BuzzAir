@@ -109,10 +109,14 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/Identity/Account/Confirm");
             if (ModelState.IsValid)
             {
-                var role = new IdentityRole { Name = "User" };
+                var role = new IdentityRole();
                 if (!this.context.AppUsers.Any())
                 {
-                    role = new IdentityRole { Name = "Admin" };
+                    role.Name = "Admin";
+                }
+                else
+                {
+                    role.Name = "User";
                 }
                 bool x = await _roleManager.RoleExistsAsync(role.Name);
                 if (!x)
@@ -127,8 +131,8 @@ namespace BuzzAir.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    this.context.UserRoles.Add(new IdentityUserRole<string> { RoleId = role.Id, UserId = user.Id });
-                    this.context.SaveChanges();
+                    //this.context.UserRoles.Add(new IdentityUserRole<string> { RoleId = role.Id, UserId = user.Id });
+                    //this.context.SaveChanges();
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(

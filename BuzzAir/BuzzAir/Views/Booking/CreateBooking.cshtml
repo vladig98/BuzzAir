@@ -27,7 +27,7 @@
             <label for="flight">Flight</label>
             <br />
             <textarea class="form-control d-inline-block w-75" id="flight@(i)" name="flight" disabled readonly style="resize: none" rows="5">@Model.FlightsLists[i]</textarea>
-            <label class="ml-3 flightLabels" id="flightLabel@(i)"><input type="checkbox" checked class="form-control d-inline-block flightChecks" style="width: auto" name="flightCheck@(i)" id="flightCheck@(i)" /> <span class="flightLabelsSpan">Select</span></label>
+            <label class="ml-3 flightLabels" id="flightLabel@(i)"><input type="checkbox" class="form-control d-inline-block flightChecks" style="width: auto" name="flightCheck@(i)" id="flightCheck@(i)" /> <span class="flightLabelsSpan">Select</span></label>
             <div id="price@(i)" class="prices d-none">@Model.Flights[i].Price</div>
         </div>
     }
@@ -35,11 +35,11 @@
     {
         <div class="form-group d-none passengers">
             <label for="firstName@(i)" class="labels" id="firstLabel@(i)">First Name</label>
-            <input class="form-control firstNames" id="firstName@(i)" name="firstNames@(i)" value="Vladi" />
+            <input class="form-control firstNames" id="firstName@(i)" name="firstNames@(i)" />
         </div>
         <div class="form-group d-none passengers">
             <label for="lastName@(i)" class="labels">Last Name</label>
-            <input class="form-control lastNames" id="lastName@(i)" name="lastName@(i)" value="Gotsin" />
+            <input class="form-control lastNames" id="lastName@(i)" name="lastName@(i)" />
         </div>
         <div class="form-group d-none passengers">
             <label for="gender@(i)" class="labels">Gender</label>
@@ -47,20 +47,13 @@
                 <option selected hidden disabled>Select Gender</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Gender)).Length; j++)
                 {
-                    @if (j == 2)
-                    {
-                        <option selected>@((Gender)j)</option>
-                    }
-                    else
-                    {
-                        <option>@((Gender)j)</option>
-                    }
+                    <option>@((Gender)j)</option>
                 }
             </select>
         </div>
         <div class="form-group d-none passengers">
             <label for="dob@(i)" class="labels">Date of birth</label>
-            <input type="text" readonly class="form-control datepicker-here dobs" value="12/11/2018" data-position="top left" data-language='en' id="dob@(i)" name="dob@(i)" />
+            <input type="text" readonly class="form-control datepicker-here dobs" data-position="top left" data-language='en' id="dob@(i)" name="dob@(i)" />
         </div>
         <hr class="passengers d-none bg-dark" />
     }
@@ -74,28 +67,21 @@
                 <option selected hidden disabled>Select Document Type</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(DocumenType)).Length; j++)
                 {
-                    if (j == 2)
-                    {
-                        <option selected>@((DocumenType)j)</option>
-                    }
-                    else
-                    {
-                        <option>@((DocumenType)j)</option>
-                    }
+                    <option>@((DocumenType)j)</option>
                 }
             </select>
         </div>
         <div class="form-group docs d-none">
             <label for="docNumber@(i)" class="docLabels">Document Number</label>
-            <input class="form-control docNumbers" value="1234567891" id="docNumber@(i)" name="docNumber@(i)" maxlength="10" />
+            <input class="form-control docNumbers" id="docNumber@(i)" name="docNumber@(i)" maxlength="10" />
         </div>
         <div class="form-group docs d-none">
             <label for="issueDate@(i)" class="docLabels">Issue Date</label>
-            <input class="form-control issueDates datepicker-here" value="12/11/2018" readonly id="issueDate@(i)" name="issueDate@(i)" data-language="en" data-position="top left" />
+            <input class="form-control issueDates datepicker-here" readonly id="issueDate@(i)" name="issueDate@(i)" data-language="en" data-position="top left" />
         </div>
         <div class="form-group docs d-none">
             <label for="expiryDate@(i)" class="docLabels">Expiry Date</label>
-            <input class="form-control expiryDates datepicker-here" value="12/28/2018" readonly id="expiryDate@(i)" name="expiryDate@(i)" data-language="en" data-position="top left" />
+            <input class="form-control expiryDates datepicker-here" readonly id="expiryDate@(i)" name="expiryDate@(i)" data-language="en" data-position="top left" />
         </div>
         <div class="form-group docs d-none">
             <label for="nationality@(i)" class="docLabels">Nationality</label>
@@ -103,14 +89,7 @@
                 <option selected hidden disabled>Select Nationality</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Country)).Length; j++)
                 {
-                    if (j == 2)
-                    {
-                        <option selected>@((Country)j)</option>
-                    }
-                    else
-                    {
-                        <option>@((Country)j)</option>
-                    }
+                    <option>@((Country)j)</option>
                 }
             </select>
         </div>
@@ -120,14 +99,7 @@
                 <option selected hidden disabled>Select Your Birth Country</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Country)).Length; j++)
                 {
-                    if (j == 2)
-                    {
-                        <option selected>@((Country)j)</option>
-                    }
-                    else
-                    {
-                        <option>@((Country)j)</option>
-                    }
+                     <option>@((Country)j)</option>
                 }
             </select>
         </div>
@@ -137,14 +109,7 @@
                 <option selected hidden disabled>Select Gender</option>
                 @for (int j = 1; j <= Enum.GetValues(typeof(Gender)).Length; j++)
                 {
-                    if (j == 2)
-                    {
-                        <option selected>@((Gender)j)</option>
-                    }
-                    else
-                    {
-                        <option>@((Gender)j)</option>
-                    }
+                    <option>@((Gender)j)</option>
                 }
             </select>
         </div>
@@ -190,32 +155,25 @@
             <option selected hidden disabled>Select Card</option>
             @for (int j = 1; j <= Enum.GetValues(typeof(CardType)).Length; j++)
             {
-                if (j == 2)
-                {
-                    <option selected>@((CardType)j)</option>
-                }
-                else
-                {
-                    <option>@((CardType)j)</option>
-                }
+                <option>@((CardType)j)</option>
             }
         </select>
     </div>
     <div class="form-group payment d-none">
         <label for="cardNumber">Card Number</label>
-        <input type="text" id="cardNumber" name="cardNumber" value="1234567890123456" class="form-control" maxlength="16" pattern="\d*" />
+        <input type="text" id="cardNumber" name="cardNumber" class="form-control" maxlength="16" pattern="\d*" />
     </div>
     <div class="form-group payment d-none">
         <label for="expiryDatePayment">Expiry Date</label>
-        <input type="text" id="expiryDatePayment" name="expiryDatePayment" value="12/22" class="form-control" maxlength="5" pattern="[0-9\/]*" />
+        <input type="text" id="expiryDatePayment" name="expiryDatePayment" onkeyup="AddSlash()" class="form-control" maxlength="5" pattern="[0-9\/]*" />
     </div>
     <div class="form-group payment d-none">
         <label for="cardHolder">Card Holder</label>
-        <input type="text" id="cardHolder" name="cardHolder" value="Vladi Gotsin" class="form-control" />
+        <input type="text" id="cardHolder" name="cardHolder" class="form-control" />
     </div>
     <div class="form-group payment d-none">
         <label for="cvc">CVC</label>
-        <input type="text" id="cvc" name="cvc" class="form-control" value="245" maxlength="3" pattern="\d*" />
+        <input type="text" id="cvc" name="cvc" class="form-control" maxlength="3" pattern="\d*" />
     </div>
     <div class="form-group payment d-none">
         <label for="currency">Currency</label>
@@ -223,14 +181,7 @@
             <option selected hidden disabled>Select Currency</option>
             @for (int j = 1; j <= Enum.GetValues(typeof(Currency)).Length; j++)
             {
-                if (j == 2)
-                {
-                    <option selected value="@((Currency)j)">@((Currency)j)</option>
-                }
-                else
-                {
-                    <option value="@((Currency)j)">@((Currency)j)</option>
-                }
+                <option value="@((Currency)j)">@((Currency)j)</option>
             }
         </select>
     </div>
@@ -262,386 +213,11 @@
     <input type="text" class="d-none" name="servicesResults" id="servicesResults">
     <input type="text" class="d-none" name="flightsResults" id="flightsResults">
     <input type="text" class="d-none" name="paymentsResults" id="paymentsResults">
+    <input type="text" class="d-none" id="MP" value="@Model.Passenger" />
 </form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link href="~/lib/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
 <script src="~/lib/air-datepicker-master/dist/js/datepicker.min.js"></script>
 <script src="~/lib/air-datepicker-master/dist/js/i18n/datepicker.en.js"></script>
-<script>
-    var price = 0;
-    function toArray(obj) {
-        var array = [];
-        for (var i = obj.length >>> 0; i--;) {
-            array[i] = obj[i];
-        }
-        return array;
-    }
-    function Convert(selected) {
-        var dic = {
-            "EUR": 0.87,
-            "GBP": 0.79,
-            "BGN": 1.71,
-            "USD": 1,
-            "BAM": 1.71,
-            "HRK": 6.49,
-            "CZK": 22.5,
-            "GEL": 2.68,
-            "HUF": 280.85,
-            "CHF": 0.98,
-            "NOK": 8.71,
-            "PLN": 3.76,
-            "RUB": 69.50,
-            "SEK": 8.97,
-            "TRY": 5.27,
-            "UAH": 27.39,
-            "INR": 69.93,
-            "CNY": 6.88,
-            "JPY": 110.28,
-            "CAD": 1.36
-        };
-        document.getElementById('total').innerHTML = parseFloat(price * dic[selected]).toFixed(2);
-    }
-    function showNext() {
-        var flights = document.getElementsByClassName('flights');
-        var flightLabelsSpan = document.getElementsByClassName('flightLabelsSpan');
-        var flightChecks = document.getElementsByClassName('flightChecks');
-        var passengers = document.getElementsByClassName('passengers');
-        var prices = document.getElementsByClassName('prices');
-        var arr = toArray(flightChecks);
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i].checked == true) {
-                price += parseFloat(prices[i].innerHTML * @Model.Passenger);
-            }
-        }
-        if (arr.some(x => x.checked === true)) {
-            for (var i = 0; i < passengers.length; i++) {
-                passengers[i].classList.remove('d-none');
-            }
-        } else {
-            window.alert('Please select a flight');
-            return;
-        }
-        for (var i = 0; i < flightChecks.length; i++) {
-            if (flightChecks[i].checked == false) {
-                document.getElementById('flightT' + i).classList.add('d-none');
-            }
-        }
-        for (var i = 0; i < flights.length; i++) {
-            if (flightChecks[i].checked == true) {
-                flightLabelsSpan[i].textContent = 'Selected';
-                flightChecks[i].disabled = true;
-            }
-        }
-        document.getElementById('buttonSubmit').setAttribute('href', 'javascript:showNames();');
-        document.getElementById('total').innerHTML = parseFloat(price);
-    }
-    function formatDate(date) {
-        var monthNames = [
-            "January", "February", "March",
-            "April", "May", "June", "July",
-            "August", "September", "October",
-            "November", "December"
-        ];
-
-        var day = date.getDate();
-        var monthIndex = date.getMonth();
-        var year = date.getFullYear();
-
-        return day + ' ' + monthNames[monthIndex] + ' ' + year;
-    }
-    function showNames() {
-        var genders = toArray(document.getElementsByClassName('genders'));
-        var dobs = toArray(document.getElementsByClassName('dobs'));
-        var firstNames = toArray(document.getElementsByClassName('firstNames'));
-        var lastNames = toArray(document.getElementsByClassName('lastNames'));
-        var labels = toArray(document.getElementsByClassName('labels'));
-        if (genders.some(x => x.selectedIndex == 0) ||
-            dobs.some(x => x.value == null || x.value == '') ||
-            firstNames.some(x => x.value == null || x.value == '') ||
-            lastNames.some(x => x.value == null || x.value == '')) {
-            window.alert('Please fill out everything');
-            return;
-        } else {
-            for (var i = 0; i < genders.length; i++) {
-                var d = new Date(dobs[i].value);
-                genders[i].classList.add('d-none');
-                dobs[i].classList.add('d-none');
-                firstNames[i].disabled = true;
-                lastNames[i].classList.add('d-none');
-                firstNames[i].value = " " + firstNames[i].value + ' | ' + lastNames[i].value + ' ' + formatDate(d) + ' – ' + genders[i].value;
-                for (var l of labels) {
-                    l.classList.add('d-none');
-                }
-                var label = document.getElementById('firstLabel' + i);
-                label.classList.remove('d-none');
-                label.innerHTML = 'Passenger ' + (i + 1);
-            }
-        }
-        var docs = document.getElementsByClassName('docs');
-        for (var doc of docs) {
-            doc.classList.remove('d-none');
-        }
-        document.getElementById('buttonSubmit').setAttribute('href', 'javascript:showDocs();');
-        document.getElementById('total').innerHTML = price;
-    }
-    function getDocType(doc) {
-        if (doc.value === 'Passport') {
-            return 'P';
-        } else {
-            return 'ID';
-        }
-    }
-    function getLabelDoc(doc) {
-        if (doc.value === 'Passport') {
-            return 'Passport';
-        } else {
-            return 'ID card';
-        }
-    }
-    function compareDates(issue, expiry) {
-        var d1 = issue.value.split('/');
-        var month1 = d1[0];
-        var day1 = d1[1];
-        var year1 = d1[2];
-        var d2 = expiry.value.split('/');
-        var month2 = d2[0];
-        var day2 = d2[1];
-        var year2 = d2[2];
-        if (year1 > year2) {
-            return 1;
-        } else if (year1 == year2) {
-            if (month1 > month2) {
-                return 1;
-            } else if (month1 == month2) {
-                if (day1 > day2) {
-                    return 1;
-                } else if (day1 == day2) {
-                    return 0;
-                } else {
-                    return -1;
-                }
-            } else {
-                return -1;
-            }
-        } else {
-            return -1;
-        }
-    }
-    function showDocs() {
-        var docTypes = toArray(document.getElementsByClassName('docTypes'));
-        var docNumbers = toArray(document.getElementsByClassName('docNumbers'));
-        var issueDates = toArray(document.getElementsByClassName('issueDates'));
-        var expiryDates = toArray(document.getElementsByClassName('expiryDates'));
-        var nationalities = toArray(document.getElementsByClassName('nationalities'));
-        var birthCountries = toArray(document.getElementsByClassName('birthCountries'));
-        var docGenders = toArray(document.getElementsByClassName('genderDocs'));
-        var docResults = toArray(document.getElementsByClassName('docResults'));
-        var docs = toArray(document.getElementsByClassName('docs'));
-        if (docTypes.some(x => x.selectedIndex == 0) ||
-            docNumbers.some(x => x.value == null || x.value == '') ||
-            issueDates.some(x => x.value == null || x.value == '') ||
-            expiryDates.some(x => x.value == null || x.value == '') ||
-            nationalities.some(x => x.selectedIndex == 0) ||
-            birthCountries.some(x => x.selectedIndex == 0) ||
-            docGenders.some(x => x.selectedIndex == 0)) {
-            window.alert('Please fill out everything');
-            return;
-        } else {
-            for (var i = 0; i < issueDates.length; i++) {
-                if (compareDates(issueDates[i], expiryDates[i]) > 0) {
-                    window.alert('Expiry date cannot be before the issue date.');
-                    return;
-                }
-                if (compareDates(issueDates[i], expiryDates[i]) == 0) {
-                    window.alert('Expiry date cannot be equal to the issue date.');
-                    return;
-                }
-            }
-            for (var i = 0; i < docTypes.length; i++) {
-                docTypes[i].classList.add('d-none');
-                docNumbers[i].disabled = true;
-                issueDates[i].classList.add('d-none');
-                expiryDates[i].classList.add('d-none');
-                nationalities[i].classList.add('d-none');
-                birthCountries[i].classList.add('d-none');
-                docGenders[i].classList.add('d-none');
-                var number = docNumbers[i].value;
-                var d1 = new Date(issueDates[i].value);
-                var d2 = new Date(expiryDates[i].value);
-                docNumbers[i].classList.add('d-none');
-                docResults[i].classList.remove('d-none');
-                document.getElementById('labelDocResult' + i).innerHTML = getLabelDoc(docTypes[i]);
-                document.getElementById('docResult' + i).innerHTML = " " + getDocType(docTypes[i]) + ': ' +
-                    number + ' \r\nIssue Date: ' + formatDate(d1) +
-                    ' \r\nExpiry Date: ' + formatDate(d2) +
-                    ' \r\nNationality: ' + nationalities[i].value +
-                    ' \r\nBirth Country: ' + birthCountries[i].value +
-                    ' \r\nGender: ' + docGenders[i].value + " |";
-                for (var doc of docs) {
-                    doc.classList.add('d-none');
-                }
-            }
-        }
-        if (docResults.every(x => !x.classList.contains('d-none'))) {
-            var services = document.getElementsByClassName('services');
-            for (var i = 0; i < services.length; i++) {
-                services[i].classList.remove('d-none');
-            }
-            document.getElementById('buttonSubmit').setAttribute('href', 'javascript:showServices();');
-            document.getElementById('total').innerHTML = price;
-        }
-    }
-    function showServices() {
-        var kilos = document.getElementsByClassName('baggageKilos');
-        var seatsType = document.getElementsByClassName('seatsType');
-        var airportCheckIns = toArray(document.getElementsByClassName('airportCheckIns'));
-        var baggages = toArray(document.getElementsByClassName('baggages'));
-        var flexibility = toArray(document.getElementsByClassName('flexibilities'));
-        var onTimeArrivals = toArray(document.getElementsByClassName('onTimeArrivals'));
-        var priorities = toArray(document.getElementsByClassName('priorities'));
-        var seats = toArray(document.getElementsByClassName('seats'));
-        var kgs20 = toArray(document.getElementsByClassName('20kgs'));
-        var kgs32 = toArray(document.getElementsByClassName('32kgs'));
-        var normalSeats = toArray(document.getElementsByClassName('normalSeat'));
-        var extraLegRooms = toArray(document.getElementsByClassName('extraLegRoom'));
-        var sResults = document.getElementsByClassName('sResults');
-        for (var i = 0; i < baggages.length; i++) {
-            airportCheckIns[i].disabled = true;
-            baggages[i].disabled = true;
-            flexibility[i].disabled = true;
-            onTimeArrivals[i].disabled = true;
-            priorities[i].disabled = true;
-            seats[i].disabled = true;
-        }
-        for (var i = 0; i < baggages.length; i++) {
-            if (baggages[i].checked === true) {
-                kilos[i].classList.remove('d-none');
-            }
-            if (seats[i].checked) {
-                seatsType[i].classList.remove('d-none');
-            }
-        }
-        document.getElementById('buttonSubmit').setAttribute('href', 'javascript:listServices();');
-        document.getElementById('total').innerHTML = price;
-    }
-    function listServices() {
-        var kilos = document.getElementsByClassName('baggageKilos');
-        var seatsType = document.getElementsByClassName('seatsType');
-        var services = document.getElementsByClassName('services');
-        var servicesResult = document.getElementsByClassName('servicesResult');
-        var airportCheckIns = toArray(document.getElementsByClassName('airportCheckIns'));
-        var baggages = toArray(document.getElementsByClassName('baggages'));
-        var flexibility = toArray(document.getElementsByClassName('flexibilities'));
-        var onTimeArrivals = toArray(document.getElementsByClassName('onTimeArrivals'));
-        var priorities = toArray(document.getElementsByClassName('priorities'));
-        var seats = toArray(document.getElementsByClassName('seats'));
-        var kgs20 = toArray(document.getElementsByClassName('20kgs'));
-        var kgs32 = toArray(document.getElementsByClassName('32kgs'));
-        var normalSeats = toArray(document.getElementsByClassName('normalSeat'));
-        var extraLegRooms = toArray(document.getElementsByClassName('extraLegRoom'));
-        var sResults = document.getElementsByClassName('sResults');
-        for (var i = 0; i < baggages.length; i++) {
-            var result = ' ';
-            if (kgs20[i].checked == true) {
-                result += '– Baggage 20kg \r\n';
-                price += parseFloat(document.getElementById('priceFor20kg').innerHTML);
-            } else if (kgs32[i].checked == true) {
-                result += '– Baggage 32kg \r\n';
-                price += parseFloat(document.getElementById('priceFor32kg').innerHTML);
-            }
-            if (normalSeats[i].checked == true) {
-                result += '– Normal Seat \r\n';
-                price += parseFloat(document.getElementById('priceForNormalSeat').innerHTML);
-            } else if (extraLegRooms[i].checked == true) {
-                result += '– Extra Leg-Room Seat \r\n';
-                price += parseFloat(document.getElementById('priceForExtraLegRoomSeat').innerHTML);
-            }
-            if (airportCheckIns[i].checked == true) {
-                result += '– Airport Check-In \r\n'
-                price += parseFloat(document.getElementById('priceForAirportCheckIn').innerHTML);
-            }
-            if (onTimeArrivals[i].checked == true) {
-                result += '– On Time Arrival \r\n'
-                price += parseFloat(document.getElementById('priceForOnTimeArrival').innerHTML);
-            }
-            if (priorities[i].checked == true) {
-                result += '– Priority \r\n'
-                price += parseFloat(document.getElementById('priceForPriority').innerHTML);
-            }
-            if (flexibility[i].checked == true) {
-                result += '– Flexibility \r\n'
-                price += parseFloat(document.getElementById('priceForFlexibility').innerHTML);
-            }
-
-            sResults[i].innerHTML = result.trimEnd('\r\n');
-            var rows = result.split(/\r\n|\r|\n/).length - 1;
-            sResults[i].rows = rows;
-        }
-        for (var i = 0; i < services.length; i++) {
-            kilos[i].classList.add('d-none');
-            seatsType[i].classList.add('d-none');
-            services[i].classList.add('d-none');
-            servicesResult[i].classList.remove('d-none');
-        }
-        document.getElementById('buttonSubmit').setAttribute('href', 'javascript:Payment();');
-        document.getElementById('total').innerHTML = price;
-        var payment = document.getElementsByClassName('payment');
-        for (var p of payment) {
-            p.classList.remove('d-none');
-        }
-        document.getElementById('buttonSubmit').onclick = null;
-    }
-    function Payment() {
-        var payment = document.getElementsByClassName('payment');
-        for (var p of payment) {
-            p.classList.add('d-none');
-        }
-        var currency = document.getElementById('currency');
-        document.getElementById('paymentSummaryDiv').classList.remove('d-none');
-        document.getElementById('paymentSummary').innerHTML = document.getElementById('cardType').value +
-            ' \r\n' + document.getElementById('cardNumber').value +
-            ' \r\n' + document.getElementById('expiryDatePayment').value +
-            ' \r\n' + document.getElementById('cardHolder').value +
-            ' \r\n' + document.getElementById('cvc').value +
-            ' \r\n' + currency.options[currency.selectedIndex].value + ' ' +
-            document.getElementById('total').innerHTML;
-        document.getElementById('buttonSubmit').classList.add('d-none');
-        Submit();
-        document.getElementById('btnSumbit').classList.remove('d-none');
-        //document.getElementById('buttonSubmit').setAttribute('href', 'javascript:Submit();');
-    }
-    function Submit() {
-        var firstNames = [];
-        var docsResults = [];
-        var servicesResults = [];
-        var flightsResults = [];
-        var flightChecks = document.getElementsByClassName('flightChecks');
-        for (var i = 0; i < @Model.Passenger; i++) {
-            firstNames.push(document.getElementById('firstName' + i).value);
-            docsResults.push(document.getElementById('docResult' + i).value);
-            servicesResults.push(document.getElementById('serviceResult' + i).value);
-            servicesResults.push(' | ');
-        }
-        document.getElementById('namesResults').value = firstNames.join('\r\n');
-        document.getElementById('passportResults').value = docsResults.join('\r\n');
-        document.getElementById('servicesResults').value = servicesResults.join('\r\n\r\n');
-        for (var i = 0; i < flightChecks.length; i++) {
-            if (flightChecks[i].checked == true) {
-                flightsResults.push(document.getElementById('flight' + i).innerHTML);
-            }
-        }
-        document.getElementById('flightsResults').value = flightsResults.join('\r\n\r\n');
-        document.getElementById('paymentsResults').value = document.getElementById('paymentSummary').innerHTML;
-        console.log(document.getElementById('namesResults').value);
-        console.log(document.getElementById('passportResults').value);
-        console.log(document.getElementById('servicesResults').value);
-        console.log(document.getElementById('flightsResults').value);
-        console.log(document.getElementById('paymentsResults').value);
-        //paymentsResults
-        //document.getElementById('bookingForm').submit();
-    }
-    document.getElementById('buttonSubmit').onclick = function () {
-        document.getElementById('total').innerHTML = price;
-    }
-</script>
+<script src="~/js/booking.js"></script>

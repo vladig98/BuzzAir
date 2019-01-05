@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuzzAir.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190105120501_InitialCreate")]
+    [Migration("20190105223906_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -348,11 +348,15 @@ namespace BuzzAir.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
+                    b.Property<int?>("Kilos");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 6)");
+
+                    b.Property<int?>("Type");
 
                     b.HasKey("Id");
 
@@ -543,8 +547,6 @@ namespace BuzzAir.Migrations
                     b.HasBaseType("BuzzAir.Models.Service");
 
                     b.Property<int>("SeatNumber");
-
-                    b.Property<int>("Type");
 
                     b.ToTable("Seat");
 

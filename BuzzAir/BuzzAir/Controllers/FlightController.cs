@@ -30,7 +30,7 @@ namespace BuzzAir.Controllers
         public IActionResult Create(CreateFlightViewModel model)
         {
             var d = string.Empty;
-            if (model.Departure.Contains("PM"))
+            if (model.Departure.Contains("pm"))
             {
                 var s = model.Departure.Split(' ');
                 d = s[0] + " " + (s[1].Split(':')[0] == "12" ? "0" : (int.Parse(s[1].Split(':')[0]) + 12).ToString()) + ":" + s[1].Split(":")[1];
@@ -42,7 +42,7 @@ namespace BuzzAir.Controllers
             }
 
             var a = string.Empty;
-            if (model.Arrival.Contains("PM"))
+            if (model.Arrival.Contains("pm"))
             {
                 var s = model.Arrival.Split(' ');
                 a = s[0] + " " + (s[1].Split(':')[0] == "12" ? "0" : (int.Parse(s[1].Split(':')[0]) + 12).ToString()) + ":" + s[1].Split(":")[1];
