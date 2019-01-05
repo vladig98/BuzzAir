@@ -1,2 +1,17 @@
 ﻿<h2 class="text-center">Details</h2>
 <hr class="bg-dark w-50" />
+<div class="form-group">
+    <h4>Flights</h4>
+    <textarea class="form-control" rows="@Model.Flights.Split(Environment.NewLine).Length" disabled style="resize: none">@Model.Flights</textarea>
+</div>
+<div class="form-group">
+    <h4>Passengers</h4>
+    <textarea class="form-control" rows="@Model.Passengers.Split(Environment.NewLine).Length" disabled style="resize: none">@Model.Passengers</textarea>
+</div>
+<div class="form-group">
+    <h4>Price</h4>
+    <textarea class="form-control" rows="1" disabled style="resize: none">@Model.Price</textarea>
+</div>
+<div class="form-group">
+    <a class="btn bg-dark text-white" asp-controller="Booking" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+</div>

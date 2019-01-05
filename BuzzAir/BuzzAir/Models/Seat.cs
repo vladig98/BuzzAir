@@ -26,5 +26,7 @@ namespace BuzzAir.Models
         public SeatType Type { get; set; }
 
         public int SeatNumber { get; set; }
+
+        public override string Name => this.GetType().Name;
     }
 }

@@ -1,0 +1,31 @@
+﻿<a href="javascript:PrintBoardingPass();" class="btn bg-dark text-white" id="btn">Get your boarding pass now</a>
+
+<div class="d-none" id="printableArea">
+    <h1>Boarding pass</h1>
+    <h3>@Model.Departure</h3>
+    @if (Model.Arrival != null)
+    {
+        <h3>@Model.Arrival</h3>
+    }
+
+    <h1>Have a nice flight with us!</h1>
+</div>
+
+<div class="d-none" id="printed">
+    <h2>Thank you for using BuzzAir. Have a nice flight.</h2>
+</div>
+
+<script>
+    function PrintBoardingPass() {
+        var original = document.body.innerHTML;
+        var printable = document.getElementById('printableArea').innerHTML;
+
+        document.body.innerHTML = printable;
+
+        window.print();
+
+        document.body.innerHTML = original;
+        document.getElementById('printed').classList.remove('d-none');
+        document.getElementById('btn').classList.add('d-none');
+    }
+</script>

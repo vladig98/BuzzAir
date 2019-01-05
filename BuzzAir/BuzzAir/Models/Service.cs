@@ -9,5 +9,8 @@ namespace BuzzAir.Models
 
         [Required]
         public virtual decimal Price { get; set; }
+
+        [Required]
+        public virtual string Name { get; set; }
     }
 }

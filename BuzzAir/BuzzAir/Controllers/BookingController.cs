@@ -18,29 +18,70 @@ namespace BuzzAir.Controllers
             this.db = db;
         }
 
-        public IActionResult Details (int id)
+        public IActionResult Delete (int id)
         {
             var booking = this.db.Bookings.Where(x => x.Id == id).FirstOrDefault();
-            var flightsIds = this.db.BookingFlights.Where(x => x.BookingId == booking.Id).Select(x => x.FlightId).ToList();
-            var flights = this.db.Flights.Where(x => flightsIds.Contains(x.Id)).ToList();
-            foreach (var flight in flights)
+            booking.Deleted = true;
+            this.db.SaveChanges();
+            return this.Redirect("/Booking/All");
+        }
+
+        public IActionResult Details (int id)
+        {
+            var booking = this.db.Bookings.Where(x => x.Id == id)
+                .Include(x => x.Flights)
+                    .ThenInclude(x => x.Flight)
+                        .ThenInclude(x => x.Airports)
+                            .ThenInclude(x => x.Airport)
+                .Include(x => x.Passengers)
+                    .ThenInclude(x => x.Person)
+                        .ThenInclude(x => x.Services)
+                            .ThenInclude(x => x.Service)
+                .Include(x => x.Payment)
+                .FirstOrDefault();
+            var resultFligts = string.Empty;
+            for (int i = 0; i < booking.Flights.Count; i++)
             {
-                var passengersIds = this.db.FlightPassengers.Where(x => x.FlightId == flight.Id).Select(x => x.PersonId).ToList();
-                var passengers = this.db.Passengers.Where(x => passengersIds.Contains(x.Id)).ToList();
-                var airportsIds = this.db.AirportFlights.Where(x => x.FlightId == flight.Id).Select(x => x.AirportId).ToList();
-                var airports = this.db.Airports.Where(x => airportsIds.Contains(x.Id)).ToList();
-                foreach (var passenger in passengers)
+                var flight = booking.Flights.ElementAt(i);
+                if (i > 0)
                 {
-                    var doc = this.db.TravelDocuments.Where(x => x.Id == passenger.DocumentId).FirstOrDefault();
-                    var servicesIds = this.db.PersonServices.Where(x => x.PersonId == passenger.Id).Select(x => x.ServiceId).ToList();
-                    var services = this.db.Services.Where(x => servicesIds.Contains(x.Id)).ToList();
-                    foreach (var service in services)
-                    {
-                        
-                    }
+                    resultFligts += Environment.NewLine + Environment.NewLine;
+                }
+                resultFligts += " Number: " + flight.Flight.FlightNumber +
+                    Environment.NewLine + " Route: " + flight.Flight.Airports.ElementAt(0).Airport.Name +
+                " – " + flight.Flight.Airports.ElementAt(1).Airport.Name +
+                Environment.NewLine + " Date: " + flight.Flight.Departure.ToString("dd MMM yyyy") +
+                " – " + flight.Flight.Arrival.ToString("dd MMM yyyy") +
+                Environment.NewLine + " Time: " + flight.Flight.Departure.ToString("HH:mm") +
+                " – " + flight.Flight.Arrival.ToString("HH:mm") +
+                Environment.NewLine + " Price: $" + flight.Flight.Price.ToString("F2");
+            }
+            var resultsPassengers = string.Empty;
+            for (int i = 0; i < booking.Passengers.Count; i++)
+            {
+                var passenegr = booking.Passengers.ElementAt(i).Person;
+                var services = passenegr.Services.ToList();
+                if (i > 0)
+                {
+                    resultsPassengers += Environment.NewLine + Environment.NewLine;
+                }
+                resultsPassengers += " Name: " + passenegr.FullName +
+                    Environment.NewLine + " Gender: " + passenegr.Gender +
+                    Environment.NewLine + " Services: ";
+                for (int j = 0; j < services.Count(); j++)
+                {
+                    var service = services[j].Service;
+                    resultsPassengers += Environment.NewLine + "          - " + service.Name;
                 }
             }
-            return this.Redirect("/");
+            var model = new DetailsViewModel
+            {
+                Flights = resultFligts,
+                Passengers = resultsPassengers,
+                Price = booking.Payment.Currency + " " + booking.Payment.Amount.ToString("F2"),
+                Id = id
+            };
+            return this.View(model);
         }
 
         public IActionResult All()
@@ -51,64 +92,82 @@ namespace BuzzAir.Controllers
                     .ThenInclude(x => x.Flight)
                         .ThenInclude(x => x.Airports)
                             .ThenInclude(x => x.Airport)
+                .Where(x => x.Deleted == false)
                 .ToList();
 
             var model = new AllBookingsViewModel();
 
-            var userBookings = this.db.UserBookings
-                .Include(x => x.ApplicationUser)
-                .Include(x => x.Booking).ToList();
+            var userBookings = new List<UserBooking>();
+            if (User.IsInRole("Admin"))
+            {
+                userBookings = this.db.UserBookings
+                    .Include(x => x.ApplicationUser)
+                    .Include(x => x.Booking)
+                    .ToList();
+            }
+            else
+            {
+                userBookings = this.db.UserBookings
+                    .Include(x => x.ApplicationUser)
+                    .Include(x => x.Booking)
+                    .Where(x => x.ApplicationUser.UserName == User.Identity.Name)
+                    .ToList();
+            }
 
             foreach (var booking in bookings)
             {
-                model.Bookings.Add(new BookingViewModel
+                if (userBookings.Any(x => x.Booking == booking))
                 {
-                    Amount = booking.Payment.Amount.ToString("F2"),
-                    Id = booking.Id,
-                    User = userBookings.Where(x => x.Booking == booking).Select(x => x.ApplicationUser.UserName).FirstOrDefault(),
-                    Inbound = booking.Flights.Count() > 1 
-                            ? 
-                            booking
-                                .Flights
-                                .ToList()[1]
-                                .Flight
-                                .Airports
-                                .Where(x => x.Type == AirportType.Origin)
-                                .Select(x => x.Airport.Name)
-                                .FirstOrDefault()
-                    + " - " +
-                            booking
-                                .Flights
-                                .ToList()[1]
-                                .Flight
-                                .Airports
-                                .Where(x => x.Type == AirportType.Destination)
-                                .Select(x => x.Airport.Name)
-                                .FirstOrDefault() 
-                            : 
-                                "One Way Ticket",
-                    Outbound = booking.Flights.Count() > 0 
-                        ?
-                            booking
-                                .Flights
-                                .ToList()[0]
-                                .Flight
-                                .Airports
-                                .Where(x => x.Type == AirportType.Origin)
-                                .Select(x => x.Airport.Name)
-                                .FirstOrDefault()
-                    + " - " +
-                            booking
-                                .Flights
-                                .ToList()[0]
-                                .Flight
-                                .Airports
-                                .Where(x => x.Type == AirportType.Destination)
-                                .Select(x => x.Airport.Name)
-                                .FirstOrDefault()
-                        :
-                            "",
-                });
+                    model.Bookings.Add(new BookingViewModel
+                    {
+                        Amount = booking.Payment.Amount.ToString("F2"),
+                        Id = booking.Id,
+                        Currency = booking.Payment.Currency.ToString(),
+                        User = userBookings.Where(x => x.Booking == booking).Select(x => x.ApplicationUser.UserName).FirstOrDefault(),
+                        Inbound = booking.Flights.Count() > 1
+                                ?
+                                booking
+                                    .Flights
+                                    .ToList()[1]
+                                    .Flight
+                                    .Airports
+                                    .Where(x => x.Type == AirportType.Origin)
+                                    .Select(x => x.Airport.Name)
+                                    .FirstOrDefault()
+                        + " - " +
+                                booking
+                                    .Flights
+                                    .ToList()[1]
+                                    .Flight
+                                    .Airports
+                                    .Where(x => x.Type == AirportType.Destination)
+                                    .Select(x => x.Airport.Name)
+                                    .FirstOrDefault()
+                                :
+                                    "One Way Ticket",
+                        Outbound = booking.Flights.Count() > 0
+                            ?
+                                booking
+                                    .Flights
+                                    .ToList()[0]
+                                    .Flight
+                                    .Airports
+                                    .Where(x => x.Type == AirportType.Origin)
+                                    .Select(x => x.Airport.Name)
+                                    .FirstOrDefault()
+                        + " - " +
+                                booking
+                                    .Flights
+                                    .ToList()[0]
+                                    .Flight
+                                    .Airports
+                                    .Where(x => x.Type == AirportType.Destination)
+                                    .Select(x => x.Airport.Name)
+                                    .FirstOrDefault()
+                            :
+                                "",
+                    });
+                }
             }
             return View(model);
         }
@@ -125,6 +184,7 @@ namespace BuzzAir.Controllers
                 .ToArray();
 
             Enum.TryParse(paymentModel[0].Trim(), out CardType cardType);
+            Enum.TryParse(paymentModel[6].Trim(), out Currency currency);
 
             var holder = string.Empty;
             var indexP = 3;
@@ -141,7 +201,8 @@ namespace BuzzAir.Controllers
                 ExpiryDate = DateTime.ParseExact(paymentModel[2].Trim(), "MM/yy", null),
                 CardHolder = holder,
                 CVC = int.Parse(paymentModel[indexP++]),
-                Amount = decimal.Parse(paymentModel[indexP + 1])
+                Amount = decimal.Parse(paymentModel[indexP + 1]),
+                Currency = currency
             };
 
             this.db.Payments.Add(payment);
@@ -176,8 +237,8 @@ namespace BuzzAir.Controllers
             {
                 flights.Add(new BookingFlight
                 {
-                    Flight = flightsDb.Where(x => flightNumbers.Contains(x.FlightNumber)).FirstOrDefault(),
-                    FlightId = flightsDb.Where(x => flightNumbers.Contains(x.FlightNumber)).Select(x => x.Id).FirstOrDefault(),
+                    Flight = flightsDb.Where(x => number == x.FlightNumber).FirstOrDefault(),
+                    FlightId = flightsDb.Where(x => number == x.FlightNumber).Select(x => x.Id).FirstOrDefault(),
                     Booking = booking,
                     BookingId = booking.Id
                 });
@@ -223,12 +284,13 @@ namespace BuzzAir.Controllers
             for (int i = 0; i < namesModel.Length; i++)
             {
                 var endIndex = namesModel.ToList().FindIndex(x => x == "–");
-                if (i % (endIndex + 2) == 0)
+                if (i % (endIndex + 2) == 0 && i > 0)
                 {
                     firstName = string.Empty;
                     dob = string.Empty;
                     lastName = string.Empty;
                     gender = string.Empty;
+                    namesModel[endIndex] = ".";
                 }
                 var index = namesModel.ToList().FindIndex(x => x == "|");
                 if (i < index)
@@ -260,6 +322,7 @@ namespace BuzzAir.Controllers
                     lastNames.Add(lastName);
                     genders.Add(gender);
                     dobs.Add(dob);
+                    namesModel[index] = ".";
                 }
             }
             var docs = model

@@ -4,6 +4,8 @@
     {
         public int Kilos { get; set; }
 
+        public override string Name => this.GetType().Name;
+
         public override decimal Price
         {
             get
