@@ -1,71 +1,52 @@
-﻿<h2 class="text-center">Create Flight</h2>
-<hr />
+﻿@model CreateFlightViewModel
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Create Flight</h2>
+
 <form method="post" class="w-50 mx-auto" asp-controller="Flight" asp-action="Create">
-    <div class="form-group">
-        <label for="flightNumber">Flight Number</label>
-        <input type="text" class="form-control" id="flightNumber" name="flightNumber" required placeholder="Flight number..." />
-    </div>
-    <div class="form-group">
-        <label for="aircraft">Aircraft</label>
-        <select class="form-control" name="aircraft" id="aircraft" required>
-            <option selected hidden disabled>Select Aircraft</option>
-            @for (int i = 0; i < Model.Aircrafts.Count; i++)
-            {
-                <option>@Model.Aircrafts[i].Name</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="origin">Origin</label>
-        <select class="form-control" name="origin" id="origin" required>
-            <option selected hidden disabled>Select Origin</option>
-            @for (int i = 0; i < Model.Airports.Count; i++)
-            {
-                <option>@Model.Airports[i].Name</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="destination">Destination</label>
-        <select class="form-control" name="destination" id="destination" required>
-            <option selected hidden disabled>Select Destination</option>
-            @for (int i = 0; i < Model.Airports.Count; i++)
-            {
-                <option>@Model.Airports[i].Name</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="durationInMinutes">Duration (In Minutes)</label>
-        <input type="number" min="30" max="1440" class="form-control" id="durationInMinutes" name="durationInMinutes" placeholder="Duration..." required />
-    </div>
-    <div class="form-group">
-        <label for="departure">Departure</label>
-        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-            <input data-timepicker="true" readonly data-language="en" data-position="top left" type="text" class="form-control datepicker-here" id="departure" name="departure" placeholder="Pick a date..." />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="arrival">Arrival</label>
-        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-            <input data-timepicker="true" readonly data-language="en" data-position="top left" type="text" class="form-control datepicker-here" id="arrival" name="arrival" placeholder="Pick a date..." />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="price">Price</label>
-        <input type="number" step="0.01" class="form-control" id="price" name="price" required placeholder="Price..." min="9.99" />
+    <div class="mb-3">
+        <label class="form-label" for="flightNumber">Flight Number</label>
+        <input asp-for="FlightNumber" class="form-control" />
     </div>
     <div>
+        <label class="form-label" for="aircraft">Aircraft</label>
+        <select class="form-select" asp-for="Aircraft" asp-items="Model.Aircrafts">
+            <option selected hidden disabled>Select Aircraft</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label"for="origin">Origin</label>
+        <select class="form-select" asp-for="OriginCountry" asp-items="Model.OriginCountryOptions">
+            <option selected hidden disabled>Select Country</option>
+        </select>
+        <select class="form-select d-none" asp-for="Origin">
+            <option selected hidden disabled>Select Origin</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label"for="destination">Destination</label>
+        <select class="form-select" asp-for="DestinationCountry" asp-items="Model.DestinationCountryOptions">
+            <option selected hidden disabled>Select Country</option>
+        </select>
+        <select class="form-select d-none" asp-for="Destination">
+            <option selected hidden disabled>Select Destination</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label"for="durationInMinutes">Duration (In Minutes)</label>
+        <input class="form-control" asp-for="DurationInMinutes" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label"for="departure">Departure</label>
+        <input class="form-control" asp-for="Departure" step="any" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label"for="price">Price</label>
+        <input class="form-control" asp-for="Price" />
+    </div>
+    <div class="mb-3">
         <button type="submit" class="btn bg-dark text-white">Create</button>
     </div>
 </form>
 
-
-@*
-    =========================       Scripts       =========================
-*@
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<link href="~/lib/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
-<script src="~/lib/air-datepicker-master/dist/js/datepicker.min.js"></script>
-<script src="~/lib/air-datepicker-master/dist/js/i18n/datepicker.en.js"></script>
+<script src="~/js/selectFlight.js"></script>
 

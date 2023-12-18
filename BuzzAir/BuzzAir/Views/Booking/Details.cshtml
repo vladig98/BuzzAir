@@ -1,17 +1,55 @@
-﻿<h2 class="text-center">Details</h2>
-<hr class="bg-dark w-50" />
-<div class="form-group">
-    <h4>Flights</h4>
-    <textarea class="form-control" rows="@Model.Flights.Split(Environment.NewLine).Length" disabled style="resize: none">@Model.Flights</textarea>
-</div>
-<div class="form-group">
-    <h4>Passengers</h4>
-    <textarea class="form-control" rows="@Model.Passengers.Split(Environment.NewLine).Length" disabled style="resize: none">@Model.Passengers</textarea>
-</div>
-<div class="form-group">
-    <h4>Price</h4>
-    <textarea class="form-control" rows="1" disabled style="resize: none">@Model.Price</textarea>
-</div>
-<div class="form-group">
-    <a class="btn bg-dark text-white" asp-controller="Booking" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+﻿@using System.Globalization
+@using BuzzAir.Models.DbModels.Services
+@using BuzzAir.Utilities
+@model BookingViewModel
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100 w-75 mx-auto">Details</h2>
+<div class="w-75 mx-auto">
+    <div>
+        <h4>Flights</h4>
+        @{
+            string flightsData = $"Outbound:\r\nNumber: {@Model.Outbound.FlightNumber}\r\nRoute: {@Model.Outbound.Origin.Name} - {@Model.Outbound.Destination.Name}\r\n" +
+            $"Date: {@Model.Outbound.Departure.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)} - {@Model.Outbound.Arrival.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)}\r\n" +
+            $"Time: {@Model.Outbound.Departure.ToString("HH:mm", CultureInfo.InvariantCulture)} - {@Model.Outbound.Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)}\r\n" +
+            $"Price: ${@Model.Outbound.Price.ToString("F2")}\r\n\r\nInbound:\r\nNumber: {@Model.Inbound.FlightNumber}\r\nRoute: {@Model.Inbound.Origin.Name} - {@Model.Inbound.Destination.Name}\r\n" +
+            $"Date: {@Model.Inbound.Departure.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)} - {@Model.Inbound.Arrival.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)}\r\n" +
+            $"Time: {@Model.Inbound.Departure.ToString("HH:mm", CultureInfo.InvariantCulture)} - {@Model.Inbound.Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)}\r\n" +
+            $"Price: ${@Model.Inbound.Price.ToString("F2")}";
+        }
+        <textarea class="form-control" rows="13" disabled style="resize: none">@flightsData</textarea>
+    </div>
+    <div class="mt-3">
+        <h4>Passengers</h4>
+        @{
+            int rows = (5 * Model.Passengers.Count() + Model.Passengers.Sum(x => x.Services.Count())) - 1;
+            string pax = string.Empty;
+            for (int i = 0; i < Model.Passengers.Count(); i++)
+            {
+                var passenger = Model.Passengers.ElementAt(i);
+
+                pax += $"Passenger #{(i + 1)}\r\nName: {passenger.FirstName} {passenger.LastName}\r\nGender: {passenger.Gender.ToString()}\r\nServices:";
+
+                foreach (var service in passenger.Services)
+                {
+                    pax += string.Format(GlobalConstants.ServicesFormat,
+                       (service.Name == nameof(Baggage) ?
+                       string.Format(GlobalConstants.ServicesWithChoicesFormat, service.Name.SplitCamelCase(), service.Kilos + " kilos") :
+                       service.Name == nameof(Seat) ?
+                       string.Format(GlobalConstants.ServicesWithChoicesFormat, service.Name.SplitCamelCase(), service.Seat) :
+                       service.Name.SplitCamelCase()),
+                       Environment.NewLine);
+                }
+
+                pax += "\r\n\r\n";
+            }
+        }
+        <textarea class="form-control" rows="@rows" disabled style="resize: none">@pax.Trim(new[] { '\r', '\n' })</textarea>
+    </div>
+    <div class="mt-3">
+        <h4>Price</h4>
+        <textarea class="form-control" rows="1" disabled style="resize: none">@Model.Currency @Model.Amount</textarea>
+    </div>
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-controller="Booking" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+    </div>
 </div>

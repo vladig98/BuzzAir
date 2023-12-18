@@ -1,15 +1,26 @@
-﻿namespace BuzzAir.Models
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace BuzzAir.Models
 {
     public class CreateBookingViewModel
     {
-        public string NamesResults { get; set; }
+        public CreateBookingViewModel()
+        {
+            Flights = new Dictionary<string, List<FlightViewModel>>();
+            Passengers = new List<PassengerViewModel>();
+        }
 
-        public string PassportResults { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public int PassengersCount { get; set; }
+        public List<PassengerViewModel> Passengers { get; set; }
 
-        public string ServicesResults { get; set; }
+        public Dictionary<string, List<FlightViewModel>> Flights { get; set; }
+        public string? GoingFlightSelection { get; set; }
+        public string? ReturnFlightSelection { get; set; }
 
-        public string FlightsResults { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public decimal Price { get; set; }
 
-        public string PaymentsResults { get; set; }
+        public PaymentViewModel Payment { get; set; }
     }
 }

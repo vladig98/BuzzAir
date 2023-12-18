@@ -1,30 +1,24 @@
-﻿using System.Collections.Generic;
-
-namespace BuzzAir.Models
+﻿namespace BuzzAir.Models
 {
     public class BookingViewModel
     {
         public BookingViewModel()
         {
-            this.Terminals = new List<string>();
+            Passengers = new List<PassengerViewModel>();
         }
 
-        public string Outbound { get; set; }
+        public FlightViewModel Outbound { get; set; }
 
-        public string Inbound { get; set; }
+        public FlightViewModel Inbound { get; set; }
 
         public string Amount { get; set; }
 
-        public string User { get; set; }
-
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Currency { get; set; }
 
-        public string Departure { get; set; }
+        public List<PassengerViewModel> Passengers { get; set; }
 
-        public string Arrival { get; set; }
-
-        public List<string> Terminals { get; set; }
+        public string User { get; set; }
     }
 }

@@ -1,51 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Claims;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using BuzzAir.Data;
-using BuzzAir.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using BuzzAir.Data;
+using BuzzAir.Models.DbModels;
+using BuzzAir.Models.DbModels.Enums;
+using BuzzAir.Services.Contracts;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
 
 namespace BuzzAir.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserStore<ApplicationUser> _userStore;
+        private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private AppDbContext context;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICountryService _countryService;
+        private readonly ICityService _cityService;
+        private readonly BuzzAirDbContext context;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
+            IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            AppDbContext _context, 
-            RoleManager<IdentityRole> roleManager)
+            ICountryService countryService,
+            RoleManager<IdentityRole> roleManager,
+            BuzzAirDbContext context,
+            ICityService cityService)
         {
             _userManager = userManager;
+            _userStore = userStore;
+            _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            context = _context;
+            _countryService = countryService;
             _roleManager = roleManager;
+            this.context = context;
+            _cityService = cityService;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
-
         public string ReturnUrl { get; set; }
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        public IEnumerable<SelectListItem> Countries { get; set; }
 
         public class InputModel
         {
@@ -88,7 +97,7 @@ namespace BuzzAir.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Country")]
-            public Country Country { get; set; }
+            public string Country { get; set; }
 
             [Required]
             [Display(Name = "Postal Code")]
@@ -99,9 +108,30 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             public Gender Gender { get; set; }
         }
 
-        public void OnGet(string returnUrl = null)
+
+        public async Task OnGetAsync(string returnUrl = null)
         {
+            List<SelectListItem> countries = new List<SelectListItem>();
+
+            SelectListGroup countryGroup = new SelectListGroup { Name = "Countries" };
+            SelectListGroup dependenciesGroup = new SelectListGroup { Name = "Dependencies and territories not offically recognized as countries" };
+
+            var countryValues = await _countryService.GetAll();
+
+            foreach (Country country in countryValues)
+            {
+                countries.Add(new SelectListItem()
+                {
+                    Text = country.Name,
+                    Value = country.Id,
+                    Group = country.IsCountry ? countryGroup : dependenciesGroup
+                });
+            }
+
+            Countries = countries.OrderBy(x => x.Group.Name).ThenBy(x => x.Text);
+
             ReturnUrl = returnUrl;
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -123,8 +153,17 @@ namespace BuzzAir.Areas.Identity.Pages.Account
                 {
                     await _roleManager.CreateAsync(role);
                 }
-                var address = new Address { City = Input.City, Country = Input.Country, PostalCode = Input.Postal, Street = Input.Street };
-                var user = new ApplicationUser { Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FullName = Input.FullName, Address = address, Gender = Input.Gender, Role = role };
+
+                var country = await _countryService.GetById(Input.Country);
+                var city = await _cityService.GetByName(Input.City);
+
+                if (city == null)
+                {
+                    city = await _cityService.Create(country, Input.City);
+                }
+
+                var address = new Address { Id = Guid.NewGuid().ToString(), City = city, Country = country, PostalCode = Input.Postal, Street = Input.Street };
+                var user = new ApplicationUser { Id = Guid.NewGuid().ToString(), Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FirstName = Input.FullName, LastName = Input.FullName, Address = address, Gender = Input.Gender, Role = role };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await _userManager.AddToRoleAsync(user, role.Name);
                 await _userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), role.Name));
@@ -155,6 +194,29 @@ namespace BuzzAir.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private ApplicationUser CreateUser()
+        {
+            try
+            {
+                return Activator.CreateInstance<ApplicationUser>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
+
+        private IUserEmailStore<ApplicationUser> GetEmailStore()
+        {
+            if (!_userManager.SupportsUserEmail)
+            {
+                throw new NotSupportedException("The default UI requires a user store with email support.");
+            }
+            return (IUserEmailStore<ApplicationUser>)_userStore;
         }
     }
 }

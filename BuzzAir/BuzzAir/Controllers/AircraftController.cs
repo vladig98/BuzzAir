@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BuzzAir.Data;
-using BuzzAir.Models;
+﻿using BuzzAir.Models;
+using BuzzAir.Services.Contracts;
+using BuzzAir.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,31 +8,24 @@ namespace BuzzAir.Controllers
 {
     public class AircraftController : Controller
     {
-        private AppDbContext db;
+        private readonly IAircraftService _aircraftService;
 
-        public AircraftController(AppDbContext db)
+        public AircraftController(IAircraftService aircraftService)
         {
-            this.db = db;
+            _aircraftService = aircraftService;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = GlobalConstants.AdminRole)]
         public IActionResult CreateAircraft()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public IActionResult Create(AircraftCreateViewModel model)
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        public async Task<IActionResult> Create(AircraftCreateViewModel model)
         {
-            var aircraft = new Aircraft
-            {
-                Name = model.Name,
-                NumberOfSeats = int.Parse(model.Seats)
-            };
-
-            this.db.Aircrafts.Add(aircraft);
-            this.db.SaveChanges();
+            var aircraft = await _aircraftService.Create(model.Name, model.Seats);
 
             return this.Redirect("/");
         }

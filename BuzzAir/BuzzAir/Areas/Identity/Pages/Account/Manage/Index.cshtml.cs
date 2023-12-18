@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using BuzzAir.Models;
+﻿using BuzzAir.Models.DbModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Encodings.Web;
 
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage
 {
@@ -66,7 +62,7 @@ namespace BuzzAir.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            var fullname = user.FullName;
+            var fullname = user.FirstName + user.LastName;
             var gender = user.Gender.ToString();
 
             Username = userName;

@@ -20,11 +20,19 @@
         var original = document.body.innerHTML;
         var printable = document.getElementById('printableArea').innerHTML;
 
-        document.body.innerHTML = printable;
+        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
 
-        window.print();
+        mywindow.document.write('<html><head><title>' + document.title + '</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write('<h1>' + document.title + '</h1>');
+        mywindow.document.write(printable);
+        mywindow.document.write('</ body></html>');
 
-        document.body.innerHTML = original;
+        mywindow.document.close();
+        mywindow.focus();
+
+        mywindow.print();
+
         document.getElementById('printed').classList.remove('d-none');
         document.getElementById('btn').classList.add('d-none');
     }

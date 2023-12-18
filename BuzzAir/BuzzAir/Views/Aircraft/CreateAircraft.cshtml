@@ -1,13 +1,15 @@
-﻿<h2 class="text-center">Create Aircraft</h2>
-<hr />
+﻿@model AircraftCreateViewModel
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Create Aircraft</h2>
+
 <form method="post" class="w-50 mx-auto" asp-controller="Aircraft" asp-action="Create">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" required placeholder="Name..." />
+    <div class="mb-3">
+        <label class="form-label" for="Name">Name</label>
+        <input class="form-control" asp-for="Name" />
     </div>
-    <div class="form-group">
-        <label for="seats">Seats</label>
-        <input type="number" class="form-control" id="seats" name="seats" required placeholder="Seats..." min="50" max="350" />
+    <div class="mb-3">
+        <label class="form-label" for="Seats">Seats</label>
+        <input class="form-control" asp-for="Seats" />
     </div>
     <div>
         <button type="submit" class="btn bg-dark text-white">Create</button>

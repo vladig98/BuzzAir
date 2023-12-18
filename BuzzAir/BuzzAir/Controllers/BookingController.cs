@@ -1,528 +1,550 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models;
+﻿using BuzzAir.Models;
+using BuzzAir.Models.DbModels;
+using BuzzAir.Models.DbModels.Contraccts;
+using BuzzAir.Models.DbModels.Enums;
+using BuzzAir.Models.DbModels.Services;
+using BuzzAir.Services.Contracts;
+using BuzzAir.Utilities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Reflection;
 
 namespace BuzzAir.Controllers
 {
     public class BookingController : Controller
     {
-        private AppDbContext db;
+        private readonly IBookingService _bookingService;
+        private readonly IUserBookingService _userBookingService;
+        private readonly IPaymentService _paymentService;
+        private readonly IFlightsService _flightsService;
+        private readonly IBookingFlightService _bookingFlightService;
+        private readonly IBookingPassengerService _bookingPassengerService;
+        private readonly IAirportService _airportService;
+        private readonly ICityService _cityService;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IPassengerService _passengerService;
+        private readonly IFlightPassengerService _flightPassengerService;
+        private readonly IServiceService _serviceService;
 
-        public BookingController(AppDbContext db)
+        public BookingController(IBookingService bookingService, IUserBookingService userBookingService,
+            IPaymentService paymentService, IFlightsService flightsService, IBookingFlightService bookingFlightService,
+            IBookingPassengerService bookingPassengerService, UserManager<ApplicationUser> userManager, IAirportService airportService,
+            ICityService cityService, IPassengerService passengerService, IFlightPassengerService flightPassengerService, IServiceService serviceService)
         {
-            this.db = db;
+            _bookingService = bookingService;
+            _userBookingService = userBookingService;
+            _paymentService = paymentService;
+            _flightsService = flightsService;
+            _bookingFlightService = bookingFlightService;
+            _bookingPassengerService = bookingPassengerService;
+            _userManager = userManager;
+            _airportService = airportService;
+            _cityService = cityService;
+            _passengerService = passengerService;
+            _flightPassengerService = flightPassengerService;
+            _serviceService = serviceService;
         }
 
         [Authorize]
-        public IActionResult Delete (int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            var booking = this.db.Bookings.Where(x => x.Id == id).FirstOrDefault();
-            booking.Deleted = true;
-            this.db.SaveChanges();
+            //check if the booking exists
+            var bookingExists = await _bookingService.ExistsById(id);
+
+            //throw an error if the booking does not exist
+            if (!bookingExists)
+            {
+                return BadRequest();
+            }
+
+            //delete the booking
+            await _bookingService.Delete(id);
+
             return this.Redirect("/Booking/All");
         }
 
         [Authorize]
-        public IActionResult Details (int id)
+        public async Task<IActionResult> Details(string id)
         {
-            var booking = this.db.Bookings.Where(x => x.Id == id)
-                .Include(x => x.Flights)
-                    .ThenInclude(x => x.Flight)
-                        .ThenInclude(x => x.Airports)
-                            .ThenInclude(x => x.Airport)
-                .Include(x => x.Passengers)
-                    .ThenInclude(x => x.Person)
-                        .ThenInclude(x => x.Services)
-                            .ThenInclude(x => x.Service)
-                .Include(x => x.Payment)
-                .FirstOrDefault();
-            var resultFligts = string.Empty;
-            for (int i = 0; i < booking.Flights.Count; i++)
+            var booking = await _bookingService.GetById(id);
+
+            if (booking == null)
             {
-                var flight = booking.Flights.ElementAt(i);
-                if (i > 0)
-                {
-                    resultFligts += Environment.NewLine + Environment.NewLine;
-                }
-                resultFligts += " Number: " + flight.Flight.FlightNumber +
-                    Environment.NewLine + " Route: " + flight.Flight.Airports.ElementAt(0).Airport.Name +
-                " – " + flight.Flight.Airports.ElementAt(1).Airport.Name +
-                Environment.NewLine + " Date: " + flight.Flight.Departure.ToString("dd MMM yyyy") +
-                " – " + flight.Flight.Arrival.ToString("dd MMM yyyy") +
-                Environment.NewLine + " Time: " + flight.Flight.Departure.ToString("HH:mm") +
-                " – " + flight.Flight.Arrival.ToString("HH:mm") +
-                Environment.NewLine + " Price: $" + flight.Flight.Price.ToString("F2");
+                return BadRequest();
             }
+
+            List<FlightViewModel> flights = new List<FlightViewModel>();
+
+            foreach (var flight in booking.Flights)
+            {
+                flights.Add(new FlightViewModel
+                {
+                    Id = flight.Flight.Id,
+                    Arrival = flight.Flight.Arrival,
+                    Departure = flight.Flight.Departure,
+                    Destination = new AirportViewModel
+                    {
+                        City = new CityViewModel
+                        {
+                            Name = flight.Flight.Destination.City.Name
+                        },
+                        IATA = flight.Flight.Destination.IATA,
+                        Name = flight.Flight.Destination.Name
+                    },
+                    FlightNumber = flight.Flight.FlightNumber,
+                    Origin = new AirportViewModel
+                    {
+                        City = new CityViewModel
+                        {
+                            Name = flight.Flight.Origin.City.Name
+                        },
+                        IATA = flight.Flight.Origin.IATA,
+                        Name = flight.Flight.Origin.Name
+                    },
+                    Price = flight.Flight.Price,
+                    IsOutbound = flight.IsOutbound
+                });
+            }
+
             var resultsPassengers = string.Empty;
+
+            List<PassengerViewModel> pax = new List<PassengerViewModel>();
+
             for (int i = 0; i < booking.Passengers.Count; i++)
             {
-                var passenegr = booking.Passengers.ElementAt(i).Person;
-                var services = passenegr.Services.ToList();
-                if (i > 0)
+                var passeneger = booking.Passengers.ElementAt(i).Passenger;
+                var services = ((Passenger)passeneger).Services.ToList();
+                //if (i > 0)
+                //{
+                //    resultsPassengers += Environment.NewLine + Environment.NewLine;
+                //}
+
+                List<ServiceViewModel> paxServices = new List<ServiceViewModel>();
+
+                foreach (var service in services)
                 {
-                    resultsPassengers += Environment.NewLine + Environment.NewLine;
+                    paxServices.Add(new ServiceViewModel()
+                    {
+                        Name = service.Service.Name,
+                        Price = service.Service.Price,
+                        Kilos = service.Service.GetType() == typeof(Baggage) ? int.Parse(Math.Floor(((Baggage)service.Service).Kilos).ToString()) : 0,
+                        Seat = service.Service.GetType() == typeof(Seat) ? ((Seat)service.Service).SeatType.GetDisplayName() : SeatType.Normal.ToString()
+                    });
                 }
-                resultsPassengers += " Name: " + passenegr.FullName +
-                    Environment.NewLine + " Gender: " + passenegr.Gender +
-                    Environment.NewLine + " Services: ";
-                for (int j = 0; j < services.Count(); j++)
+
+                pax.Add(new PassengerViewModel
                 {
-                    var service = services[j].Service;
-                    resultsPassengers += Environment.NewLine + "          - " + (service.Name == "Baggage" ? service.Name + " " + service.Kilos : service.Name == "Seat" ? service.Name + " " + service.Type : service.Name);
-                }
+                    FirstName = passeneger.FirstName,
+                    LastName = passeneger.LastName,
+                    Gender = passeneger.Gender,
+                    Services = paxServices
+                });
+
+                //string resultServices = string.Empty;
+
+                //for (int j = 0; j < services.Count(); j++)
+                //{
+                //    var service = services[j].Service;
+
+                //    resultServices += string.Format(GlobalConstants.ServicesFormat,
+                //        (service.Name == nameof(Baggage) ?
+                //        string.Format(GlobalConstants.ServicesWithChoicesFormat, service.Name, ((Baggage)service).Kilos) :
+                //        service.Name == nameof(Seat) ?
+                //        string.Format(GlobalConstants.ServicesWithChoicesFormat, service.Name, ((Seat)service).SeatType) :
+                //        service.Name),
+                //        Environment.NewLine);
+                //}
+
+                //resultsPassengers += string.Format(GlobalConstants.PassengerFormat,
+                //    passeneger.FullName,
+                //    passeneger.Gender,
+                //    resultServices,
+                //    Environment.NewLine);
             }
-            var model = new DetailsViewModel
+
+            var model = new BookingViewModel
             {
-                Flights = resultFligts,
-                Passengers = resultsPassengers,
-                Price = booking.Payment.Currency + " " + booking.Payment.Amount.ToString("F2"),
-                Id = id
+                Amount = booking.TotalPrice.ToString("F2"),
+                Inbound = flights.FirstOrDefault(x => !x.IsOutbound),
+                Outbound = flights.FirstOrDefault(x => x.IsOutbound),
+                Id = booking.Id,
+                Passengers = pax,
+                Currency = booking.Payment.Currency.ToString()
             };
+
             return this.View(model);
         }
 
         [Authorize]
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var bookings = this.db.Bookings
-                .Include(x => x.Payment)
-                .Include(x => x.Flights)
-                    .ThenInclude(x => x.Flight)
-                        .ThenInclude(x => x.Airports)
-                            .ThenInclude(x => x.Airport)
-                .Where(x => x.Deleted == false)
-                .ToList();
-
             var model = new AllBookingsViewModel();
 
-            var userBookings = new List<UserBooking>();
-            if (User.IsInRole("Admin"))
-            {
-                userBookings = this.db.UserBookings
-                    .Include(x => x.ApplicationUser)
-                    .Include(x => x.Booking)
-                    .ToList();
-            }
-            else
-            {
-                userBookings = this.db.UserBookings
-                    .Include(x => x.ApplicationUser)
-                    .Include(x => x.Booking)
-                    .Where(x => x.ApplicationUser.UserName == User.Identity.Name)
-                    .ToList();
-            }
+            //get all booking specifict to the user
+            var userBookings = User.IsInRole(GlobalConstants.AdminRole) ? await _userBookingService.GetAll() : await _userBookingService.GetAllForUser(User.Identity.Name);
+            var bookings = await _bookingService.GetAllForUser(userBookings);
 
+            //create viewModel for each booking
             foreach (var booking in bookings)
             {
-                if (userBookings.Any(x => x.Booking == booking))
+                model.Bookings.Add(new BookingViewModel
                 {
-                    model.Bookings.Add(new BookingViewModel
+                    Amount = booking.Payment.Amount.ToString("F2"),
+                    Id = booking.Id,
+                    Currency = booking.Payment.Currency.ToString(),
+                    User = userBookings.Where(x => x.Booking == booking).Select(x => x.ApplicationUser.UserName).FirstOrDefault(),
+                    Inbound = booking.Flights.Count() > 1 ?
+                                new FlightViewModel
+                                {
+                                    Arrival = booking.Flights.First(x => !x.IsOutbound).Flight.Arrival,
+                                    Departure = booking.Flights.First(x => !x.IsOutbound).Flight.Departure,
+                                    Destination = new AirportViewModel
+                                    {
+                                        City = new CityViewModel
+                                        {
+                                            Name = booking.Flights.First(x => !x.IsOutbound).Flight.Destination.City.Name
+                                        },
+                                        IATA = booking.Flights.First(x => !x.IsOutbound).Flight.Destination.IATA,
+                                        Name = booking.Flights.First(x => !x.IsOutbound).Flight.Destination.Name
+                                    },
+                                    FlightNumber = booking.Flights.First(x => !x.IsOutbound).Flight.FlightNumber,
+                                    Id = booking.Flights.First(x => !x.IsOutbound).Flight.Id,
+                                    Origin = new AirportViewModel
+                                    {
+                                        City = new CityViewModel
+                                        {
+                                            Name = booking.Flights.First(x => !x.IsOutbound).Flight.Origin.City.Name
+                                        },
+                                        IATA = booking.Flights.First(x => !x.IsOutbound).Flight.Origin.IATA,
+                                        Name = booking.Flights.First(x => !x.IsOutbound).Flight.Origin.Name
+                                    },
+                                    Price = booking.Flights.First(x => !x.IsOutbound).Flight.Price
+                                } : null,
+                    Outbound = new FlightViewModel
                     {
-                        Amount = booking.Payment.Amount.ToString("F2"),
-                        Id = booking.Id,
-                        Currency = booking.Payment.Currency.ToString(),
-                        User = userBookings.Where(x => x.Booking == booking).Select(x => x.ApplicationUser.UserName).FirstOrDefault(),
-                        Inbound = booking.Flights.Count() > 1
-                                ?
-                                booking
-                                    .Flights
-                                    .ToList()[1]
-                                    .Flight
-                                    .Airports
-                                    .Where(x => x.Type == AirportType.Origin)
-                                    .Select(x => x.Airport.Name)
-                                    .FirstOrDefault()
-                        + " - " +
-                                booking
-                                    .Flights
-                                    .ToList()[1]
-                                    .Flight
-                                    .Airports
-                                    .Where(x => x.Type == AirportType.Destination)
-                                    .Select(x => x.Airport.Name)
-                                    .FirstOrDefault()
-                                :
-                                    "One Way Ticket",
-                        Outbound = booking.Flights.Count() > 0
-                            ?
-                                booking
-                                    .Flights
-                                    .ToList()[0]
-                                    .Flight
-                                    .Airports
-                                    .Where(x => x.Type == AirportType.Origin)
-                                    .Select(x => x.Airport.Name)
-                                    .FirstOrDefault()
-                        + " - " +
-                                booking
-                                    .Flights
-                                    .ToList()[0]
-                                    .Flight
-                                    .Airports
-                                    .Where(x => x.Type == AirportType.Destination)
-                                    .Select(x => x.Airport.Name)
-                                    .FirstOrDefault()
-                            :
-                                "",
-                    });
-                }
+                        Arrival = booking.Flights.First(x => x.IsOutbound).Flight.Arrival,
+                        Departure = booking.Flights.First(x => x.IsOutbound).Flight.Departure,
+                        Destination = new AirportViewModel
+                        {
+                            City = new CityViewModel
+                            {
+                                Name = booking.Flights.First(x => x.IsOutbound).Flight.Destination.City.Name
+                            },
+                            IATA = booking.Flights.First(x => x.IsOutbound).Flight.Destination.IATA,
+                            Name = booking.Flights.First(x => x.IsOutbound).Flight.Destination.Name
+                        },
+                        FlightNumber = booking.Flights.First(x => x.IsOutbound).Flight.FlightNumber,
+                        Id = booking.Flights.First(x => x.IsOutbound).Flight.Id,
+                        Origin = new AirportViewModel
+                        {
+                            City = new CityViewModel
+                            {
+                                Name = booking.Flights.First(x => x.IsOutbound).Flight.Origin.City.Name
+                            },
+                            IATA = booking.Flights.First(x => x.IsOutbound).Flight.Origin.IATA,
+                            Name = booking.Flights.First(x => x.IsOutbound).Flight.Origin.Name
+                        },
+                        Price = booking.Flights.First(x => x.IsOutbound).Flight.Price
+                    }
+                });
             }
+
             return View(model);
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult Create(CreateBookingViewModel model)
+        public async Task<IActionResult> Create(CreateBookingViewModel model)
         {
-            //–
-            var paymentModel = model
-                .PaymentsResults
-                .Split(' ')
-                .Select(x => x.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToArray();
-
-            Enum.TryParse(paymentModel[0].Trim(), out CardType cardType);
-            Enum.TryParse(paymentModel[6].Trim(), out Currency currency);
-
-            var holder = string.Empty;
-            var indexP = 3;
-
-            while (!Regex.IsMatch(paymentModel[indexP], @"\d+"))
+            //check if any input does not have valid data
+            if (!ModelState.IsValid)
             {
-                holder += paymentModel[indexP];
-                indexP++;
+                //send the view with all incorrect inputs for the user to correct them
+                return View("CreateBooking", model);
             }
-            var payment = new Payment
+
+            //Get the flights
+            Flight goingFlight = await _flightsService.GetById(model.GoingFlightSelection);
+            Flight returnFlight = await _flightsService.GetById(model.ReturnFlightSelection);
+
+            //you will need to book at least 1 flight. This is to prevent API calls buying for non-existent flights
+            if (goingFlight == null)
             {
-                Card = cardType,
-                CardNumber = paymentModel[1].Trim(),
-                ExpiryDate = DateTime.ParseExact(paymentModel[2].Trim(), "MM/yy", null),
-                CardHolder = holder,
-                CVC = int.Parse(paymentModel[indexP++]),
-                Amount = decimal.Parse(paymentModel[indexP + 1]),
-                Currency = currency
-            };
+                return BadRequest();
+            }
 
-            this.db.Payments.Add(payment);
-            this.db.SaveChanges();
+            //calculate the price for the booking
+            decimal price = model.Passengers.Sum(x => x.Services.Where(y => y.IsChecked).Select(y => y.Price).Sum()) + //get all services prices
+                model.Passengers.Where(x => x.BaggageType != BaggageType.Cabin).Sum(x => decimal.Parse(x.BaggageType.GetPrice())) + //get all prices for baggage
+                goingFlight.Price * model.Passengers.Count + //get all ticket priced for the outbound flight
+                returnFlight?.Price * model.Passengers.Count ?? //get all ticket prices for the inbound flight
+                0M; //set to 0 if null
 
-            var flightsModel = model
-                    .FlightsResults
-                    .Split(new[]
+            //check if the price matches the price shown to the client, if not, throw an error. This is also supposed to prevent falsly submitted values via an API call
+            if (price != model.Price)
+            {
+                return BadRequest();
+            }
+
+            //Check if the expiryDate for the Payment is in the desired format and parse it to a DateTime if it is
+            bool validDate = DateTime.TryParseExact(model.Payment.ExpiryDate, "MM/yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime expiryDate);
+
+            //return the View with an error if the expiryDate does not fit the pattern
+            if (!validDate)
+            {
+                ModelState.AddModelError("Payment.ExpiryDate", "Invalid date format");
+                return View("CreateBooking", model);
+            }
+
+            //generate a collection for all passengers
+            IList<IPassenger> passengers = new List<IPassenger>();
+
+            //Loop through each passenger's details from the view and create a new passenger object
+            foreach (PassengerViewModel passenger in model.Passengers)
+            {
+                //generate a collection for all services the passenger wants
+                IList<IService> services = new List<IService>();
+
+                //Get all valid services Types
+                IEnumerable<Type> servicesTypes = from type in Assembly.GetExecutingAssembly().GetTypes()
+                                                  where type.IsClass && type.Namespace == typeof(AirportCheckIn).Namespace
+                                                  select type;
+
+                // Get all valid services names
+                IList<string> servicesNames = servicesTypes.ToList().Select(x => x.Name).ToList();
+
+                //loop through each service details from the view and create an intance of a service object
+                foreach (ServiceViewModel item in passenger.Services)
+                {
+                    //add a service only if it is selected
+                    if (item.IsChecked)
                     {
-                        "Route:", "Date:", "Time:", "Price:", "Number:"
-                    },
-                    StringSplitOptions.RemoveEmptyEntries)
-                    .Select(x => x.Trim())
-                    .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .ToArray();
-
-            var booking = new Booking
-            {
-                Payment = payment,
-                PaymentId = payment.Id,
-            };
-            this.db.Bookings.Add(booking);
-            this.db.SaveChanges();
-            var flightNumbers = new List<string>();
-            for (int i = 0; i < flightsModel.Length; i += 5)
-            {
-                flightNumbers.Add(flightsModel[i]);
-            }
-            var flights = new List<BookingFlight>();
-            var flightsDb = this.db.Flights.ToList();
-            foreach (var number in flightNumbers)
-            {
-                flights.Add(new BookingFlight
-                {
-                    Flight = flightsDb.Where(x => number == x.FlightNumber).FirstOrDefault(),
-                    FlightId = flightsDb.Where(x => number == x.FlightNumber).Select(x => x.Id).FirstOrDefault(),
-                    Booking = booking,
-                    BookingId = booking.Id
-                });
-            }
-            booking.Flights = flights;
-            this.db.SaveChanges();
-
-
-            var namesModel = model.NamesResults.Split(' ');
-            var passengers = GetPassengers(namesModel, model);
-            var bPassengers = new List<BookingPassenger>();
-            var bFlights = new List<BookingFlight>();
-            foreach (var p in passengers)
-            {
-                bPassengers.Add(new BookingPassenger
-                {
-                    BookingId = booking.Id,
-                    PersonId = p.Id
-                });
-            }
-            booking.Passengers = bPassengers;
-            var user = this.db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            var userBooking = new UserBooking
-            {
-                ApplicationUserId = user.Id,
-                BookingId = booking.Id,
-            };
-            this.db.UserBookings.Add(userBooking);
-            this.db.SaveChanges();
-            return this.Redirect("/");
-        }
-
-        public List<Passenger> GetPassengers(string[] namesModel, CreateBookingViewModel model)
-        {
-            var firstNames = new List<string>();
-            var lastNames = new List<string>();
-            var dobs = new List<string>();
-            var genders = new List<string>();
-            var firstName = string.Empty;
-            var dob = string.Empty;
-            var lastName = string.Empty;
-            var gender = string.Empty;
-            for (int i = 0; i < namesModel.Length; i++)
-            {
-                var endIndex = namesModel.ToList().FindIndex(x => x == "–");
-                if (i % (endIndex + 2) == 0 && i > 0)
-                {
-                    firstName = string.Empty;
-                    dob = string.Empty;
-                    lastName = string.Empty;
-                    gender = string.Empty;
-                    namesModel[endIndex] = ".";
-                }
-                var index = namesModel.ToList().FindIndex(x => x == "|");
-                if (i < index)
-                {
-                    firstName += namesModel[i] + " ";
-                }
-                if (i > index)
-                {
-                    if (Regex.IsMatch(namesModel[i], @"\d+"))
-                    {
-                        dob = namesModel[i] + "/" + namesModel[++i] + "/" + namesModel[++i];
-
-                    }
-                    else
-                    {
-                        if (namesModel[i] != "–")
+                        //Prevents injecting non-existent Services using an API call
+                        if (!servicesNames.Contains(item.Name))
                         {
-                            lastName += namesModel[i] + " ";
+                            return BadRequest();
                         }
-                        else
-                        {
-                            gender = namesModel[++i];
-                        }
-                    }
-                }
-                if (i % (endIndex + 1) == 0 && i != 0)
-                {
-                    firstNames.Add(firstName);
-                    lastNames.Add(lastName);
-                    genders.Add(gender);
-                    dobs.Add(dob);
-                    namesModel[index] = ".";
-                }
-            }
-            var docs = model
-                .PassportResults
-                .Split(new[]
-                {
-                    "|", "Issue Date:", "Expiry Date:", "Nationality:", "Birth Country:", "Gender:"
-                },
-                StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => x.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToArray();
-            var travelDocs = new List<TravelDocument>();
-            for (int i = 0; i < docs.Length; i += 6)
-            {
-                Enum.TryParse(docs[4].Trim(), out Country birthCountry);
-                Enum.TryParse(docs[3].Trim(), out Country nationality);
-                Enum.TryParse(docs[5].Trim(), out Gender genderDoc);
-                var tokens = docs[0].Trim().Split(new[] { ":", " " }, StringSplitOptions.RemoveEmptyEntries);
-                travelDocs.Add(new TravelDocument
-                {
-                    BirthCountry = birthCountry,
-                    ExpiryDate = DateTime.ParseExact(docs[2].Trim(), "d MMMM yyyy", null),
-                    Gender = genderDoc,
-                    IssueDate = DateTime.ParseExact(docs[1].Trim(), "d MMMM yyyy", null),
-                    Nationality = nationality,
-                    Number = tokens[1].Trim(),
-                    Type = tokens[0].Trim() == "P" ? DocumenType.Passport : DocumenType.National_Id
-                });
-            }
-            this.db.TravelDocuments.AddRange(travelDocs);
-            this.db.SaveChanges();
-            var services = new List<Service>();
-            var serviceModel = model
-                .ServicesResults
-                .Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => x.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToArray();
-            var passengers = new List<Passenger>();
-            for (int i = 0; i < firstNames.Count(); i++)
-            {
-                Enum.TryParse(genders[i].Trim(), out Gender pGender);
-                Random rnd = new Random();
-                passengers.Add(new Passenger
-                {
-                    DateOfBirth = DateTime.ParseExact(dobs[i].Trim(), "d/MMMM/yyyy", null),
-                    DocumentId = travelDocs[i].Id,
-                    FullName = firstNames[i].Trim() + " " + lastNames[i].Trim(),
-                    Gender = pGender,
-                    Services = null,
-                });
-            }
-            this.db.Passengers.AddRange(passengers);
-            this.db.SaveChanges();
-            for (int i = 0; i < serviceModel.Length; i++)
-            {
-                if (serviceModel[i] == " ")
-                {
-                    continue;
-                }
-                services = new List<Service>();
-                var tokens = serviceModel[i].Split("–");
-                for (int j = 0; j < tokens.Length; j++)
-                {
-                    if (tokens[j].Trim() == "Airport Check-In")
-                    {
-                        services.Add(new AirportCheckIn());
-                    }
-                    else if (tokens[j].Trim() == "Priority")
-                    {
-                        services.Add(new Priority());
-                    }
-                    else if (tokens[j].Trim() == "Flexibility")
-                    {
-                        services.Add(new Flexibility());
-                    }
-                    else if (tokens[j].Trim() == "On Time Arrival")
-                    {
-                        services.Add(new OnTimeArrival());
-                    }
-                    else if (tokens[j].Trim() == "Baggage 32kg")
-                    {
-                        var baggage = new Baggage();
-                        baggage.Kilos = 32;
-                        services.Add(baggage);
-                    }
-                    else if (tokens[j].Trim() == "Baggage 20kg")
-                    {
-                        var baggage = new Baggage();
-                        baggage.Kilos = 20;
-                        services.Add(baggage);
-                    }
-                    else if (tokens[j].Trim() == "Extra Leg-Room Seat")
-                    {
-                        var seat = new Seat();
-                        seat.Type = SeatType.Extra_Leg_Room;
-                        services.Add(seat);
-                    }
-                    else if (tokens[j].Trim() == "Normal Seat")
-                    {
-                        var seat = new Seat();
-                        seat.Type = SeatType.Normal;
-                        services.Add(seat);
-                    }
-                }
-                var s = new List<PersonService>();
-                this.db.Services.AddRange(services);
-                this.db.SaveChanges();
-                foreach (var service in services)
-                {
-                    s.Add(new PersonService
-                    {
-                        PersonId = passengers[i].Id,
-                        ServiceId = service.Id,
-                    });
-                }
-                this.db.PersonServices.AddRange(s);
-                passengers[i].Services = s;
-                this.db.SaveChanges();
-            }
-            return passengers;
-        }
 
-        public bool CompareDates(DateTime date1, DateTime date2)
-        {
-            if (date1.Day == date2.Day)
-            {
-                if (date1.Month == date2.Month)
-                {
-                    if (date1.Year == date2.Year)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
+                        //Create the service
+                        IService service = await _serviceService.Create(item.Name);
+
+                        //add the service instance to the service collection
+                        services.Add(service);
                     }
                 }
-                else
+
+                //create the baggage service and add it to the collection
+                IService baggage = await _serviceService.Create(passenger.BaggageType);
+                services.Add(baggage);
+
+                //create a passenger
+                IPassenger pax = await _passengerService.Create(passenger.FirstName, passenger.LastName, passenger.Gender, passenger.BaggageType, services);
+
+                //associate the passenger with each flight
+                FlightPassenger flightPaxGoing = await _flightPassengerService.Create(pax, goingFlight);
+                if (returnFlight != null)
                 {
-                    return false;
+                    FlightPassenger flightPaxReturning = await _flightPassengerService.Create(pax, returnFlight);
                 }
+
+                //add the passenger to the passengers collection
+                passengers.Add(pax);
             }
-            else
+
+            //create the payment object
+            Payment payment = await _paymentService.Create(model.Payment.CardType, model.Payment.CardNumber, expiryDate, model.Payment.CardHolder, model.Payment.CVC, price, model.Payment.Currency);
+
+            //create the booking object
+            Booking booking = await _bookingService.Create(payment);
+
+            //Associate the booking with the flights
+            BookingFlight goingPax = await _bookingFlightService.Create(goingFlight, booking, true);
+            if (returnFlight != null)
             {
-                return false;
+                BookingFlight returnPax = await _bookingFlightService.Create(returnFlight, booking);
             }
+
+            //Associate each passenger with the booking
+            foreach (Passenger pax in passengers)
+            {
+                BookingPassenger bookingPax = await _bookingPassengerService.Create(booking, pax);
+            }
+
+            //get the logged in user and assign the booking to them
+            ApplicationUser cuurentUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserBooking userBooking = await _userBookingService.Create(cuurentUser, booking);
+
+            //return the list of bookings View
+            return this.Redirect("All");
         }
 
         [Authorize]
-        public IActionResult CreateBooking(CreateBookingIndexViewModel model)
+        [HttpPost]
+        public async Task<IActionResult> CreateBooking(IndexViewModel model)
         {
-            if (string.IsNullOrEmpty(model.Origin) || string.IsNullOrEmpty(model.Passenger) ||
-                string.IsNullOrEmpty(model.Arrival) || string.IsNullOrEmpty(model.Departure) ||
-                string.IsNullOrEmpty(model.Destination))
+            if (!ModelState.IsValid)
             {
-                return this.Redirect("/");
+                return View("/", model);
             }
-            var flightsDb = this.db.Flights.Include(x => x.Airports).ThenInclude(x => x.Airport).ToList();
-            var flights = flightsDb.Where(x => x.Airports.ElementAt(0).Airport.Name == model.Origin &&
-                                               x.Airports.ElementAt(1).Airport.Name == model.Destination &&
-                                               CompareDates(x.Departure, DateTime.ParseExact(model.Departure, "MM/dd/yyyy", null)))
-                                    .ToList();
-            flights.AddRange(flightsDb.Where(x => x.Airports.ElementAt(0).Airport.Name == model.Destination &&
-                                               x.Airports.ElementAt(1).Airport.Name == model.Origin &&
-                                               CompareDates(x.Arrival, DateTime.ParseExact(model.Arrival, "MM/dd/yyyy", null)))
-                                    .ToList());
-            foreach (var flight in flights)
+
+            //check if they are booking a OneWay ticket
+            bool isReturning = model.isReturning == "OneWay" ? false : true;
+
+            //get destination and origin to look for flights
+            var origin = await _cityService.GetById(model.Origin);
+            var destination = await _cityService.GetById(model.Destination);
+
+            //throw an error if the origin or the destination is not valid
+            if (origin == null || destination == null)
             {
-                model.FlightsLists.Add(" Number: " + flight.FlightNumber +
-                    Environment.NewLine + " Route: " + flight.Airports.ElementAt(0).Airport.Name +
-                " – " + flight.Airports.ElementAt(1).Airport.Name +
-                Environment.NewLine + " Date: " + flight.Departure.ToString("dd MMM yyyy") +
-                " – " + flight.Arrival.ToString("dd MMM yyyy") +
-                Environment.NewLine + " Time: " + flight.Departure.ToString("HH:mm") +
-                " – " + flight.Arrival.ToString("HH:mm") +
-                Environment.NewLine + " Price: $" + flight.Price.ToString("F2"));
+                return BadRequest();
             }
-            model.Flights = flights;
-            model.AirportCheckInPrice = new AirportCheckIn().Price.ToString();
-            var baggage = new Baggage();
-            baggage.Kilos = 20;
-            model.Baggage20kgPrice = baggage.Price.ToString();
-            baggage.Kilos = 32;
-            model.Baggage32kgPrice = baggage.Price.ToString();
-            var seat = new Seat();
-            seat.Type = SeatType.Normal;
-            model.ExtraLegRoomSeatPrice = seat.Price.ToString();
-            model.FlexibilityPrice = new Flexibility().Price.ToString();
-            seat.Type = SeatType.Extra_Leg_Room;
-            model.NormalSeatPrice = seat.Price.ToString();
-            model.OnTimeArrivalPrice = new OnTimeArrival().Price.ToString();
-            model.PriorityPrice = new Priority().Price.ToString();
-            return View(model);
+
+            //check if the returning date is after the going date
+            if (isReturning)
+            {
+                if (model.Departure > model.Return)
+                {
+                    return BadRequest();
+                }
+            }
+
+            //get flights options
+            var goingFlights = await _flightsService.GetFlightsByOriginAndDestination(origin, destination, model.Departure);
+            var returningFlights = await _flightsService.GetFlightsByOriginAndDestination(destination, origin, model.Return);
+
+            List<FlightViewModel> going = new List<FlightViewModel>();
+
+            //create a viewModel for each flight option
+            foreach (var item in goingFlights)
+            {
+                going.Add(new FlightViewModel()
+                {
+                    Arrival = item.Arrival,
+                    Departure = item.Departure,
+                    Id = item.Id,
+                    Price = item.Price,
+                    Destination = new AirportViewModel()
+                    {
+                        IATA = item.Destination.IATA,
+                        City = new CityViewModel()
+                        {
+                            Name = item.Destination.City.Name
+                        },
+                        Name = item.Destination.Name
+                    },
+                    Origin = new AirportViewModel()
+                    {
+                        IATA = item.Origin.IATA,
+                        City = new CityViewModel()
+                        {
+                            Name = item.Origin.City.Name
+                        },
+                        Name = item.Origin.Name
+                    },
+                    FlightNumber = item.FlightNumber
+                });
+            }
+
+            Dictionary<string, List<FlightViewModel>> flights = new Dictionary<string, List<FlightViewModel>>()
+            {
+                { "Going", going }
+            };
+
+            //create a viewModel for each return flight option
+            if (isReturning)
+            {
+                List<FlightViewModel> returning = new List<FlightViewModel>();
+
+                foreach (var item in returningFlights)
+                {
+                    returning.Add(new FlightViewModel()
+                    {
+                        Arrival = item.Arrival,
+                        Departure = item.Departure,
+                        Id = item.Id,
+                        Price = item.Price,
+                        Destination = new AirportViewModel()
+                        {
+                            IATA = item.Destination.IATA,
+                            City = new CityViewModel()
+                            {
+                                Name = item.Destination.City.Name
+                            },
+                            Name = item.Destination.Name
+                        },
+                        Origin = new AirportViewModel()
+                        {
+                            IATA = item.Origin.IATA,
+                            City = new CityViewModel()
+                            {
+                                Name = item.Origin.City.Name
+                            },
+                            Name = item.Origin.Name
+                        },
+                        FlightNumber = item.FlightNumber
+                    });
+                }
+
+                flights.Add("Returning", returning);
+            }
+
+            List<PassengerViewModel> passengers = new List<PassengerViewModel>();
+
+            //get all possible services
+            List<Service> services = new List<Service>()
+            {
+                new AirportCheckIn(),
+                new Flexibility(),
+                new OnTimeArrival(),
+                new Priority(),
+                new Seat()
+            };
+
+            //assign fontAwesome icnos to each service
+            Dictionary<string, string> servicesURLs = new Dictionary<string, string>()
+            {
+                { "AirportCheckIn", "<i class=\"fa-solid fa-plane-circle-check\"></i>" },
+                { "Flexibility", "<i class=\"fa-solid fa-shuffle\"></i>" },
+                { "OnTimeArrival", "<i class=\"fa-solid fa-clock\"></i>" },
+                { "Priority", "<i class=\"fa-solid fa-van-shuttle\"></i>" },
+                { "Seat", "<i class=\"fa-solid fa-chair\"></i>" }
+            };
+
+            //generate viewModel for each passenger and service
+            for (int i = 0; i < model.Passengers; i++)
+            {
+                var passenger = new PassengerViewModel()
+                {
+                    Services = new List<ServiceViewModel>()
+                };
+
+                foreach (var service in services)
+                {
+                    passenger.Services.Add(new ServiceViewModel
+                    {
+                        IsChecked = false,
+                        Name = service.Name,
+                        Price = service.Price,
+                        URL = servicesURLs[service.Name]
+                    });
+                }
+
+                passengers.Add(passenger);
+            }
+
+            //generate the final viewModel
+            CreateBookingViewModel viewModel = new CreateBookingViewModel()
+            {
+                PassengersCount = model.Passengers,
+                Flights = flights,
+                Passengers = passengers
+            };
+
+            //return the View with the model
+            return View(viewModel);
         }
     }
 }

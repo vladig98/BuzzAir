@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BuzzAir.Models
+﻿namespace BuzzAir.Models
 {
     public class AllBookingsViewModel
     {

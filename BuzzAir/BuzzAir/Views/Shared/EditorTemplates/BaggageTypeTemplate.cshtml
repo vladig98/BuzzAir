@@ -1,0 +1,35 @@
+﻿@using System.Reflection
+@using System.ComponentModel.DataAnnotations
+@using BuzzAir.Utilities
+@model Enum
+
+@{
+    var listItems = Enum.GetValues(Model.GetType()).OfType<Enum>();
+
+    string prefix = ViewData.TemplateInfo.HtmlFieldPrefix;
+    int index = 0;
+
+    ViewData.TemplateInfo.HtmlFieldPrefix = string.Empty;
+
+    foreach (var li in listItems)
+    {
+        string fieldName = string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}_{1}", prefix, index);
+        var enumValue = li.GetType().GetMember(li.ToString()).First().GetCustomAttribute<CustomDisplayAttribute>()?.Name;
+        var enumPrice = li.GetType().GetMember(li.ToString()).First().GetCustomAttribute<CustomDisplayAttribute>()?.Price;
+        var enumIcon = li.GetType().GetMember(li.ToString()).First().GetCustomAttribute<CustomDisplayAttribute>()?.IconURL;
+        var success = decimal.TryParse(enumPrice, out decimal parsedPrice);
+
+        var value = enumValue == null ? li.ToString() : enumValue;
+        var price = success ? string.Format("${0:f2}", parsedPrice) : enumPrice;
+
+
+        @Html.RadioButton(prefix, li.ToString(), false, new { @id = fieldName, @class = "btn-check paxBaggage", @autocomplete = "off" })
+        <label for="@fieldName" class="btn flex-grow-0 justify-content-center btn-outline-primary baggageDiv d-flex align-items-center flex-column m-0 p-0 text-center">
+            @Html.Raw(@enumIcon)
+            <span>@value</span>
+            <span>@price</span>
+        </label>
+        index++;
+    }
+    ViewData.TemplateInfo.HtmlFieldPrefix = prefix;
+}

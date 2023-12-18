@@ -1,12 +1,11 @@
 ﻿@page
-@using BuzzAir.Models
-@using System.Linq
+@using BuzzAir.Models.DbModels.Enums
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-lg-4">
@@ -45,7 +44,7 @@
                     <option selected hidden disabled>Select Gender</option>
                     @for (int i = 1; i <= Enum.GetValues(typeof(Gender)).Length; i++)
                     {
-                    <option>@((Gender)i)</option>
+                        <option>@((Gender)i)</option>
                     }
                 </select>@*@Html.DropDownList("Gender", Html.GetEnumSelectList<Gender>(), "Select Gender", new { @class = "form-control" })*@
                 <span asp-validation-for="Input.Gender" class="text-danger"></span>
@@ -62,12 +61,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Input.Country"></label>
-                <select asp-for="Input.Country" class="form-control">
+                <select asp-for="Input.Country" class="form-control" asp-items="@Model.Countries">
                     <option selected hidden disabled>Select Country</option>
-                    @for (int i = 1; i <= Enum.GetValues(typeof(Country)).Length; i++)
+                    @* @for (int i = 1; i <= Enum.GetValues(typeof(Country)).Length; i++)
                     {
-                        <option>@((Country)i)</option>
-                    }
+                    <option>@((Country)i)</option>
+                    } *@
                 </select>
                 @*@Html.DropDownList("Country", Html.GetEnumSelectList<Country>(), "Select Country", new { @class = "form-control" })*@
                 <span asp-validation-for="Input.Country" class="text-danger"></span>

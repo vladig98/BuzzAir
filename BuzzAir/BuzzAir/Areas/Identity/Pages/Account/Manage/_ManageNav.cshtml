@@ -1,4 +1,6 @@
-﻿@using BuzzAir.Models
+﻿@using BuzzAir.Models;
+@using BuzzAir.Models.DbModels
+
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

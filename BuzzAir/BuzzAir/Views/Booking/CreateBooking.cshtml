@@ -1,223 +1,433 @@
-﻿<h2 class="text-center">Create Booking</h2>
-<hr />
-<form method="post" class="w-50 mx-auto" asp-controller="Booking" asp-action="Create" id="bookingForm" name="bookingForm">
-    @*<div class="form-group d-none flight">
-            <label for="origin">Origin</label>
-            <input type="text" class="form-control" id="origin" name="origin" value="@Model.Origin" disabled />
-        </div>
-        <div class="form-group d-none flight">
-            <label for="destination">Destination</label>
-            <input type="text" class="form-control" id="destination" name="destination" value="@Model.Destination" disabled />
-        </div>
-        <div class="form-group d-none flight">
-            <label for="departure">Departure</label>
-            <input type="text" class="form-control" id="departure" name="departure" value="@Model.Departure" disabled />
-        </div>
-        <div class="form-group d-none flight">
-            <label for="arrival">Arrival</label>
-            <input type="text" class="form-control" id="arrival" name="arrival" value="@Model.Arrival" disabled />
-        </div>
-        <div class="form-group d-none flight">
-            <label for="duration">Duration</label>
-            <input type="text" class="form-control" id="duration" name="duration" value="@Model.Duration" disabled />
-        </div>*@
-    @for (int i = 0; i < Model.Flights.Count; i++)
-    {
-        <div class="form-group flights" id="flightT@(i)">
-            <label for="flight">Flight</label>
-            <br />
-            <textarea class="form-control d-inline-block w-75" id="flight@(i)" name="flight" disabled readonly style="resize: none" rows="5">@Model.FlightsLists[i]</textarea>
-            <label class="ml-3 flightLabels" id="flightLabel@(i)"><input type="checkbox" class="form-control d-inline-block flightChecks" style="width: auto" name="flightCheck@(i)" id="flightCheck@(i)" /> <span class="flightLabelsSpan">Select</span></label>
-            <div id="price@(i)" class="prices d-none">@Model.Flights[i].Price</div>
-        </div>
-    }
-    @for (int i = 0; i < int.Parse(Model.Passenger); i++)
-    {
-        <div class="form-group d-none passengers">
-            <label for="firstName@(i)" class="labels" id="firstLabel@(i)">First Name</label>
-            <input class="form-control firstNames" id="firstName@(i)" name="firstNames@(i)" />
-        </div>
-        <div class="form-group d-none passengers">
-            <label for="lastName@(i)" class="labels">Last Name</label>
-            <input class="form-control lastNames" id="lastName@(i)" name="lastName@(i)" />
-        </div>
-        <div class="form-group d-none passengers">
-            <label for="gender@(i)" class="labels">Gender</label>
-            <select class="form-control genders" id="gender@(i)" name="gender@(i)">
-                <option selected hidden disabled>Select Gender</option>
-                @for (int j = 1; j <= Enum.GetValues(typeof(Gender)).Length; j++)
-                {
-                    <option>@((Gender)j)</option>
-                }
-            </select>
-        </div>
-        <div class="form-group d-none passengers">
-            <label for="dob@(i)" class="labels">Date of birth</label>
-            <input type="text" readonly class="form-control datepicker-here dobs" data-position="top left" data-language='en' id="dob@(i)" name="dob@(i)" />
-        </div>
-        <hr class="passengers d-none bg-dark" />
-    }
-    @for (int i = 0; i < int.Parse(Model.Passenger); i++)
-    {
-        <h2 class="d-none">Passenger @(i + 1)</h2>
-        <hr class="bg-dark d-none" />
-        <div class="form-group docs d-none">
-            <label for="docType@(i)" class="docLabels">Document Type</label>
-            <select class="form-control docTypes" id="docType@(i)" name="docType@(i)">
-                <option selected hidden disabled>Select Document Type</option>
-                @for (int j = 1; j <= Enum.GetValues(typeof(DocumenType)).Length; j++)
-                {
-                    <option>@((DocumenType)j)</option>
-                }
-            </select>
-        </div>
-        <div class="form-group docs d-none">
-            <label for="docNumber@(i)" class="docLabels">Document Number</label>
-            <input class="form-control docNumbers" id="docNumber@(i)" name="docNumber@(i)" maxlength="10" />
-        </div>
-        <div class="form-group docs d-none">
-            <label for="issueDate@(i)" class="docLabels">Issue Date</label>
-            <input class="form-control issueDates datepicker-here" readonly id="issueDate@(i)" name="issueDate@(i)" data-language="en" data-position="top left" />
-        </div>
-        <div class="form-group docs d-none">
-            <label for="expiryDate@(i)" class="docLabels">Expiry Date</label>
-            <input class="form-control expiryDates datepicker-here" readonly id="expiryDate@(i)" name="expiryDate@(i)" data-language="en" data-position="top left" />
-        </div>
-        <div class="form-group docs d-none">
-            <label for="nationality@(i)" class="docLabels">Nationality</label>
-            <select class="form-control nationalities" id="nationality@(i)" name="nationality@(i)">
-                <option selected hidden disabled>Select Nationality</option>
-                @for (int j = 1; j <= Enum.GetValues(typeof(Country)).Length; j++)
-                {
-                    <option>@((Country)j)</option>
-                }
-            </select>
-        </div>
-        <div class="form-group docs d-none">
-            <label for="birthCountry@(i)" class="docLabels">Birth Country</label>
-            <select class="form-control birthCountries" id="birthCountry@(i)" name="birthCountry@(i)">
-                <option selected hidden disabled>Select Your Birth Country</option>
-                @for (int j = 1; j <= Enum.GetValues(typeof(Country)).Length; j++)
-                {
-                     <option>@((Country)j)</option>
-                }
-            </select>
-        </div>
-        <div class="form-group docs d-none">
-            <label for="genderDoc@(i)" class="docLabels">Gender</label>
-            <select class="form-control genderDocs" id="genderDoc@(i)" name="genderDoc@(i)">
-                <option selected hidden disabled>Select Gender</option>
-                @for (int j = 1; j <= Enum.GetValues(typeof(Gender)).Length; j++)
-                {
-                    <option>@((Gender)j)</option>
-                }
-            </select>
-        </div>
-        <div class="form-group docResults d-none">
-            <label for="docResult" id="labelDocResult@(i)">Passport</label>
-            <textarea class="form-control" id="docResult@(i)" name="docResult" style="resize: none" rows="6" disabled></textarea>
-        </div>
-    }
-    @for (int i = 0; i < int.Parse(Model.Passenger); i++)
-    {
-        <div class="form-group d-none services">
-            <label>Services</label>
-            <br />
-            <div class="mr-4 d-inline-block"><input style="width: auto" type="checkbox" class="form-control d-inline-block airportCheckIns" name="airportCheckIn@(i)" value="airportCheckIn" id="airportCheckIn@(i)"><span> Airport Check-in</span></div>
-            <div class="mr-4 d-inline-block"><input style="width: auto" type="checkbox" class="form-control d-inline-block baggages" name="baggage@(i)" value="Baggage" id="baggage@(i)"><span> Baggage</span></div>
-            <div class="mr-4 d-inline-block"><input style="width: auto" type="checkbox" class="form-control d-inline-block flexibilities" name="flexibility@(i)" value="flexibility" id="flexibility@(i)"><span> Flexibility</span></div>
-            <div class="mr-4 d-inline-block"><input style="width: auto" type="checkbox" class="form-control d-inline-block onTimeArrivals" name="onTimeArrival@(i)" value="onTimeArrival" id="onTimeArrival@(i)"><span> On Time Arrival</span></div>
-            <div class="mr-4 d-inline-block"><input style="width: auto" type="checkbox" class="form-control d-inline-block priorities" name="priority@(i)" value="priority" id="priority@(i)"><span> Priority</span></div>
-            <div class="mr-4 d-inline-block"><input style="width: auto" type="checkbox" class="form-control d-inline-block seats" name="seat@(i)" value="seat" id="seat@(i)"><span> Seat</span></div>
-        </div>
-        <div class="form-group d-none baggageKilos">
-            <label>Baggage Kilos</label>
-            <br />
-            <div class="d-inline-block mr-4"><input type="radio" style="width: auto" class="form-control d-inline-block 20kgs" name="kgs@(i)" value="20kg" id="20kg@(i)"><span> 20kg</span></div>
-            <div class="d-inline-block mr-4"><input type="radio" style="width: auto" class="form-control d-inline-block 32kgs" name="kgs@(i)" value="32kg" id="32kg@(i)"><span> 32kg</span></div>
-        </div>
-        <div class="form-group d-none seatsType">
-            <label>Seat Type</label>
-            <br />
-            <div class="d-inline-block mr-4"><input type="radio" style="width: auto" class="form-control d-inline-block normalSeat" name="seatType@(i)" value="normalSeat" id="normalSeat@(i)"><span> Normal</span></div>
-            <div class="d-inline-block mr-4"><input type="radio" style="width: auto" class="form-control d-inline-block extraLegRoom" name="seatType@(i)" value="extraLegRoom" id="extraLegRoom@(i)"><span> Extra Legroom</span></div>
-        </div>
-        <div class="form-group servicesResult d-none">
-            <label for="serviceResult">Services</label>
-            <textarea class="form-control sResults" id="serviceResult@(i)" name="serviceResult" style="resize: none" disabled></textarea>
-        </div>
-    }
-    <h2 class="text-center d-none payment" id="paymentH2">Payment</h2>
-    <hr class="bg-dark payment d-none" id="paymentHr" />
-    <div class="form-group payment d-none">
-        <label for="cardType">Card Type</label>
-        <select class="form-control" id="cardType" name="cardType">
-            <option selected hidden disabled>Select Card</option>
-            @for (int j = 1; j <= Enum.GetValues(typeof(CardType)).Length; j++)
+﻿@using System.Globalization
+@using BuzzAir.Models.DbModels
+@using BuzzAir.Models.DbModels.Enums
+@using BuzzAir.Utilities
+@using System.Text.RegularExpressions
+@model CreateBookingViewModel
+
+<form id="createBookingForm" method="post" class="bg-body-secondary p-3" asp-controller="Booking" asp-action="Create">
+    @Html.EditorFor(x => x.PassengersCount)
+    <div id="flightsSection" class="mx-auto w-50 sections">
+        <div class="mb-5">
+            @for (int i = 0; i < Model.Flights["Going"].Count; i++)
             {
-                <option>@((CardType)j)</option>
+                var element = Model.Flights["Going"];
+                var flight = Model.Flights["Going"][i];
+                <div class="mb-2">
+                    <div class="bg-white p-3 border-bottom border-black border-2">
+                        <i class="fa-solid fa-plane-departure me-3"></i><span class="cityNames">@element[i].Origin.City.Name</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City.Name</span> @element[i].Destination.IATA
+                    </div>
+                    <div class="bg-light p-3 d-flex justify-content-between divButton">
+                        <div>
+                            <div>
+                                @element[i].Departure.ToString("ddd, dd MMM yyyy", CultureInfo.InvariantCulture)
+                            </div>
+                            <div>
+                                <span class="times">@element[i].Departure.ToString("HH:mm", CultureInfo.InvariantCulture)</span> <i class="fa-solid fa-plane mx-5"></i> <span class="times">@element[i].Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-evenly align-items-center">
+                            <div class="me-3 fs-3 fw-bolder">
+                                $@element[i].Price
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButtonFor(x => Model.GoingFlightSelection, flight.Id, new
+                                    {
+                                        @class = "form-check-input goingFlightsSelection"
+                                    })
+                                @Html.EditorFor(x => x.Flights["Going"][i].Id)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Arrival)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Departure)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Price)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Origin.IATA)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Destination.IATA)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Origin.City.Name)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Origin.Name)
+                                @Html.EditorFor(x => x.Flights["Going"][i].FlightNumber)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Destination.City.Name)
+                                @Html.EditorFor(x => x.Flights["Going"][i].Destination.Name)
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-        </select>
-    </div>
-    <div class="form-group payment d-none">
-        <label for="cardNumber">Card Number</label>
-        <input type="text" id="cardNumber" name="cardNumber" class="form-control" maxlength="16" pattern="\d*" />
-    </div>
-    <div class="form-group payment d-none">
-        <label for="expiryDatePayment">Expiry Date</label>
-        <input type="text" id="expiryDatePayment" name="expiryDatePayment" onkeyup="AddSlash()" class="form-control" maxlength="5" pattern="[0-9\/]*" />
-    </div>
-    <div class="form-group payment d-none">
-        <label for="cardHolder">Card Holder</label>
-        <input type="text" id="cardHolder" name="cardHolder" class="form-control" />
-    </div>
-    <div class="form-group payment d-none">
-        <label for="cvc">CVC</label>
-        <input type="text" id="cvc" name="cvc" class="form-control" maxlength="3" pattern="\d*" />
-    </div>
-    <div class="form-group payment d-none">
-        <label for="currency">Currency</label>
-        <select class="form-control" id="currency" name="currency" onchange="Convert(value)">
-            <option selected hidden disabled>Select Currency</option>
-            @for (int j = 1; j <= Enum.GetValues(typeof(Currency)).Length; j++)
+        </div>
+
+        <div class="mt-5">
+            @for (int i = 0; i < Model.Flights["Returning"].Count; i++)
             {
-                <option value="@((Currency)j)">@((Currency)j)</option>
+                var element = Model.Flights["Returning"];
+                var flight = Model.Flights["Returning"][i];
+                <div class="mb-2">
+                    <div class="bg-white p-3 border-bottom border-black border-2">
+                        <i class="fa-solid fa-plane-arrival me-3"></i><span class="cityNames">@element[i].Origin.City.Name</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City.Name</span> @element[i].Destination.IATA
+                    </div>
+                    <div class="bg-light p-3 d-flex justify-content-between divButton">
+                        <div>
+                            <div>
+                                @element[i].Departure.ToString("ddd, dd MMM yyyy", CultureInfo.InvariantCulture)
+                            </div>
+                            <div>
+                                <span class="times">@element[i].Departure.ToString("HH:mm", CultureInfo.InvariantCulture)</span> <i class="fa-solid fa-plane mx-5"></i> <span class="times">@element[i].Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-evenly align-items-center">
+                            <div class="me-3 fs-3 fw-bolder">
+                                $@element[i].Price
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButtonFor(x => Model.ReturnFlightSelection, flight.Id, new
+                                    {
+                                        @class = "form-check-input"
+                                    })
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Id)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Arrival)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Departure)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Price)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Origin.IATA)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Destination.IATA)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Origin.City.Name)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Origin.Name)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].FlightNumber)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Destination.City.Name)
+                                @Html.EditorFor(x => x.Flights["Returning"][i].Destination.Name)
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-        </select>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+            <button id="flightsBtn" class="btn btn-primary">Enter passengers' details</button>
+        </div>
     </div>
-    <div class="form-group d-none" id="paymentSummaryDiv">
-        <label for="paymentSummary">Payment</label>
-        <textarea id="paymentSummary" name="paymentSummary" class="form-control" rows="6" style="resize: none" disabled></textarea>
+    <div id="passengersSection" class="mx-auto w-75 sections d-none">
+        @for (int i = 0; i < Model.PassengersCount; i++)
+        {
+            <div class="bg-white p-3 mt-3">
+                <div class="text-primary fs-3">
+                    <i class="fa-solid fa-user me-3"></i> @(i + 1). Passenger
+                </div>
+                <div class="row g-3">
+                    <div class="col-8">
+                        <div class="row g-0">
+                            <div class="col-6">
+                                @Html.EditorFor(x => x.Passengers[i].FirstName, new {
+                                        htmlAttributes = new { @class = "form-control paxName" }
+                                })
+                                @Html.ValidationMessageFor(x => x.Passengers[i].FirstName)
+                            </div>
+                            <div class="col-6 has-validation">
+                                @Html.EditorFor(x => x.Passengers[i].LastName, new
+                                    {
+                                        htmlAttributes = new { @class = "form-control paxName" }
+                                    })
+                                @Html.ValidationMessageFor(x => x.Passengers[i].LastName)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="btn-group w-100" role="group">
+                            @Html.EditorFor(x => x.Passengers[i].Gender, "GenderTemplate")
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="fs-1 text-primary">
+                        Checked-in Baggage
+                    </div>
+                    <div>
+                        <div class="btn-group d-flex justify-content-evenly align-items-center" role="group">
+                            @Html.EditorFor(x => x.Passengers[i].BaggageType, "BaggageTypeTemplate")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="d-flex justify-content-end mt-3">
+            <button id="passengersBtn" class="btn btn-primary">Choose additional services</button>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="total">Total</label>
-        <div disabled id="total" name="total" class="form-control">0</div>
+    <div id="servicesSection" class="mx-auto w-75 mt-5 sections d-none">
+        @for (int i = 0; i < Model.PassengersCount; i++)
+        {
+            <div class="bg-white mt-3 p-3">
+                <div class="fs-1 text-primary">
+                    <i class="fa-solid fa-user-plus me-3"></i> Services - Passenger @(i + 1)
+                </div>
+                <div>
+                    <div class="btn-group d-flex justify-content-evenly align-items-center w-100" role="group">
+                        @for (int j = 0; j < Model.Passengers[i].Services.Count(); j++)
+                        {
+                            @Html.EditorFor(x => x.Passengers[i].Services[j].Price)
+                            @Html.EditorFor(x => x.Passengers[i].Services[j].Name)
+                            @Html.EditorFor(x => x.Passengers[i].Services[j].IsChecked, new
+                                {
+                                    htmlAttributes = new {
+                                        @type = "checkbox",
+                                        @class = "btn-check serviceCheck",
+                                        @autocomplete = "off"
+                                    }
+                            })
+                            
+                            <label class="btn flex-grow-0 justify-content-center btn-outline-primary baggageDiv d-flex align-items-center flex-column m-0 p-0 text-center" for="Passengers_@(i)__Services_@(j)__IsChecked">
+                                @Html.Raw(Model.Passengers[i].Services[j].URL)
+                                @Html.EditorFor(x => x.Passengers[i].Services[j].URL)
+                                <span>@Model.Passengers[i].Services[j].Name</span> 
+                                <span>$@Model.Passengers[i].Services[j].Price</span>
+                            </label>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="d-flex justify-content-end mt-3">
+            <button id="servicesBtn" class="btn btn-primary">Proceed to Payment</button>
+        </div>
     </div>
-    <div class="d-none" id="priceFor20kg">@Model.Baggage20kgPrice</div>
-    <div class="d-none" id="priceFor32kg">@Model.Baggage32kgPrice</div>
-    <div class="d-none" id="priceForNormalSeat">@Model.NormalSeatPrice</div>
-    <div class="d-none" id="priceForExtraLegRoomSeat">@Model.ExtraLegRoomSeatPrice</div>
-    <div class="d-none" id="priceForPriority">@Model.PriorityPrice</div>
-    <div class="d-none" id="priceForFlexibility">@Model.FlexibilityPrice</div>
-    <div class="d-none" id="priceForAirportCheckIn">@Model.AirportCheckInPrice</div>
-    <div class="d-none" id="priceForOnTimeArrival">@Model.OnTimeArrivalPrice</div>
-    <div>
-        <a href="javascript:showNext();" class="btn bg-dark text-white" id="buttonSubmit">Next</a>
+
+    <div id="paymentSection" class="mx-auto w-50 mt-3 sections d-none">
+        <div class="fs-2 text-primary">
+            <i class="fa-regular fa-credit-card"></i> Payment
+        </div>
+        <div class="fs-3 text-primary">
+            <i class="fa-solid fa-sack-dollar"></i> Total Amount - $<spam id="totalAmount"></spam>
+            @Html.EditorFor(x => x.Price)
+        </div>
+        <div>
+            <div>
+                @Html.LabelFor(x => x.Payment.CardType, new
+                    {
+                        @class = "form-label"
+                    })
+                <select class="form-select" asp-for="Payment.CardType" asp-items="Html.GetEnumSelectList<CardType>()">
+                    <option selected disabled hidden value="">Select a Card Type</option>
+                </select>
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Payment.CardNumber, new 
+                    {
+                        @class = "form-label"
+                    })
+                @Html.EditorFor(x => x.Payment.CardNumber, new 
+                    {
+                        htmlAttributes = new 
+                        {
+                            @class = "form-control"
+                        }
+                    })
+                @Html.ValidationMessageFor(x => x.Payment.CardNumber)
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Payment.ExpiryDate, new
+                    {
+                        @class = "form-label"
+                    })
+                @Html.EditorFor(x => x.Payment.ExpiryDate, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control"
+                        }
+                    })
+                @Html.ValidationMessageFor(x => x.Payment.ExpiryDate)
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Payment.CardHolder, new
+                    {
+                        @class = "form-label"
+                    })
+                @Html.EditorFor(x => x.Payment.CardHolder, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control"
+                        }
+                    })
+                @Html.ValidationMessageFor(x => x.Payment.CardHolder)
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Payment.CVC, new
+                    {
+                        @class = "form-label"
+                    })
+                @Html.EditorFor(x => x.Payment.CVC, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control"
+                        }
+                    })
+                @Html.ValidationMessageFor(x => x.Payment.CVC)
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Payment.Currency, new
+                    {
+                        @class = "form-label"
+                    })
+                <select class="form-select" asp-for="Payment.Currency" asp-items="Html.GetEnumSelectList<Currency>()">
+                    <option selected disabled hidden value="">Select Currency</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+            <input id="submitBtn" class="btn btn-primary" type="submit" value="Create Booking" />
+        </div>
     </div>
-    <button type="submit" id="btnSumbit" class="btn bg-dark text-white d-none">Pay</button>
-    @*<div>
-            <button type="submit" class="btn bg-dark text-white">Create</button>
-        </div>*@
-    <input type="text" class="d-none" name="namesResults" id="namesResults">
-    <input type="text" class="d-none" name="passportResults" id="passportResults">
-    <input type="text" class="d-none" name="servicesResults" id="servicesResults">
-    <input type="text" class="d-none" name="flightsResults" id="flightsResults">
-    <input type="text" class="d-none" name="paymentsResults" id="paymentsResults">
-    <input type="text" class="d-none" id="MP" value="@Model.Passenger" />
 </form>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<link href="~/lib/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
-<script src="~/lib/air-datepicker-master/dist/js/datepicker.min.js"></script>
-<script src="~/lib/air-datepicker-master/dist/js/i18n/datepicker.en.js"></script>
-<script src="~/js/booking.js"></script>
+<script>
+    let divs = document.getElementsByClassName('divButton');
+
+    for (let i = 0; i < divs.length; i++) {
+        divs[i].addEventListener("click", function() {
+            this.children[1].children[1].children[0].checked = true;
+        })
+    }
+
+    let radioDivs = document.getElementsByClassName('radioDiv');
+
+    for (let i = 0; i < radioDivs.length; i++) {
+        radioDivs[i].addEventListener('click', function () {
+            this.getElementsByTagName('input')[0].checked = true;
+            this.parentElement.style.outline = "solid 2px red"
+
+            let attr = this.getElementsByTagName('input')[0].getAttribute("name");
+            let elements = document.getElementsByName(attr);
+            for (let j = 0; j < elements.length; j++) {
+                if (elements[j].parentElement != this) {
+                    elements[j].parentElement.parentElement.style.outline = "none";
+                }
+            }
+        })
+    }
+
+    $("#flightsBtn").click(function (e) {
+        e.preventDefault();
+
+        $goingFlight = $("input[name='GoingFlightSelection']")
+        $returnFlight = $("input[name='ReturnFlightSelection']")
+
+        for (let i = 0; i < $goingFlight.length; i++) {
+            if ($goingFlight[i].checked) {
+                for (let j = 0; j < $returnFlight.length; j++) {
+                    if ($returnFlight[j].checked) {
+                        $("#flightsSection").addClass("d-none")
+                        $("#passengersSection").removeClass("d-none")
+                    }
+                }
+            }
+        }
+    })
+
+    $("#passengersBtn").click(function (e) {
+        e.preventDefault();
+
+        $names = $(".paxName")
+
+        for (let i = 0; i < $names.length; i++) {
+            if (!$names[i].value) {
+                return
+            }
+        }
+
+        $gender = $(".paxGender")
+
+        let genderNames = [];
+
+        for (let i = 0; i < $gender.length; i++) {
+            if (!genderNames.includes($($gender[i]).attr("name"))) {
+                genderNames.push($($gender[i]).attr("name"))
+            }
+        }
+
+        for (let i = 0; i < genderNames.length; i++) {
+            let valid = false;
+
+            $genderRadio = $(`input[name='${genderNames[i]}']`)
+
+            for (let j = 0; j < $genderRadio.length; j++) {
+                if ($genderRadio[j].checked) {
+                    valid = true;
+                }
+            }
+
+            if (!valid) {
+                return
+            }
+        }
+
+        $baggage = $(".paxBaggage")
+
+        let baggageNames = [];
+
+        for (let i = 0; i < $baggage.length; i++) {
+            if (!baggageNames.includes($($baggage[i]).attr("name"))) {
+                baggageNames.push($($baggage[i]).attr("name"))
+            }
+        }
+
+        for (let i = 0; i < baggageNames.length; i++) {
+            let valid = false;
+
+            $baggageRadio = $(`input[name='${baggageNames[i]}']`)
+
+            for (let j = 0; j < $baggageRadio.length; j++) {
+                if ($baggageRadio[j].checked) {
+                    valid = true;
+                }
+            }
+
+            if (!valid) {
+                return
+            }
+        }
+
+        $("#passengersSection").addClass("d-none")
+        $("#servicesSection").removeClass("d-none")
+    })
+
+    $("#servicesBtn").click(function (e) {
+        e.preventDefault();
+
+        $("#servicesSection").addClass("d-none")
+        $("#paymentSection").removeClass("d-none")
+
+        let totalPrice = 0;
+
+        let paxCount = $("#PassengersCount").val()
+
+        let goingFlightPrice = Number([...document.getElementsByName('GoingFlightSelection')].filter(x => x.checked)[0].parentElement.parentElement.children[0].innerHTML.trim().substring(1));
+        let returnFlightPrice = Number([...document.getElementsByName('ReturnFlightSelection')].filter(x => x.checked)[0].parentElement.parentElement.children[0].innerHTML.trim().substring(1));
+
+        totalPrice += goingFlightPrice;
+        totalPrice += returnFlightPrice;
+
+        totalPrice *= paxCount;
+
+        for (let i = 0; i < paxCount; i++) {
+            let baggageId = [...document.getElementsByName(`Passengers[${i}].BaggageType`)].filter(x => x.checked)[0].id
+
+            let priceValue = document.querySelectorAll(`[for="${baggageId}"]`)[0].children[2].innerHTML.trim().substring(1)
+
+            let baggagePrice = priceValue == "ree" ? 0 : Number(priceValue)
+
+            totalPrice += baggagePrice;
+        }
+
+        let servicesCount = document.getElementsByClassName('serviceCheck').length;
+
+        for (let i = 0; i < paxCount; i++) {
+            for (let j = 0; j < servicesCount / paxCount; j++) {
+                let service = document.getElementsByName(`Passengers[${i}].Services[${j}].IsChecked`)[0]
+                
+                if (service.checked) {
+                    totalPrice += Number(document.getElementsByName(`Passengers[${i}].Services[${j}].Price`)[0].value)
+                }
+            }
+        }
+
+        $("#totalAmount").text(totalPrice.toFixed(2))
+        $("#Price").val(totalPrice.toFixed(2))
+    })
+</script>
