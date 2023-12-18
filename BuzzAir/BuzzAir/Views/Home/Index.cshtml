@@ -51,45 +51,37 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="row g-0">
-                <div class="col-6">
-                    <div class="inputContainer">
-                        <select class="form-select form-select-lg" asp-for="Origin" asp-items="Model.Origins">
-                            <option selected hidden disabled value=""></option>
-                        </select>
-                        <label class="customPlaceholder">Origin</label>
-                    </div>
+            <div class="input-group">
+                <div class="form-floating">
+                    <select class="form-select form-select-lg" style="height: auto;" asp-for="Origin" asp-items="Model.Origins" id="originSelect">
+                        <option selected hidden disabled value="">Origin</option>
+                    </select>
+                    <label for="originSelect">Origin</label>
                 </div>
-                <div class="col-6">
-                    <div class="inputContainer">
-                        <select class="form-select form-select-lg" asp-for="Destination">
-                            <option selected hidden disabled></option>
-                        </select>
-                        <label class="customPlaceholder">Destination</label>
-                    </div>
+                <div class="form-floating">
+                    <select class="form-select form-select-lg" style="height: auto;" asp-for="Destination" id="destinationSelect">
+                        <option selected hidden disabled>Destination</option>
+                    </select>
+                    <label for="destinationSelect">Destination</label>
                 </div>
             </div>
         </div>
         <div class="col-4">
-            <div class="row g-0">
-                <div class="col-6" id="departureContainer">
-                    <div class="inputContainer">
-                        <input type="text" class="form-control form-control-lg" asp-for="Departure" />
-                        <label id="departureLabel" class="customPlaceholder">Departure</label>
-                    </div>
+            <div class="input-group">
+                <div class="form-floating">
+                    <input type="text" class="form-control form-control-lg" style="height: auto;" asp-for="Departure" id="departureDate" placeholder="Departure" />
+                    <label for="departureDate">Departure</label>
                 </div>
-                <div class="col-6" id="returnContainer">
-                    <div class="inputContainer">
-                        <input type="text" class="form-control form-control-lg" asp-for="Return" />
-                        <label class="customPlaceholder">Return</label>
-                    </div>
+                <div class="form-floating" id="returnGroup">
+                    <input type="text" class="form-control form-control-lg" style="height: auto;" asp-for="Return" id="returnDate" placeholder="Return" />
+                    <label for="returnDate">Return</label>
                 </div>
             </div>
         </div>
         <div class="col-2">
-            <div class="inputContainer">
-                <input class="form-control form-control-lg" asp-for="Passengers" min="1" max="10" value="" />
-                <label class="customPlaceholder">Passengers</label>
+            <div class="form-floating">
+                <input class="form-control form-control-lg" asp-for="Passengers" style="height: auto;" min="1" max="10" value="" id="passengersCount" placeholder="Passengers" />
+                <label for="passengersCount">Passengers</label>
             </div>
         </div>
         <div class="col-2 text-center">
@@ -109,67 +101,10 @@
 <script src="~/lib/pickadate.js-master/lib/picker.date.js"></script>
 <script src="~/lib/pickadate.js-master/lib/picker.time.js"></script>
 <script>
-    document.getElementById('Departure').value = "";
-    document.getElementById('Return').value = "";
+    document.getElementById('departureDate').value = "";
+    document.getElementById('returnDate').value = "";
 
-    let divs = document.getElementsByClassName("inputContainer");
-
-    for (let i = 0; i < divs.length; i++) {
-        divs[i].addEventListener("click", function () {
-            let select = divs[i].getElementsByTagName("select")[0]
-            let input = divs[i].getElementsByTagName("input")[0]
-
-            if (select != undefined) {
-                select.focus();
-            }
-
-            if (input != undefined) {
-                input.focus()
-            }
-
-            divs[i].getElementsByTagName("label")[0].addEventListener("click", function () {
-                if (select != undefined) {
-                    select.focus();
-                }
-
-                if (input != undefined) {
-                    input.focus()
-                }
-            })
-        });
-    }
-
-    let selects = document.getElementsByTagName("select")
-
-    for (let i = 0; i < selects.length; i++) {
-        selects[i].addEventListener("change", function () {
-            selects[i].parentElement.getElementsByTagName("label")[0].classList.add("selectedSelect")
-        })
-    }
-
-    let inputs = document.getElementsByTagName("input")
-
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener("input", function () {
-            if (inputs[i]) {
-                inputs[i].parentElement.getElementsByTagName("label")[0].classList.add("selectedSelect")
-            } else {
-                inputs[i].parentElement.getElementsByTagName("label")[0].classList.remove("selectedSelect")
-            }
-        })
-    }
-
-    $('#Departure').pickadate({
-        onSet: function (context) {
-            document.getElementById('Departure').dispatchEvent(new Event('input', {
-                bubbles: true
-            }))
-        },
-        onClose: function () {
-            if (!$("#Departure").val()) {
-                document.getElementById('Departure').parentElement.getElementsByTagName('label')[0].classList.remove("selectedSelect")
-            }
-        },
+    $('#departureDate').pickadate({
         min: new Date(),
         max: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
         today: null,
@@ -177,17 +112,7 @@
         close: null
     })
 
-    $('#Return').pickadate({
-        onSet: function (context) {
-            document.getElementById('Return').dispatchEvent(new Event('input', {
-                bubbles: true
-            }))
-        },
-        onClose: function () {
-            if (!$("#Return").val()) {
-                document.getElementById('Return').parentElement.getElementsByTagName('label')[0].classList.remove("selectedSelect")
-            }
-        },
+    $('#returnDate').pickadate({
         min: new Date(),
         max: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
         today: null,
@@ -200,15 +125,9 @@
     for (let i = 0; i < radioButtons.length; i++) {
         radioButtons[i].addEventListener('change', function () {
             if (this.value == "OneWay") {
-                $("#returnContainer").hide();
-                $("#departureContainer").removeClass("col-6")
-                $("#departureContainer").addClass("col-12")
+                $("#returnGroup").hide();
             } else {
-                $("#returnContainer").show();
-                $("#departureContainer").removeClass("col-12")
-                $("#departureContainer").addClass("col-6")
-                var originId = document.getElementById("Origin").value;
-                var destinationId = document.getElementById("Destination").value;
+                $("#returnGroup").show();
 
                 connection.invoke("GetReturnFlightDates", originId, destinationId).catch(function (err) {
                     return console.error(err.toString());

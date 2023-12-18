@@ -5,7 +5,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/getSelectOptions")
 connection.on("FlightDatesSelected", function (dates) {
     let datesToAdd = dates.split(';');
 
-    var $input = $('#Departure')
+    var $input = $('#departureDate')
     var picker = $input.pickadate('picker')
 
     picker.set('disable', true);
@@ -23,8 +23,8 @@ connection.on("FlightDatesSelected", function (dates) {
     for (let i = 0; i < radioButtons.length; i++) {
         if (radioButtons[i].checked) {
             if (radioButtons[i].value == "Return") {
-                var originId = document.getElementById("Origin").value;
-                var destinationId = document.getElementById("Destination").value;
+                var originId = document.getElementById("originSelect").value;
+                var destinationId = document.getElementById("destinationSelect").value;
 
                 connection.invoke("GetReturnFlightDates", originId, destinationId).catch(function (err) {
                     return console.error(err.toString());
@@ -37,7 +37,7 @@ connection.on("FlightDatesSelected", function (dates) {
 connection.on("ReturnFlightDatesSelected", function (dates) {
     let datesToAdd = dates.split(';');
 
-    var $input = $('#Return')
+    var $input = $('#returnDate')
     var picker = $input.pickadate('picker')
 
     picker.set('disable', true);
@@ -54,7 +54,7 @@ connection.on("ReturnFlightDatesSelected", function (dates) {
 });
 
 connection.on("DestinationsHomePageSelected", function (cities) {
-    let destinationSelect = document.getElementById("Destination")
+    let destinationSelect = document.getElementById("destinationSelect")
 
     destinationSelect.innerHTML = ''
 
@@ -96,23 +96,23 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-document.getElementById("Origin").addEventListener("change", function (event) {
-    var cityId = document.getElementById("Origin").value;
+document.getElementById("originSelect").addEventListener("change", function (event) {
+    var cityId = document.getElementById("originSelect").value;
 
-    document.getElementById('Departure').value = ''
-    document.getElementById('Return').value = ''
+    document.getElementById('departureDate').value = ''
+    document.getElementById('returnDate').value = ''
 
     connection.invoke("SelectDestinationsForHomePage", cityId).catch(function (err) {
         return console.error(err.toString());
     });
 });
 
-document.getElementById("Destination").addEventListener("change", function (event) {
-    var originId = document.getElementById("Origin").value;
-    var destinationId = document.getElementById("Destination").value;
+document.getElementById("destinationSelect").addEventListener("change", function (event) {
+    var originId = document.getElementById("originSelect").value;
+    var destinationId = document.getElementById("destinationSelect").value;
 
-    document.getElementById('Departure').value = ''
-    document.getElementById('Return').value = ''
+    document.getElementById('departureDate').value = ''
+    document.getElementById('returnDate').value = ''
 
     connection.invoke("GetFlightDates", originId, destinationId).catch(function (err) {
         return console.error(err.toString());
