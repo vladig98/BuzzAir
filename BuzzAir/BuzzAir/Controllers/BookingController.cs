@@ -116,10 +116,6 @@ namespace BuzzAir.Controllers
             {
                 var passeneger = booking.Passengers.ElementAt(i).Passenger;
                 var services = ((Passenger)passeneger).Services.ToList();
-                //if (i > 0)
-                //{
-                //    resultsPassengers += Environment.NewLine + Environment.NewLine;
-                //}
 
                 List<ServiceViewModel> paxServices = new List<ServiceViewModel>();
 
@@ -141,27 +137,6 @@ namespace BuzzAir.Controllers
                     Gender = passeneger.Gender,
                     Services = paxServices
                 });
-
-                //string resultServices = string.Empty;
-
-                //for (int j = 0; j < services.Count(); j++)
-                //{
-                //    var service = services[j].Service;
-
-                //    resultServices += string.Format(GlobalConstants.ServicesFormat,
-                //        (service.Name == nameof(Baggage) ?
-                //        string.Format(GlobalConstants.ServicesWithChoicesFormat, service.Name, ((Baggage)service).Kilos) :
-                //        service.Name == nameof(Seat) ?
-                //        string.Format(GlobalConstants.ServicesWithChoicesFormat, service.Name, ((Seat)service).SeatType) :
-                //        service.Name),
-                //        Environment.NewLine);
-                //}
-
-                //resultsPassengers += string.Format(GlobalConstants.PassengerFormat,
-                //    passeneger.FullName,
-                //    passeneger.Gender,
-                //    resultServices,
-                //    Environment.NewLine);
             }
 
             var model = new BookingViewModel
@@ -276,11 +251,12 @@ namespace BuzzAir.Controllers
             }
 
             //calculate the price for the booking
-            decimal price = model.Passengers.Sum(x => x.Services.Where(y => y.IsChecked).Select(y => y.Price).Sum()) + //get all services prices
+            decimal price = returnFlight == null ? (decimal)(model.Passengers.Sum(x => x.Services.Where(y => y.IsChecked).Select(y => y.Price).Sum()) + //get all services prices
                 model.Passengers.Where(x => x.BaggageType != BaggageType.Cabin).Sum(x => decimal.Parse(x.BaggageType.GetPrice())) + //get all prices for baggage
-                goingFlight.Price * model.Passengers.Count + //get all ticket priced for the outbound flight
-                returnFlight?.Price * model.Passengers.Count ?? //get all ticket prices for the inbound flight
-                0M; //set to 0 if null
+                goingFlight.Price * model.Passengers.Count) : //get all ticket priced for the outbound flight
+                (decimal)(model.Passengers.Sum(x => x.Services.Where(y => y.IsChecked).Select(y => y.Price).Sum()) + //get all services prices
+                model.Passengers.Where(x => x.BaggageType != BaggageType.Cabin).Sum(x => decimal.Parse(x.BaggageType.GetPrice())) + //get all prices for baggage
+                returnFlight?.Price * model.Passengers.Count);
 
             //check if the price matches the price shown to the client, if not, throw an error. This is also supposed to prevent falsly submitted values via an API call
             if (price != model.Price)
@@ -413,7 +389,12 @@ namespace BuzzAir.Controllers
 
             //get flights options
             var goingFlights = await _flightsService.GetFlightsByOriginAndDestination(origin, destination, model.Departure);
-            var returningFlights = await _flightsService.GetFlightsByOriginAndDestination(destination, origin, model.Return);
+            var returningFlights = new List<Flight>();
+
+            if (isReturning)
+            {
+                returningFlights = (List<Flight>)await _flightsService.GetFlightsByOriginAndDestination(destination, origin, model.Return.Value);
+            }
 
             List<FlightViewModel> going = new List<FlightViewModel>();
 

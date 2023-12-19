@@ -96,43 +96,8 @@
     </div>
 </div>
 
-<script src="~/js/selectHome.js"></script>
-<script src="~/lib/pickadate.js-master/lib/picker.js"></script>
-<script src="~/lib/pickadate.js-master/lib/picker.date.js"></script>
-<script src="~/lib/pickadate.js-master/lib/picker.time.js"></script>
-<script>
-    document.getElementById('departureDate').value = "";
-    document.getElementById('returnDate').value = "";
 
-    $('#departureDate').pickadate({
-        min: new Date(),
-        max: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
-        today: null,
-        clear: null,
-        close: null
-    })
-
-    $('#returnDate').pickadate({
-        min: new Date(),
-        max: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
-        today: null,
-        clear: null,
-        close: null
-    })
-
-    let radioButtons = document.searchFlightsForm.isReturning;
-
-    for (let i = 0; i < radioButtons.length; i++) {
-        radioButtons[i].addEventListener('change', function () {
-            if (this.value == "OneWay") {
-                $("#returnGroup").hide();
-            } else {
-                $("#returnGroup").show();
-
-                connection.invoke("GetReturnFlightDates", originId, destinationId).catch(function (err) {
-                    return console.error(err.toString());
-                });
-            }
-        })
-    }
-</script>
+@section Scripts {
+    <script src="~/js/selectHome.js"></script>
+    <script>HomePage()</script>
+}

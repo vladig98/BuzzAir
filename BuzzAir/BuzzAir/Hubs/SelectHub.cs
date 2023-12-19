@@ -1,4 +1,6 @@
-﻿using BuzzAir.Services.Contracts;
+﻿using BuzzAir.Models.DbModels.Enums;
+using BuzzAir.Services.Contracts;
+using BuzzAir.Utilities;
 using Microsoft.AspNetCore.SignalR;
 using System.Text;
 
@@ -6,15 +8,13 @@ namespace BuzzAir.Hubs
 {
     public class SelectHub : Hub
     {
-        private readonly ICountryService _countryService;
         private readonly ICityService _cityService;
         private readonly IStateService _stateService;
         private readonly IAirportService _airportService;
         private readonly IFlightsService _flightsService;
 
-        public SelectHub(ICountryService countryService, ICityService cityService, IStateService stateService, IAirportService airportService, IFlightsService flightsService)
+        public SelectHub(ICityService cityService, IStateService stateService, IAirportService airportService, IFlightsService flightsService)
         {
-            _countryService = countryService;
             _cityService = cityService;
             _stateService = stateService;
             _airportService = airportService;
@@ -134,6 +134,18 @@ namespace BuzzAir.Hubs
             string datesResult = sb.ToString().TrimEnd(new[] { ';', '\r', '\n' });
 
             await Clients.All.SendAsync("ReturnFlightDatesSelected", datesResult);
+        }
+
+        public async Task GetCurrencyValues(string currency, string amount)
+        {
+            int currencyValue = int.Parse(currency);
+            Currency curr = (Currency)currencyValue;
+
+            decimal price = decimal.Parse(amount);
+
+            price *= decimal.Parse(curr.GetPrice());
+
+            await Clients.All.SendAsync("CurrencyConvertionCompleted", curr.ToString(), price);
         }
     }
 }

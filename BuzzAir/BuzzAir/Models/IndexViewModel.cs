@@ -20,7 +20,7 @@ namespace BuzzAir.Models
         public DateTime Departure { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime Return { get; set; }
+        public DateTime? Return { get; set; }
 
         [Range(1, 10)]
         public int Passengers { get; set; }

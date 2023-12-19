@@ -1,14 +1,16 @@
-﻿@using System.Globalization
-@using BuzzAir.Models.DbModels.Services
-@using BuzzAir.Utilities
-@model BookingViewModel
+﻿@model BookingViewModel
 
 <h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100 w-75 mx-auto">Details</h2>
 <div class="w-75 mx-auto">
     <div>
         <h4>Flights</h4>
         @{
-            string flightsData = $"Outbound:\r\nNumber: {@Model.Outbound.FlightNumber}\r\nRoute: {@Model.Outbound.Origin.Name} - {@Model.Outbound.Destination.Name}\r\n" +
+            int rowsForFlights = Model.Inbound == null ? 6 : 13;
+            string flightsData = Model.Inbound == null ? $"Outbound:\r\nNumber: {@Model.Outbound.FlightNumber}\r\nRoute: {@Model.Outbound.Origin.Name} - {@Model.Outbound.Destination.Name}\r\n" +
+            $"Date: {@Model.Outbound.Departure.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)} - {@Model.Outbound.Arrival.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)}\r\n" +
+            $"Time: {@Model.Outbound.Departure.ToString("HH:mm", CultureInfo.InvariantCulture)} - {@Model.Outbound.Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)}\r\n" +
+            $"Price: ${@Model.Outbound.Price.ToString("F2")}"
+            : $"Outbound:\r\nNumber: {@Model.Outbound.FlightNumber}\r\nRoute: {@Model.Outbound.Origin.Name} - {@Model.Outbound.Destination.Name}\r\n" +
             $"Date: {@Model.Outbound.Departure.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)} - {@Model.Outbound.Arrival.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)}\r\n" +
             $"Time: {@Model.Outbound.Departure.ToString("HH:mm", CultureInfo.InvariantCulture)} - {@Model.Outbound.Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)}\r\n" +
             $"Price: ${@Model.Outbound.Price.ToString("F2")}\r\n\r\nInbound:\r\nNumber: {@Model.Inbound.FlightNumber}\r\nRoute: {@Model.Inbound.Origin.Name} - {@Model.Inbound.Destination.Name}\r\n" +
@@ -16,7 +18,7 @@
             $"Time: {@Model.Inbound.Departure.ToString("HH:mm", CultureInfo.InvariantCulture)} - {@Model.Inbound.Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)}\r\n" +
             $"Price: ${@Model.Inbound.Price.ToString("F2")}";
         }
-        <textarea class="form-control" rows="13" disabled style="resize: none">@flightsData</textarea>
+        <textarea class="form-control" rows="@rowsForFlights" disabled style="resize: none">@flightsData</textarea>
     </div>
     <div class="mt-3">
         <h4>Passengers</h4>

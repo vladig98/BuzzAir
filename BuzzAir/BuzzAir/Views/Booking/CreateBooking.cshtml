@@ -1,9 +1,4 @@
-﻿@using System.Globalization
-@using BuzzAir.Models.DbModels
-@using BuzzAir.Models.DbModels.Enums
-@using BuzzAir.Utilities
-@using System.Text.RegularExpressions
-@model CreateBookingViewModel
+﻿@model CreateBookingViewModel
 
 <form id="createBookingForm" method="post" class="bg-body-secondary p-3" asp-controller="Booking" asp-action="Create">
     @Html.EditorFor(x => x.PassengersCount)
@@ -53,50 +48,53 @@
             }
         </div>
 
-        <div class="mt-5">
-            @for (int i = 0; i < Model.Flights["Returning"].Count; i++)
-            {
-                var element = Model.Flights["Returning"];
-                var flight = Model.Flights["Returning"][i];
-                <div class="mb-2">
-                    <div class="bg-white p-3 border-bottom border-black border-2">
-                        <i class="fa-solid fa-plane-arrival me-3"></i><span class="cityNames">@element[i].Origin.City.Name</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City.Name</span> @element[i].Destination.IATA
-                    </div>
-                    <div class="bg-light p-3 d-flex justify-content-between divButton">
-                        <div>
+        @if (Model.Flights.ContainsKey("Returning"))
+        {
+            <div class="mt-5">
+                @for (int i = 0; i < Model.Flights["Returning"].Count; i++)
+                {
+                    var element = Model.Flights["Returning"];
+                    var flight = Model.Flights["Returning"][i];
+                    <div class="mb-2">
+                        <div class="bg-white p-3 border-bottom border-black border-2">
+                            <i class="fa-solid fa-plane-arrival me-3"></i><span class="cityNames">@element[i].Origin.City.Name</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City.Name</span> @element[i].Destination.IATA
+                        </div>
+                        <div class="bg-light p-3 d-flex justify-content-between divButton">
                             <div>
-                                @element[i].Departure.ToString("ddd, dd MMM yyyy", CultureInfo.InvariantCulture)
+                                <div>
+                                    @element[i].Departure.ToString("ddd, dd MMM yyyy", CultureInfo.InvariantCulture)
+                                </div>
+                                <div>
+                                    <span class="times">@element[i].Departure.ToString("HH:mm", CultureInfo.InvariantCulture)</span> <i class="fa-solid fa-plane mx-5"></i> <span class="times">@element[i].Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
+                                </div>
                             </div>
-                            <div>
-                                <span class="times">@element[i].Departure.ToString("HH:mm", CultureInfo.InvariantCulture)</span> <i class="fa-solid fa-plane mx-5"></i> <span class="times">@element[i].Arrival.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="me-3 fs-3 fw-bolder">
+                                    $@element[i].Price
+                                </div>
+                                <div class="form-check">
+                                    @Html.RadioButtonFor(x => Model.ReturnFlightSelection, flight.Id, new
+                                        {
+                                            @class = "form-check-input"
+                                        })
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Id)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Arrival)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Departure)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Price)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Origin.IATA)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Destination.IATA)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Origin.City.Name)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Origin.Name)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].FlightNumber)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Destination.City.Name)
+                                    @Html.EditorFor(x => x.Flights["Returning"][i].Destination.Name)
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-evenly align-items-center">
-                            <div class="me-3 fs-3 fw-bolder">
-                                $@element[i].Price
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButtonFor(x => Model.ReturnFlightSelection, flight.Id, new
-                                    {
-                                        @class = "form-check-input"
-                                    })
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Id)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Arrival)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Departure)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Price)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Origin.IATA)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Destination.IATA)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Origin.City.Name)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Origin.Name)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].FlightNumber)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Destination.City.Name)
-                                @Html.EditorFor(x => x.Flights["Returning"][i].Destination.Name)
-                            </div>
-                        </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
         <div class="d-flex justify-content-end mt-3">
             <button id="flightsBtn" class="btn btn-primary">Enter passengers' details</button>
         </div>
@@ -191,24 +189,17 @@
             <i class="fa-regular fa-credit-card"></i> Payment
         </div>
         <div class="fs-3 text-primary">
-            <i class="fa-solid fa-sack-dollar"></i> Total Amount - $<spam id="totalAmount"></spam>
+            <i class="fa-solid fa-sack-dollar"></i> Total Amount - <spam id="totalAmount"></spam>
             @Html.EditorFor(x => x.Price)
         </div>
         <div>
-            <div>
-                @Html.LabelFor(x => x.Payment.CardType, new
-                    {
-                        @class = "form-label"
-                    })
+            <div class="form-floating">
                 <select class="form-select" asp-for="Payment.CardType" asp-items="Html.GetEnumSelectList<CardType>()">
                     <option selected disabled hidden value="">Select a Card Type</option>
                 </select>
+                @Html.LabelFor(x => x.Payment.CardType)
             </div>
-            <div>
-                @Html.LabelFor(x => x.Payment.CardNumber, new 
-                    {
-                        @class = "form-label"
-                    })
+            <div class="form-floating">
                 @Html.EditorFor(x => x.Payment.CardNumber, new 
                     {
                         htmlAttributes = new 
@@ -216,13 +207,10 @@
                             @class = "form-control"
                         }
                     })
+                @Html.LabelFor(x => x.Payment.CardNumber)
                 @Html.ValidationMessageFor(x => x.Payment.CardNumber)
             </div>
-            <div>
-                @Html.LabelFor(x => x.Payment.ExpiryDate, new
-                    {
-                        @class = "form-label"
-                    })
+            <div class="form-floating">
                 @Html.EditorFor(x => x.Payment.ExpiryDate, new
                     {
                         htmlAttributes = new
@@ -230,13 +218,10 @@
                             @class = "form-control"
                         }
                     })
+                @Html.LabelFor(x => x.Payment.ExpiryDate)
                 @Html.ValidationMessageFor(x => x.Payment.ExpiryDate)
             </div>
-            <div>
-                @Html.LabelFor(x => x.Payment.CardHolder, new
-                    {
-                        @class = "form-label"
-                    })
+            <div class="form-floating">
                 @Html.EditorFor(x => x.Payment.CardHolder, new
                     {
                         htmlAttributes = new
@@ -244,13 +229,10 @@
                             @class = "form-control"
                         }
                     })
+                @Html.LabelFor(x => x.Payment.CardHolder)
                 @Html.ValidationMessageFor(x => x.Payment.CardHolder)
             </div>
-            <div>
-                @Html.LabelFor(x => x.Payment.CVC, new
-                    {
-                        @class = "form-label"
-                    })
+            <div class="form-floating">
                 @Html.EditorFor(x => x.Payment.CVC, new
                     {
                         htmlAttributes = new
@@ -258,16 +240,14 @@
                             @class = "form-control"
                         }
                     })
+                @Html.LabelFor(x => x.Payment.CVC)
                 @Html.ValidationMessageFor(x => x.Payment.CVC)
             </div>
-            <div>
-                @Html.LabelFor(x => x.Payment.Currency, new
-                    {
-                        @class = "form-label"
-                    })
+            <div class="form-floating">
                 <select class="form-select" asp-for="Payment.Currency" asp-items="Html.GetEnumSelectList<Currency>()">
                     <option selected disabled hidden value="">Select Currency</option>
                 </select>
+                @Html.LabelFor(x => x.Payment.Currency)
             </div>
         </div>
         <div class="d-flex justify-content-end mt-3">
@@ -276,158 +256,7 @@
     </div>
 </form>
 
-<script>
-    let divs = document.getElementsByClassName('divButton');
-
-    for (let i = 0; i < divs.length; i++) {
-        divs[i].addEventListener("click", function() {
-            this.children[1].children[1].children[0].checked = true;
-        })
-    }
-
-    let radioDivs = document.getElementsByClassName('radioDiv');
-
-    for (let i = 0; i < radioDivs.length; i++) {
-        radioDivs[i].addEventListener('click', function () {
-            this.getElementsByTagName('input')[0].checked = true;
-            this.parentElement.style.outline = "solid 2px red"
-
-            let attr = this.getElementsByTagName('input')[0].getAttribute("name");
-            let elements = document.getElementsByName(attr);
-            for (let j = 0; j < elements.length; j++) {
-                if (elements[j].parentElement != this) {
-                    elements[j].parentElement.parentElement.style.outline = "none";
-                }
-            }
-        })
-    }
-
-    $("#flightsBtn").click(function (e) {
-        e.preventDefault();
-
-        $goingFlight = $("input[name='GoingFlightSelection']")
-        $returnFlight = $("input[name='ReturnFlightSelection']")
-
-        for (let i = 0; i < $goingFlight.length; i++) {
-            if ($goingFlight[i].checked) {
-                for (let j = 0; j < $returnFlight.length; j++) {
-                    if ($returnFlight[j].checked) {
-                        $("#flightsSection").addClass("d-none")
-                        $("#passengersSection").removeClass("d-none")
-                    }
-                }
-            }
-        }
-    })
-
-    $("#passengersBtn").click(function (e) {
-        e.preventDefault();
-
-        $names = $(".paxName")
-
-        for (let i = 0; i < $names.length; i++) {
-            if (!$names[i].value) {
-                return
-            }
-        }
-
-        $gender = $(".paxGender")
-
-        let genderNames = [];
-
-        for (let i = 0; i < $gender.length; i++) {
-            if (!genderNames.includes($($gender[i]).attr("name"))) {
-                genderNames.push($($gender[i]).attr("name"))
-            }
-        }
-
-        for (let i = 0; i < genderNames.length; i++) {
-            let valid = false;
-
-            $genderRadio = $(`input[name='${genderNames[i]}']`)
-
-            for (let j = 0; j < $genderRadio.length; j++) {
-                if ($genderRadio[j].checked) {
-                    valid = true;
-                }
-            }
-
-            if (!valid) {
-                return
-            }
-        }
-
-        $baggage = $(".paxBaggage")
-
-        let baggageNames = [];
-
-        for (let i = 0; i < $baggage.length; i++) {
-            if (!baggageNames.includes($($baggage[i]).attr("name"))) {
-                baggageNames.push($($baggage[i]).attr("name"))
-            }
-        }
-
-        for (let i = 0; i < baggageNames.length; i++) {
-            let valid = false;
-
-            $baggageRadio = $(`input[name='${baggageNames[i]}']`)
-
-            for (let j = 0; j < $baggageRadio.length; j++) {
-                if ($baggageRadio[j].checked) {
-                    valid = true;
-                }
-            }
-
-            if (!valid) {
-                return
-            }
-        }
-
-        $("#passengersSection").addClass("d-none")
-        $("#servicesSection").removeClass("d-none")
-    })
-
-    $("#servicesBtn").click(function (e) {
-        e.preventDefault();
-
-        $("#servicesSection").addClass("d-none")
-        $("#paymentSection").removeClass("d-none")
-
-        let totalPrice = 0;
-
-        let paxCount = $("#PassengersCount").val()
-
-        let goingFlightPrice = Number([...document.getElementsByName('GoingFlightSelection')].filter(x => x.checked)[0].parentElement.parentElement.children[0].innerHTML.trim().substring(1));
-        let returnFlightPrice = Number([...document.getElementsByName('ReturnFlightSelection')].filter(x => x.checked)[0].parentElement.parentElement.children[0].innerHTML.trim().substring(1));
-
-        totalPrice += goingFlightPrice;
-        totalPrice += returnFlightPrice;
-
-        totalPrice *= paxCount;
-
-        for (let i = 0; i < paxCount; i++) {
-            let baggageId = [...document.getElementsByName(`Passengers[${i}].BaggageType`)].filter(x => x.checked)[0].id
-
-            let priceValue = document.querySelectorAll(`[for="${baggageId}"]`)[0].children[2].innerHTML.trim().substring(1)
-
-            let baggagePrice = priceValue == "ree" ? 0 : Number(priceValue)
-
-            totalPrice += baggagePrice;
-        }
-
-        let servicesCount = document.getElementsByClassName('serviceCheck').length;
-
-        for (let i = 0; i < paxCount; i++) {
-            for (let j = 0; j < servicesCount / paxCount; j++) {
-                let service = document.getElementsByName(`Passengers[${i}].Services[${j}].IsChecked`)[0]
-                
-                if (service.checked) {
-                    totalPrice += Number(document.getElementsByName(`Passengers[${i}].Services[${j}].Price`)[0].value)
-                }
-            }
-        }
-
-        $("#totalAmount").text(totalPrice.toFixed(2))
-        $("#Price").val(totalPrice.toFixed(2))
-    })
-</script>
+@section Scripts {
+    <script src="~/js/selectCreateBooking.js"></script>
+    <script>CreateBooking()</script>
+}

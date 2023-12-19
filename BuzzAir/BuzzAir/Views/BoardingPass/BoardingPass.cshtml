@@ -1,4 +1,4 @@
-﻿<a href="javascript:PrintBoardingPass();" class="btn bg-dark text-white" id="btn">Get your boarding pass now</a>
+﻿<a class="btn bg-dark text-white" id="printBoardingPassBtn">Get your boarding pass now</a>
 
 <div class="d-none" id="printableArea">
     <h1>Boarding pass</h1>
@@ -15,25 +15,10 @@
     <h2>Thank you for using BuzzAir. Have a nice flight.</h2>
 </div>
 
-<script>
-    function PrintBoardingPass() {
-        var original = document.body.innerHTML;
-        var printable = document.getElementById('printableArea').innerHTML;
-
-        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-
-        mywindow.document.write('<html><head><title>' + document.title + '</title>');
-        mywindow.document.write('</head><body >');
-        mywindow.document.write('<h1>' + document.title + '</h1>');
-        mywindow.document.write(printable);
-        mywindow.document.write('</ body></html>');
-
-        mywindow.document.close();
-        mywindow.focus();
-
-        mywindow.print();
-
-        document.getElementById('printed').classList.remove('d-none');
-        document.getElementById('btn').classList.add('d-none');
-    }
-</script>
+@section Scripts {
+    <script>
+        $("#printBoardingPassBtn").click(function () {
+            PrintBoardingPass();
+        })
+    </script>
+}
