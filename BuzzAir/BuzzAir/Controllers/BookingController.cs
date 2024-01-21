@@ -1,8 +1,9 @@
-﻿using BuzzAir.Models;
+﻿using BuzzAir.Models.CreateModels;
 using BuzzAir.Models.DbModels;
 using BuzzAir.Models.DbModels.Contraccts;
 using BuzzAir.Models.DbModels.Enums;
 using BuzzAir.Models.DbModels.Services;
+using BuzzAir.Models.ViewModels;
 using BuzzAir.Services.Contracts;
 using BuzzAir.Utilities;
 using Microsoft.AspNetCore.Authorization;
@@ -256,6 +257,7 @@ namespace BuzzAir.Controllers
                 goingFlight.Price * model.Passengers.Count) : //get all ticket priced for the outbound flight
                 (decimal)(model.Passengers.Sum(x => x.Services.Where(y => y.IsChecked).Select(y => y.Price).Sum()) + //get all services prices
                 model.Passengers.Where(x => x.BaggageType != BaggageType.Cabin).Sum(x => decimal.Parse(x.BaggageType.GetPrice())) + //get all prices for baggage
+                goingFlight.Price * model.Passengers.Count +
                 returnFlight?.Price * model.Passengers.Count);
 
             //check if the price matches the price shown to the client, if not, throw an error. This is also supposed to prevent falsly submitted values via an API call

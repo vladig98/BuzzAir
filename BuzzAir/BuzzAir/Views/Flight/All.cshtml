@@ -1,0 +1,58 @@
+﻿@model PaginatedList<Flight>
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Flights</h2>
+
+<table class="table table-primary table-striped table-hover w-75 mx-auto">
+    <thead>
+        <tr class="fw-bolder">
+            <th>Flight Number</th>
+            <th>Aircraft</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Duration</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var flight in Model)
+        {
+            <tr>
+                <td>@flight.FlightNumber</td>
+                <td>@flight.Aircraft.Name</td>
+                <td>@flight.Origin.IATA</td>
+                <td>@flight.Destination.IATA</td>
+                <td>@flight.DurationInMinutes</td>
+                <td>@flight.Departure.ToString("dd MMM yyyy HH:mm tt", CultureInfo.InvariantCulture)</td>
+                <td>@flight.Arrival.ToString("dd MMM yyyy HH:mm tt", CultureInfo.InvariantCulture)</td>
+                <td>$@flight.Price</td>
+                <td>
+                    <div class="d-flex justify-content-evenly">
+                        <a class="btn btn-primary" asp-controller="Flight" asp-action="Edit" asp-route-flightId="@flight.Id">Edit</a>
+                        <form asp-controller="Flight" asp-action="Delete" asp-route-flightId="@flight.Id" method="post">
+                            <input type="submit" class="btn btn-primary" value="Delete" />
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+        <tr>
+            <td colspan="9" class="text-end">
+                <a asp-controller="Flight" asp-action="All" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-primary @prevDisabled">
+                    Previous
+                </a>
+                <a asp-controller="Flight" asp-action="All" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-primary @nextDisabled">
+                    Next
+                </a>
+            </td>
+        </tr>
+    </tfoot>
+</table>

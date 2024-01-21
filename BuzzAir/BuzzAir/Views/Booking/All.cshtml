@@ -31,7 +31,10 @@
                         }
                         @inbound
                     </td>
-                    <td>@Model.Bookings[i].Currency @Model.Bookings[i].Amount</td>
+                    @{
+                        decimal amount = decimal.Parse(((Currency)(Enum.Parse(typeof(Currency), Model.Bookings[i].Currency))).GetPrice()) * decimal.Parse(Model.Bookings[i].Amount);
+                    }
+                    <td>@Model.Bookings[i].Currency @amount.ToString("F2")</td>
                     <td>@Model.Bookings[i].User</td>
                     <td>
                         <a class="btn btn-primary me-3" asp-controller="Booking" asp-action="Details" asp-route-id="@Model.Bookings[i].Id">

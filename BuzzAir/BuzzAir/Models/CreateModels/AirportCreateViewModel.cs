@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace BuzzAir.Models
+namespace BuzzAir.Models.CreateModels
 {
     public class AirportCreateViewModel
     {

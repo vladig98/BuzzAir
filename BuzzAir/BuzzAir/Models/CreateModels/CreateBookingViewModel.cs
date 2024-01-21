@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BuzzAir.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BuzzAir.Models
+namespace BuzzAir.Models.CreateModels
 {
     public class CreateBookingViewModel
     {

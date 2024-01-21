@@ -49,7 +49,11 @@
     </div>
     <div class="mt-3">
         <h4>Price</h4>
-        <textarea class="form-control" rows="1" disabled style="resize: none">@Model.Currency @Model.Amount</textarea>
+        @{
+            decimal amount = decimal.Parse(((Currency)(Enum.Parse(typeof(Currency), Model.Currency))).GetPrice()) * decimal.Parse(Model.Amount);
+        }
+
+        <textarea class="form-control" rows="1" disabled style="resize: none">@Model.Currency @amount.ToString("F2")</textarea>
     </div>
     <div class="mt-3">
         <a class="btn btn-primary" asp-controller="Booking" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>

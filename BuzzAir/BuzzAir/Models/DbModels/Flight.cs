@@ -53,6 +53,8 @@ namespace BuzzAir.Models.DbModels
 
         public ICollection<FlightSeat> Seats { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public override string ToString()
         {
             return $"[{Departure.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)}] {Origin.IATA} -> " +

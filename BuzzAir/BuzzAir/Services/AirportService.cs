@@ -52,6 +52,11 @@ namespace BuzzAir.Services
             return await _context.Airports.Include(x => x.Country).AsSplitQuery().ToListAsync();
         }
 
+        public async Task<IEnumerable<Airport>> GetAllForCountry(string countryId)
+        {
+            return await _context.Airports.Include(x => x.Country).Where(x => x.CountryId == countryId).AsSplitQuery().ToListAsync();
+        }
+
         public async Task<Airport> GetById(string id)
         {
             return await _context.Airports.FirstOrDefaultAsync(x => x.Id == id);

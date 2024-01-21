@@ -4,6 +4,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/getSelectOptions")
 
 connection.on("CountryFlightSelectedOrigin", function (airports) {
     document.getElementById("Origin").classList.remove("d-none")
+    document.getElementById("originLabel").classList.remove("d-none")
     let airportSelect = document.getElementById("Origin")
 
     airportSelect.innerHTML = ''
@@ -27,6 +28,7 @@ connection.on("CountryFlightSelectedOrigin", function (airports) {
 
 connection.on("CountryFlightSelectedDestination", function (airports) {
     document.getElementById("Destination").classList.remove("d-none")
+    document.getElementById("destinationLabel").classList.remove("d-none")
     let airportSelect = document.getElementById("Destination")
 
     airportSelect.innerHTML = ''

@@ -31,12 +31,12 @@ namespace BuzzAir.Services
 
         public async Task<IEnumerable<UserBooking>> GetAll()
         {
-            return await _context.UserBookings.Where(x => !x.Booking.Deleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
+            return await _context.UserBookings.Where(x => !x.Booking.IsDeleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
         }
 
         public async Task<IEnumerable<UserBooking>> GetAllForUser(string username)
         {
-            return await _context.UserBookings.Where(x => x.ApplicationUser.UserName == username).Where(x => !x.Booking.Deleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
+            return await _context.UserBookings.Where(x => x.ApplicationUser.UserName == username).Where(x => !x.Booking.IsDeleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
         }
     }
 }

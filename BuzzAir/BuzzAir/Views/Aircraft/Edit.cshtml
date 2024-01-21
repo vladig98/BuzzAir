@@ -1,0 +1,32 @@
+﻿@model AircraftEditViewModel
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Edit Aircraft</h2>
+
+<form class="w-75 mx-auto" asp-controller="Aircraft" asp-action="Edit" method="post">
+    @Html.EditorFor(x => x.Id)
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Name, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.NumbeOfSeats, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.NumbeOfSeats)
+        @Html.ValidationMessageFor(x => x.NumbeOfSeats)
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+</form>

@@ -47,7 +47,7 @@ namespace BuzzAir.Services
         public async Task Delete(string id)
         {
             var booking = await _context.Bookings.FirstOrDefaultAsync(x => x.Id == id);
-            booking.Deleted = true;
+            booking.IsDeleted = true;
 
             var flights = booking.Flights.Select(x => x.Flight);
 
@@ -90,7 +90,7 @@ namespace BuzzAir.Services
                 //.ThenInclude(x => x.Services)
                 //.ThenInclude(x => x.Service)
                 .AsSplitQuery()
-                .Where(x => x.Deleted == false).ToListAsync();
+                .Where(x => x.IsDeleted == false).ToListAsync();
         }
 
         public async Task<Booking> GetById(string id)
@@ -118,7 +118,7 @@ namespace BuzzAir.Services
                         .ThenInclude(x => x.Services)
                             .ThenInclude(x => x.Service)
                 .AsSplitQuery()
-                .Where(x => x.Deleted == false)
+                .Where(x => x.IsDeleted == false)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
     }

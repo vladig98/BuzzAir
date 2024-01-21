@@ -1,7 +1,7 @@
 ﻿using BuzzAir.Utilities;
 using System.ComponentModel.DataAnnotations;
 
-namespace BuzzAir.Models
+namespace BuzzAir.Models.CreateModels
 {
     public class AircraftCreateViewModel
     {
@@ -11,6 +11,7 @@ namespace BuzzAir.Models
 
         [Required]
         [Display(Prompt = nameof(Name))]
+        [RegularExpression("[a-zA-Z0-9-]{3,}")]
         public string Name { get; set; }
 
         [Required]

@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace BuzzAir.Models
+namespace BuzzAir.Models.CreateModels
 {
     public class CreateFlightViewModel
     {
         public CreateFlightViewModel()
         {
-            this.Aircrafts = new List<SelectListItem>();
-            this.Airports = new List<SelectListItem>();
+            Aircrafts = new List<SelectListItem>();
+            Airports = new List<SelectListItem>();
             Price = 9.99M;
             DurationInMinutes = 30;
             Departure = DateTime.UtcNow;
@@ -19,6 +19,7 @@ namespace BuzzAir.Models
 
         [Required]
         [Display(Name = nameof(FlightNumber), Prompt = nameof(FlightNumber))]
+        [RegularExpression("[A-Z]{2,2}-\\d{4,4}", ErrorMessage = "The flight number is invalid")]
         public string FlightNumber { get; set; }
 
         [Required]

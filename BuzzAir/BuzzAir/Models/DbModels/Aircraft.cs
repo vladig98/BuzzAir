@@ -12,5 +12,7 @@ namespace BuzzAir.Models.DbModels
 
         [Required]
         public string Name { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

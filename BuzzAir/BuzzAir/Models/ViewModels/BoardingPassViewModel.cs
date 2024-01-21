@@ -1,4 +1,4 @@
-﻿namespace BuzzAir.Models
+﻿namespace BuzzAir.Models.ViewModels
 {
     public class BoardingPassViewModel
     {

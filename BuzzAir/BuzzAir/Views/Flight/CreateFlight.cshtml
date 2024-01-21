@@ -3,47 +3,66 @@
 <h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Create Flight</h2>
 
 <form method="post" class="w-50 mx-auto" asp-controller="Flight" asp-action="Create">
-    <div class="mb-3">
-        <label class="form-label" for="flightNumber">Flight Number</label>
+    <div class="form-floating mb-3">
         <input asp-for="FlightNumber" class="form-control" />
+        <label class="form-label" for="flightNumber">Flight Number</label>
+        @Html.ValidationMessageFor(x => x.FlightNumber)
     </div>
-    <div>
-        <label class="form-label" for="aircraft">Aircraft</label>
+    <div class="form-floating mb-3">
         <select class="form-select" asp-for="Aircraft" asp-items="Model.Aircrafts">
             <option selected hidden disabled>Select Aircraft</option>
         </select>
+        <label class="form-label" for="aircraft">Aircraft</label>
+        @Html.ValidationMessageFor(x => x.Aircraft)
     </div>
-    <div class="mb-3">
-        <label class="form-label"for="origin">Origin</label>
-        <select class="form-select" asp-for="OriginCountry" asp-items="Model.OriginCountryOptions">
-            <option selected hidden disabled>Select Country</option>
-        </select>
-        <select class="form-select d-none" asp-for="Origin">
-            <option selected hidden disabled>Select Origin</option>
-        </select>
+    <div class="input-group mb-3">
+        <div class="form-floating w-100">
+            <select class="form-select" asp-for="OriginCountry" asp-items="Model.OriginCountryOptions">
+                <option selected hidden disabled>Select Country</option>
+            </select>
+            <label class="form-label" for="OriginCountry">Origin</label>
+            @Html.ValidationMessageFor(x => x.OriginCountry)
+        </div>
+        <div class="form-floating">
+            <select class="form-select d-none" asp-for="Origin">
+                <option selected hidden disabled>Select Origin</option>
+            </select>
+            <label id="originLabel" class="form-label d-none" for="origin">Origin</label>
+            @Html.ValidationMessageFor(x => x.Origin)
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label"for="destination">Destination</label>
-        <select class="form-select" asp-for="DestinationCountry" asp-items="Model.DestinationCountryOptions">
-            <option selected hidden disabled>Select Country</option>
-        </select>
-        <select class="form-select d-none" asp-for="Destination">
-            <option selected hidden disabled>Select Destination</option>
-        </select>
+    <div class="input-group mb-3">
+        <div class="form-floating w-100">
+            <select class="form-select" asp-for="DestinationCountry" asp-items="Model.DestinationCountryOptions">
+                <option selected hidden disabled>Select Country</option>
+            </select>
+            <label class="form-label" for="DestinationCountry">Destination</label>
+            @Html.ValidationMessageFor(x => x.DestinationCountry)
+        </div>
+        <div class="form-floating">
+            <select class="form-select d-none" asp-for="Destination">
+                <option selected hidden disabled>Select Destination</option>
+            </select>
+            <label id="destinationLabel" class="form-label d-none" for="destination">Destination</label>
+            @Html.ValidationMessageFor(x => x.Destination)
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label"for="durationInMinutes">Duration (In Minutes)</label>
+    <div class="form-floating mb-3">
         <input class="form-control" asp-for="DurationInMinutes" />
+        <label class="form-label" for="durationInMinutes">Duration (In Minutes)</label>
+        @Html.ValidationMessageFor(x => x.DurationInMinutes)
     </div>
-    <div class="mb-3">
-        <label class="form-label"for="departure">Departure</label>
+    <div class="form-floating mb-3">
         <input class="form-control" asp-for="Departure" step="any" />
+        <label class="form-label" for="departure">Departure</label>
+        @Html.ValidationMessageFor(x => x.Departure)
     </div>
-    <div class="mb-3">
-        <label class="form-label"for="price">Price</label>
+    <div class="form-floating mb-3">
         <input class="form-control" asp-for="Price" />
+        <label class="form-label" for="price">Price</label>
+        @Html.ValidationMessageFor(x => x.Price)
     </div>
-    <div class="mb-3">
+    <div class="form-floating mb-3">
         <button type="submit" class="btn bg-dark text-white">Create</button>
     </div>
 </form>

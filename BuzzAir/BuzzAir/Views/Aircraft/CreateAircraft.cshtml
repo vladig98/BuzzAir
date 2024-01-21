@@ -3,13 +3,15 @@
 <h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Create Aircraft</h2>
 
 <form method="post" class="w-50 mx-auto" asp-controller="Aircraft" asp-action="Create">
-    <div class="mb-3">
-        <label class="form-label" for="Name">Name</label>
+    <div class="form-floating mb-3">
         <input class="form-control" asp-for="Name" />
+        <label class="form-label" for="Name">Name</label>
+        @Html.ValidationMessageFor(x => x.Name)
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="Seats">Seats</label>
+    <div class="form-floating mb-3">
         <input class="form-control" asp-for="Seats" />
+        <label class="form-label" for="Seats">Seats</label>
+        @Html.ValidationMessageFor(x => x.Seats)
     </div>
     <div>
         <button type="submit" class="btn bg-dark text-white">Create</button>

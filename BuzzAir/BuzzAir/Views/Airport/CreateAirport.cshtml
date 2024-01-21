@@ -3,53 +3,98 @@
 <h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Create Airport</h2>
 
 <form method="post" class="w-50 mx-auto" asp-controller="Airport" asp-action="Create">
-    <div class="mb-3">
-        <label for="ICAO">ICAO</label>
-        <input class="form-control" asp-for="ICAO" />
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.ICAO, new {
+            htmlAttributes = new {
+                @class = "form-control"
+            }
+        })
+        @Html.LabelFor(x => x.ICAO)
+        @Html.ValidationMessageFor(x => x.ICAO)
     </div>
-    <div class="mb-3">
-        <label for="IATA">IATA</label>
-        <input class="form-control" asp-for="IATA" />
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.IATA, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.IATA)
+        @Html.ValidationMessageFor(x => x.IATA)
     </div>
-    <div class="mb-3">
-        <label for="Name">Name</label>
-        <input class="form-control" asp-for="Name" />
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Name, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Name)
     </div>
-    <div class="mb-3">
-        <label for="Country">Country</label>
-        <select class="form-control" asp-for="Country" asp-items="Model.CountryOptions">
-            <option selected hidden disabled>Select Country</option>
-        </select>
+    <div class="input-group mb-3">
+        <div class="form-floating">
+            <select class="form-control w-100" asp-for="Country" asp-items="Model.CountryOptions">
+                <option selected hidden disabled>Select Country</option>
+            </select>
+            @Html.LabelFor(x => x.Country)
+            @Html.ValidationMessageFor(x => x.Country)
+        </div>
+        <div class="form-floating d-none">
+            <select class="form-control w-100" asp-for="State">
+                <option selected hidden disabled>Select State</option>
+            </select>
+            @Html.LabelFor(x => x.State)
+            @Html.ValidationMessageFor(x => x.State)
+        </div>
+        <div class="form-floating d-none">
+            <select class="form-control w-100" asp-for="City">
+                <option selected hidden disabled>Select City</option>
+            </select>
+            @Html.LabelFor(x => x.City)
+            @Html.ValidationMessageFor(x => x.City)
+        </div>
     </div>
-    <div class="mb-3 d-none">
-        <label for="State">State</label>
-        <select class="form-control" asp-for="State">
-            <option selected hidden disabled>Select State</option>
-        </select>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Elevation, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Elevation)
+        @Html.ValidationMessageFor(x => x.Elevation)
     </div>
-    <div class="mb-3 d-none">
-        <label for="City">City</label>
-        <select class="form-control" asp-for="City">
-            <option selected hidden disabled>Select City</option>
-        </select>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Latitude, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Latitude)
+        @Html.ValidationMessageFor(x => x.Latitude)
     </div>
-    <div class="mb-3">
-        <label for="Elevation">Elevation</label>
-        <input class="form-control" asp-for="Elevation" />
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Longitude, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Longitude)
+        @Html.ValidationMessageFor(x => x.Longitude)
     </div>
-    <div class="mb-3">
-        <label for="Latitude">Latitude</label>
-        <input class="form-control" asp-for="Latitude" />
-    </div>
-    <div class="mb-3">
-        <label for="Longitude">Longitude</label>
-        <input class="form-control" asp-for="Longitude" />
-    </div>
-    <div class="mb-3">
-        <label for="Timezone">Timezone</label>
+    <div class="form-floating mb-3">
         <select class="form-control" asp-for="TimeZone" asp-items="Model.TimezoneOptions">
             <option selected hidden disabled>Select Timezone</option>
         </select>
+        <label for="Timezone">Timezone</label>
     </div>
     <div>
         <button type="submit" class="btn bg-dark text-white">Create</button>

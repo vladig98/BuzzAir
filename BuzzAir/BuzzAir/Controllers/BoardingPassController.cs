@@ -1,5 +1,5 @@
-﻿using BuzzAir.Models;
-using BuzzAir.Models.DbModels;
+﻿using BuzzAir.Models.DbModels;
+using BuzzAir.Models.ViewModels;
 using BuzzAir.Services.Contracts;
 using BuzzAir.Utilities;
 using Microsoft.AspNetCore.Authorization;

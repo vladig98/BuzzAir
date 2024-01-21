@@ -8,7 +8,7 @@ namespace BuzzAir.Models.DbModels
         {
             Flights = new HashSet<BookingFlight>();
             Passengers = new HashSet<BookingPassenger>();
-            Deleted = false;
+            IsDeleted = false;
         }
 
         [Required]
@@ -27,6 +27,6 @@ namespace BuzzAir.Models.DbModels
         public string PaymentId { get; set; }
         public Payment Payment { get; set; }
 
-        public bool Deleted { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

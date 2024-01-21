@@ -12,7 +12,7 @@
         public const decimal FlexibilityPrice = 10;
         public const decimal AirportCheckInPrice = 10;
         public const int MinimumNumberOfSeatsForAnAircraft = 50;
-        public const int MaximumNumberOfSeatsForAnAircraft = 350;
+        public const int MaximumNumberOfSeatsForAnAircraft = 900;
         public const string AdminRole = "Admin";
         public const string UserRole = "User";
         public const string OneWayTicket = "One Way Ticket";

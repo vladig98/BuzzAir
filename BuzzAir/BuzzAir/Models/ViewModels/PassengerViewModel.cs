@@ -1,7 +1,7 @@
 ﻿using BuzzAir.Models.DbModels.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace BuzzAir.Models
+namespace BuzzAir.Models.ViewModels
 {
     public class PassengerViewModel
     {

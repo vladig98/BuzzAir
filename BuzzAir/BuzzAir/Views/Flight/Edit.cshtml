@@ -1,0 +1,94 @@
+﻿@model FlightEditViewModel
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Edit Flight</h2>
+
+<form class="w-75 mx-auto" asp-controller="Flight" asp-action="Edit" method="post">
+    @Html.EditorFor(x => x.Id)
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.FlightNumber, new {
+            htmlAttributes = new {
+                @class = "form-control"
+            }
+        })
+        @Html.LabelFor(x => x.FlightNumber)
+        @Html.ValidationMessageFor(x => x.FlightNumber)
+    </div>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.DurationInMinutes, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.DurationInMinutes)
+        @Html.ValidationMessageFor(x => x.DurationInMinutes)
+    </div>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Departure, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Departure)
+        @Html.ValidationMessageFor(x => x.Departure)
+    </div>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Price, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Price)
+        @Html.ValidationMessageFor(x => x.Price)
+    </div>
+    <div class="input-group mb-3">
+        <div class="form-floating">
+            <select class="form-control form-select" asp-for="@Model.OriginCountry" asp-items="@Model.OriginOptions">
+                <option selected disabled hidden>Select Origin</option>
+            </select>
+            @Html.LabelFor(x => x.OriginCountry)
+        </div>
+        <div class="form-floating">
+            <select class="form-control form-select" asp-for="@Model.Origin" asp-items="Model.OriginAirportsOptions">
+                <option selected disabled hidden>Select Origin</option>
+            </select>
+            @Html.LabelFor(x => x.Origin, new {
+                @id = "originLabel"
+            })
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <div class="form-floating">
+            <select class="form-control form-select" asp-for="@Model.DestinationCountry" asp-items="@Model.DestinationOptions">
+                <option selected disabled hidden>Select Destination</option>
+            </select>
+            @Html.LabelFor(x => x.DestinationCountry)
+        </div>
+        <div class="form-floating">
+            <select class="form-control form-select" asp-for="@Model.Destination" asp-items="Model.DestinationAirportsOptions">
+                <option selected disabled hidden>Select Destination</option>
+            </select>
+            @Html.LabelFor(x => x.Destination, new {
+                    @id = "destinationLabel"
+            })
+        </div>
+    </div>
+    <div class="form-floating mb-3">
+        <select class="form-control form-select" asp-for="@Model.Aircraft" asp-items="@Model.AircraftOptions">
+            <option selected disabled hidden>Select Aircraft</option>
+        </select>
+        @Html.LabelFor(x => x.Aircraft)
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+</form>
+
+@section Scripts{
+    <script src="~/js/selectFlight.js"></script>
+}

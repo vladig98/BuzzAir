@@ -43,6 +43,8 @@ namespace BuzzAir.Models.DbModels
         [Required]
         public string TimeZone { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public ICollection<Flight> FlightsFromOrigin { get; set; }
         public ICollection<Flight> FlightsToDestination { get; set; }
     }

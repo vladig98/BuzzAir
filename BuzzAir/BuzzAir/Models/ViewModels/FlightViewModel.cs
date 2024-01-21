@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BuzzAir.Models
+namespace BuzzAir.Models.ViewModels
 {
     public class FlightViewModel
     {

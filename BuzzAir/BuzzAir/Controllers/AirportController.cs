@@ -1,4 +1,4 @@
-﻿using BuzzAir.Models;
+﻿using BuzzAir.Models.CreateModels;
 using BuzzAir.Models.DbModels;
 using BuzzAir.Services.Contracts;
 using BuzzAir.Utilities;
