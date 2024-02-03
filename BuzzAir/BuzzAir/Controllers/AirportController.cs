@@ -1,5 +1,8 @@
 ﻿using BuzzAir.Models.CreateModels;
 using BuzzAir.Models.DbModels;
+using BuzzAir.Models.EditModels;
+using BuzzAir.Models.ViewModels;
+using BuzzAir.Services;
 using BuzzAir.Services.Contracts;
 using BuzzAir.Utilities;
 using Microsoft.AspNetCore.Authorization;
@@ -110,6 +113,37 @@ namespace BuzzAir.Controllers
                 country, model.Elevation, model.Latitude, model.Longitude, model.TimeZone);
 
             return this.Redirect("/");
+        }
+
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        public async Task<IActionResult> All(int? pageNumber)
+        {
+            int pageSize = 10;
+
+            List<Airport> airports = await _airportService.GetAllAsQueryable(pageSize, pageNumber);
+            int count = await _airportService.GetCount();
+
+            return View("All", await PaginatedList<Airport>.CreateAsync(airports, pageNumber ?? 1, pageSize, count));
+        }
+
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        public async Task<IActionResult> Edit(string airportId)
+        {
+            var airport = await _airportService.GetById(airportId);
+
+            if (airport == null)
+            {
+                return BadRequest();
+            }
+
+            AirportViewModel model = new AirportViewModel
+            {
+                Name = airport.Name,
+               // City = airport.City.Name,
+                IATA = airport.IATA
+            };
+
+            return View(model);
         }
     }
 }

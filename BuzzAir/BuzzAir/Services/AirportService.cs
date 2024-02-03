@@ -37,6 +37,23 @@ namespace BuzzAir.Services
             return airport;
         }
 
+        public async Task<List<Airport>> GetAllAsQueryable(int pageSize, int? pageNumber)
+        {
+            int toSkip = ((pageNumber ?? 1) - 1) * pageSize;
+
+            return await _context.Airports.Include(x => x.City).Include(x => x.State).Include(x => x.Country).Where(x => !x.IsDeleted)
+                .OrderBy(x => x.Name)
+                .AsSplitQuery().AsQueryable()
+                .Skip(toSkip)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+        public async Task<int> GetCount()
+        {
+            return await _context.Airports.Where(x => !x.IsDeleted).CountAsync();
+        }
+
         public async Task<bool> Exists(string id)
         {
             return await _context.Airports.AnyAsync(x => x.Id == id);

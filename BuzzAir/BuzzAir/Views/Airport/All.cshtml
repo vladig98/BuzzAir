@@ -1,0 +1,65 @@
+﻿@model PaginatedList<Airport>
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">All Airports</h2>
+
+<table class="table table-primary table-striped table-hover w-75 mx-auto">
+    <thead>
+        <tr class="fw-bolder">
+            <th>#</th>
+            <th>ICAO</th>
+            <th>IATA</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Elevation</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Timezone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            var airport = Model[i]; 
+            <tr>
+                <td>@(((@Model.PageIndex - 1) * Model.Count) + (i + 1))</td>
+                <td>@airport.ICAO</td>
+                <td>@airport.IATA</td>
+                <td>@airport.Name</td>
+                <td>@airport.City.Name</td>
+                <td>@airport.State.Name</td>
+                <td>@airport.Country.Name</td>
+                <td>@airport.Elevation</td>
+                <td>@airport.Latitude</td>
+                <td>@airport.Longitude</td>
+                <td>@airport.TimeZone</td>
+                <td>
+                    <div class="d-flex justify-content-evenly">
+                        <a class="btn btn-primary" asp-controller="Airport" asp-action="Edit" asp-route-aircraftId="@airport.Id">Edit</a>
+                        <form asp-controller="Airport" asp-action="Delete" asp-route-aircraftId="@airport.Id" method="post">
+                            <input type="submit" class="btn btn-primary" value="Delete" />
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+        <tr>
+            <td colspan="12" class="text-end">
+                <a asp-controller="Airport" asp-action="All" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-primary @prevDisabled">
+                    Previous
+                </a>
+                <a asp-controller="Airport" asp-action="All" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-primary @nextDisabled">
+                    Next
+                </a>
+            </td>
+        </tr>
+    </tfoot>
+</table>

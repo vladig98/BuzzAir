@@ -11,5 +11,7 @@ namespace BuzzAir.Services.Contracts
         Task<Airport> Create(string icao, string iata, string name, City city, State state, Country country, int elevation, double lat, double lgt, string tz);
         Task<IEnumerable<Airport>> GetAll();
         Task<IEnumerable<Airport>> GetAllForCountry(string countryId);
+        Task<List<Airport>> GetAllAsQueryable(int pageSize, int? pageNumber);
+        Task<int> GetCount();
     }
 }

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28306.52
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuzzAir", "BuzzAir\BuzzAir.csproj", "{F29F0CD8-CD6F-4EE9-8826-847358CAAC86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuzzAir.Tests", "BuzzAir.Tests\BuzzAir.Tests.csproj", "{545ECBC4-A4B0-4F73-BA88-ADA819855BAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F29F0CD8-CD6F-4EE9-8826-847358CAAC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F29F0CD8-CD6F-4EE9-8826-847358CAAC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F29F0CD8-CD6F-4EE9-8826-847358CAAC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{545ECBC4-A4B0-4F73-BA88-ADA819855BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{545ECBC4-A4B0-4F73-BA88-ADA819855BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{545ECBC4-A4B0-4F73-BA88-ADA819855BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{545ECBC4-A4B0-4F73-BA88-ADA819855BAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

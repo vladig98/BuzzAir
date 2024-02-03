@@ -8,35 +8,39 @@ namespace BuzzAir.Data
 {
     public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Aircraft> Aircrafts { get; set; }
-        public DbSet<Airport> Airports { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
-        public DbSet<Flight> Flights { get; set; }
-        public DbSet<Passenger> Passengers { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<Seat> Seats { get; set; }
-        public DbSet<TravelDocument> TravelDocuments { get; set; }
-        public DbSet<ApplicationUser> AppUsers { get; set; }
-        public DbSet<BookingFlight> BookingFlights { get; set; }
-        public DbSet<BookingPassenger> BookingPassengers { get; set; }
-        public DbSet<FlightPassenger> FlightPassengers { get; set; }
-        public DbSet<PersonService> PersonServices { get; set; }
-        public DbSet<Service> Services { get; set; }
-        public DbSet<UserBooking> UserBookings { get; set; }
-        public DbSet<Person> People { get; set; }
-        public DbSet<AirportCheckIn> AirportCheckIns { get; set; }
-        public DbSet<Baggage> Baggages { get; set; }
-        public DbSet<Flexibility> Flexibilities { get; set; }
-        public DbSet<OnTimeArrival> OnTimeArrivals { get; set; }
-        public DbSet<Priority> Priorities { get; set; }
-        public DbSet<Timezone> Timezones { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<State> States { get; set; }
-        public DbSet<FlightSeat> FlightSeats { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Aircraft> Aircrafts { get; set; }
+        public virtual DbSet<Airport> Airports { get; set; }
+        public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Flight> Flights { get; set; }
+        public virtual DbSet<Passenger> Passengers { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Seat> Seats { get; set; }
+        public virtual DbSet<TravelDocument> TravelDocuments { get; set; }
+        public virtual DbSet<ApplicationUser> AppUsers { get; set; }
+        public virtual DbSet<BookingFlight> BookingFlights { get; set; }
+        public virtual DbSet<BookingPassenger> BookingPassengers { get; set; }
+        public virtual DbSet<FlightPassenger> FlightPassengers { get; set; }
+        public virtual DbSet<PersonService> PersonServices { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<UserBooking> UserBookings { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<AirportCheckIn> AirportCheckIns { get; set; }
+        public virtual DbSet<Baggage> Baggages { get; set; }
+        public virtual DbSet<Flexibility> Flexibilities { get; set; }
+        public virtual DbSet<OnTimeArrival> OnTimeArrivals { get; set; }
+        public virtual DbSet<Priority> Priorities { get; set; }
+        public virtual DbSet<Timezone> Timezones { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<FlightSeat> FlightSeats { get; set; }
 
         public BuzzAirDbContext(DbContextOptions<BuzzAirDbContext> options) : base(options)
+        {
+        }
+
+        public BuzzAirDbContext()
         {
         }
 

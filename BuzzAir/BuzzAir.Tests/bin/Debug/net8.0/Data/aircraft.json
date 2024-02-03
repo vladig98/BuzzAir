@@ -1,0 +1,114 @@
+[
+    {
+      "name": "Airbus A220-100",
+      "seats": 130
+    },
+    {
+      "name": "Airbus A220-300",
+      "seats": 160
+    },
+    {
+      "name": "Airbus A318",
+      "seats": 132
+    },
+    {
+      "name": "Airbus A319",
+      "seats": 124
+    },
+    {
+      "name": "Airbus A320",
+      "seats": 150
+    },
+    {
+      "name": "Airbus A321",
+      "seats": 220
+    },
+    {
+      "name": "Airbus A330-300",
+      "seats": 277
+    },
+    {
+      "name": "Airbus A330 Regional",
+      "seats": 400
+    },
+    {
+      "name": "Airbus A330-200",
+      "seats": 253
+    },
+    {
+      "name": "Airbus A330-900",
+      "seats": 440
+    },
+    {
+      "name": "Airbus A330-800",
+      "seats": 406
+    },
+    {
+      "name": "Airbus A350-900",
+      "seats": 325
+    },
+    {
+      "name": "Airbus A350 Regional",
+      "seats": 360
+    },
+    {
+      "name": "Airbus A350-1000",
+      "seats": 410
+    }//,
+    //{
+    //  "name": "Antonov An-148",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Antonov An-158",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Boeing 737",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Boeing 767",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Boeing 777",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Boeing 787 Dreamliner",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Comac ARJ21 Xiangfeng",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Comac C919",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Embraer E-Jet family",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Embraer E-Jet E2 family",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Ilyushin Il-96",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Sukhoi Superjet SSJ100",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Tupolev Tu-204",
+    //  "seats": 160
+    //},
+    //{
+    //  "name": "Tupolev Tu-214",
+    //  "seats": 160
+    //}
+]

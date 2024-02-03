@@ -1,0 +1,43 @@
+﻿@model AirportEditViewModel
+
+<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Edit Airport</h2>
+
+<form class="w-75 mx-auto" asp-controller="Airport" asp-action="Edit" method="post">
+    @Html.EditorFor(x => x.Id)
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.ICAO, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.ICAO)
+        @Html.ValidationMessageFor(x => x.ICAO)
+    </div>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.IATA, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.IATA)
+        @Html.ValidationMessageFor(x => x.IATA)
+    </div>
+    <div class="form-floating mb-3">
+        @Html.EditorFor(x => x.Name, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control"
+                }
+            })
+        @Html.LabelFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+</form>
