@@ -1,5 +1,4 @@
-﻿using BuzzAir.Models.DbModels;
-using BuzzAir.Models.DbModels.Contraccts;
+﻿using BuzzAir.Models.DbModels.Contraccts;
 
 namespace BuzzAir.Factories
 {

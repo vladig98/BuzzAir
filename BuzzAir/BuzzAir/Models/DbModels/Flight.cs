@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace BuzzAir.Models.DbModels
+﻿namespace BuzzAir.Models.DbModels
 {
     public class Flight
     {

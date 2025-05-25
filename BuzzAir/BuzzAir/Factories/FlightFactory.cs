@@ -1,8 +1,4 @@
-﻿
-
-using BuzzAir.Models.DbModels;
-
-namespace BuzzAir.Factories
+﻿namespace BuzzAir.Factories
 {
     public static class FlightFactory
     {
@@ -55,7 +51,7 @@ namespace BuzzAir.Factories
             return flight;
         }
 
-        internal static FlightEditViewModel CreateEditViewModel(Flight flight, List<SelectListItem> aircraft, List<SelectListItem> countries, 
+        internal static FlightEditViewModel CreateEditViewModel(Flight flight, List<SelectListItem> aircraft, List<SelectListItem> countries,
             List<SelectListItem> originAirportsSelect, List<SelectListItem> destinationAirportsSelect)
         {
             FlightEditViewModel viewModel = new()

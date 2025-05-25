@@ -1,7 +1,5 @@
 ﻿using BuzzAir.Helpers;
 using BuzzAir.Models.DbModels.Contraccts;
-using BuzzAir.Services.Contracts;
-using System.Collections;
 
 namespace BuzzAir.Services
 {

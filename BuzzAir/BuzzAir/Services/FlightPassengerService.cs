@@ -3,7 +3,7 @@
 namespace BuzzAir.Services
 {
     public class FlightPassengerService(
-        BuzzAirDbContext context, 
+        BuzzAirDbContext context,
         ISeatService seatService) : IFlightPassengerService
     {
         public async Task<FlightPassenger> Create(IPassenger passenger, Flight flight)

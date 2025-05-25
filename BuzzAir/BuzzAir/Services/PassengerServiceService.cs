@@ -26,7 +26,7 @@ namespace BuzzAir.Services
             }
 
             await Task.WhenAll(personServiceTasks);
-            
+
             foreach (Task<PersonService> completedTask in personServiceTasks)
             {
                 passenger.Services.Add(completedTask.Result);

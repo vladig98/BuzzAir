@@ -1,7 +1,4 @@
-﻿
-using BuzzAir.Models.DbModels;
-
-namespace BuzzAir.Factories
+﻿namespace BuzzAir.Factories
 {
     public static class BookingFactory
     {
@@ -20,7 +17,7 @@ namespace BuzzAir.Factories
         internal static BookingViewModel CreateViewModel(Booking booking, List<FlightViewModel> flights, List<PassengerViewModel> passengers)
         {
             BookingViewModel viewModel = new()
-            { 
+            {
                 Amount = booking.TotalPrice.ToString("F2"),
                 Inbound = flights.First(x => !x.IsOutbound),
                 Outbound = flights.First(x => x.IsOutbound),

@@ -3,8 +3,8 @@
 namespace BuzzAir.Services
 {
     public class PassengerService(
-        BuzzAirDbContext context, 
-        IPassengerServiceService passengerServiceService, 
+        BuzzAirDbContext context,
+        IPassengerServiceService passengerServiceService,
         IServiceService serviceService) : IPassengerService
     {
         public async Task<IPassenger> Create(PassengerViewModel model, ICollection<IService> services)
