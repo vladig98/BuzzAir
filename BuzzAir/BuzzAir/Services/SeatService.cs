@@ -18,5 +18,20 @@ namespace BuzzAir.Services
 
             return seat;
         }
+
+        public async Task CreateSeats(Flight flight, int numberOfSeats)
+        {
+            List<FlightSeat> seats = [];
+
+            for (int i = 0; i < numberOfSeats; i++)
+            {
+                FlightSeat seat = SeatFactory.Create(flight, i);
+
+                seats.Add(seat);
+            }
+
+            context.FlightSeats.AddRange(seats);
+            await context.SaveChangesAsync();
+        }
     }
 }

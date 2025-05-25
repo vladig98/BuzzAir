@@ -1,4 +1,5 @@
-﻿namespace BuzzAir.Services
+﻿
+namespace BuzzAir.Services
 {
     public class CountryService(BuzzAirDbContext context) : ICountryService
     {
@@ -11,6 +12,14 @@
         {
             return await context.Countries.FirstOrDefaultAsync(x => x.Id == id) ??
                 throw new ArgumentException($"Can't find a country with id {id}.");
+        }
+
+        public async Task<List<SelectListItem>> GetCountriesForSelect()
+        {
+            IEnumerable<Country> countries = await GetAllAsync();
+            List<SelectListItem> countriesSelect = CountryFactory.GetCountriesForSelect([.. countries]);
+
+            return countriesSelect;
         }
     }
 }

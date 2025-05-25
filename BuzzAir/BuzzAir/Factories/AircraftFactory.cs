@@ -1,4 +1,5 @@
-﻿namespace BuzzAir.Factories
+﻿
+namespace BuzzAir.Factories
 {
     public static class AircraftFactory
     {
@@ -23,6 +24,24 @@
             };
 
             return aircraft;
+        }
+
+        internal static List<SelectListItem> GetAircraftForSelect(List<Aircraft> aircraftList)
+        {
+            List<SelectListItem> list = [];
+
+            foreach (Aircraft aircraft in aircraftList)
+            {
+                SelectListItem aircraftItem = new()
+                {
+                    Text = aircraft.Name,
+                    Value = aircraft.Id
+                };
+
+                list.Add(aircraftItem);
+            }
+
+            return list;
         }
     }
 }

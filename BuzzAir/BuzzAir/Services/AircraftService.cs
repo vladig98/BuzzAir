@@ -1,4 +1,5 @@
-﻿namespace BuzzAir.Services
+﻿
+namespace BuzzAir.Services
 {
     public class AircraftService(BuzzAirDbContext context) : IAircraftService
     {
@@ -85,7 +86,7 @@
                 .ToListAsync();
         }
 
-        private async Task<Aircraft> GetByIdAsync(string id)
+        public async Task<Aircraft> GetByIdAsync(string id)
         {
             Aircraft aircraft = await context.Aircrafts.FirstOrDefaultAsync(x => x.Id == id) ??
                 throw new ArgumentException($"Aircraft with {id} does not exist.");
@@ -96,6 +97,18 @@
         private async Task<int> GetCountAsync()
         {
             return await context.Aircrafts.Where(x => !x.IsDeleted).CountAsync();
+        }
+
+        public async Task<List<SelectListItem>> GetAircraftForSelect()
+        {
+            List<Aircraft> aircraft = await context.Aircrafts
+                .Where(x => !x.IsDeleted)
+                .AsNoTracking()
+                .ToListAsync();
+
+            List<SelectListItem> selectItems = AircraftFactory.GetAircraftForSelect(aircraft);
+
+            return selectItems;
         }
     }
 }

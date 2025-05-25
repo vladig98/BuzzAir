@@ -1,4 +1,5 @@
 ﻿
+
 namespace BuzzAir.Factories
 {
     public static class AirportFactory
@@ -51,6 +52,24 @@ namespace BuzzAir.Factories
             };
 
             return model;
+        }
+
+        internal static List<SelectListItem> CreateAirportForSelect(IEnumerable<Airport> airports)
+        {
+            List<SelectListItem> selectItems = [];
+
+            foreach (Airport airport in airports)
+            {
+                SelectListItem airportItem = new()
+                {
+                    Text = airport.Name,
+                    Value = airport.Id
+                };
+
+                selectItems.Add(airportItem);
+            }
+
+            return selectItems;
         }
     }
 }

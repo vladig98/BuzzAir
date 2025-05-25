@@ -1,5 +1,4 @@
-﻿
-namespace BuzzAir.Services.Contracts
+﻿namespace BuzzAir.Services.Contracts
 {
     public interface IFlightsService
     {
@@ -9,16 +8,19 @@ namespace BuzzAir.Services.Contracts
         Task<Flight?> GetById(string id);
         Task<Flight> GetByOrigin(string origin);
         Task<Flight> GetByDestination(string destination);
-        Task<int> GetCount();
+        Task<int> GetCountAsync();
         Task<List<SelectListItem>> GetAll();
-        Task<List<Flight>> GetAllAsQueryable(int pageSize, int? pageNumber);
+        Task<List<Flight>> GetAllAsync(int pageSize, int pageNumber);
         Task<IEnumerable<Flight>> GetFlightsByOriginAndDestination(City origin, City destination, DateTime departure);
         Task<IEnumerable<Flight>> GetFlightsByCityId(string cityId);
         Task<IEnumerable<Flight>> GetFlightsForOriginIdAndDestinationId(string originId, string destinationId);
-        Task<Flight> Create(Aircraft aircraft, int duration, decimal price, DateTime departure, DateTime arrival, string flightNumber, Airport origin, Airport destination);
+        Task Create(CreateFlightViewModel model);
         Task Update(FlightEditViewModel model);
         Task Delete(string flightId);
         List<FlightViewModel> GetFlightsDetails(ICollection<BookingFlight> flights);
         List<FlightViewModel> GetViewModels(IEnumerable<Flight> flights);
+        Task<CreateFlightViewModel> CreateViewModel();
+        Task<PaginatedList<Flight>> GetAllAsPaginatedListAsync(int pageSize, int? pageNumber);
+        Task<FlightEditViewModel> GetEditViewModel(string flightId);
     }
 }
