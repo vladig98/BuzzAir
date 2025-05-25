@@ -1,6 +1,4 @@
-﻿using BuzzAir.Models.DbModels.Contraccts;
-
-namespace BuzzAir.Services.Contracts
+﻿namespace BuzzAir.Services.Interfaces
 {
     public interface IServiceService
     {

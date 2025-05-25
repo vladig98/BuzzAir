@@ -10,11 +10,6 @@
             await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<UserBooking>> GetAll()
-        {
-            return await context.UserBookings.Where(x => !x.Booking.IsDeleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
-        }
-
         public async Task<IEnumerable<UserBooking>> GetAllForUser(string username)
         {
             return await context.UserBookings

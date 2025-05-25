@@ -1,6 +1,4 @@
-﻿
-
-namespace BuzzAir.Factories
+﻿namespace BuzzAir.Factories
 {
     public static class AirportFactory
     {

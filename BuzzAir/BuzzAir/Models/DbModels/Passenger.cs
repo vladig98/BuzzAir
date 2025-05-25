@@ -1,6 +1,4 @@
-﻿using BuzzAir.Models.DbModels.Contraccts;
-
-namespace BuzzAir.Models.DbModels
+﻿namespace BuzzAir.Models.DbModels
 {
     public class Passenger : Person, IPassenger
     {

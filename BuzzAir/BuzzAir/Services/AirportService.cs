@@ -48,16 +48,6 @@
             return await context.Airports.Where(x => !x.IsDeleted).CountAsync();
         }
 
-        public async Task<bool> Exists(string id)
-        {
-            return await context.Airports.AnyAsync(x => x.Id == id);
-        }
-
-        public async Task<bool> ExistsByName(string name)
-        {
-            return await context.Airports.AnyAsync(x => x.Name == name);
-        }
-
         public async Task<IEnumerable<Airport>> GetAll()
         {
             return await context.Airports.Include(x => x.Country).AsSplitQuery().ToListAsync();
@@ -72,11 +62,6 @@
         {
             return await context.Airports.FirstOrDefaultAsync(x => x.Id == id) ??
                 throw new ArgumentException($"Can't find airport with id {id}");
-        }
-
-        public async Task<Airport> GetByName(string name)
-        {
-            return await context.Airports.FirstOrDefaultAsync(x => x.Name == name);
         }
 
         public async Task<PaginatedList<Airport>> GetAllAsync(int pageSize, int? pageNumber)

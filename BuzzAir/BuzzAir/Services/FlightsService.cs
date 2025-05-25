@@ -41,21 +41,6 @@
             await context.SaveChangesAsync();
         }
 
-        public async Task<bool> Exists(string id)
-        {
-            return await context.Flights.Where(x => !x.IsDeleted).AnyAsync(x => x.Id == id);
-        }
-
-        public async Task<bool> ExistsByDestination(string destination)
-        {
-            return await context.Flights.Where(x => !x.IsDeleted).Include(x => x.Destination).AsSplitQuery().AnyAsync(x => x.Destination.Name == destination);
-        }
-
-        public async Task<bool> ExistsByOrigin(string origin)
-        {
-            return await context.Flights.Where(x => !x.IsDeleted).Include(x => x.Origin).AsSplitQuery().AnyAsync(x => x.Origin.Name == origin);
-        }
-
         public async Task<List<SelectListItem>> GetAll()
         {
             List<Flight> flights = await context.Flights
@@ -116,20 +101,6 @@
                 .AsSplitQuery().ToListAsync();
         }
 
-        public async Task<Flight> GetByDestination(string destination)
-        {
-            return await context.Flights.Where(x => !x.IsDeleted)
-                .Where(x => x.Destination.Name == destination)
-                .Include(x => x.Destination).ThenInclude(x => x.City)
-                .Include(x => x.Destination).ThenInclude(x => x.State)
-                .Include(x => x.Destination).ThenInclude(x => x.Country)
-                .Include(x => x.Origin).ThenInclude(x => x.City)
-                .Include(x => x.Origin).ThenInclude(x => x.State)
-                .Include(x => x.Origin).ThenInclude(x => x.Country)
-                .AsSplitQuery()
-                .FirstOrDefaultAsync();
-        }
-
         public async Task<Flight?> GetById(string id)
         {
             return await context.Flights
@@ -149,20 +120,6 @@
                     .ThenInclude(x => x.Country)
                 .Include(x => x.Aircraft)
                 .Include(x => x.Seats)
-                .AsSplitQuery()
-                .FirstOrDefaultAsync();
-        }
-
-        public async Task<Flight> GetByOrigin(string origin)
-        {
-            return await context.Flights.Where(x => !x.IsDeleted)
-                .Where(x => x.Origin.Name == origin)
-                .Include(x => x.Destination).ThenInclude(x => x.City)
-                .Include(x => x.Destination).ThenInclude(x => x.State)
-                .Include(x => x.Destination).ThenInclude(x => x.Country)
-                .Include(x => x.Origin).ThenInclude(x => x.City)
-                .Include(x => x.Origin).ThenInclude(x => x.State)
-                .Include(x => x.Origin).ThenInclude(x => x.Country)
                 .AsSplitQuery()
                 .FirstOrDefaultAsync();
         }

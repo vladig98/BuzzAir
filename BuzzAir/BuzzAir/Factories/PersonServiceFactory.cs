@@ -1,6 +1,4 @@
-﻿using BuzzAir.Models.DbModels.Contraccts;
-
-namespace BuzzAir.Factories
+﻿namespace BuzzAir.Factories
 {
     public static class PersonServiceFactory
     {

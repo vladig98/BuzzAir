@@ -1,17 +1,12 @@
-﻿
-
-namespace BuzzAir.Services.Contracts
+﻿namespace BuzzAir.Services.Interfaces
 {
     public interface IBookingService
     {
-        Task<bool> ExistsByIdAsync(string id);
         Task<Booking> GetByIdAsync(string id);
         Task DeleteAsync(string id);
-        Task<IEnumerable<Booking>> GetAllAsync();
-        Task CreateAsync(Payment payment);
         Task<BookingViewModel> GetBookingDetailsAsync(string id);
         Task<AllBookingsViewModel> GetAllAsync(string? name);
-        Task CreateAsync(CreateBookingViewModel model);
+        Task CreateAsync(CreateBookingViewModel model, string username);
         Task<CreateBookingViewModel> CreateViewModelAsync(IndexViewModel model);
     }
 }

@@ -1,7 +1,4 @@
-﻿using BuzzAir.Helpers;
-using BuzzAir.Models.DbModels.Contraccts;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
     public class BookingService(
         BuzzAirDbContext context,
@@ -16,14 +13,6 @@ namespace BuzzAir.Services
         UserManager<ApplicationUser> userManager,
         ICityService cityService) : IBookingService
     {
-        public async Task CreateAsync(Payment payment)
-        {
-            Booking booking = BookingFactory.CreateBooking(payment);
-
-            await context.Bookings.AddAsync(booking);
-            await context.SaveChangesAsync();
-        }
-
         public async Task DeleteAsync(string id)
         {
             Booking booking = await GetByIdAsync(id);
@@ -40,38 +29,6 @@ namespace BuzzAir.Services
             }
 
             await context.SaveChangesAsync();
-        }
-
-        public async Task<bool> ExistsByIdAsync(string id)
-        {
-            return await context.Bookings.AnyAsync(x => x.Id == id);
-        }
-
-        public async Task<IEnumerable<Booking>> GetAllAsync()
-        {
-            return await context.Bookings
-                .Include(x => x.Payment)
-                .Include(x => x.Flights)
-                    .ThenInclude(x => x.Flight)
-                        .ThenInclude(x => x.Origin)
-                .Include(x => x.Flights)
-                    .ThenInclude(x => x.Flight)
-                        .ThenInclude(x => x.Destination)
-                .Include(x => x.Flights)
-                    .ThenInclude(x => x.Flight)
-                        .ThenInclude(x => x.Aircraft)
-                .Include(x => x.Flights)
-                    .ThenInclude(x => x.Flight)
-                        .ThenInclude(x => x.Passengers)
-                            .ThenInclude(x => x.Person)
-                .Include(x => x.Passengers)
-                    .ThenInclude(x => x.Passenger)
-                .ThenInclude(x => x.Services)
-                .ThenInclude(x => x.Service)
-                .Where(x => x.IsDeleted == false)
-                .AsSplitQuery()
-                .AsNoTracking()
-                .ToListAsync();
         }
 
         public async Task<Booking> GetByIdAsync(string id)
@@ -147,21 +104,10 @@ namespace BuzzAir.Services
             return viewModel;
         }
 
-        private static List<string> GetAllForUser(IEnumerable<UserBooking> userBookings)
-        {
-            List<string> bookingsIds = [.. userBookings.Select(y => y.BookingId)];
-
-            return bookingsIds;
-        }
-
         public async Task CreateAsync(CreateBookingViewModel model, string username)
         {
-            ApplicationUser? currentUser = await userManager.FindByNameAsync(username);
-
-            if (currentUser == null)
-            {
+            ApplicationUser? currentUser = await userManager.FindByNameAsync(username) ??
                 throw new ArgumentException($"The user with username {username} does not exist.");
-            }
 
             Task<Flight?> outboundTask = flightsService.GetById(model.GoingFlightSelection ?? string.Empty);
             Task<Flight?> inboundTask = flightsService.GetById(model.ReturnFlightSelection ?? string.Empty);
@@ -219,11 +165,6 @@ namespace BuzzAir.Services
             await Task.WhenAll(bookingTasks);
         }
 
-        public Task CreateAsync(CreateBookingViewModel model)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<CreateBookingViewModel> CreateViewModelAsync(IndexViewModel model)
         {
             bool isReturning = model.isReturning != "OneWay";
@@ -251,6 +192,13 @@ namespace BuzzAir.Services
             CreateBookingViewModel viewModel = BookingFactory.CreateViewModel(outboundModels, inboundModels, passengers);
 
             return viewModel;
+        }
+
+        private static List<string> GetAllForUser(IEnumerable<UserBooking> userBookings)
+        {
+            List<string> bookingsIds = [.. userBookings.Select(y => y.BookingId)];
+
+            return bookingsIds;
         }
     }
 }

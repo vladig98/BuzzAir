@@ -1,5 +1,4 @@
-﻿
-namespace BuzzAir.Services.Contracts
+﻿namespace BuzzAir.Services.Interfaces
 {
     public interface ICountryService
     {

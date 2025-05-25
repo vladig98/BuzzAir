@@ -1,5 +1,4 @@
-﻿
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
     public class AircraftService(BuzzAirDbContext context) : IAircraftService
     {
