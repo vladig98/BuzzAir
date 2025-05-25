@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.DbModels
+﻿namespace BuzzAir.Models.DbModels
 {
     public class Timezone
     {

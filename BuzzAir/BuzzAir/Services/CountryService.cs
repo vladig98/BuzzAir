@@ -1,27 +1,16 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class CountryService : ICountryService
+    public class CountryService(BuzzAirDbContext context) : ICountryService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public CountryService(BuzzAirDbContext context)
+        public async Task<IEnumerable<Country>> GetAllAsync()
         {
-            _context = context;
+            return await context.Countries.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<Country>> GetAll()
+        public async Task<Country> GetByIdAsync(string id)
         {
-            return await _context.Countries.ToListAsync();
-        }
-
-        public async Task<Country> GetById(string id)
-        {
-            return await _context.Countries.FirstOrDefaultAsync(x => x.Id == id);
+            return await context.Countries.FirstOrDefaultAsync(x => x.Id == id) ??
+                throw new ArgumentException($"Can't find a country with id {id}.");
         }
     }
 }

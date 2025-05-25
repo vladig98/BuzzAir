@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace BuzzAir.Models.EditModels
+﻿namespace BuzzAir.Models.EditModels
 {
     public class FlightEditViewModel
     {

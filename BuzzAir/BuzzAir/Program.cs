@@ -1,25 +1,15 @@
-using BuzzAir.Data;
-using BuzzAir.Hubs;
-using BuzzAir.Middleware;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services;
-using BuzzAir.Services.Contracts;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
         throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<BuzzAirDbContext>(options => options.UseSqlServer(connectionString));
-
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BuzzAirDbContext>().AddDefaultTokenProviders().AddDefaultUI();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<BuzzAirDbContext>()
+    .AddDefaultTokenProviders()
+    .AddDefaultUI();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -37,8 +27,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.AllowedForNewUsers = false;
 
     // User settings.
-    options.User.AllowedUserNameCharacters =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = false;
 });
 
@@ -48,7 +37,7 @@ builder.Services.Configure<MvcViewOptions>(options =>
     options.HtmlHelperOptions.CheckBoxHiddenInputRenderMode = CheckBoxHiddenInputRenderMode.None;
 });
 
-var configuration = builder.Configuration;
+IConfiguration configuration = builder.Configuration;
 
 builder.Services.AddTransient<IAirportService, AirportService>();
 builder.Services.AddTransient<IFlightsService, FlightsService>();
@@ -66,18 +55,22 @@ builder.Services.AddTransient<IPassengerService, PassengerService>();
 builder.Services.AddTransient<IPassengerServiceService, PassengerServiceService>();
 builder.Services.AddTransient<IFlightPassengerService, FlightPassengerService>();
 builder.Services.AddTransient<IServiceService, ServiceService>();
+builder.Services.AddTransient<IBoardingPassService, BoardingPassService>();
+builder.Services.AddTransient<IPriceCalculator, PriceCalculator>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Events.OnRedirectToLogin = context =>
     {
-        context.Response.Headers["Location"] = context.RedirectUri;
+        context.Response.Headers.Location = context.RedirectUri;
         context.Response.StatusCode = 401;
+
         return Task.CompletedTask;
     };
     options.Events.OnRedirectToAccessDenied = context =>
     {
         context.Response.StatusCode = 403;
+
         return Task.CompletedTask;
     };
 });
@@ -85,7 +78,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
@@ -119,5 +112,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-public partial class Program { }

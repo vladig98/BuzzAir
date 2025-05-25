@@ -1,6 +1,4 @@
-﻿using BuzzAir.Utilities;
-
-namespace BuzzAir.Models.DbModels.Enums
+﻿namespace BuzzAir.Models.DbModels.Enums
 {
     public enum SeatType
     {

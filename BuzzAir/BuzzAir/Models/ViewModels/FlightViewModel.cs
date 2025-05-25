@@ -1,32 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace BuzzAir.Models.ViewModels
+﻿namespace BuzzAir.Models.ViewModels
 {
-    public class FlightViewModel
+    public record FlightViewModel
     {
-        public FlightViewModel()
-        {
-            IsOutbound = false;
-        }
-
         [HiddenInput(DisplayValue = false)]
-        public string Id { get; set; }
-
-        public AirportViewModel Origin { get; set; }
-        public AirportViewModel Destination { get; set; }
-
+        public string Id { get; set; } = string.Empty;
+        public AirportViewModel Origin { get; set; } = new AirportViewModel();
+        public AirportViewModel Destination { get; set; } = new AirportViewModel();
         [HiddenInput(DisplayValue = false)]
         public DateTime Departure { get; set; }
-
         [HiddenInput(DisplayValue = false)]
         public DateTime Arrival { get; set; }
-
         [HiddenInput(DisplayValue = false)]
         public decimal Price { get; set; }
-
         [HiddenInput(DisplayValue = false)]
-        public string FlightNumber { get; set; }
-
+        public string FlightNumber { get; set; } = string.Empty;
         [HiddenInput(DisplayValue = false)]
         public bool IsOutbound { get; set; }
     }

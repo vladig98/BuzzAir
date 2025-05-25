@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace BuzzAir.Models.EditModels
+﻿namespace BuzzAir.Models.EditModels
 {
     public class AirportEditViewModel
     {

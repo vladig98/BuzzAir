@@ -1,22 +1,10 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class TimezoneService : ITimezoneService
+    public class TimezoneService(BuzzAirDbContext context) : ITimezoneService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public TimezoneService(BuzzAirDbContext context)
+        public async Task<IEnumerable<Timezone>> GetAllAsync()
         {
-            _context = context;
-        }
-
-        public async Task<IEnumerable<Timezone>> GetAll()
-        {
-            return await _context.Timezones.ToListAsync();
+            return await context.Timezones.AsNoTracking().ToListAsync();
         }
     }
 }

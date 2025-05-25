@@ -1,6 +1,4 @@
-﻿using BuzzAir.Models.DbModels;
-using BuzzAir.Models.EditModels;
-
+﻿
 namespace BuzzAir.Services.Contracts
 {
     public interface IFlightsService
@@ -8,11 +6,11 @@ namespace BuzzAir.Services.Contracts
         Task<bool> Exists(string id);
         Task<bool> ExistsByOrigin(string origin);
         Task<bool> ExistsByDestination(string destination);
-        Task<Flight> GetById(string id);
+        Task<Flight?> GetById(string id);
         Task<Flight> GetByOrigin(string origin);
         Task<Flight> GetByDestination(string destination);
         Task<int> GetCount();
-        Task<IEnumerable<Flight>> GetAll();
+        Task<List<SelectListItem>> GetAll();
         Task<List<Flight>> GetAllAsQueryable(int pageSize, int? pageNumber);
         Task<IEnumerable<Flight>> GetFlightsByOriginAndDestination(City origin, City destination, DateTime departure);
         Task<IEnumerable<Flight>> GetFlightsByCityId(string cityId);
@@ -20,5 +18,7 @@ namespace BuzzAir.Services.Contracts
         Task<Flight> Create(Aircraft aircraft, int duration, decimal price, DateTime departure, DateTime arrival, string flightNumber, Airport origin, Airport destination);
         Task Update(FlightEditViewModel model);
         Task Delete(string flightId);
+        List<FlightViewModel> GetFlightsDetails(ICollection<BookingFlight> flights);
+        List<FlightViewModel> GetViewModels(IEnumerable<Flight> flights);
     }
 }

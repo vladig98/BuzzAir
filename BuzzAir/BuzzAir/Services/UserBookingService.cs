@@ -1,42 +1,30 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class UserBookingService : IUserBookingService
+    public class UserBookingService(BuzzAirDbContext context) : IUserBookingService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public UserBookingService(BuzzAirDbContext context)
+        public async Task CreateAsync(ApplicationUser currentUser, Booking booking)
         {
-            _context = context;
-        }
+            UserBooking userBooking = BookingFactory.CreateBookingForAUser(booking, currentUser);
 
-        public async Task<UserBooking> Create(ApplicationUser user, Booking booking)
-        {
-            UserBooking userBooking = new UserBooking
-            {
-                ApplicationUserId = user.Id,
-                BookingId = booking.Id,
-                Id = Guid.NewGuid().ToString()
-            };
-
-            await _context.UserBookings.AddAsync(userBooking);
-            await _context.SaveChangesAsync();
-
-            return userBooking;
+            await context.UserBookings.AddAsync(userBooking);
+            await context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<UserBooking>> GetAll()
         {
-            return await _context.UserBookings.Where(x => !x.Booking.IsDeleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
+            return await context.UserBookings.Where(x => !x.Booking.IsDeleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
         }
 
         public async Task<IEnumerable<UserBooking>> GetAllForUser(string username)
         {
-            return await _context.UserBookings.Where(x => x.ApplicationUser.UserName == username).Where(x => !x.Booking.IsDeleted).Include(x => x.Booking).Include(x => x.ApplicationUser).AsSplitQuery().ToListAsync();
+            return await context.UserBookings
+                .Where(x => x.ApplicationUser.UserName == username)
+                .Where(x => !x.Booking.IsDeleted)
+                .Include(x => x.Booking)
+                .Include(x => x.ApplicationUser)
+                .AsSplitQuery()
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

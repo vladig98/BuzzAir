@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.ViewModels
+﻿namespace BuzzAir.Models.ViewModels
 {
     public class IndexViewModel
     {

@@ -1,75 +1,57 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
+﻿using BuzzAir.Helpers;
+using BuzzAir.Models.DbModels.Contraccts;
 using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
+using System.Collections;
 
 namespace BuzzAir.Services
 {
-    public class BookingService : IBookingService
+    public class BookingService(
+        BuzzAirDbContext context,
+        IFlightsService flightsService,
+        IPassengerService passengerService,
+        IUserBookingService userBookingService,
+        IPriceCalculator priceCalculator,
+        IFlightPassengerService flightPassengerService,
+        IPaymentService paymentService,
+        IBookingFlightService bookingFlightService,
+        IBookingPassengerService bookingPassengerService,
+        UserManager<ApplicationUser> userManager,
+        ICityService cityService) : IBookingService
     {
-        private readonly BuzzAirDbContext _context;
-        private readonly IFlightsService _flightsService;
-
-        public BookingService(BuzzAirDbContext context, IFlightsService flightsService)
+        public async Task CreateAsync(Payment payment)
         {
-            _context = context;
-            _flightsService = flightsService;
+            Booking booking = BookingFactory.CreateBooking(payment);
+
+            await context.Bookings.AddAsync(booking);
+            await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Booking>> GetAllForUser(IEnumerable<UserBooking> userBookings)
+        public async Task DeleteAsync(string id)
         {
-            var bookingsIds = userBookings.Select(y => y.BookingId).ToList();
-            var bookings = await _context.Bookings.Where(x => bookingsIds.Contains(x.Id))
-                .Include(x => x.Payment)
-                .Include(x => x.Flights).ThenInclude(x => x.Flight).ThenInclude(x => x.Origin).ThenInclude(x => x.City)
-                .Include(x => x.Flights).ThenInclude(x => x.Flight).ThenInclude(x => x.Destination).ThenInclude(x => x.City)
-                .ToListAsync();
-
-            return bookings;
-        }
-
-        public async Task<Booking> Create(Payment payment)
-        {
-            Booking booking = new Booking
-            {
-                Payment = payment,
-                PaymentId = payment.Id,
-                Id = Guid.NewGuid().ToString(),
-                TotalPrice = payment.Amount
-            };
-
-            await _context.Bookings.AddAsync(booking);
-            await _context.SaveChangesAsync();
-
-            return booking;
-        }
-
-        public async Task Delete(string id)
-        {
-            var booking = await _context.Bookings.FirstOrDefaultAsync(x => x.Id == id);
+            Booking booking = await GetByIdAsync(id);
             booking.IsDeleted = true;
 
-            var flights = booking.Flights.Select(x => x.Flight);
+            IEnumerable<Flight> flights = booking.Flights.Select(x => x.Flight);
 
-            //make the seats available
-            foreach (var flight in flights)
+            // Make the seats available
+            // TO DO: Fix this as it won't work
+            foreach (Flight flight in flights)
             {
-                var seats = flight.Passengers.Select(x => x.SeatNumber).ToList();
-
+                List<int> seats = [.. flight.Passengers.Select(x => x.SeatNumber)];
                 flight.Seats.Where(x => seats.Contains(x.SeatNumber)).First().IsAvailable = true;
             }
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
-        public async Task<bool> ExistsById(string id)
+        public async Task<bool> ExistsByIdAsync(string id)
         {
-            return await _context.Bookings.AnyAsync(x => x.Id == id);
+            return await context.Bookings.AnyAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Booking>> GetAll()
+        public async Task<IEnumerable<Booking>> GetAllAsync()
         {
-            return await _context.Bookings
+            return await context.Bookings
                 .Include(x => x.Payment)
                 .Include(x => x.Flights)
                     .ThenInclude(x => x.Flight)
@@ -77,25 +59,26 @@ namespace BuzzAir.Services
                 .Include(x => x.Flights)
                     .ThenInclude(x => x.Flight)
                         .ThenInclude(x => x.Destination)
-                //.Include(x => x.Flights)
-                //    .ThenInclude(x => x.Flight)
-                //        .ThenInclude(x => x.Aircraft)
-                //.Include(x => x.Flights)
-                //    .ThenInclude(x => x.Flight)
-                //        .ThenInclude(x => x.Passengers)
-                //            .ThenInclude(x => x.Person)
-                //                .ThenInclude(x => x.Services)
+                .Include(x => x.Flights)
+                    .ThenInclude(x => x.Flight)
+                        .ThenInclude(x => x.Aircraft)
+                .Include(x => x.Flights)
+                    .ThenInclude(x => x.Flight)
+                        .ThenInclude(x => x.Passengers)
+                            .ThenInclude(x => x.Person)
                 .Include(x => x.Passengers)
                     .ThenInclude(x => x.Passenger)
-                //.ThenInclude(x => x.Services)
-                //.ThenInclude(x => x.Service)
+                .ThenInclude(x => x.Services)
+                .ThenInclude(x => x.Service)
+                .Where(x => x.IsDeleted == false)
                 .AsSplitQuery()
-                .Where(x => x.IsDeleted == false).ToListAsync();
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        public async Task<Booking> GetById(string id)
+        public async Task<Booking> GetByIdAsync(string id)
         {
-            return await _context.Bookings
+            return await context.Bookings
                 .Include(x => x.Payment)
                 .Include(x => x.Flights)
                     .ThenInclude(x => x.Flight)
@@ -105,21 +88,171 @@ namespace BuzzAir.Services
                     .ThenInclude(x => x.Flight)
                         .ThenInclude(x => x.Destination)
                             .ThenInclude(x => x.City)
-                //.Include(x => x.Flights)
-                //    .ThenInclude(x => x.Flight)
-                //        .ThenInclude(x => x.Aircraft)
-                //.Include(x => x.Flights)
-                //    .ThenInclude(x => x.Flight)
-                //        .ThenInclude(x => x.Passengers)
-                //            .ThenInclude(x => x.Person)
-                //                .ThenInclude(x => x.Services)
+                .Include(x => x.Flights)
+                    .ThenInclude(x => x.Flight)
+                        .ThenInclude(x => x.Aircraft)
+                .Include(x => x.Flights)
+                    .ThenInclude(x => x.Flight)
+                        .ThenInclude(x => x.Passengers)
+                            .ThenInclude(x => x.Person)
                 .Include(x => x.Passengers)
                     .ThenInclude(x => x.Passenger)
                         .ThenInclude(x => x.Services)
                             .ThenInclude(x => x.Service)
-                .AsSplitQuery()
                 .Where(x => x.IsDeleted == false)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .AsSplitQuery()
+                .FirstOrDefaultAsync(x => x.Id == id) ??
+                throw new ArgumentException($"Can't find a booking with id {id}");
+        }
+
+        public async Task<BookingViewModel> GetBookingDetailsAsync(string id)
+        {
+            Booking booking = await GetByIdAsync(id);
+            List<FlightViewModel> flights = flightsService.GetFlightsDetails(booking.Flights);
+            List<PassengerViewModel> passengers = passengerService.GetPassengersDetails(booking.Passengers);
+
+            BookingViewModel viewModel = BookingFactory.CreateViewModel(booking, flights, passengers);
+
+            return viewModel;
+        }
+
+        public async Task<AllBookingsViewModel> GetAllAsync(string? username)
+        {
+            if (username == null)
+            {
+                throw new ArgumentException($"Invalid username. Can't retrieve any bookings.");
+            }
+
+            IEnumerable<UserBooking> userBookings = await userBookingService.GetAllForUser(username);
+            List<string> bookingIds = GetAllForUser(userBookings);
+
+            int bookingsCount = bookingIds.Count;
+            List<Task<BookingViewModel>> bookingTasks = new(bookingsCount);
+
+            foreach (string bookingId in bookingIds)
+            {
+                Task<BookingViewModel> viewModelTask = GetBookingDetailsAsync(bookingId);
+
+                bookingTasks.Add(viewModelTask);
+            }
+
+            await Task.WhenAll(bookingTasks);
+            List<BookingViewModel> viewModels = new(bookingsCount);
+
+            foreach (Task<BookingViewModel> completedTask in bookingTasks)
+            {
+                viewModels.Add(completedTask.Result);
+            }
+
+            AllBookingsViewModel viewModel = BookingFactory.CreateViewModelForAll(viewModels);
+
+            return viewModel;
+        }
+
+        private static List<string> GetAllForUser(IEnumerable<UserBooking> userBookings)
+        {
+            List<string> bookingsIds = [.. userBookings.Select(y => y.BookingId)];
+
+            return bookingsIds;
+        }
+
+        public async Task CreateAsync(CreateBookingViewModel model, string username)
+        {
+            ApplicationUser? currentUser = await userManager.FindByNameAsync(username);
+
+            if (currentUser == null)
+            {
+                throw new ArgumentException($"The user with username {username} does not exist.");
+            }
+
+            Task<Flight?> outboundTask = flightsService.GetById(model.GoingFlightSelection ?? string.Empty);
+            Task<Flight?> inboundTask = flightsService.GetById(model.ReturnFlightSelection ?? string.Empty);
+
+            await Task.WhenAll(outboundTask, inboundTask);
+
+            Flight? outbound = outboundTask.Result;
+            Flight? inbound = inboundTask.Result;
+
+            if (outbound == null)
+            {
+                throw new ArgumentException($"No outbound flight has been selected.");
+            }
+
+            decimal bookingPrice = priceCalculator.Calculate(model, outbound, inbound);
+
+            // Somebody hacked the FE
+            if (bookingPrice != model.Price)
+            {
+                throw new ArgumentException(
+                    $"The price coming from the front-end {model.Price} doesn't match the price from the back-end {bookingPrice}.\nCan't proceed with the booking.");
+            }
+
+            bool validExpiryDate = DateValidator.IsValidExpiryDate(model.Payment.ExpiryDate, out DateTime expiryDate);
+
+            if (!validExpiryDate)
+            {
+                throw new ArgumentException($"Invalid expiry date {model.Payment.ExpiryDate}.");
+            }
+
+            List<IPassenger> passengers = await passengerService.CreatePassengersAsync(model.Passengers);
+
+            Task[] flightPassengerTasks =
+            [
+                flightPassengerService.CreateAsync(passengers, outbound),
+                flightPassengerService.CreateAsync(passengers, inbound)
+            ];
+
+            await Task.WhenAll(flightPassengerTasks);
+
+            Payment payment = await paymentService.CreateAsync(model.Payment, expiryDate, bookingPrice);
+            Booking booking = BookingFactory.CreateBooking(payment);
+
+            await context.Bookings.AddAsync(booking);
+            await context.SaveChangesAsync();
+
+            Task[] bookingTasks =
+            [
+                bookingFlightService.CreateAsync(booking, outbound, isOutbound: true),
+                bookingFlightService.CreateAsync(booking, inbound),
+                bookingPassengerService.CreateAsync(passengers, booking),
+                userBookingService.CreateAsync(currentUser, booking)
+            ];
+
+            await Task.WhenAll(bookingTasks);
+        }
+
+        public Task CreateAsync(CreateBookingViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<CreateBookingViewModel> CreateViewModelAsync(IndexViewModel model)
+        {
+            bool isReturning = model.isReturning != "OneWay";
+
+            if (isReturning && model.Departure > model.Return)
+            {
+                throw new ArgumentException($"The return date {model.Return:yyyy-MM-dd} must be after the departure date {model.Departure:yyyy-MM-dd}.");
+            }
+
+            Task<City> originTask = cityService.GetByNameAsync(model.Origin);
+            Task<City> destinationTask = cityService.GetByNameAsync(model.Destination);
+
+            await Task.WhenAll(originTask, destinationTask);
+
+            City origin = originTask.Result;
+            City destination = destinationTask.Result;
+
+            IEnumerable<Flight> outboundFlights = await flightsService.GetFlightsByOriginAndDestination(origin, destination, model.Departure);
+            IEnumerable<Flight> inboundFlights = await flightsService.GetFlightsByOriginAndDestination(origin, destination, model.Return ?? new DateTime());
+
+            List<FlightViewModel> outboundModels = flightsService.GetViewModels(outboundFlights);
+            List<FlightViewModel> inboundModels = flightsService.GetViewModels(inboundFlights);
+            List<PassengerViewModel> passengers = passengerService.GetViewModels(model.Passengers);
+
+            CreateBookingViewModel viewModel = BookingFactory.CreateViewModel(outboundModels, inboundModels, passengers);
+
+            return viewModel;
         }
     }
 }

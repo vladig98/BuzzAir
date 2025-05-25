@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace BuzzAir.Areas.Identity.Pages.Account.Manage
+﻿namespace BuzzAir.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages
     {

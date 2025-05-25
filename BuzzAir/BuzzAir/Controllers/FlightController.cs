@@ -1,14 +1,4 @@
-﻿using BuzzAir.Models.CreateModels;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.EditModels;
-using BuzzAir.Models.ViewModels;
-using BuzzAir.Services.Contracts;
-using BuzzAir.Utilities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace BuzzAir.Controllers
+﻿namespace BuzzAir.Controllers
 {
     public class FlightController : Controller
     {
@@ -144,8 +134,8 @@ namespace BuzzAir.Controllers
         [Authorize(Roles = GlobalConstants.AdminRole)]
         public async Task<IActionResult> Create(CreateFlightViewModel model)
         {
-            var origin = await _airportService.GetById(model.Origin);
-            var destination = await _airportService.GetById(model.Destination);
+            var origin = await _airportService.GetByIdAsync(model.Origin);
+            var destination = await _airportService.GetByIdAsync(model.Destination);
 
             if (origin == null || destination == null)
             {
@@ -159,7 +149,7 @@ namespace BuzzAir.Controllers
                 return View("CreateFlight", model);
             }
 
-            var aircraft = await _aircraftService.GetById(model.Aircraft);
+            var aircraft = await _aircraftService.GetByIdAsync(model.Aircraft);
 
             if (aircraft == null)
             {
@@ -195,7 +185,7 @@ namespace BuzzAir.Controllers
         [Authorize(Roles = GlobalConstants.AdminRole)]
         private async Task<List<SelectListItem>> GetAircraft()
         {
-            var aircafts = await _aircraftService.GetAll();
+            var aircafts = await _aircraftService.GetAllAsync();
             List<SelectListItem> aircraftSelect = new List<SelectListItem>();
             foreach (Aircraft a in aircafts)
             {
@@ -217,7 +207,7 @@ namespace BuzzAir.Controllers
             SelectListGroup countryGroup = new SelectListGroup { Name = "Countries" };
             SelectListGroup dependenciesGroup = new SelectListGroup { Name = "Dependencies and territories not offically recognized as countries" };
 
-            var countryValues = await _countryService.GetAll();
+            var countryValues = await _countryService.GetAllAsync();
 
             foreach (Country country in countryValues)
             {

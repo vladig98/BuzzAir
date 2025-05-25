@@ -1,27 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.DbModels
+﻿namespace BuzzAir.Models.DbModels
 {
     public class State
     {
-        public State()
-        {
-            Addresses = new List<Address>();
-            Airports = new List<Airport>();
-            Cities = new List<City>();
-        }
-
-        public string Id { get; set; }
-
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         [Required]
-        public string Name { get; set; }
-
+        public string Name { get; set; } = string.Empty;
         [Required]
-        public Country Country { get; set; }
-        public string CountryId { get; set; }
-
-        public ICollection<Address> Addresses { get; set; }
-        public ICollection<Airport> Airports { get; set; }
-        public ICollection<City> Cities { get; set; }
+        public Country Country { get; set; } = new Country();
+        public string CountryId { get; set; } = string.Empty;
+        public ICollection<Address> Addresses { get; set; } = [];
+        public ICollection<Airport> Airports { get; set; } = [];
+        public ICollection<City> Cities { get; set; } = [];
     }
 }

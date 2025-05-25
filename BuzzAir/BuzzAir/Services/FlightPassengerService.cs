@@ -1,47 +1,39 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.DbModels.Contraccts;
-using BuzzAir.Services.Contracts;
+﻿using BuzzAir.Models.DbModels.Contraccts;
 
 namespace BuzzAir.Services
 {
-    public class FlightPassengerService : IFlightPassengerService
+    public class FlightPassengerService(
+        BuzzAirDbContext context, 
+        ISeatService seatService) : IFlightPassengerService
     {
-        private readonly BuzzAirDbContext _context;
-        private readonly IFlightsService _flightService;
-
-        public FlightPassengerService(BuzzAirDbContext context, IFlightsService flightService)
-        {
-            _context = context;
-            _flightService = flightService;
-
-        }
-
         public async Task<FlightPassenger> Create(IPassenger passenger, Flight flight)
         {
-            Random rnd = new Random();
+            FlightSeat seat = await seatService.AssignSeat(passenger, flight);
+            FlightPassenger flightPax = PassengerFactory.CreatePassengerForFlight(flight, passenger, seat);
 
-            List<FlightSeat> availableSeats = _context.FlightSeats.Where(x => x.FlightId == flight.Id).Where(x => x.IsAvailable).ToList();
-
-            int seatNumber = rnd.Next(0, availableSeats.Count);
-            FlightSeat seat = flight.Seats.FirstOrDefault(x => x.SeatNumber == seatNumber);
-
-            seat.IsAvailable = false;
-
-            var flightPax = new FlightPassenger
-            {
-                Flight = flight,
-                FlightId = flight.Id,
-                Id = Guid.NewGuid().ToString(),
-                Person = (Person)passenger,
-                PersonId = ((Person)passenger).Id,
-                SeatNumber = seatNumber
-            };
-
-            await _context.FlightPassengers.AddAsync(flightPax);
-            await _context.SaveChangesAsync();
+            await context.FlightPassengers.AddAsync(flightPax);
+            await context.SaveChangesAsync();
 
             return flightPax;
+        }
+
+        public async Task CreateAsync(List<IPassenger> passengers, Flight? flight)
+        {
+            if (flight == null)
+            {
+                return;
+            }
+
+            List<Task> tasks = [];
+
+            foreach (IPassenger passenger in passengers)
+            {
+                Task passengerTask = Create(passenger, flight);
+
+                tasks.Add(passengerTask);
+            }
+
+            await Task.WhenAll(tasks);
         }
     }
 }

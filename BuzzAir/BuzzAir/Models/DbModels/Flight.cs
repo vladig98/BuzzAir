@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Text.Json.Serialization;
+﻿using System.Globalization;
 
 namespace BuzzAir.Models.DbModels
 {

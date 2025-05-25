@@ -1,31 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-
-namespace BuzzAir.Models.DbModels
+﻿namespace BuzzAir.Models.DbModels
 {
     public class City
     {
-        public City()
-        {
-            Addresses = new List<Address>();
-            Airports = new List<Airport>();
-        }
-
-        public string Id { get; set; }
-
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         [Required]
-        public string Name { get; set; }
-
+        public string Name { get; set; } = string.Empty;
         [JsonIgnore]
         public State? State { get; set; }
         public string? StateId { get; set; }
-
         [JsonIgnore]
         [Required]
-        public Country Country { get; set; }
-        public string CountryId { get; set; }
-
-        public ICollection<Address> Addresses { get; set; }
-        public ICollection<Airport> Airports { get; set; }
+        public Country Country { get; set; } = new Country();
+        public string CountryId { get; set; } = string.Empty;
+        public ICollection<Address> Addresses { get; set; } = [];
+        public ICollection<Airport> Airports { get; set; } = [];
     }
 }

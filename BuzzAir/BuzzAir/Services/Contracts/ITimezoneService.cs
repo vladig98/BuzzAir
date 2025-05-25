@@ -1,9 +1,7 @@
-﻿using BuzzAir.Models.DbModels;
-
-namespace BuzzAir.Services.Contracts
+﻿namespace BuzzAir.Services.Contracts
 {
     public interface ITimezoneService
     {
-        Task<IEnumerable<Timezone>> GetAll();
+        Task<IEnumerable<Timezone>> GetAllAsync();
     }
 }

@@ -1,17 +1,18 @@
-﻿using BuzzAir.Models.DbModels;
-
+﻿
 namespace BuzzAir.Services.Contracts
 {
     public interface IAirportService
     {
         Task<bool> Exists(string id);
         Task<bool> ExistsByName(string name);
-        Task<Airport> GetById(string id);
+        Task<Airport> GetByIdAsync(string id);
         Task<Airport> GetByName(string name);
-        Task<Airport> Create(string icao, string iata, string name, City city, State state, Country country, int elevation, double lat, double lgt, string tz);
+        Task CreateAsync(AirportCreateViewModel model);
         Task<IEnumerable<Airport>> GetAll();
         Task<IEnumerable<Airport>> GetAllForCountry(string countryId);
-        Task<List<Airport>> GetAllAsQueryable(int pageSize, int? pageNumber);
+        Task<AirportViewModel> GetEditViewModelAsync(string airportId);
         Task<int> GetCount();
+        Task<PaginatedList<Airport>> GetAllAsync(int pageSize, int? pageNumber);
+        Task<AirportCreateViewModel> GetCreateViewModelAsync();
     }
 }

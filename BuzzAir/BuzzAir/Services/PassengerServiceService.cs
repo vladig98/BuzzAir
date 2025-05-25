@@ -1,34 +1,38 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.DbModels.Contraccts;
-using BuzzAir.Services.Contracts;
+﻿using BuzzAir.Models.DbModels.Contraccts;
 
 namespace BuzzAir.Services
 {
-    public class PassengerServiceService : IPassengerServiceService
+    public class PassengerServiceService(BuzzAirDbContext context) : IPassengerServiceService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public PassengerServiceService(BuzzAirDbContext context)
-        {
-            _context = context;
-        }
-
         public async Task<PersonService> Create(IPassenger passenger, IService service)
         {
-            var paxSevice = new PersonService
-            {
-                Id = Guid.NewGuid().ToString(),
-                Passenger = (Passenger)passenger,
-                PassengerId = ((Passenger)passenger).Id,
-                Service = (Service)service,
-                ServiceId = service.Id,
-            };
+            PersonService paxSevice = PersonServiceFactory.Create(passenger, service);
 
-            await _context.PersonServices.AddAsync(paxSevice);
-            await _context.SaveChangesAsync();
+            await context.PersonServices.AddAsync(paxSevice);
+            await context.SaveChangesAsync();
 
             return paxSevice;
+        }
+
+        public async Task CreateAsync(IPassenger passenger, List<IService> services)
+        {
+            List<Task<PersonService>> personServiceTasks = [];
+
+            foreach (IService service in services)
+            {
+                Task<PersonService> personServiceTask = Create(passenger, service);
+
+                personServiceTasks.Add(personServiceTask);
+            }
+
+            await Task.WhenAll(personServiceTasks);
+            
+            foreach (Task<PersonService> completedTask in personServiceTasks)
+            {
+                passenger.Services.Add(completedTask.Result);
+            }
+
+            await context.SaveChangesAsync();
         }
     }
 }

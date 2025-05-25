@@ -1,4 +1,42 @@
+# Ignore build output folders anywhere in the tree
+**/bin/
+**/obj/
 
-BuzzAir/.vs/
-BuzzAir/BuzzAir/bin/
-BuzzAir/BuzzAir/obj/
+# VS Code settings
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+*.vsp
+*.vs/
+*.vsconfig
+
+# NuGet
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+
+# Publish output
+**/publish/
+
+# Rider caches
+.idea/
+
+# Dotnet Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# OS files
+.DS_Store
+Thumbs.db

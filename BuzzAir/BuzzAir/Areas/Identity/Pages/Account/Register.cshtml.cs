@@ -1,14 +1,6 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.DbModels.Enums;
-using BuzzAir.Services.Contracts;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 
@@ -116,7 +108,7 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             SelectListGroup countryGroup = new SelectListGroup { Name = "Countries" };
             SelectListGroup dependenciesGroup = new SelectListGroup { Name = "Dependencies and territories not offically recognized as countries" };
 
-            var countryValues = await _countryService.GetAll();
+            var countryValues = await _countryService.GetAllAsync();
 
             foreach (Country country in countryValues)
             {
@@ -154,12 +146,12 @@ namespace BuzzAir.Areas.Identity.Pages.Account
                     await _roleManager.CreateAsync(role);
                 }
 
-                var country = await _countryService.GetById(Input.Country);
-                var city = await _cityService.GetByName(Input.City);
+                var country = await _countryService.GetByIdAsync(Input.Country);
+                var city = await _cityService.GetByNameAsync(Input.City);
 
                 if (city == null)
                 {
-                    city = await _cityService.Create(country, Input.City);
+                    city = await _cityService.CreateAsync(country, Input.City);
                 }
 
                 var address = new Address { Id = Guid.NewGuid().ToString(), City = city, Country = country, PostalCode = Input.Postal, Street = Input.Street };

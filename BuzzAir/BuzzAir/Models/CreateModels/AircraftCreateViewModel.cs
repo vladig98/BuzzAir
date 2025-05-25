@@ -1,18 +1,11 @@
-﻿using BuzzAir.Utilities;
-using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.CreateModels
+﻿namespace BuzzAir.Models.CreateModels
 {
-    public class AircraftCreateViewModel
+    public record AircraftCreateViewModel
     {
-        public AircraftCreateViewModel()
-        {
-        }
-
         [Required]
         [Display(Prompt = nameof(Name))]
         [RegularExpression("[a-zA-Z0-9-]{3,}")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Required]
         [Range(GlobalConstants.MinimumNumberOfSeatsForAnAircraft, GlobalConstants.MaximumNumberOfSeatsForAnAircraft)]

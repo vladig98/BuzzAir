@@ -1,6 +1,4 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.JSONModels;
+﻿using BuzzAir.Models.JSONModels;
 using Newtonsoft.Json;
 
 namespace BuzzAir.Middleware

@@ -1,7 +1,4 @@
-﻿using BuzzAir.Data;
-using Microsoft.EntityFrameworkCore;
-
-[assembly: HostingStartup(typeof(BuzzAir.Areas.Identity.IdentityHostingStartup))]
+﻿[assembly: HostingStartup(typeof(BuzzAir.Areas.Identity.IdentityHostingStartup))]
 namespace BuzzAir.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup

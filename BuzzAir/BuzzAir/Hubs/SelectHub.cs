@@ -1,7 +1,4 @@
-﻿using BuzzAir.Models.DbModels.Enums;
-using BuzzAir.Services.Contracts;
-using BuzzAir.Utilities;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using System.Text;
 
 namespace BuzzAir.Hubs
@@ -23,7 +20,7 @@ namespace BuzzAir.Hubs
 
         public async Task SelectCountry(string countryId)
         {
-            var states = await _stateService.GetAll();
+            var states = await _stateService.GetAllAsync();
 
             states = states.Where(x => x.CountryId == countryId).OrderBy(x => x.Name).ToList();
 
@@ -32,7 +29,7 @@ namespace BuzzAir.Hubs
 
         public async Task SelectState(string stateId)
         {
-            var cities = await _cityService.GetAll();
+            var cities = await _cityService.GetAllAsync();
 
             cities = cities.Where(x => x.State?.Id == stateId).OrderBy(x => x.Name).ToList();
 

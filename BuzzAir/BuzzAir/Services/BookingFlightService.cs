@@ -1,34 +1,18 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class BookingFlightService : IBookingFlightService
+    public class BookingFlightService(BuzzAirDbContext context) : IBookingFlightService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public BookingFlightService(BuzzAirDbContext context)
+        public async Task CreateAsync(Booking booking, Flight? flight, bool isOutbound = false)
         {
-            _context = context;
-        }
-
-        public async Task<BookingFlight> Create(Flight flight, Booking booking, bool isOutbound = false)
-        {
-            BookingFlight bookingFlight = new BookingFlight()
+            if (flight == null)
             {
-                Flight = flight,
-                FlightId = flight.Id,
-                Booking = booking,
-                BookingId = booking.Id,
-                Id = Guid.NewGuid().ToString(),
-                IsOutbound = isOutbound
-            };
+                return;
+            }
 
-            await _context.BookingFlights.AddAsync(bookingFlight);
-            await _context.SaveChangesAsync();
+            BookingFlight bookingFlight = FlightFactory.CreateFlightForBooking(booking, flight, isOutbound);
 
-            return bookingFlight;
+            await context.BookingFlights.AddAsync(bookingFlight);
+            await context.SaveChangesAsync();
         }
     }
 }

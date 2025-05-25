@@ -1,87 +1,114 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class AirportService : IAirportService
+    public class AirportService(
+        BuzzAirDbContext context,
+        ICountryService countryService,
+        ITimezoneService timezoneService,
+        ICityService cityService,
+        IStateService stateService) : IAirportService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public AirportService(BuzzAirDbContext context)
+        public async Task CreateAsync(AirportCreateViewModel model)
         {
-            _context = context;
+            Task<Country> countryTask = countryService.GetByIdAsync(model.Country);
+            Task<State?> stateTask = stateService.GetByIdAsync(model.State);
+            Task<City> cityTask = cityService.GetByIdAsync(model.City);
+
+            await Task.WhenAll(countryTask, stateTask, cityTask);
+            Airport airport = AirportFactory.CreateAirport(model, countryTask.Result, cityTask.Result, stateTask.Result);
+
+            await context.Airports.AddAsync(airport);
+            await context.SaveChangesAsync();
         }
 
-        public async Task<Airport> Create(string icao, string iata, string name, City city, State state, Country country, int elevation, double lat, double lgt, string tz)
+        public async Task<AirportCreateViewModel> GetCreateViewModelAsync()
         {
-            Airport airport = new Airport()
-            {
-                Id = Guid.NewGuid().ToString(),
-                ICAO = icao,
-                IATA = iata,
-                Name = name,
-                City = city,
-                State = state,
-                Country = country,
-                Elevation = elevation,
-                Latitude = lat,
-                Longitude = lgt,
-                TimeZone = tz
-            };
+            IEnumerable<Country> coutries = await countryService.GetAllAsync();
+            IEnumerable<Timezone> timezones = await timezoneService.GetAllAsync();
+            IEnumerable<City> cities = await cityService.GetAllAsync();
+            IEnumerable<State> states = await stateService.GetAllAsync();
 
-            await _context.Airports.AddAsync(airport);
-            await _context.SaveChangesAsync();
+            List<SelectListItem> countrySelect = CountryFactory.GetCountriesForSelect([.. coutries]);
+            List<SelectListItem> timezoneSelect = TimezoneFactory.GetTimezonesForSelect([.. timezones]);
 
-            return airport;
+            AirportCreateViewModel model = AirportFactory.CreateViewModelForCreation(countrySelect, timezoneSelect, [.. cities], [.. states]);
+
+            return model;
         }
 
-        public async Task<List<Airport>> GetAllAsQueryable(int pageSize, int? pageNumber)
+        public async Task<AirportViewModel> GetEditViewModelAsync(string airportId)
         {
-            int toSkip = ((pageNumber ?? 1) - 1) * pageSize;
+            Airport airport = await GetByIdAsync(airportId);
+            AirportViewModel model = AirportFactory.GetEditViewModel(airport);
 
-            return await _context.Airports.Include(x => x.City).Include(x => x.State).Include(x => x.Country).Where(x => !x.IsDeleted)
-                .OrderBy(x => x.Name)
-                .AsSplitQuery().AsQueryable()
-                .Skip(toSkip)
-                .Take(pageSize)
-                .ToListAsync();
+            return model;
         }
 
         public async Task<int> GetCount()
         {
-            return await _context.Airports.Where(x => !x.IsDeleted).CountAsync();
+            return await context.Airports.Where(x => !x.IsDeleted).CountAsync();
         }
 
         public async Task<bool> Exists(string id)
         {
-            return await _context.Airports.AnyAsync(x => x.Id == id);
+            return await context.Airports.AnyAsync(x => x.Id == id);
         }
 
         public async Task<bool> ExistsByName(string name)
         {
-            return await _context.Airports.AnyAsync(x => x.Name == name);
+            return await context.Airports.AnyAsync(x => x.Name == name);
         }
 
         public async Task<IEnumerable<Airport>> GetAll()
         {
-            return await _context.Airports.Include(x => x.Country).AsSplitQuery().ToListAsync();
+            return await context.Airports.Include(x => x.Country).AsSplitQuery().ToListAsync();
         }
 
         public async Task<IEnumerable<Airport>> GetAllForCountry(string countryId)
         {
-            return await _context.Airports.Include(x => x.Country).Where(x => x.CountryId == countryId).AsSplitQuery().ToListAsync();
+            return await context.Airports.Include(x => x.Country).Where(x => x.CountryId == countryId).AsSplitQuery().ToListAsync();
         }
 
-        public async Task<Airport> GetById(string id)
+        public async Task<Airport> GetByIdAsync(string id)
         {
-            return await _context.Airports.FirstOrDefaultAsync(x => x.Id == id);
+            return await context.Airports.FirstOrDefaultAsync(x => x.Id == id) ??
+                throw new ArgumentException($"Can't find airport with id {id}");
         }
 
         public async Task<Airport> GetByName(string name)
         {
-            return await _context.Airports.FirstOrDefaultAsync(x => x.Name == name);
+            return await context.Airports.FirstOrDefaultAsync(x => x.Name == name);
+        }
+
+        public async Task<PaginatedList<Airport>> GetAllAsync(int pageSize, int? pageNumber)
+        {
+            pageNumber ??= 1;
+            int page = pageNumber.Value;
+
+            Task<IEnumerable<Airport>> airportsTask = GetAllAsync(pageSize, page);
+            Task<int> countTask = GetCount();
+
+            await Task.WhenAll(airportsTask, countTask);
+
+            PaginatedList<Airport> airports = new(airportsTask.Result, countTask.Result, page, pageSize);
+
+            return airports;
+        }
+
+        private async Task<IEnumerable<Airport>> GetAllAsync(int pageSize, int pageNumber)
+        {
+            int toSkip = (pageNumber - 1) * pageSize;
+
+            return await context.Airports
+                .Include(x => x.City)
+                .Include(x => x.State)
+                .Include(x => x.Country)
+                .Where(x => !x.IsDeleted)
+                .Skip(toSkip)
+                .Take(pageSize)
+                .OrderBy(x => x.Name)
+                .AsSplitQuery()
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

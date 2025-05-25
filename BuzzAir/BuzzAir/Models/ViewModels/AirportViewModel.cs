@@ -1,16 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace BuzzAir.Models.ViewModels
+﻿namespace BuzzAir.Models.ViewModels
 {
     public class AirportViewModel
     {
         [HiddenInput(DisplayValue = false)]
-        public string IATA { get; set; }
+        public string IATA { get; set; } = string.Empty;
 
         [HiddenInput(DisplayValue = false)]
-        public CityViewModel City { get; set; }
+        public CityViewModel City { get; set; } = new CityViewModel();
 
         [HiddenInput(DisplayValue = false)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

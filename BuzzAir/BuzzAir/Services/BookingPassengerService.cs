@@ -1,31 +1,31 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
+﻿using BuzzAir.Models.DbModels.Contraccts;
 
 namespace BuzzAir.Services
 {
-    public class BookingPassengerService : IBookingPassengerService
+    public class BookingPassengerService(BuzzAirDbContext context) : IBookingPassengerService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public BookingPassengerService(BuzzAirDbContext context)
-        {
-            _context = context;
-        }
-
         public async Task<BookingPassenger> Create(Booking booking, Person person)
         {
-            BookingPassenger bookingPassenger = new BookingPassenger()
-            {
-                BookingId = booking.Id,
-                PassengerId = person.Id,
-                Id = Guid.NewGuid().ToString()
-            };
+            BookingPassenger bookingPassenger = BookingFactory.CreatePassengerForBooking(booking, person);
 
-            await _context.BookingPassengers.AddAsync(bookingPassenger);
-            await _context.SaveChangesAsync();
+            await context.BookingPassengers.AddAsync(bookingPassenger);
+            await context.SaveChangesAsync();
 
             return bookingPassenger;
+        }
+
+        public async Task CreateAsync(List<IPassenger> passengers, Booking booking)
+        {
+            List<Task> tasks = [];
+
+            foreach (IPassenger passenger in passengers)
+            {
+                Task passengerTask = Create(booking, (Passenger)passenger);
+
+                tasks.Add(passengerTask);
+            }
+
+            await Task.WhenAll(tasks);
         }
     }
 }

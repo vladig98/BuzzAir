@@ -1,44 +1,69 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.DbModels.Contraccts;
-using BuzzAir.Models.DbModels.Enums;
-using BuzzAir.Services.Contracts;
+﻿using BuzzAir.Models.DbModels.Contraccts;
 
 namespace BuzzAir.Services
 {
-    public class PassengerService : IPassengerService
+    public class PassengerService(
+        BuzzAirDbContext context, 
+        IPassengerServiceService passengerServiceService, 
+        IServiceService serviceService) : IPassengerService
     {
-        private readonly BuzzAirDbContext _context;
-        private readonly IPassengerServiceService _passengerServiceService;
-
-        public PassengerService(BuzzAirDbContext context, IPassengerServiceService passengerServiceService)
+        public async Task<IPassenger> Create(PassengerViewModel model, ICollection<IService> services)
         {
-            _context = context;
-            _passengerServiceService = passengerServiceService;
-        }
+            Passenger passenger = PassengerFactory.Create(model);
 
-        public async Task<IPassenger> Create(string firstName, string lastName, Gender gender, BaggageType baggageType, ICollection<IService> services)
-        {
-            var passenger = new Passenger
-            {
-                BaggageType = baggageType,
-                FirstName = firstName,
-                LastName = lastName,
-                Gender = gender,
-                Id = Guid.NewGuid().ToString()
-            };
-
-            foreach (var service in services)
-            {
-                var paxSevice = await _passengerServiceService.Create(passenger, service);
-
-                passenger.Services.Add(paxSevice);
-            }
-
-            //await _context.Passengers.AddAsync(passenger);
-            //await _context.SaveChangesAsync();
+            await context.Passengers.AddAsync(passenger);
+            await context.SaveChangesAsync();
 
             return passenger;
+        }
+
+        public async Task<List<IPassenger>> CreatePassengersAsync(List<PassengerViewModel> passengerModels)
+        {
+            List<IPassenger> passengers = [];
+
+            foreach (PassengerViewModel passengerModel in passengerModels)
+            {
+                List<IService> services = await serviceService.CreateServicesAsync(passengerModel.Services, passengerModel.BaggageType);
+                IPassenger passenger = await Create(passengerModel, services);
+                await passengerServiceService.CreateAsync(passenger, services);
+
+                passengers.Add(passenger);
+            }
+
+            return passengers;
+        }
+
+        public List<PassengerViewModel> GetPassengersDetails(ICollection<BookingPassenger> passengers)
+        {
+            int count = passengers.Count;
+            List<PassengerViewModel> viewModels = new(count);
+
+            foreach (BookingPassenger flightPassenger in passengers)
+            {
+                Passenger passenger = flightPassenger.Passenger;
+                IEnumerable<Service> services = passenger.Services.Select(x => x.Service);
+                List<ServiceViewModel> serviceViewModels = serviceService.GetServiceDetails(services);
+                PassengerViewModel viewModel = PassengerFactory.CreateViewModel(passenger, serviceViewModels);
+
+                viewModels.Add(viewModel);
+            }
+
+            return viewModels;
+        }
+
+        public List<PassengerViewModel> GetViewModels(int passengers)
+        {
+            List<PassengerViewModel> viewModels = new(passengers);
+
+            for (int i = 0; i < passengers; i++)
+            {
+                List<ServiceViewModel> services = serviceService.GetViewModels();
+                PassengerViewModel viewModel = PassengerFactory.CreateViewModel(services);
+
+                viewModels.Add(viewModel);
+            }
+
+            return viewModels;
         }
     }
 }

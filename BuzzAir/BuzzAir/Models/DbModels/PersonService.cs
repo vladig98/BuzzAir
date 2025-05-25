@@ -1,20 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.DbModels
+﻿namespace BuzzAir.Models.DbModels
 {
     public class PersonService
     {
         [Required]
-        public string Id { get; set; }
-
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         [Required]
-        public string PassengerId { get; set; }
+        public string PassengerId { get; set; } = string.Empty;
         [Required]
-        public Passenger Passenger { get; set; }
-
+        public Passenger Passenger { get; set; } = new Passenger();
         [Required]
-        public string ServiceId { get; set; }
+        public string ServiceId { get; set; } = string.Empty;
         [Required]
-        public Service Service { get; set; }
+        public Service Service { get; set; } = new Baggage();
     }
 }

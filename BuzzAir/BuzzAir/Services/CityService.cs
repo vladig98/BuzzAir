@@ -1,52 +1,46 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class CityService : ICityService
+    public class CityService(
+        BuzzAirDbContext context,
+        ICountryService countryService,
+        IStateService stateService) : ICityService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public CityService(BuzzAirDbContext context)
+        public async Task<City> CreateAsync(string name, string countryId, string stateId)
         {
-            _context = context;
-        }
+            Task<Country> countryTask = countryService.GetByIdAsync(countryId);
+            Task<State?> stateTask = stateService.GetByIdAsync(stateId);
 
-        public async Task<City> Create(Country country, string name, State? state = null)
-        {
-            var city = new City()
-            {
-                Country = country,
-                Id = Guid.NewGuid().ToString(),
-                Name = name
-            };
+            await Task.WhenAll(countryTask, stateTask);
+
+            City city = CityFactory.Create(name, countryTask.Result);
+            State? state = stateTask.Result;
 
             if (state != null)
             {
                 city.State = state;
             }
 
-            await _context.Cities.AddAsync(city);
-            await _context.SaveChangesAsync();
+            await context.Cities.AddAsync(city);
+            await context.SaveChangesAsync();
 
             return city;
         }
 
-        public async Task<IEnumerable<City>> GetAll()
+        public async Task<IEnumerable<City>> GetAllAsync()
         {
-            return await _context.Cities.Include(x => x.State).AsSplitQuery().ToListAsync();
+            return await context.Cities.Include(x => x.State).AsSplitQuery().AsNoTracking().ToListAsync();
         }
 
-        public async Task<City> GetById(string id)
+        public async Task<City> GetByIdAsync(string id)
         {
-            return await _context.Cities.FirstOrDefaultAsync(x => x.Id == id);
+            return await context.Cities.FirstOrDefaultAsync(x => x.Id == id) ??
+                throw new ArgumentException($"Can't find a city with id {id}.");
         }
 
-        public async Task<City> GetByName(string name)
+        public async Task<City> GetByNameAsync(string name)
         {
-            return await _context.Cities.FirstOrDefaultAsync(x => x.Name == name);
+            return await context.Cities.FirstOrDefaultAsync(x => x.Name == name) ??
+                throw new ArgumentException($"Can't find a city with the name {name}.");
         }
     }
 }

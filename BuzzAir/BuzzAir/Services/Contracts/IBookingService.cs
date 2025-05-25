@@ -1,14 +1,17 @@
-﻿using BuzzAir.Models.DbModels;
+﻿
 
 namespace BuzzAir.Services.Contracts
 {
     public interface IBookingService
     {
-        Task<bool> ExistsById(string id);
-        Task<Booking> GetById(string id);
-        Task Delete(string id);
-        Task<IEnumerable<Booking>> GetAll();
-        Task<Booking> Create(Payment payment);
-        Task<IEnumerable<Booking>> GetAllForUser(IEnumerable<UserBooking> userBookings);
+        Task<bool> ExistsByIdAsync(string id);
+        Task<Booking> GetByIdAsync(string id);
+        Task DeleteAsync(string id);
+        Task<IEnumerable<Booking>> GetAllAsync();
+        Task CreateAsync(Payment payment);
+        Task<BookingViewModel> GetBookingDetailsAsync(string id);
+        Task<AllBookingsViewModel> GetAllAsync(string? name);
+        Task CreateAsync(CreateBookingViewModel model);
+        Task<CreateBookingViewModel> CreateViewModelAsync(IndexViewModel model);
     }
 }

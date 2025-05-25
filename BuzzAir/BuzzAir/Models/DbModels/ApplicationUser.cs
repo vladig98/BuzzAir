@@ -1,7 +1,4 @@
 ﻿using BuzzAir.Models.DbModels.Contraccts;
-using BuzzAir.Models.DbModels.Enums;
-using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
 
 namespace BuzzAir.Models.DbModels
 {

@@ -1,8 +1,4 @@
-﻿using BuzzAir.Models.DbModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.CreateModels
+﻿namespace BuzzAir.Models.CreateModels
 {
     public class CreateFlightViewModel
     {

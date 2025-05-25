@@ -1,109 +1,101 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class AircraftService : IAircraftService
+    public class AircraftService(BuzzAirDbContext context) : IAircraftService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public AircraftService(BuzzAirDbContext context)
+        public async Task DeleteAsync(string id)
         {
-            _context = context;
-        }
-
-        public async Task<Aircraft> Delete(string id)
-        {
-            var aircraft = await _context.Aircrafts.FirstOrDefaultAsync(x => x.Id == id);
-
+            Aircraft aircraft = await GetByIdAsync(id);
             aircraft.IsDeleted = true;
 
-            await _context.SaveChangesAsync();
-
-            return aircraft;
+            await context.SaveChangesAsync();
         }
 
-        public async Task<bool> CanChangeSeats(string id, int numberOfSeats)
+        public async Task EditAsync(string id, string name, int numberOfSeats)
         {
-            var fligths = await _context.Flights.Include(x => x.Aircraft).Where(x => x.AircraftId == id).ToListAsync();
+            Task<Aircraft> aircraftTask = GetByIdAsync(id);
+            Task<bool> canChangeSeatsTask = CanChangeSeatsAsync(id, numberOfSeats);
 
-            if (fligths.Any(x => x.Passengers.Count > numberOfSeats))
+            await Task.WhenAll(aircraftTask, canChangeSeatsTask);
+
+            if (!canChangeSeatsTask.Result)
             {
-                return false;
+                throw new ArgumentException(
+                    $"There are already flights with more passengers than the aircraft allows. Invalid number of seats: {numberOfSeats}");
             }
 
-            return true;
-        }
-
-        public async Task<Aircraft> Edit(string id, string name, int numberOfSeats)
-        {
-            var aircraft = await _context.Aircrafts.FirstOrDefaultAsync(x => x.Id == id);
+            Aircraft aircraft = aircraftTask.Result;
 
             aircraft.Name = name;
             aircraft.NumberOfSeats = numberOfSeats;
 
-            await _context.SaveChangesAsync();
-
-            return aircraft;
+            await context.SaveChangesAsync();
         }
 
-        public async Task<Aircraft> Create(string name, int numberOFSeats)
+        public async Task CreateAsync(string name, int numberOFSeats)
         {
-            Aircraft aircraft = new Aircraft()
-            {
-                Name = name,
-                NumberOfSeats = numberOFSeats,
-                Id = Guid.NewGuid().ToString()
-            };
+            Aircraft aircraft = AircraftFactory.CreateAircraft(name, numberOFSeats);
 
-            await _context.Aircrafts.AddAsync(aircraft);
-            await _context.SaveChangesAsync();
-
-            return aircraft;
+            await context.Aircrafts.AddAsync(aircraft);
+            await context.SaveChangesAsync();
         }
 
-        public async Task<List<Aircraft>> GetAllAsQueryable(int pageSize, int? pageNumber)
+        public async Task<PaginatedList<Aircraft>> GetAllAsPaginatedListAsync(int pageSize, int? pageNumber)
         {
-            int toSkip = ((pageNumber ?? 1) - 1) * pageSize;
+            pageNumber ??= 1;
+            int page = pageNumber.Value;
 
-            return await _context.Aircrafts.Where(x => !x.IsDeleted)
-                .OrderBy(x => x.Name)
-                .AsSplitQuery().AsQueryable()
+            Task<IEnumerable<Aircraft>> aircraftTask = GetAllAsync(pageSize, page);
+            Task<int> countTask = GetCountAsync();
+
+            await Task.WhenAll(aircraftTask, countTask);
+            PaginatedList<Aircraft> paginatedItems = new(aircraftTask.Result, countTask.Result, page, pageSize);
+
+            return paginatedItems;
+        }
+
+        public async Task<AircraftEditViewModel> GetEditModelAsync(string aircraftId)
+        {
+            Aircraft aircraft = await GetByIdAsync(aircraftId);
+            AircraftEditViewModel model = AircraftFactory.CreateEditViewModel(aircraft);
+
+            return model;
+        }
+
+        private async Task<bool> CanChangeSeatsAsync(string id, int numberOfSeats)
+        {
+            // Check if there is already a flight booked on that aircraft
+            // The verify if the new number of seats is enough to cover these flights
+            return !await context.Flights
+                .Include(x => x.Passengers)
+                .Include(x => x.Aircraft)
+                .Where(x => x.Aircraft.Id == id)
+                .AnyAsync(x => x.Passengers.Count > numberOfSeats);
+        }
+
+        private async Task<IEnumerable<Aircraft>> GetAllAsync(int pageSize, int pageNumber)
+        {
+            int toSkip = (pageNumber - 1) * pageSize;
+
+            return await context.Aircrafts
+                .Where(x => !x.IsDeleted)
                 .Skip(toSkip)
                 .Take(pageSize)
+                .AsSplitQuery()
+                .AsNoTracking()
                 .ToListAsync();
         }
 
-        public async Task<int> GetCount()
+        private async Task<Aircraft> GetByIdAsync(string id)
         {
-            return await _context.Aircrafts.Where(x => !x.IsDeleted).CountAsync();
+            Aircraft aircraft = await context.Aircrafts.FirstOrDefaultAsync(x => x.Id == id) ??
+                throw new ArgumentException($"Aircraft with {id} does not exist.");
+
+            return aircraft;
         }
 
-        public async Task<bool> ExistById(string id)
+        private async Task<int> GetCountAsync()
         {
-            return await _context.Aircrafts.AnyAsync(a => a.Id == id);
-        }
-
-        public async Task<bool> ExistsByName(string name)
-        {
-            return await _context.Aircrafts.AnyAsync(x => x.Name == name);
-        }
-
-        public async Task<IEnumerable<Aircraft>> GetAll()
-        {
-            return await _context.Aircrafts.ToListAsync();
-        }
-
-        public async Task<Aircraft> GetById(string id)
-        {
-            return await _context.Aircrafts.FirstOrDefaultAsync(x => x.Id == id);
-        }
-
-        public async Task<Aircraft> GetByName(string name)
-        {
-            return await _context.Aircrafts.FirstOrDefaultAsync(x => x.Name == name);
+            return await context.Aircrafts.Where(x => !x.IsDeleted).CountAsync();
         }
     }
 }

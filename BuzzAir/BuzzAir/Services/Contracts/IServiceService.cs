@@ -1,11 +1,12 @@
 ﻿using BuzzAir.Models.DbModels.Contraccts;
-using BuzzAir.Models.DbModels.Enums;
 
 namespace BuzzAir.Services.Contracts
 {
     public interface IServiceService
     {
-        Task<IService> Create(string name);
-        Task<IService> Create(BaggageType baggageType);
+        Task<IService> Create(string name, BaggageType baggageType);
+        Task<List<IService>> CreateServicesAsync(List<ServiceViewModel> services, BaggageType baggageType);
+        List<ServiceViewModel> GetServiceDetails(IEnumerable<Service> services);
+        List<ServiceViewModel> GetViewModels();
     }
 }

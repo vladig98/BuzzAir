@@ -1,27 +1,15 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
-    public class StateService : IStateService
+    public class StateService(BuzzAirDbContext context) : IStateService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public StateService(BuzzAirDbContext context)
+        public async Task<IEnumerable<State>> GetAllAsync()
         {
-            _context = context;
+            return await context.States.Include(x => x.Country).AsSplitQuery().AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<State>> GetAll()
+        public async Task<State?> GetByIdAsync(string id)
         {
-            return await _context.States.Include(x => x.Country).AsSplitQuery().ToListAsync();
-        }
-
-        public async Task<State> GetById(string id)
-        {
-            return await _context.States.FirstOrDefaultAsync(x => x.Id == id);
+            return await context.States.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

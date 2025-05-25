@@ -1,12 +1,10 @@
-﻿using BuzzAir.Models.DbModels;
-
-namespace BuzzAir.Services.Contracts
+﻿namespace BuzzAir.Services.Contracts
 {
     public interface ICityService
     {
-        Task<IEnumerable<City>> GetAll();
-        Task<City> GetById(string id);
-        Task<City> GetByName(string name);
-        Task<City> Create(Country country, string name, State? state = null);
+        Task<IEnumerable<City>> GetAllAsync();
+        Task<City> GetByIdAsync(string id);
+        Task<City> GetByNameAsync(string name);
+        Task<City> CreateAsync(string name, string countyId, string stateId);
     }
 }

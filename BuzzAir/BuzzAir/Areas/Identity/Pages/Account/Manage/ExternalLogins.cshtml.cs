@@ -1,7 +1,4 @@
-﻿using BuzzAir.Models.DbModels;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage

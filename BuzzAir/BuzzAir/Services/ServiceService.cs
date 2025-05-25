@@ -1,57 +1,84 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.DbModels.Contraccts;
-using BuzzAir.Models.DbModels.Enums;
-using BuzzAir.Models.DbModels.Services;
-using BuzzAir.Services.Contracts;
+﻿using BuzzAir.Models.DbModels.Contraccts;
 
 namespace BuzzAir.Services
 {
-    public class ServiceService : IServiceService
+    public class ServiceService(BuzzAirDbContext context) : IServiceService
     {
-        private readonly BuzzAirDbContext _context;
-
-        public ServiceService(BuzzAirDbContext context)
+        public async Task<IService> Create(string name, BaggageType baggageType)
         {
-            _context = context;
-        }
-
-        public async Task<IService> Create(string name)
-        {
-            //Get the fully qualified name for a random default service
-            string fullyQualifiedName = typeof(AirportCheckIn).AssemblyQualifiedName;
-
-            //replace the default service with the actual service the passenger wants
-            fullyQualifiedName = fullyQualifiedName.Replace(nameof(AirportCheckIn), name);
-
-            //create an instance of the service the passenger wants
-            IService service = (IService)Activator.CreateInstance(Type.GetType(fullyQualifiedName));
-
-            service.Id = Guid.NewGuid().ToString();
-
-            if (service.GetType() == typeof(Seat))
+            Service service = name switch
             {
-                ((Seat)service).SeatType = SeatType.Extra_Leg_Room;
-            }
+                "AirportCheckIn" => ServiceFactory.CreateAirportCheckIn(),
+                "Baggage" => ServiceFactory.CreateBaggage(baggageType),
+                "Flexibility" => ServiceFactory.CreateFlexibility(),
+                "OnTimeArrival" => ServiceFactory.CreateOnTimeArrival(),
+                "Priority" => ServiceFactory.CreatePriority(),
+                "Seat" => ServiceFactory.CreateSeat(),
+                _ => throw new ArgumentException($"Invalid service provided {name}"),
+            };
 
-            await _context.Services.AddAsync((Service)service);
-            await _context.SaveChangesAsync();
+            await context.Services.AddAsync(service);
+            await context.SaveChangesAsync();
 
             return service;
         }
 
-        public async Task<IService> Create(BaggageType baggageType)
+        public async Task<List<IService>> CreateServicesAsync(List<ServiceViewModel> serviceModels, BaggageType baggageType)
         {
-            IService baggage = new Baggage()
+            List<Task<IService>> serviceTasks = [];
+
+            foreach (ServiceViewModel serviceModel in serviceModels)
             {
-                Id = Guid.NewGuid().ToString(),
-                Kilos = baggageType == BaggageType.Twenty_KG ? 20 : baggageType == BaggageType.ThirtyTwo_KG ? 32 : 10
-            };
+                if (!serviceModel.IsChecked)
+                {
+                    continue;
+                }
 
-            await _context.Services.AddAsync((Service)baggage);
-            await _context.SaveChangesAsync();
+                string serviceName = serviceModel.Name;
+                Task<IService> serviceTask = Create(serviceName, baggageType);
 
-            return baggage;
+                serviceTasks.Add(serviceTask);
+            }
+
+            await Task.WhenAll(serviceTasks);
+            List<IService> services = [];
+
+            foreach (Task<IService> completedTask in serviceTasks)
+            {
+                services.Add(completedTask.Result);
+            }
+
+            return services;
+        }
+
+        public List<ServiceViewModel> GetServiceDetails(IEnumerable<Service> services)
+        {
+            int count = services.Count();
+            List<ServiceViewModel> viewModels = new(count);
+
+            foreach (Service service in services)
+            {
+                ServiceViewModel viewModel = ServiceFactory.CreateViewModel(service);
+
+                viewModels.Add(viewModel);
+            }
+
+            return viewModels;
+        }
+
+        public List<ServiceViewModel> GetViewModels()
+        {
+            List<ServiceViewModel> services =
+            [
+                ServiceFactory.CreateAirportCheckInViewModel(),
+                ServiceFactory.CreateBaggageViewModel(),
+                ServiceFactory.CreateFlexibilityViewModel(),
+                ServiceFactory.CreateOnTimeArrivalViewModel(),
+                ServiceFactory.CreatePriorityViewModel(),
+                ServiceFactory.CreateSeatViewModel()
+            ];
+
+            return services;
         }
     }
 }

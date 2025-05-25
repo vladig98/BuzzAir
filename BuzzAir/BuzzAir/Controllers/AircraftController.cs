@@ -1,109 +1,67 @@
-﻿using BuzzAir.Models.CreateModels;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.EditModels;
-using BuzzAir.Models.ViewModels;
-using BuzzAir.Services.Contracts;
-using BuzzAir.Utilities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace BuzzAir.Controllers
+﻿namespace BuzzAir.Controllers
 {
-    public class AircraftController : Controller
+    public class AircraftController(IAircraftService aircraftService) : Controller
     {
-        private readonly IAircraftService _aircraftService;
+        private const int _pageSize = 10;
 
-        public AircraftController(IAircraftService aircraftService)
+        [HttpGet]
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        public async Task<IActionResult> AllAsync(int? pageNumber)
         {
-            _aircraftService = aircraftService;
+            PaginatedList<Aircraft> paginatedItems = await aircraftService.GetAllAsPaginatedListAsync(_pageSize, pageNumber);
+
+            return View("All", paginatedItems);
         }
 
+        [HttpGet]
         [Authorize(Roles = GlobalConstants.AdminRole)]
-        public IActionResult CreateAircraft()
+        public IActionResult CreateAsync()
         {
             return View();
         }
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdminRole)]
-        public async Task<IActionResult> Create(AircraftCreateViewModel model)
-        {
-            var aircraft = await _aircraftService.Create(model.Name, model.Seats);
-
-            return this.Redirect("/");
-        }
-
-        [Authorize(Roles = GlobalConstants.AdminRole)]
-        public async Task<IActionResult> All(int? pageNumber)
-        {
-            int pageSize = 10;
-
-            List<Aircraft> aircraft = await _aircraftService.GetAllAsQueryable(pageSize, pageNumber);
-            int count = await _aircraftService.GetCount();
-
-            return View("All", await PaginatedList<Aircraft>.CreateAsync(aircraft, pageNumber ?? 1, pageSize, count));
-        }
-
-        [Authorize(Roles = GlobalConstants.AdminRole)]
-        public async Task<IActionResult> Edit(string aircraftId)
-        {
-            var aircarft = await _aircraftService.GetById(aircraftId);
-
-            if (aircarft == null)
-            {
-                return BadRequest();
-            }
-
-            AircraftEditViewModel model = new AircraftEditViewModel
-            {
-                Name = aircarft.Name,
-                NumbeOfSeats = aircarft.NumberOfSeats,
-                Id = aircarft.Id
-            };
-
-            return View(model);
-        }
-
-        [Authorize(Roles = GlobalConstants.AdminRole)]
-        [HttpPost]
-        public async Task<IActionResult> Delete(string aircraftId)
-        {
-            var exists = await _aircraftService.ExistById(aircraftId);
-
-            if (!exists)
-            {
-                return BadRequest();
-            }
-
-            var aircraft = await _aircraftService.Delete(aircraftId);
-
-            return RedirectToAction("All");
-        }
-
-        [Authorize(Roles = GlobalConstants.AdminRole)]
-        [HttpPost]
-        public async Task<IActionResult> Edit(AircraftEditViewModel model)
+        public async Task<IActionResult> CreateAsync(AircraftCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var exists = await _aircraftService.ExistById(model.Id);
+            await aircraftService.CreateAsync(model.Name, model.Seats);
 
-            if (!exists)
+            return this.Redirect("/");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        public async Task<IActionResult> EditAsync(string aircraftId)
+        {
+            AircraftEditViewModel model = await aircraftService.GetEditModelAsync(aircraftId);
+
+            return View(model);
+        }
+
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        [HttpPost]
+        public async Task<IActionResult> EditAsync(AircraftEditViewModel model)
+        {
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var canChange = await _aircraftService.CanChangeSeats(model.Id, model.NumbeOfSeats);
+            await aircraftService.EditAsync(model.Id, model.Name, model.NumbeOfSeats);
 
-            if (!canChange)
-            {
-                return BadRequest();
-            }
+            return RedirectToAction("All");
+        }
 
-            var aircraft = await _aircraftService.Edit(model.Id, model.Name, model.NumbeOfSeats);
+        [Authorize(Roles = GlobalConstants.AdminRole)]
+        [HttpPost]
+        public async Task<IActionResult> DeleteAsync(string aircraftId)
+        {
+            await aircraftService.DeleteAsync(aircraftId);
 
             return RedirectToAction("All");
         }

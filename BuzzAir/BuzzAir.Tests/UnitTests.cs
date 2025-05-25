@@ -3,9 +3,6 @@ using BuzzAir.Models.DbModels;
 using BuzzAir.Services;
 using BuzzAir.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
-using Moq;
-using System.Linq;
-using System.Linq.Expressions;
 using Xunit;
 
 namespace BuzzAir.Tests
@@ -29,7 +26,7 @@ namespace BuzzAir.Tests
             {
                 IAircraftService aircraftService = new AircraftService(context);
 
-                var aircaft = await aircraftService.Create(AircraftName, NumberOfSeats);
+                var aircaft = await aircraftService.CreateAsync(AircraftName, NumberOfSeats);
 
                 Assert.Equal(AircraftName, aircaft.Name);
                 Assert.Equal(NumberOfSeats, aircaft.NumberOfSeats);
@@ -44,9 +41,9 @@ namespace BuzzAir.Tests
             {
                 IAircraftService aircraftService = new AircraftService(context);
 
-                Aircraft aircraft = await aircraftService.Create(AircraftName, NumberOfSeats);
+                Aircraft aircraft = await aircraftService.CreateAsync(AircraftName, NumberOfSeats);
 
-                var edited = await aircraftService.Edit(aircraft.Id, AircraftName + "Edited", NumberOfSeats * 2);
+                var edited = await aircraftService.EditAsync(aircraft.Id, AircraftName + "Edited", NumberOfSeats * 2);
 
                 Assert.Equal(AircraftName + "Edited", edited.Name);
                 Assert.Equal(NumberOfSeats * 2, edited.NumberOfSeats);
@@ -62,9 +59,9 @@ namespace BuzzAir.Tests
             {
                 IAircraftService aircraftService = new AircraftService(context);
 
-                Aircraft aircraft = await aircraftService.Create(AircraftName, NumberOfSeats);
+                Aircraft aircraft = await aircraftService.CreateAsync(AircraftName, NumberOfSeats);
 
-                var deleted = await aircraftService.Delete(aircraft.Id);
+                var deleted = await aircraftService.DeleteAsync(aircraft.Id);
 
                 Assert.Equal(AircraftName, deleted.Name);
                 Assert.Equal(NumberOfSeats, deleted.NumberOfSeats);
@@ -80,11 +77,11 @@ namespace BuzzAir.Tests
             {
                 IAircraftService aircraftService = new AircraftService(context);
 
-                await aircraftService.Create(AircraftName, NumberOfSeats);
-                await aircraftService.Create(AircraftName, NumberOfSeats);
-                await aircraftService.Create(AircraftName, NumberOfSeats);
+                await aircraftService.CreateAsync(AircraftName, NumberOfSeats);
+                await aircraftService.CreateAsync(AircraftName, NumberOfSeats);
+                await aircraftService.CreateAsync(AircraftName, NumberOfSeats);
 
-                var count = await aircraftService.GetCount();
+                var count = await aircraftService.GetCountAsync();
 
                 Assert.Equal(3, count);
             }
@@ -97,9 +94,9 @@ namespace BuzzAir.Tests
             {
                 IAircraftService aircraftService = new AircraftService(context);
 
-                Aircraft aircraft = await aircraftService.Create(AircraftName, NumberOfSeats);
+                Aircraft aircraft = await aircraftService.CreateAsync(AircraftName, NumberOfSeats);
 
-                bool exists = await aircraftService.ExistById(aircraft.Id);
+                bool exists = await aircraftService.ExistByIdAsync(aircraft.Id);
 
                 Assert.True(exists);
             }

@@ -1,6 +1,4 @@
-﻿using BuzzAir.Models.DbModels.Enums;
-
-namespace BuzzAir.Models.DbModels.Contraccts
+﻿namespace BuzzAir.Models.DbModels.Contraccts
 {
     public interface IPerson
     {

@@ -1,9 +1,4 @@
-﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Models.EditModels;
-using BuzzAir.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace BuzzAir.Services
 {
     public class FlightsService : IFlightsService
@@ -76,13 +71,21 @@ namespace BuzzAir.Services
             return await _context.Flights.Where(x => !x.IsDeleted).Include(x => x.Origin).AsSplitQuery().AnyAsync(x => x.Origin.Name == origin);
         }
 
-        public async Task<IEnumerable<Flight>> GetAll()
+        public async Task<List<SelectListItem>> GetAll()
         {
-            return await _context.Flights.Where(x => !x.IsDeleted)
-                .Include(x => x.Origin).ThenInclude(x => x.City)
-                .Include(x => x.Origin).ThenInclude(x => x.Country)
-                .Where(x => x.Origin.City.Name == "Sofia")
-                .AsSplitQuery().ToListAsync();
+            List<Flight> flights = await _context.Flights
+                .Where(x => !x.IsDeleted)
+                .Include(x => x.Origin)
+                    .ThenInclude(x => x.City)
+                .Include(x => x.Origin)
+                    .ThenInclude(x => x.Country)
+                .AsSplitQuery()
+                .AsNoTracking()
+                .ToListAsync();
+
+            List<SelectListItem> flightSelect = FlightFactory.GetFlightsForSelect(flights);
+
+            return flightSelect;
         }
 
         public async Task<IEnumerable<Flight>> GetFlightsByOriginAndDestination(City origin, City destination, DateTime departure)
@@ -142,16 +145,23 @@ namespace BuzzAir.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Flight> GetById(string id)
+        public async Task<Flight?> GetById(string id)
         {
-            return await _context.Flights.Where(x => !x.IsDeleted)
+            return await _context.Flights
+                .Where(x => !x.IsDeleted)
                 .Where(x => x.Id == id)
-                .Include(x => x.Destination).ThenInclude(x => x.City)
-                .Include(x => x.Destination).ThenInclude(x => x.State)
-                .Include(x => x.Destination).ThenInclude(x => x.Country)
-                .Include(x => x.Origin).ThenInclude(x => x.City)
-                .Include(x => x.Origin).ThenInclude(x => x.State)
-                .Include(x => x.Origin).ThenInclude(x => x.Country)
+                .Include(x => x.Destination)
+                    .ThenInclude(x => x.City)
+                .Include(x => x.Destination)
+                    .ThenInclude(x => x.State)
+                .Include(x => x.Destination)
+                    .ThenInclude(x => x.Country)
+                .Include(x => x.Origin)
+                    .ThenInclude(x => x.City)
+                .Include(x => x.Origin)
+                    .ThenInclude(x => x.State)
+                .Include(x => x.Origin)
+                    .ThenInclude(x => x.Country)
                 .Include(x => x.Aircraft)
                 .Include(x => x.Seats)
                 .AsSplitQuery()
@@ -209,6 +219,35 @@ namespace BuzzAir.Services
             flight.AircraftId = model.Aircraft;
 
             await _context.SaveChangesAsync();
+        }
+
+        public List<FlightViewModel> GetFlightsDetails(ICollection<BookingFlight> flights)
+        {
+            int count = flights.Count;
+            List<FlightViewModel> viewModels = new(count);
+
+            foreach (BookingFlight flight in flights)
+            {
+                FlightViewModel flightViewModel = FlightFactory.CreateViewModel(flight);
+
+                viewModels.Add(flightViewModel);
+            }
+
+            return viewModels;
+        }
+
+        public List<FlightViewModel> GetViewModels(IEnumerable<Flight> flights)
+        {
+            List<FlightViewModel> viewModels = [];
+
+            foreach (Flight flight in flights)
+            {
+                FlightViewModel viewModel = FlightFactory.CreateViewModel(flight);
+
+                viewModels.Add(viewModel);
+            }
+
+            return viewModels;
         }
     }
 }

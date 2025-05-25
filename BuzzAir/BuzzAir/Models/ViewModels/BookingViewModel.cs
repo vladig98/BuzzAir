@@ -1,24 +1,13 @@
 ﻿namespace BuzzAir.Models.ViewModels
 {
-    public class BookingViewModel
+    public record BookingViewModel
     {
-        public BookingViewModel()
-        {
-            Passengers = new List<PassengerViewModel>();
-        }
-
-        public FlightViewModel Outbound { get; set; }
-
-        public FlightViewModel Inbound { get; set; }
-
-        public string Amount { get; set; }
-
-        public string Id { get; set; }
-
-        public string Currency { get; set; }
-
-        public List<PassengerViewModel> Passengers { get; set; }
-
-        public string User { get; set; }
+        public FlightViewModel Outbound { get; set; } = new FlightViewModel();
+        public FlightViewModel Inbound { get; set; } = new FlightViewModel();
+        public string Amount { get; set; } = string.Empty;
+        public string Id { get; set; } = string.Empty;
+        public string Currency { get; set; } = string.Empty;
+        public List<PassengerViewModel> Passengers { get; set; } = [];
+        public string User { get; set; } = string.Empty;
     }
 }

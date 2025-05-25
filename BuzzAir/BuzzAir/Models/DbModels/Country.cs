@@ -1,30 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.DbModels
+﻿namespace BuzzAir.Models.DbModels
 {
     public class Country
     {
-        public Country()
-        {
-            Nationalities = new HashSet<TravelDocument>();
-            BirthCountries = new HashSet<TravelDocument>();
-            Cities = new HashSet<City>();
-        }
-
-        public string Id { get; set; }
-
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         [Required]
-        public string Name { get; set; }
-
+        public string Name { get; set; } = string.Empty;
         [Required]
-        public string ISO { get; set; }
-
-        //true for officially recognized countries and false for dependencies
+        public string ISO { get; set; } = string.Empty;
+        // true for officially recognized countries and false for dependencies
         [Required]
         public bool IsCountry { get; set; }
-
-        public IEnumerable<TravelDocument> Nationalities { get; set; }
-        public IEnumerable<TravelDocument> BirthCountries { get; set; }
-        public IEnumerable<City> Cities { get; set; }
+        public IEnumerable<TravelDocument> Nationalities { get; set; } = [];
+        public IEnumerable<TravelDocument> BirthCountries { get; set; } = [];
+        public IEnumerable<City> Cities { get; set; } = [];
     }
 }

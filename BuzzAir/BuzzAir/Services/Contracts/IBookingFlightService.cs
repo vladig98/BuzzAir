@@ -1,9 +1,7 @@
-﻿using BuzzAir.Models.DbModels;
-
-namespace BuzzAir.Services.Contracts
+﻿namespace BuzzAir.Services.Contracts
 {
     public interface IBookingFlightService
     {
-        Task<BookingFlight> Create(Flight flight, Booking booking, bool isOutbound = false);
+        Task CreateAsync(Booking booking, Flight? outbound, bool isOutbound = false);
     }
 }

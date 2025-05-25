@@ -1,7 +1,4 @@
-﻿using BuzzAir.Models.DbModels.Enums;
-using System.ComponentModel.DataAnnotations;
-
-namespace BuzzAir.Models.ViewModels
+﻿namespace BuzzAir.Models.ViewModels
 {
     public class PaymentViewModel
     {
