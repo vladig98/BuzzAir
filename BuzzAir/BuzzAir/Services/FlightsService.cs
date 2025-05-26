@@ -5,7 +5,8 @@
         IAircraftService aircraftService,
         ICountryService countryService,
         IAirportService airportService,
-        ISeatService seatService) : IFlightsService
+        ISeatService seatService,
+        IDatabase redis) : IFlightsService
     {
         public async Task Create(CreateFlightViewModel model)
         {
@@ -43,15 +44,35 @@
 
         public async Task<List<SelectListItem>> GetAll()
         {
-            List<Flight> flights = await context.Flights
+            string redisKey = "flightsInfo";
+            string? flightsJSON = await redis.StringGetAsync(redisKey);
+            List<FlightInfo> flights = [];
+
+            if (!string.IsNullOrEmpty(flightsJSON))
+            {
+                flights = JsonConvert.DeserializeObject<List<FlightInfo>>(flightsJSON) ?? [];
+            }
+            else
+            {
+                flights = await context.Flights
                 .Where(x => !x.IsDeleted)
                 .Include(x => x.Origin)
                     .ThenInclude(x => x.City)
                 .Include(x => x.Origin)
                     .ThenInclude(x => x.Country)
+                .Select(x => new FlightInfo()
+                {
+                    CityName = x.Origin.City.Name,
+                    CountryName = x.Origin.Country.Name,
+                    CityId = x.Origin.City.Id
+                })
                 .AsSplitQuery()
                 .AsNoTracking()
                 .ToListAsync();
+
+                flightsJSON = JsonConvert.SerializeObject(flights);
+                await redis.StringSetAsync(redisKey, flightsJSON);
+            }
 
             List<SelectListItem> flightSelect = FlightFactory.GetFlightsForSelect(flights);
 

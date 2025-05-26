@@ -47,7 +47,7 @@
                 return View("CreateBooking", model);
             }
 
-            await bookingService.CreateAsync(model);
+            await bookingService.CreateAsync(model, User.Identity?.Name ?? string.Empty);
 
             return Redirect("All");
         }

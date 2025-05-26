@@ -149,10 +149,10 @@ namespace BuzzAir.Areas.Identity.Pages.Account
                 var country = await _countryService.GetByIdAsync(Input.Country);
                 var city = await _cityService.GetByNameAsync(Input.City);
 
-                if (city == null)
-                {
-                    city = await _cityService.CreateAsync(country, Input.City);
-                }
+                //if (city == null)
+                //{
+                //    city = await _cityService.CreateAsync(country, Input.City);
+                //}
 
                 var address = new Address { Id = Guid.NewGuid().ToString(), City = city, Country = country, PostalCode = Input.Postal, Street = Input.Street };
                 var user = new ApplicationUser { Id = Guid.NewGuid().ToString(), Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FirstName = Input.FullName, LastName = Input.FullName, Address = address, Gender = Input.Gender, Role = role };

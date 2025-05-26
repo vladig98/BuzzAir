@@ -20,4 +20,6 @@ global using Microsoft.AspNetCore.Mvc.Rendering;
 global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations;
 global using System.Globalization;
-global using System.Text.Json.Serialization;
+global using StackExchange.Redis;
+global using BuzzAir.Models.DTOs;
+global using Newtonsoft.Json;

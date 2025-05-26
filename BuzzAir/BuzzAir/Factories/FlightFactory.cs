@@ -1,4 +1,6 @@
-﻿namespace BuzzAir.Factories
+﻿using BuzzAir.Models.DTOs;
+
+namespace BuzzAir.Factories
 {
     public static class FlightFactory
     {
@@ -102,14 +104,24 @@
             return viewModel;
         }
 
-        internal static List<SelectListItem> GetFlightsForSelect(List<Flight> flights)
+        internal static List<SelectListItem> GetFlightsForSelect(List<FlightInfo> flights)
         {
             List<SelectListItem> list = [];
             Dictionary<string, SelectListGroup> groups = [];
+            HashSet<string> cities = [];
 
-            foreach (Flight flight in flights)
+            foreach (FlightInfo flight in flights)
             {
-                string countryName = flight.Origin.Country.Name;
+                string countryName = flight.CountryName;
+                string cityName = flight.CityName;
+                string cityId = flight.CityId;
+
+                if (cities.Contains(cityName))
+                {
+                    continue;
+                }
+
+                cities.Add(cityName);
 
                 if (!groups.TryGetValue(countryName, out SelectListGroup? group))
                 {
@@ -123,8 +135,8 @@
 
                 SelectListItem flightItem = new()
                 {
-                    Text = flight.Origin.City.Name,
-                    Value = flight.Origin.City.Id,
+                    Text = cityName,
+                    Value = cityId,
                     Group = group
                 };
 

@@ -11,6 +11,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultTokenProviders()
     .AddDefaultUI();
 
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+    ConnectionMultiplexer.Connect("localhost"));
+
+builder.Services.AddSingleton(sp =>
+    sp.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -57,6 +63,7 @@ builder.Services.AddTransient<IFlightPassengerService, FlightPassengerService>()
 builder.Services.AddTransient<IServiceService, ServiceService>();
 builder.Services.AddTransient<IBoardingPassService, BoardingPassService>();
 builder.Services.AddTransient<IPriceCalculator, PriceCalculator>();
+builder.Services.AddTransient<ISeatService, SeatService>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {

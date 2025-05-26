@@ -34,6 +34,7 @@ namespace BuzzAir.Data
 
         public BuzzAirDbContext(DbContextOptions<BuzzAirDbContext> options) : base(options)
         {
+            Database.SetCommandTimeout(180);
         }
 
         public BuzzAirDbContext()
