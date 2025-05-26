@@ -1,9 +1,35 @@
 ﻿@model ErrorViewModel
+@using System.Net
 @{
     ViewData["Title"] = "Error";
+    var statusCode = Model.StatusCode;
+    string statusText = statusCode.HasValue
+        ? $"{statusCode.Value} - {((HttpStatusCode)statusCode.Value).ToString().SplitCamelCase()}"
+        : "Unexpected Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-danger shadow-sm p-4 text-center">
+                <h1 class="display-4 text-danger">Oops! Something went wrong.</h1>
+                <h4 class="mt-3 text-dark">An error occurred while processing your request.</h4>
 
-<h1>@(Model.StatusCode.HasValue ? (Model.StatusCode.Value + $" - {((HttpStatusCode)Model.StatusCode.Value).ToString().SplitCamelCase()}") : "")</h1>
+                @if (statusCode.HasValue)
+                {
+                    <div class="mt-4">
+                        <h5 class="text-muted">Error Code:</h5>
+                        <h3 class="text-danger">@statusText</h3>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model?.RequestId))
+                {
+                    <p class="mt-3 text-secondary"><strong>Request ID:</strong> @Model.RequestId</p>
+                }
+
+                <a class="btn btn-outline-primary mt-4" href="/">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
