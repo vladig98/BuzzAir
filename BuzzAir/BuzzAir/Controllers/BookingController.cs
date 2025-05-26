@@ -58,7 +58,7 @@
         /// </summary>
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create(IndexViewModel model)
+        public async Task<IActionResult> CreateGet(IndexViewModel model)
         {
             if (!ModelState.IsValid)
             {
