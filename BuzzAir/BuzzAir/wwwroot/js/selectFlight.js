@@ -1,73 +1,54 @@
 "use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/getSelectOptions").build();
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/getSelectOptions")
+    .build();
 
-connection.on("CountryFlightSelectedOrigin", function (airports) {
-    document.getElementById("Origin").classList.remove("d-none")
-    document.getElementById("originLabel").classList.remove("d-none")
-    let airportSelect = document.getElementById("Origin")
-
-    airportSelect.innerHTML = ''
-
-    let defaultOption = document.createElement("option");
-    defaultOption.text = "Select Airport";
-    defaultOption.selected = true;
-    defaultOption.hidden = true;
-    defaultOption.disabled = true;
-
-    airportSelect.appendChild(defaultOption)
-
-    for (let airport of airports) {
-        let option = document.createElement("option");
-        option.value = airport.id
-        option.text = airport.name
-
-        airportSelect.appendChild(option)
+// Helper to populate a <select> with options
+const populateSelect = (selectId, labelId, items, defaultText = "Select Airport") => {
+    const select = document.getElementById(selectId);
+    if (!select) {
+        return;
     }
-});
+    // Show the select and its label
+    select.classList.remove("d-none");
+    document.getElementById(labelId)?.classList.remove("d-none");
 
-connection.on("CountryFlightSelectedDestination", function (airports) {
-    document.getElementById("Destination").classList.remove("d-none")
-    document.getElementById("destinationLabel").classList.remove("d-none")
-    let airportSelect = document.getElementById("Destination")
+    // Reset options
+    select.innerHTML = "";
 
-    airportSelect.innerHTML = ''
+    // Default placeholder option
+    const placeholder = new Option(defaultText, "", true, true);
+    placeholder.hidden = placeholder.disabled = true;
+    select.append(placeholder);
 
-    let defaultOption = document.createElement("option");
-    defaultOption.text = "Select Airport";
-    defaultOption.selected = true;
-    defaultOption.hidden = true;
-    defaultOption.disabled = true;
-
-    airportSelect.appendChild(defaultOption)
-
-    for (let airport of airports) {
-        let option = document.createElement("option");
-        option.value = airport.id
-        option.text = airport.name
-
-        airportSelect.appendChild(option)
+    // Add each item
+    for (const { id, name } of items) {
+        select.append(new Option(name, id));
     }
-});
+};
 
-connection.start().then(function () {
-    //document.getElementById("sendButton").disabled = false;
-}).catch(function (err) {
-    return console.error(err.toString());
-});
+// SignalR event handlers
+connection.on("CountryFlightSelectedOrigin", airports =>
+    populateSelect("Origin", "originLabel", airports)
+);
 
-document.getElementById("DestinationCountry").addEventListener("change", function (event) {
-    var countryId = document.getElementById("DestinationCountry").value;
+connection.on("CountryFlightSelectedDestination", airports =>
+    populateSelect("Destination", "destinationLabel", airports)
+);
 
-    connection.invoke("SelectCountryForFlightDestination", countryId).catch(function (err) {
-        return console.error(err.toString());
-    });
-});
+// Start the connection
+connection.start().catch(err => console.error(err));
 
-document.getElementById("OriginCountry").addEventListener("change", function (event) {
-    var countryId = document.getElementById("OriginCountry").value;
+// Invoke helper to call hub methods with logging
+const invokeHub = (method, arg) =>
+    connection.invoke(method, arg).catch(err => console.error(err));
 
-    connection.invoke("SelectCountryForFlightOrigin", countryId).catch(function (err) {
-        return console.error(err.toString());
-    });
-});
+// Wire up change events for country selects
+document.getElementById("OriginCountry")?.addEventListener("change", e =>
+    invokeHub("SelectCountryForFlightOrigin", e.target.value)
+);
+
+document.getElementById("DestinationCountry")?.addEventListener("change", e =>
+    invokeHub("SelectCountryForFlightDestination", e.target.value)
+);

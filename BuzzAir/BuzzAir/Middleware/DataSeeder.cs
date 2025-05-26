@@ -1,5 +1,4 @@
 ﻿using BuzzAir.Models.JSONModels;
-using Newtonsoft.Json;
 
 namespace BuzzAir.Middleware
 {

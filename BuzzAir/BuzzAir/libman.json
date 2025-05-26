@@ -3,12 +3,35 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
+      "library": "bootstrap@latest",
+      "destination": "wwwroot/lib/bootstrap"
+    },
+    {
+      "library": "jquery@latest",
+      "destination": "wwwroot/lib/jquery"
+    },
+    {
+      "library": "jquery-validation@latest",
+      "destination": "wwwroot/lib/jquery-validation"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@latest",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive"
+    },
+    {
+      // Comment this out
+      // Use unpkg to get the rest
+      // Uncomment this and use jsdelivr to get SignalR
       "library": "@microsoft/signalr@latest",
       "destination": "wwwroot/lib/microsoft/signalr/",
       "files": [
         "dist/browser/signalr.js",
         "dist/browser/signalr.min.js"
       ]
+    },
+    {
+      "library": "pickadate@latest",
+      "destination": "wwwroot/lib/pickadate"
     }
   ]
 }

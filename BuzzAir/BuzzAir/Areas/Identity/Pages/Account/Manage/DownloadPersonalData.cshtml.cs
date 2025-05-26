@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 using System.Text;
 
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage

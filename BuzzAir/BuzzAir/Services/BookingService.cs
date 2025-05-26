@@ -167,7 +167,7 @@
 
         public async Task<CreateBookingViewModel> CreateViewModelAsync(IndexViewModel model)
         {
-            bool isReturning = model.isReturning != "OneWay";
+            bool isReturning = model.IsReturning != "OneWay";
 
             if (isReturning && model.Departure > model.Return)
             {

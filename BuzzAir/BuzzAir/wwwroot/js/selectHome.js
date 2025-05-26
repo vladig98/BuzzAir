@@ -1,120 +1,93 @@
 "use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/getSelectOptions").build();
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/getSelectOptions")
+    .build();
 
-connection.on("FlightDatesSelected", function (dates) {
-    let datesToAdd = dates.split(';');
+const disableDates = (selector, dates) => {
+    const $input = $(selector);
+    const picker = $input.pickadate("picker");
+    picker.set("disable", true);
 
-    var $input = $('#departureDate')
-    var picker = $input.pickadate('picker')
+    for (const d of dates.split(";")) {
+        if (!d) {
+            continue;
+        }
+        const [year, month, day] = JSON.parse(d);
+        picker.set("disable", [[year, month, day]]);
+    }
+};
 
-    picker.set('disable', true);
+const invokeHub = (method, ...args) =>
+    connection.invoke(method, ...args).catch(err => console.error(err));
 
-    for (let d of datesToAdd) {
-        let dateA = JSON.parse(d);
+const populateDestinations = cities => {
+    const select = document.getElementById("destinationSelect");
+    select.innerHTML = "";
 
-        picker.set('disable', [
-            [dateA[0], dateA[1], dateA[2]]
-        ])
+    const defaultOpt = new Option("", "", true, true);
+    defaultOpt.hidden = defaultOpt.disabled = true;
+    select.append(defaultOpt);
+
+    // Group by country
+    const groups = new Map();
+    for (const { id, name, group } of cities) {
+        if (!groups.has(group)) {
+            groups.set(group, document.createElement("optgroup"));
+            groups.get(group).label = group;
+        }
+        const opt = new Option(name, id);
+        groups.get(group).append(opt);
     }
 
-    let radioButtons = document.searchFlightsForm.isReturning;
+    for (const grp of groups.values()) {
+        select.append(grp);
+    }
+};
 
-    for (let i = 0; i < radioButtons.length; i++) {
-        if (radioButtons[i].checked) {
-            if (radioButtons[i].value == "Return") {
-                var originId = document.getElementById("originSelect").value;
-                var destinationId = document.getElementById("destinationSelect").value;
+// SignalR event handlers
+connection.on("FlightDatesSelected", dates =>
+    disableDates("#departureDate", dates)
+);
+connection.on("ReturnFlightDatesSelected", dates =>
+    disableDates("#returnDate", dates)
+);
+connection.on("DestinationsHomePageSelected", populateDestinations);
 
-                connection.invoke("GetReturnFlightDates", originId, destinationId).catch(function (err) {
-                    return console.error(err.toString());
-                });
+// Start connection
+connection.start().catch(err => console.error(err));
+
+const originSelect = document.getElementById("originSelect");
+const destinationSelect = document.getElementById("destinationSelect");
+const clearDates = () => {
+    document.getElementById("departureDate").value = "";
+    document.getElementById("returnDate").value = "";
+};
+
+originSelect.addEventListener("change", () => {
+    clearDates();
+    invokeHub("SelectDestinationsForHomePage", originSelect.value);
+});
+
+destinationSelect.addEventListener("change", () => {
+    clearDates();
+    invokeHub(
+        "GetFlightDates",
+        originSelect.value,
+        destinationSelect.value
+    );
+});
+
+document
+    .searchFlightsForm.elements.isReturning
+    .forEach(radio =>
+        radio.addEventListener("change", ({ target }) => {
+            if (target.value === "Return" && target.checked) {
+                invokeHub(
+                    "GetReturnFlightDates",
+                    originSelect.value,
+                    destinationSelect.value
+                );
             }
-        }
-    }
-});
-
-connection.on("ReturnFlightDatesSelected", function (dates) {
-    let datesToAdd = dates.split(';');
-
-    var $input = $('#returnDate')
-    var picker = $input.pickadate('picker')
-
-    picker.set('disable', true);
-
-    for (let d of datesToAdd) {
-        if (d) {
-            let dateA = JSON.parse(d);
-
-            picker.set('disable', [
-                [dateA[0], dateA[1], dateA[2]]
-            ])
-        }
-    }
-});
-
-connection.on("DestinationsHomePageSelected", function (cities) {
-    let destinationSelect = document.getElementById("destinationSelect")
-
-    destinationSelect.innerHTML = ''
-
-    let defaultOption = document.createElement("option");
-    defaultOption.text = "";
-    defaultOption.selected = true;
-    defaultOption.hidden = true;
-    defaultOption.disabled = true;
-
-    destinationSelect.appendChild(defaultOption)
-
-    let groups = [];
-
-    for (let city of cities) {
-        let option = document.createElement("option");
-        option.value = city.id
-        option.text = city.name
-
-        if (!groups.some(x => x.getAttribute("label") == city.group)) {
-            let optGroup = document.createElement("optgroup")
-            optGroup.setAttribute("label", city.group)
-            optGroup.appendChild(option)
-            groups.push(optGroup)
-        } else {
-            let optGroup = groups.filter(x => x.getAttribute("label") == city.group)[0]
-
-            optGroup.appendChild(option)
-        }
-    }
-
-    for (var gr of groups) {
-        destinationSelect.appendChild(gr)
-    }
-});
-
-connection.start().then(function () {
-    //document.getElementById("sendButton").disabled = false;
-}).catch(function (err) {
-    return console.error(err.toString());
-});
-
-document.getElementById("originSelect").addEventListener("change", function (event) {
-    var cityId = document.getElementById("originSelect").value;
-
-    document.getElementById('departureDate').value = ''
-    document.getElementById('returnDate').value = ''
-
-    connection.invoke("SelectDestinationsForHomePage", cityId).catch(function (err) {
-        return console.error(err.toString());
-    });
-});
-
-document.getElementById("destinationSelect").addEventListener("change", function (event) {
-    var originId = document.getElementById("originSelect").value;
-    var destinationId = document.getElementById("destinationSelect").value;
-
-    document.getElementById('departureDate').value = ''
-    document.getElementById('returnDate').value = ''
-
-    connection.invoke("GetFlightDates", originId, destinationId).catch(function (err) {
-        return console.error(err.toString());
-    });
-});
+        })
+    );

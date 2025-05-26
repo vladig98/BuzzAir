@@ -1,17 +1,31 @@
-﻿#carousel > .carousel-inner > .carousel-item > img {
-    width: 100%;
-    height: 90vh;
-    opacity: 0.7;
+﻿:root {
+    /* Reusable spacing and sizing variables */
+    --carousel-height: 90vh;
+    --searchbar-offset: 10%;
+    --searchbar-margin: 13%;
+    --font-lilita: 'Lilita One', sans-serif;
 }
 
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     min-height: 100vh;
+    font-family: system-ui, sans-serif;
 }
 
+/* --- Carousel --- */
+#carousel .carousel-inner .carousel-item img {
+    width: 100%;
+    height: var(--carousel-height);
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+/* --- Validation & Sections --- */
 .field-validation-error {
     color: red;
 }
@@ -20,97 +34,112 @@ body {
     min-height: 95vh;
 }
 
-.baggageDiv {
-    min-height: 3rem;
-    aspect-ratio: 1/1;
-    width: 10rem;
-}
-
+/* --- Utility classes --- */
 .times {
-    font-size: 36px;
+    font-size: 2.25rem; /* 36px */
     font-weight: 900;
 }
 
 .cityNames {
     color: blue;
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
 }
 
-.divButton:focus,
-.divButton:hover {
+.leftmargin {
+    margin-left: 0.5rem;
+}
+
+.divButton {
     cursor: pointer;
 }
 
+/* --- Boarding pass / baggage UI --- */
+.baggageDiv {
+    width: 10rem;
+    aspect-ratio: 1;
+    min-height: 3rem;
+}
+
+/* --- Search bar positioning --- */
 #searchBar {
-    --left: 13%;
-    top: 10%;
-    left: var(--left);
+    position: absolute;
+    top: var(--searchbar-offset);
+    left: var(--searchbar-margin);
+    width: calc(100% - (var(--searchbar-margin) * 2));
     z-index: 1;
-    width: calc(100% - var(--left) * 2);
 }
 
 #tab {
-    background-color: white;
-    padding: 1%;
+    background: #fff;
+    padding: 0.5rem;
     width: 10%;
 }
 
 #searchBar form {
-    background-color: white;
-    padding: 1%;
-    width: auto;
+    background: #fff;
+    padding: 0.5rem;
 }
 
-.leftmargin {
-    margin-left: 2%;
-}
-
+/* --- Typographic styling --- */
 #text {
-    color: white;
-    margin-top: 15%;
-    font-family: 'Lilita One', sans-serif;
+    position: absolute;
+    top: -75%;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-family: var(--font-lilita);
 }
 
-#text > h1 {
-    font-size: 120px;
-}
+    #text h1 {
+        font-size: 7rem; /* 120px */
+        margin: 0.2em 0;
+    }
 
-#text > h5 {
-    font-size: 40px;
-}
+    #text h5 {
+        font-size: 2rem; /* 40px */
+        margin: 0;
+        font-weight: 400;
+        color: rgba(255,255,255,0.9);
+    }
 
+/* --- Form layout tweaks --- */
 .group > div > select,
 .group > div > input,
 #searchBar > form > div > input {
     width: 100%;
 }
 
-.customPlaceholder {
-    position: absolute;
-    left: 5%;
-    top: 15%;
-    padding: 0;
-    color: #8e8e8e;
-    font-weight: 500;
-    font-size: 20px;
-}
-
+/* --- Floating placeholder animation --- */
 .inputContainer {
     position: relative;
 }
 
-.inputContainer > input:focus ~ .customPlaceholder,
-.inputContainer > select:focus ~ .customPlaceholder,
-.selectedSelect {
-    top: -35%;
-    background-color: white;
-    left: 5%;
-    font-size: 18px;
+.customPlaceholder {
+    position: absolute;
+    left: 1rem;
+    top: 1.25rem;
+    padding: 0;
+    color: #8e8e8e;
+    font-weight: 500;
+    font-size: 1.125rem; /* 20px */
+    transition: 0.2s;
 }
 
-input[type="date"]:in-range::-webkit-datetime-edit-year-field, 
-input[type="date"]:in-range::-webkit-datetime-edit-month-field, 
-input[type="date"]:in-range::-webkit-datetime-edit-day-field, 
+.inputContainer > input:focus ~ .customPlaceholder,
+.inputContainer > select:focus ~ .customPlaceholder,
+.selectedSelect + .customPlaceholder {
+    top: -0.75rem;
+    left: 1rem;
+    font-size: 0.9rem;
+    background: #fff;
+    padding: 0 0.25rem;
+}
+
+/* --- Date input “mask” styling --- */
+/* Hide built-in date fields when within allowed range */
+input[type="date"]:in-range::-webkit-datetime-edit-year-field,
+input[type="date"]:in-range::-webkit-datetime-edit-month-field,
+input[type="date"]:in-range::-webkit-datetime-edit-day-field,
 input[type="date"]:in-range::-webkit-datetime-edit-text {
     color: transparent;
 }

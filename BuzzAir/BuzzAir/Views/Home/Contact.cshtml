@@ -1,11 +1,78 @@
 ﻿@{
-    ViewData["Title"] = "Contact us";
+    ViewData["Title"] = "Contact Us";
 }
-<h2>@ViewData["Title"]</h2>
+<section class="contact-us container py-5">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
 
-<address>
-    Ulitsa St. 33<br />
-    Sofia, Bulgaria<br />
-    +359 (0) 888888888<br />
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d733.0852957419038!2d23.33492782920744!3d42.69649599869783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDQxJzQ3LjQiTiAyM8KwMjAnMDcuNyJF!5e0!3m2!1sen!2sbg!4v1545773925304" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-</address>
+    <div class="row">
+        <!-- Sofia Headquarters -->
+        <div class="col-md-6 mb-4">
+            <h5>BuzzAir Headquarters (Sofia)</h5>
+            <address>
+                Blvd. Vasil Levski 33<br />
+                1000 Sofia, Bulgaria<br />
+                <abbr title="Phone">P:</abbr>
+                +359 2 555 0100 (local rate)<br />
+                <abbr title="Email">E:</abbr>
+                <a href="mailto:support-sofia@buzzair.example.com">support-sofia@buzzair.example.com</a>
+            </address>
+            <p class="small text-muted">Calls to +359 numbers are billed at your provider’s standard rates.</p>
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d733.0852957419038!2d23.33492782920744!3d42.69649599869783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa85605bd867eb%3A0x4c91c9ae1a9c0e2!2sVasil%20Levski%20Blvd%2033%2C%20Sofia!5e0!3m2!1sen!2sbg!4v1545773925304"
+                        style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+
+        <!-- New York Office -->
+        <div class="col-md-6 mb-4">
+            <h5>BuzzAir Americas (New York)</h5>
+            <address>
+                245 Broadway, 15th Floor<br />
+                New York, NY 10007, USA<br />
+                <abbr title="Phone">P:</abbr>
+                +1 555-234-6789 (USD 0.10/min)<br />
+                <abbr title="Email">E:</abbr>
+                <a href="mailto:support-ny@buzzair.example.com">support-ny@buzzair.example.com</a>
+            </address>
+            <p class="small text-muted">International calls may incur additional charges.</p>
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.1234567890123!2d-74.01329918459317!3d40.71305227932972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a19f08d5b3f%3A0xa5c7e3c4b0e9b4ab!2s245%20Broadway%2C%20New%20York%2C%20NY%2010007!5e0!3m2!1sen!2sus!4v1670000000000"
+                        style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+
+        <!-- London Office -->
+        <div class="col-md-6 mb-4">
+            <h5>BuzzAir Europe (London)</h5>
+            <address>
+                10 Downing Street<br />
+                London SW1A 2AA, UK<br />
+                <abbr title="Phone">P:</abbr>
+                +44 20 7946 0123 (GBP 0.15/min)<br />
+                <abbr title="Email">E:</abbr>
+                <a href="mailto:support-lon@buzzair.example.com">support-lon@buzzair.example.com</a>
+            </address>
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.921736456054!2d-0.1276476840478542!3d51.50336397963509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c7e16a3c0b%3A0x7a3bf89154bd7be8!2s10%20Downing%20St%2C%20Westminster%2C%20London%20SW1A%202AA%2C%20UK!5e0!3m2!1sen!2suk!4v1670000000001"
+                        style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+
+        <!-- Tokyo Office -->
+        <div class="col-md-6 mb-4">
+            <h5>BuzzAir Asia (Tokyo)</h5>
+            <address>
+                1-1 Chiyoda, Chiyoda-ku<br />
+                Tokyo 100-0001, Japan<br />
+                <abbr title="Phone">P:</abbr>
+                +81 3-1234-5678 (JPY 20/min)<br />
+                <abbr title="Email">E:</abbr>
+                <a href="mailto:support-tyo@buzzair.example.com">support-tyo@buzzair.example.com</a>
+            </address>
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5180.123456789012!2d139.75359678499677!3d35.68517527902171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b9194b0f8f3%3A0x6d2c6c46b1b8f1d5!2s1%20Chiyoda%20City%2C%20Chiyoda%20City%2C%20Tokyo%20100-0001%2C%20Japan!5e0!3m2!1sen!2sjp!4v1670000000002"
+                        style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </div>
+</section>

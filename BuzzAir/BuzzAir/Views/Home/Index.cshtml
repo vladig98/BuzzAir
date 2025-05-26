@@ -4,98 +4,158 @@
 
 @model IndexViewModel
 
-<div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+@{
+    var slides = new[]
+    {
+        new { Src = Url.Content("~/images/city.jpeg"), Alt = "City skyline" },
+        new { Src = Url.Content("~/images/lake.jpg"), Alt = "Serene lake" },
+        new { Src = Url.Content("~/images/london.jpg"), Alt = "London landmarks" },
+        new { Src = Url.Content("~/images/nature.jpeg"), Alt = "Lush nature scene" },
+        new { Src = Url.Content("~/images/sunrise.jpg"), Alt = "Sunrise over the horizon" }
+    };
+}
+
+<div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" aria-label="Homepage slideshow">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        @for (var i = 0; i < slides.Length; i++)
+        {
+            <button 
+                type="button" 
+                data-bs-target="#carousel" 
+                data-bs-slide-to="@i" 
+                class="@(i == 0 ? "active" : null)" 
+                aria-current="@(i == 0 ? "true" : null)" 
+                aria-label="Slide @(i + 1)">
+            </button>
+        }
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="~/images/city.jpeg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-            <img src="~/images/lake.jpg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-            <img src="~/images/london.jpg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-            <img src="~/images/nature.jpeg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-            <img src="~/images/sunrise.jpg" class="d-block w-100">
-        </div>
+        @for (var i = 0; i < slides.Length; i++)
+        {
+            var slide = slides[i];
+            <div class="carousel-item @(i == 0 ? "active" : null)">
+                <img src="@slide.Src" 
+                     class="d-block w-100" 
+                     alt="@slide.Alt" />
+            </div>
+        }
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 
-<div id="searchBar" class="position-absolute">
-    <div id="tab">
-        <i class="fa-solid fa-plane"></i> Flights
+<div id="searchBar" class="position-absolute top-50 start-50 translate-middle p-4 bg-white rounded shadow">
+    <div class="mb-3 text-center">
+        <i class="fa-solid fa-plane fa-2x"></i>
+        <h2 class="mt-2">Flights</h2>
     </div>
-    <form name="searchFlightsForm" method="post" class="row ms-0 g-3 align-items-center" asp-controller="Booking" asp-action="CreateBooking" id="bookingForm">
-        <div class="row">
-            <div class="form-check col-1">
-                <input class="form-check-input" type="radio" name="isReturning" id="isReturning1" value="Return" checked>
-                <label class="form-check-label" for="isReturning1">
-                    Return
-                </label>
-            </div>
-            <div class="form-check col-1">
-                <input class="form-check-input" type="radio" name="isReturning" id="isReturning2" value="OneWay">
-                <label class="form-check-label" for="isReturning2">
-                    One Way
-                </label>
-            </div>
+    <form 
+        asp-controller="Booking" 
+        asp-action="CreateBooking" 
+        method="post" 
+        name="searchFlightsForm" 
+        id="bookingForm"
+        class="row g-3">
+        
+        <div class="col-12 d-flex gap-3 justify-content-center">
+            @foreach (var option in new[] { ("Return", "Return"), ("OneWay", "One Way") })
+            {
+                <div class="form-check">
+                    <input 
+                        class="form-check-input" 
+                        type="radio" 
+                        asp-for="IsReturning" 
+                        name="isReturning" 
+                        id="isReturning_@option.Item1" 
+                        value="@option.Item1" />
+                    <label 
+                        class="form-check-label" 
+                        for="isReturning_@option.Item1">
+                        @option.Item2
+                    </label>
+                </div>
+            }
         </div>
-        <div class="col-4">
-            <div class="input-group">
-                <div class="form-floating">
-                    <select class="form-select form-select-lg" style="height: auto;" asp-for="Origin" asp-items="Model.Origins" id="originSelect">
-                        <option selected hidden disabled value="">Origin</option>
-                    </select>
-                    <label for="originSelect">Origin</label>
-                </div>
-                <div class="form-floating">
-                    <select class="form-select form-select-lg" style="height: auto;" asp-for="Destination" id="destinationSelect">
-                        <option selected hidden disabled>Destination</option>
-                    </select>
-                    <label for="destinationSelect">Destination</label>
-                </div>
+
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <select 
+                    class="form-select form-select-lg" 
+                    asp-for="Origin" 
+                    asp-items="Model.Origins" 
+                    id="originSelect">
+                    <option hidden disabled value="">Select origin</option>
+                </select>
+                <label for="originSelect">Origin</label>
             </div>
-        </div>
-        <div class="col-4">
-            <div class="input-group">
-                <div class="form-floating">
-                    <input type="text" class="form-control form-control-lg" style="height: auto;" asp-for="Departure" id="departureDate" placeholder="Departure" />
-                    <label for="departureDate">Departure</label>
-                </div>
-                <div class="form-floating" id="returnGroup">
-                    <input type="text" class="form-control form-control-lg" style="height: auto;" asp-for="Return" id="returnDate" placeholder="Return" />
-                    <label for="returnDate">Return</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-2">
             <div class="form-floating">
-                <input class="form-control form-control-lg" asp-for="Passengers" style="height: auto;" min="1" max="10" value="" id="passengersCount" placeholder="Passengers" />
+                <select 
+                    class="form-select form-select-lg" 
+                    asp-for="Destination" 
+                    asp-items="Model.Destinations" 
+                    id="destinationSelect">
+                    <option hidden disabled value="">Select destination</option>
+                </select>
+                <label for="destinationSelect">Destination</label>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    class="form-control form-control-lg" 
+                    asp-for="Departure" 
+                    id="departureDate" 
+                    placeholder="Departure date" />
+                <label for="departureDate">Departure</label>
+            </div>
+            <div class="form-floating" id="returnGroup">
+                <input 
+                    type="text" 
+                    class="form-control form-control-lg" 
+                    asp-for="Return" 
+                    id="returnDate" 
+                    placeholder="Return date" />
+                <label for="returnDate">Return</label>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-floating">
+                <input 
+                    type="number" 
+                    min="1" 
+                    max="10"
+                    class="form-control form-control-lg" 
+                    asp-for="Passengers" 
+                    id="passengersCount" 
+                    placeholder="Passengers" />
                 <label for="passengersCount">Passengers</label>
             </div>
         </div>
-        <div class="col-2 text-center">
-            <button type="submit" class="w-100 btn btn-lg bg-dark text-white"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+
+        <div class="col-md-2 d-grid">
+            <button 
+                type="submit" 
+                class="btn btn-dark btn-lg">
+                <i class="fa-solid fa-magnifying-glass me-1"></i>
+                Search
+            </button>
         </div>
     </form>
-    <div id="text">
-        <h1 class="pt-4 text-center">
-            Welcome to BuzzAir
-        </h1>
-        <h5 class="text-center"> Welcome to the world of opportunities.</h5>
+
+    <div id="text" class="mt-4 text-center">
+        <h1>Welcome to BuzzAir</h1>
+        <h5 class="text-muted">Explore the world of opportunities.</h5>
     </div>
 </div>
-
 
 @section Scripts {
     <script src="~/js/selectHome.js"></script>

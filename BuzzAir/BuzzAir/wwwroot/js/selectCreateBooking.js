@@ -1,13 +1,23 @@
 "use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/getSelectOptions").build();
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/getSelectOptions")
+    .build();
 
-connection.on("CurrencyConvertionCompleted", function (curr, price) {
-    $("#totalAmount").text(curr + " " + price.toFixed(2))
-})
+const totalAmountEl = document.getElementById("totalAmount");
 
-connection.start().then(function () {
-    //document.getElementById("sendButton").disabled = false;
-}).catch(function (err) {
-    return console.error(err.toString());
+// Update total amount when conversion completes
+connection.on("CurrencyConvertionCompleted", (currency, price) => {
+    if (totalAmountEl) {
+        totalAmountEl.textContent = `${currency} ${price.toFixed(2)}`;
+    }
 });
+
+// Start the SignalR connection
+(async () => {
+    try {
+        await connection.start();
+    } catch (err) {
+        console.error("SignalR start failed:", err);
+    }
+})();

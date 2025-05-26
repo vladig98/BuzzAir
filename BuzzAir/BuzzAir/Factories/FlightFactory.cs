@@ -1,6 +1,4 @@
-﻿using BuzzAir.Models.DTOs;
-
-namespace BuzzAir.Factories
+﻿namespace BuzzAir.Factories
 {
     public static class FlightFactory
     {

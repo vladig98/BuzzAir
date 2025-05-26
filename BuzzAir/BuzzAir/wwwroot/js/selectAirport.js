@@ -1,73 +1,64 @@
 "use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/getSelectOptions").build();
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/getSelectOptions")
+    .build();
 
-connection.on("CountrySelected", function (states) {
-    document.getElementById("State").parentElement.classList.remove("d-none")
-    let stateSelect = document.getElementById("State")
-
-    stateSelect.innerHTML = ''
-    document.getElementById("City").innerHTML = ""
-    document.getElementById("City").parentElement.classList.add("d-none")
-
-    let defaultOption = document.createElement("option");
-    defaultOption.text = "Select State";
-    defaultOption.selected = true;
-    defaultOption.hidden = true;
-    defaultOption.disabled = true;
-
-    stateSelect.appendChild(defaultOption)
-
-    for (let state of states) {
-        let option = document.createElement("option");
-        option.value = state.id
-        option.text = state.name
-
-        stateSelect.appendChild(option)
+// Helper to populate a <select> with a placeholder and items
+const populateSelect = (selectId, placeholderText, items) => {
+    const select = document.getElementById(selectId);
+    if (!select) {
+        return;
     }
-});
 
-connection.on("StateSelected", function (cities) {
-    document.getElementById("City").parentElement.classList.remove("d-none")
-    let citySelect = document.getElementById("City")
+    // Show the select
+    select.parentElement?.classList.remove("d-none");
 
-    citySelect.innerHTML = ''
+    // Reset options
+    select.innerHTML = "";
 
-    let defaultOption = document.createElement("option");
-    defaultOption.text = "Select City";
-    defaultOption.selected = true;
-    defaultOption.hidden = true;
-    defaultOption.disabled = true;
+    // Add placeholder
+    const placeholder = new Option(placeholderText, "", true, true);
+    placeholder.hidden = placeholder.disabled = true;
+    select.append(placeholder);
 
-    citySelect.appendChild(defaultOption)
-
-    for (let city of cities) {
-        let option = document.createElement("option");
-        option.value = city.id
-        option.text = city.name
-
-        citySelect.appendChild(option)
+    // Add each item
+    for (const { id, name } of items) {
+        select.append(new Option(name, id));
     }
-});
+};
 
-connection.start().then(function () {
-    //document.getElementById("sendButton").disabled = false;
-}).catch(function (err) {
-    return console.error(err.toString());
-});
+// SignalR event handlers
+connection.on("CountrySelected", states =>
+    populateSelect("State", "Select State", states)
+);
 
-document.getElementById("Country").addEventListener("change", function (event) {
-    var countryId = document.getElementById("Country").value;
+connection.on("StateSelected", cities =>
+    populateSelect("City", "Select City", cities)
+);
 
-    connection.invoke("SelectCountry", countryId).catch(function (err) {
-        return console.error(err.toString());
-    });
-});
+// Start the SignalR connection
+(async () => {
+    try {
+        await connection.start();
+    } catch (err) {
+        console.error("SignalR start failed:", err);
+    }
+})();
 
-document.getElementById("State").addEventListener("change", function (event) {
-    var stateId = document.getElementById("State").value;
+// Invoke helper to call hub methods with logging
+const invokeHub = (method, arg) =>
+    connection.invoke(method, arg).catch(err => console.error(err));
 
-    connection.invoke("SelectState", stateId).catch(function (err) {
-        return console.error(err.toString());
-    });
-});
+// Cache selectors
+const countrySelect = document.getElementById("Country");
+const stateSelect = document.getElementById("State");
+
+// Wire up change events
+countrySelect?.addEventListener("change", e =>
+    invokeHub("SelectCountry", e.target.value)
+);
+
+stateSelect?.addEventListener("change", e =>
+    invokeHub("SelectState", e.target.value)
+);
