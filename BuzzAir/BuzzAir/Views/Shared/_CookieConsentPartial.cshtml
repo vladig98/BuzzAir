@@ -8,50 +8,26 @@
 
 @if (showBanner)
 {
-    <nav id="cookieConsent" class="navbar navbar-light bg-light fixed-top navbar-expand-md" role="alert">
-        <div class="container">
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#cookieConsentContent"
-                    aria-controls="cookieConsentContent"
-                    aria-expanded="false"
-                    aria-label="Toggle cookie consent banner">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="cookieConsentContent">
-                <span class="navbar-text me-2">
-                    <i class="fas fa-info-circle"></i>
-                </span>
-                <p class="navbar-text flex-grow-1 mb-0">
-                    We use cookies to enhance your experience and to analyze our traffic. By clicking “Accept,” you agree to our use of cookies.
-                </p>
-                <div class="ms-auto d-flex align-items-center gap-2">
-                    <a asp-controller="Home" asp-action="Privacy" class="btn btn-info btn-sm">
-                        Learn More
-                    </a>
-                    <button type="button"
-                            class="btn btn-secondary btn-sm"
-                            data-cookie-string="@cookieString">
-                        Accept
-                    </button>
-                </div>
-            </div>
+    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show d-flex align-items-center fixed-bottom mb-0" role="alert" style="z-index: 1050;">
+        <i class="fas fa-cookie-bite fa-2x me-3"></i>
+        <div class="flex-grow-1">
+            Use cookies to enhance your experience and analyze traffic.
+            <a asp-page="/Privacy" class="alert-link ms-1">Learn More</a>.
         </div>
-    </nav>
-
+        <button type="button"
+                class="btn btn-sm btn-outline-secondary ms-3 accept-policy"
+                data-bs-dismiss="alert"
+                aria-label="Accept"
+                data-cookie-string="@cookieString">
+            Accept
+        </button>
+    </div>
     <script>
         (function () {
-            var acceptBtn = document.querySelector("#cookieConsent button[data-cookie-string]");
-            if (acceptBtn) {
-                acceptBtn.addEventListener("click", function (event) {
-                    document.cookie = event.target.dataset.cookieString;
-                    var banner = document.getElementById("cookieConsent");
-                    if (banner) {
-                        banner.classList.add("d-none");
-                    }
-                });
-            }
+            var button = document.querySelector("#cookieConsent button[data-cookie-string]");
+            button.addEventListener("click", function (event) {
+                document.cookie = button.dataset.cookieString;
+            }, false);
         })();
     </script>
 }

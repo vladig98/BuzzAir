@@ -17,6 +17,13 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
 
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.ConsentCookieValue = "true";
+});
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -112,6 +119,7 @@ app.UseDeveloperExceptionPage();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCookiePolicy();
 
 app.UseRouting();
 
