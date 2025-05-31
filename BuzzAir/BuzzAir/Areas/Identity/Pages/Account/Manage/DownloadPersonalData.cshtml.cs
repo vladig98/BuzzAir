@@ -1,5 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+#nullable disable
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using BuzzAir.Models.DbModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage
 {
@@ -14,6 +27,11 @@ namespace BuzzAir.Areas.Identity.Pages.Account.Manage
         {
             _userManager = userManager;
             _logger = logger;
+        }
+
+        public IActionResult OnGet()
+        {
+            return NotFound();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -35,8 +53,16 @@ namespace BuzzAir.Areas.Identity.Pages.Account.Manage
                 personalData.Add(p.Name, p.GetValue(user)?.ToString() ?? "null");
             }
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
-            return new FileContentResult(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(personalData)), "text/json");
+            var logins = await _userManager.GetLoginsAsync(user);
+            foreach (var l in logins)
+            {
+                personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
+            }
+
+            personalData.Add($"Authenticator Key", await _userManager.GetAuthenticatorKeyAsync(user));
+
+            Response.Headers.TryAdd("Content-Disposition", "attachment; filename=PersonalData.json");
+            return new FileContentResult(System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(personalData), "application/json");
         }
     }
 }
