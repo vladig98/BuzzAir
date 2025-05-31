@@ -19,6 +19,10 @@
       "destination": "wwwroot/lib/jquery-validation-unobtrusive"
     },
     {
+      "library": "qrcodejs@latest",
+      "destination": "wwwroot/lib/qrcodejs"
+    },
+    {
       // Comment this out
       // Use unpkg to get the rest
       // Uncomment this and use jsdelivr to get SignalR
@@ -30,8 +34,8 @@
       ]
     },
     {
-      "library": "pickadate@latest",
-      "destination": "wwwroot/lib/pickadate"
+      "library": "air-datepicker@latest",
+      "destination": "wwwroot/lib/air-datepicker"
     }
   ]
 }

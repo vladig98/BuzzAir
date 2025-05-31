@@ -67,13 +67,25 @@
             @foreach (var option in new[] { ("Return", "Return"), ("OneWay", "One Way") })
             {
                 <div class="form-check">
-                    <input 
-                        class="form-check-input" 
-                        type="radio" 
-                        asp-for="IsReturning" 
-                        name="isReturning" 
-                        id="isReturning_@option.Item1" 
-                        value="@option.Item1" />
+                    @if (option.Item1 == "Return")
+                    {
+                        <input checked 
+                               class="form-check-input"
+                               type="radio"
+                               asp-for="IsReturning"
+                               name="isReturning"
+                               id="isReturning_@option.Item1"
+                               value="@option.Item1" />
+                    }
+                    else
+                    {
+                        <input class="form-check-input"
+                               type="radio"
+                               asp-for="IsReturning"
+                               name="isReturning"
+                               id="isReturning_@option.Item1"
+                               value="@option.Item1" />
+                    }
                     <label 
                         class="form-check-label" 
                         for="isReturning_@option.Item1">
@@ -108,7 +120,7 @@
 
         <div class="col-md-4">
             <div class="form-floating mb-3">
-                <input 
+                <input autocomplete="off"
                     type="text" 
                     class="form-control form-control-lg" 
                     asp-for="Departure" 
@@ -117,7 +129,7 @@
                 <label for="departureDate">Departure</label>
             </div>
             <div class="form-floating" id="returnGroup">
-                <input 
+                <input autocomplete="off"
                     type="text" 
                     class="form-control form-control-lg" 
                     asp-for="Return" 

@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -44,6 +46,13 @@ builder.Services.Configure<MvcViewOptions>(options =>
 });
 
 IConfiguration configuration = builder.Configuration;
+
+builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+{
+    facebookOptions.AppId = configuration["Authentication:Facebook:AppId"] ?? string.Empty;
+    facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"] ?? string.Empty;
+    facebookOptions.AccessDeniedPath = "/AccessDeniedPathInfo";
+});
 
 builder.Services.AddTransient<IAirportService, AirportService>();
 builder.Services.AddTransient<IFlightsService, FlightsService>();

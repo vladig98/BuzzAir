@@ -5,12 +5,11 @@
     }
 
     elem.value = '';
-    $(selector).pickadate({
-        min: new Date(),
-        max: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
-        today: null,
-        clear: null,
-        close: null
+    new AirDatepicker(selector, {
+        minDate: new Date(),
+        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+        buttons: [],
+        locale: exports.default
     });
 }
 
