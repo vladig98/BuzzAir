@@ -1,88 +1,102 @@
 ﻿@page
 @using BuzzAir.Models.DbModels.Enums
 @model RegisterModel
+
 @{
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4">@ViewData["Title"]</h4>
+                    <form asp-route-returnUrl="@Model.ReturnUrl" method="post" novalidate>
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-<div class="row">
-    <div class="col-lg-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label asp-for="Input.Email" class="form-label"></label>
+                            <input asp-for="Input.Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Password" class="form-label"></label>
+                            <input asp-for="Input.Password" type="password" class="form-control" />
+                            <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                            <input asp-for="Input.ConfirmPassword" type="password" class="form-control" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Username" class="form-label"></label>
+                            <input asp-for="Input.Username" class="form-control" />
+                            <span asp-validation-for="Input.Username" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.FullName" class="form-label"></label>
+                            <input asp-for="Input.FullName" class="form-control" />
+                            <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Gender" class="form-label"></label>
+                            <select asp-for="Input.Gender" class="form-select">
+                                <option selected disabled value="">Select Gender</option>
+                                @foreach (var value in Enum.GetValues<Gender>())
+                                {
+                                    <option value="@value">@value</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Input.Gender" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                            <input asp-for="Input.PhoneNumber" class="form-control" />
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Street" class="form-label"></label>
+                            <input asp-for="Input.Street" class="form-control" />
+                            <span asp-validation-for="Input.Street" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Country" class="form-label"></label>
+                            <select asp-for="Input.Country" class="form-select" asp-items="Model.Countries">
+                                <option selected disabled value="">Select Country</option>
+                            </select>
+                            <span asp-validation-for="Input.Country" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.City" class="form-label"></label>
+                                <input asp-for="Input.City" class="form-control" />
+                                <span asp-validation-for="Input.City" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.Postal" class="form-label"></label>
+                                <input asp-for="Input.Postal" class="form-control" />
+                                <span asp-validation-for="Input.Postal" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Username"></label>
-                <input asp-for="Input.Username" class="form-control" />
-                <span asp-validation-for="Input.Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.FullName"></label>
-                <input asp-for="Input.FullName" class="form-control" />
-                <span asp-validation-for="Input.FullName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Gender"></label>
-                <select asp-for="Input.Gender" class="form-control">
-                    <option selected hidden disabled>Select Gender</option>
-                    @for (int i = 1; i <= Enum.GetValues(typeof(Gender)).Length; i++)
-                    {
-                        <option>@((Gender)i)</option>
-                    }
-                </select>@*@Html.DropDownList("Gender", Html.GetEnumSelectList<Gender>(), "Select Gender", new { @class = "form-control" })*@
-                <span asp-validation-for="Input.Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.PhoneNumber"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Street"></label>
-                <input asp-for="Input.Street" class="form-control" />
-                <span asp-validation-for="Input.Street" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Country"></label>
-                <select asp-for="Input.Country" class="form-control" asp-items="@Model.Countries">
-                    <option selected hidden disabled>Select Country</option>
-                    @* @for (int i = 1; i <= Enum.GetValues(typeof(Country)).Length; i++)
-                    {
-                    <option>@((Country)i)</option>
-                    } *@
-                </select>
-                @*@Html.DropDownList("Country", Html.GetEnumSelectList<Country>(), "Select Country", new { @class = "form-control" })*@
-                <span asp-validation-for="Input.Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Postal"></label>
-                <input asp-for="Input.Postal" class="form-control" />
-                <span asp-validation-for="Input.Postal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.City"></label>
-                <input asp-for="Input.City" class="form-control" />
-                <span asp-validation-for="Input.City" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-secondary">Register</button>
-        </form>
+        </div>
     </div>
 </div>
 

@@ -23,3 +23,4 @@ global using Newtonsoft.Json;
 global using StackExchange.Redis;
 global using System.ComponentModel.DataAnnotations;
 global using System.Globalization;
+global using Microsoft.AspNetCore.Mvc.Razor;

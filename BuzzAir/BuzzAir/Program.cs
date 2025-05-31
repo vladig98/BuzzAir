@@ -85,6 +85,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 
+builder.Services.Configure<RazorViewEngineOptions>(options =>
+{
+    options.AreaViewLocationFormats.Add("~/Views/Shared/{0}.cshtml");
+});
+
 WebApplication app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
