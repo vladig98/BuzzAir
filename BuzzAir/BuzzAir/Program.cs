@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Options;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
