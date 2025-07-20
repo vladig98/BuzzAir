@@ -1,6 +1,4 @@
-﻿using BuzzAir.Areas.Admin.ViewModels.AirportDTOs;
-
-namespace BuzzAir.Areas.Admin.Services.Interfaces
+﻿namespace BuzzAir.Areas.Admin.Services.Interfaces
 {
     public interface IAirportService
     {

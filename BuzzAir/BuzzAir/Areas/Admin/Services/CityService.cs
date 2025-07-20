@@ -89,7 +89,7 @@
             VerifyStringValue(id);
             await cityRepository.RestoreAsync(id, CityEnum.None, token);
         }
- 
+
         private static void VerifyStringValue(string value) =>
             string.IsNullOrWhiteSpace(value);
     }

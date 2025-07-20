@@ -1,6 +1,4 @@
-﻿using BuzzAir.Areas.Admin.ViewModels.AirportDTOs;
-
-namespace BuzzAir.Factories
+﻿namespace BuzzAir.Factories
 {
     public static class FlightFactory
     {

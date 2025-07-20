@@ -1,6 +1,4 @@
-﻿using BuzzAir.Areas.Admin.ViewModels.AirportDTOs;
-
-namespace BuzzAir.Models.ViewModels
+﻿namespace BuzzAir.Models.ViewModels
 {
     public record FlightViewModel
     {

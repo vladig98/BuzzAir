@@ -1,6 +1,4 @@
-﻿using BuzzAir.Areas.Admin.ViewModels.AircraftDTOs;
-
-namespace BuzzAir.Areas.Admin.Controllers
+﻿namespace BuzzAir.Areas.Admin.Controllers
 {
     [Area(GlobalConstants.AdminRole)]
     [Authorize(Roles = GlobalConstants.AdminRole)]

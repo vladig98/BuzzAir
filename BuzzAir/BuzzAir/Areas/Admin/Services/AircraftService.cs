@@ -1,6 +1,4 @@
-﻿using BuzzAir.Areas.Admin.ViewModels.AircraftDTOs;
-
-namespace BuzzAir.Areas.Admin.Services
+﻿namespace BuzzAir.Areas.Admin.Services
 {
     public class AircraftService(IAircraftRepository aircraftRepository) : IAircraftService
     {

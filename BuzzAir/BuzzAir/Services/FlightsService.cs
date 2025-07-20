@@ -1,6 +1,4 @@
-﻿using BuzzAir.Models.DbModels;
-
-namespace BuzzAir.Services
+﻿namespace BuzzAir.Services
 {
     public class FlightsService(
         BuzzAirDbContext context,

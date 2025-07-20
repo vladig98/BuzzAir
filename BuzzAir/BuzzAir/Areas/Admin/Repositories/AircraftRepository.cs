@@ -48,13 +48,13 @@
         public Task<Aircraft> GetDeletedByIdAsync(string id, CancellationToken token = default) =>
             GetAircraftByIdAsync(id, isDeleted: true, token);
 
-        public Task<List<Aircraft>> AllAsync(int? pageNumber = null, int? itemsPerPage = null, CancellationToken token = default) => 
+        public Task<List<Aircraft>> AllAsync(int? pageNumber = null, int? itemsPerPage = null, CancellationToken token = default) =>
             GetAllAircraftAsync(pageNumber, itemsPerPage, isDeleted: false, token);
 
         public Task<List<Aircraft>> AllDeletedAsync(int? pageNumber = null, int? itemsPerPage = null, CancellationToken token = default) =>
             GetAllAircraftAsync(pageNumber, itemsPerPage, isDeleted: true, token);
 
-        public Task<long> GetCountAsync(CancellationToken token = default) => 
+        public Task<long> GetCountAsync(CancellationToken token = default) =>
             GetAircraftCountAsync(isDeleted: false, token);
 
         public Task<long> GetDeletedCountAsync(CancellationToken token = default) =>

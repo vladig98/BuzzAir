@@ -1,6 +1,4 @@
-﻿using BuzzAir.Areas.Admin.ViewModels.AirportDTOs;
-
-namespace BuzzAir.Areas.Admin.Services
+﻿namespace BuzzAir.Areas.Admin.Services
 {
     public class AirportService(IAirportRepository airportRepository) : IAirportService
     {
@@ -96,7 +94,7 @@ namespace BuzzAir.Areas.Admin.Services
             await airportRepository.RestoreAsync(id, AirportEnum.None, token);
         }
 
-        private static void VerifyStringValue(string value) => 
+        private static void VerifyStringValue(string value) =>
             ArgumentException.ThrowIfNullOrWhiteSpace(value);
     }
 }

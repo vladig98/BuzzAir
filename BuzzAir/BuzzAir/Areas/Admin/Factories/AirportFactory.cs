@@ -1,6 +1,4 @@
-﻿using BuzzAir.Areas.Admin.ViewModels.AirportDTOs;
-
-namespace BuzzAir.Areas.Admin.Factories
+﻿namespace BuzzAir.Areas.Admin.Factories
 {
     public static class AirportFactory
     {
@@ -167,7 +165,7 @@ namespace BuzzAir.Areas.Admin.Factories
                 listItems.Add(new SelectListItem()
                 {
                     Text = timezone.Value,
-                    Value = timezone.Key 
+                    Value = timezone.Key
                 });
             }
 

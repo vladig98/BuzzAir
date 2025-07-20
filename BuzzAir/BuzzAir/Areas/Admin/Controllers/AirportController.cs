@@ -29,7 +29,7 @@
             model.Country = await countryService.GetByIdAsync(model.CountryId, token);
             model.State = await stateService.GetByIdAsync(model.StateId, token);
             model.City = await cityService.GetByIdAsync(model.CityId, token);
-            
+
             await airportService.CreateAsync(model, token);
             return RedirectToAction(nameof(All));
         }
