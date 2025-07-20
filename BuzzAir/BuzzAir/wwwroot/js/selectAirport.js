@@ -12,7 +12,7 @@ const populateSelect = (selectId, placeholderText, items) => {
     }
 
     // Show the select
-    select.parentElement?.classList.remove("d-none");
+    select.classList.remove("d-none");
 
     // Reset options
     select.innerHTML = "";
@@ -30,11 +30,11 @@ const populateSelect = (selectId, placeholderText, items) => {
 
 // SignalR event handlers
 connection.on("CountrySelected", states =>
-    populateSelect("State", "Select State", states)
+    populateSelect("StateId", "Select State", states)
 );
 
 connection.on("StateSelected", cities =>
-    populateSelect("City", "Select City", cities)
+    populateSelect("CityId", "Select City", cities)
 );
 
 // Start the SignalR connection
@@ -47,12 +47,12 @@ connection.on("StateSelected", cities =>
 })();
 
 // Invoke helper to call hub methods with logging
-const invokeHub = (method, arg) =>
-    connection.invoke(method, arg).catch(err => console.error(err));
+const invokeHub = (method, ...arg) =>
+    connection.invoke(method, ...arg).catch(err => console.error(err));
 
 // Cache selectors
-const countrySelect = document.getElementById("Country");
-const stateSelect = document.getElementById("State");
+const countrySelect = document.getElementById("CountryId");
+const stateSelect = document.getElementById("StateId");
 
 // Wire up change events
 countrySelect?.addEventListener("change", e =>
@@ -60,5 +60,5 @@ countrySelect?.addEventListener("change", e =>
 );
 
 stateSelect?.addEventListener("change", e =>
-    invokeHub("SelectState", e.target.value)
+    invokeHub("SelectState", countrySelect.value, e.target.value)
 );

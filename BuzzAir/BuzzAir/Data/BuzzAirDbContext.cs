@@ -26,7 +26,6 @@ namespace BuzzAir.Data
         public virtual DbSet<Flexibility> Flexibilities { get; set; }
         public virtual DbSet<OnTimeArrival> OnTimeArrivals { get; set; }
         public virtual DbSet<Priority> Priorities { get; set; }
-        public virtual DbSet<Timezone> Timezones { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<State> States { get; set; }

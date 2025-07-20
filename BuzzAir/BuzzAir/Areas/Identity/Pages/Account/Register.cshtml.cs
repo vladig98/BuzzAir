@@ -108,19 +108,8 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             SelectListGroup countryGroup = new SelectListGroup { Name = "Countries" };
             SelectListGroup dependenciesGroup = new SelectListGroup { Name = "Dependencies and territories not offically recognized as countries" };
 
-            var countryValues = await _countryService.GetAllAsync();
-
-            foreach (Country country in countryValues)
-            {
-                countries.Add(new SelectListItem()
-                {
-                    Text = country.Name,
-                    Value = country.Id,
-                    Group = country.IsCountry ? countryGroup : dependenciesGroup
-                });
-            }
-
-            Countries = countries.OrderBy(x => x.Group.Name).ThenBy(x => x.Text);
+            var countryValues = await _countryService.GetCountriesForSelect(CancellationToken.None);
+            Countries = countryValues.OrderBy(x => x.Group.Name).ThenBy(x => x.Text);
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -146,8 +135,8 @@ namespace BuzzAir.Areas.Identity.Pages.Account
                     await _roleManager.CreateAsync(role);
                 }
 
-                var country = await _countryService.GetByIdAsync(Input.Country);
-                var city = await _cityService.GetByNameAsync(Input.City);
+                var country = await _countryService.GetByIdAsync(Input.Country, CancellationToken.None);
+                var city = await _cityService.GetByIdAsync(Input.City, CancellationToken.None);
 
                 //if (city == null)
                 //{

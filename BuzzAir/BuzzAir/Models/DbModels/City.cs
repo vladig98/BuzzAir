@@ -8,11 +8,12 @@
         [JsonIgnore]
         public State? State { get; set; }
         public string? StateId { get; set; }
+        public bool IsDeleted { get; set; }
         [JsonIgnore]
         [Required]
         public Country Country { get; set; } = new Country();
         public string CountryId { get; set; } = string.Empty;
-        public ICollection<Address> Addresses { get; set; } = [];
-        public ICollection<Airport> Airports { get; set; } = [];
+        public ICollection<Address> Addresses { get; set; } = new List<Address>();
+        public ICollection<Airport> Airports { get; set; } = new List<Airport>();
     }
 }

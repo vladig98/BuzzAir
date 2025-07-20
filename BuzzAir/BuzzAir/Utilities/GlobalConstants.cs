@@ -26,5 +26,6 @@
         public const string ServicesFormat = "{1}          - {0}";
         public const string ServicesWithChoicesFormat = "{0} {1}";
         public const string BookingPriceFormat = "{0} {1:F2}";
+        public const int ItemsPerPage = 10;
     }
 }

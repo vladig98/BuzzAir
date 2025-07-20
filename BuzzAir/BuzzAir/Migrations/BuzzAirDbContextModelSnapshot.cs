@@ -17,7 +17,7 @@ namespace BuzzAir.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -54,7 +54,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Aircraft", b =>
@@ -74,7 +74,7 @@ namespace BuzzAir.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Aircrafts");
+                    b.ToTable("Aircrafts", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Airport", b =>
@@ -117,9 +117,9 @@ namespace BuzzAir.Migrations
                     b.Property<string>("StateId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("TimeZone")
+                    b.Property<string>("TimezoneId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -129,7 +129,9 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Airports");
+                    b.HasIndex("TimezoneId");
+
+                    b.ToTable("Airports", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.ApplicationUser", b =>
@@ -242,7 +244,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("PaymentId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.BookingFlight", b =>
@@ -267,7 +269,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("FlightId");
 
-                    b.ToTable("BookingFlights");
+                    b.ToTable("BookingFlights", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.BookingPassenger", b =>
@@ -289,7 +291,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("PassengerId");
 
-                    b.ToTable("BookingPassengers");
+                    b.ToTable("BookingPassengers", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.City", b =>
@@ -314,7 +316,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("Cities", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Country", b =>
@@ -335,7 +337,7 @@ namespace BuzzAir.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries");
+                    b.ToTable("Countries", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Flight", b =>
@@ -383,7 +385,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("OriginId");
 
-                    b.ToTable("Flights");
+                    b.ToTable("Flights", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.FlightPassenger", b =>
@@ -408,7 +410,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("FlightPassengers");
+                    b.ToTable("FlightPassengers", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.FlightSeat", b =>
@@ -430,7 +432,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("FlightId");
 
-                    b.ToTable("FlightSeats");
+                    b.ToTable("FlightSeats", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Payment", b =>
@@ -465,7 +467,7 @@ namespace BuzzAir.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Person", b =>
@@ -494,9 +496,9 @@ namespace BuzzAir.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("People");
+                    b.ToTable("People", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+                    b.HasDiscriminator().HasValue("Person");
 
                     b.UseTphMappingStrategy();
                 });
@@ -525,7 +527,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("PersonServices");
+                    b.ToTable("PersonServices", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Service", b =>
@@ -548,9 +550,9 @@ namespace BuzzAir.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Service");
+                    b.HasDiscriminator().HasValue("Service");
 
                     b.UseTphMappingStrategy();
                 });
@@ -572,7 +574,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("States");
+                    b.ToTable("States", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Timezone", b =>
@@ -586,7 +588,7 @@ namespace BuzzAir.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Timezones");
+                    b.ToTable("Timezones", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.TravelDocument", b =>
@@ -624,7 +626,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("NationalityId");
 
-                    b.ToTable("TravelDocuments");
+                    b.ToTable("TravelDocuments", (string)null);
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.UserBooking", b =>
@@ -646,7 +648,7 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.ToTable("UserBookings");
+                    b.ToTable("UserBookings", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -892,11 +894,19 @@ namespace BuzzAir.Migrations
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("BuzzAir.Models.DbModels.Timezone", "Timezone")
+                        .WithMany("Airports")
+                        .HasForeignKey("TimezoneId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("City");
 
                     b.Navigation("Country");
 
                     b.Navigation("State");
+
+                    b.Navigation("Timezone");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.ApplicationUser", b =>
@@ -1225,6 +1235,11 @@ namespace BuzzAir.Migrations
                     b.Navigation("Airports");
 
                     b.Navigation("Cities");
+                });
+
+            modelBuilder.Entity("BuzzAir.Models.DbModels.Timezone", b =>
+                {
+                    b.Navigation("Airports");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Passenger", b =>

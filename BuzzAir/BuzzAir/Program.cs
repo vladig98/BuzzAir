@@ -11,11 +11,11 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultTokenProviders()
     .AddDefaultUI();
 
-builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
-    ConnectionMultiplexer.Connect("localhost"));
+//builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+//    ConnectionMultiplexer.Connect("localhost"));
 
-builder.Services.AddSingleton(sp =>
-    sp.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
+//builder.Services.AddSingleton(sp =>
+//    sp.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -67,7 +67,6 @@ builder.Services.AddTransient<IUserBookingService, UserBookingService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IBookingFlightService, BookingFlightService>();
 builder.Services.AddTransient<IBookingPassengerService, BookingPassengerService>();
-builder.Services.AddTransient<ITimezoneService, TimezoneService>();
 builder.Services.AddTransient<ICountryService, CountryService>();
 builder.Services.AddTransient<ICityService, CityService>();
 builder.Services.AddTransient<IStateService, StateService>();
@@ -78,6 +77,13 @@ builder.Services.AddTransient<IServiceService, ServiceService>();
 builder.Services.AddTransient<IBoardingPassService, BoardingPassService>();
 builder.Services.AddTransient<IPriceCalculator, PriceCalculator>();
 builder.Services.AddTransient<ISeatService, SeatService>();
+
+// Repositories
+builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
+builder.Services.AddScoped<IAirportRepository, AirportRepository>();
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<IStateRepository, StateRepository>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -109,12 +115,11 @@ WebApplication app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-
     app.UseHsts();
+    app.UseWebSockets();
 }
 
 app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
-
 app.UseDeveloperExceptionPage();
 
 app.UseHttpsRedirection();
@@ -133,6 +138,12 @@ app.MapHub<SelectHub>("/getSelectOptions");
 app.MapControllerRoute(
     name: "IdentityArea",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapAreaControllerRoute(
+  name: "AdminArea",
+  areaName: "Admin",
+  pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
+);
 
 app.MapControllerRoute(
     name: "default",

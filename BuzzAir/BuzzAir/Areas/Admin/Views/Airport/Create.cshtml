@@ -1,0 +1,85 @@
+﻿@using BuzzAir.Areas.Admin.ViewModels
+@using BuzzAir.Areas.Admin.ViewModels.AirportDTOs
+@model CreateAirportVM
+
+<h2 class="text-center border-bottom border-3 pb-3 mt-3">Create Airport</h2>
+
+<form method="post" class="w-50 mx-auto" asp-area="Admin" asp-controller="Airport" asp-action="Create">
+    @Html.AntiForgeryToken()
+
+    <div class="form-floating mb-3">
+        <input asp-for="ICAO" class="form-control" placeholder="ICAO" />
+        <label asp-for="ICAO">ICAO</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.ICAO)</span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="IATA" class="form-control" placeholder="IATA" />
+        <label asp-for="IATA">IATA</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.IATA)</span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control" placeholder="Airport Name" />
+        <label asp-for="Name">Name</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Name)</span>
+    </div>
+
+    <div class="row g-2 mb-3">
+        <div class="col form-floating">
+            <select asp-for="CountryId" asp-items="Model.CountryOptions" class="form-select">
+                <option selected disabled value="">Country</option>
+            </select>
+            <label asp-for="CountryId">Country</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.CountryId)</span>
+        </div>
+        <div class="col form-floating">
+            <select asp-for="StateId" class="form-select d-none">
+                <option selected disabled value="">State</option>
+            </select>
+            <label asp-for="StateId">State</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.StateId)</span>
+        </div>
+        <div class="col form-floating">
+            <select asp-for="CityId" class="form-select d-none">
+                <option selected disabled value="">City</option>
+            </select>
+            <label asp-for="CityId">City</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.CityId)</span>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="Elevation" class="form-control" placeholder="Elevation" />
+        <label asp-for="Elevation">Elevation</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Elevation)</span>
+    </div>
+
+    <div class="row g-2 mb-3">
+        <div class="col form-floating">
+            <input asp-for="Latitude" class="form-control" placeholder="Latitude" />
+            <label asp-for="Latitude">Latitude</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.Latitude)</span>
+        </div>
+        <div class="col form-floating">
+            <input asp-for="Longitude" class="form-control" placeholder="Longitude" />
+            <label asp-for="Longitude">Longitude</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.Longitude)</span>
+        </div>
+    </div>
+
+    <div class="form-floating mb-4">
+        <select asp-for="TimezoneId" asp-items="Model.TimezoneOptions" class="form-select">
+            <option selected disabled value="">Timezone</option>
+        </select>
+        <label asp-for="TimezoneId">Timezone</label>
+    </div>
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-dark">Create</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/js/selectAirport.js"></script>
+}

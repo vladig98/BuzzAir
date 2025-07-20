@@ -1,0 +1,24 @@
+﻿@using BuzzAir.Areas.Admin.ViewModels
+@using BuzzAir.Areas.Admin.ViewModels.AircraftDTOs
+@model CreateAircraftVM
+
+<h2 class="text-center border-bottom border-3 pb-3 mt-3">Create Aircraft</h2>
+
+<form method="post" class="w-50 mx-auto" asp-controller="Aircraft" asp-action="Create">
+    @Html.AntiForgeryToken()
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Name" placeholder="Name" />
+        <label asp-for="Name">Name</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Name)</span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Seats" placeholder="Seats" />
+        <label asp-for="Seats">Seats</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Seats)</span>
+    </div>
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-dark">Create</button>
+    </div>
+</form>

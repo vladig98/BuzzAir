@@ -1,31 +1,33 @@
-﻿namespace BuzzAir.Services
+﻿using BuzzAir.Models.DbModels;
+
+namespace BuzzAir.Services
 {
     public class FlightsService(
         BuzzAirDbContext context,
         IAircraftService aircraftService,
         ICountryService countryService,
         IAirportService airportService,
-        ISeatService seatService,
-        IDatabase redis) : IFlightsService
+        ISeatService seatService//,
+        /*IDatabase redis*/) : IFlightsService
     {
         public async Task Create(CreateFlightViewModel model)
         {
-            Airport origin = await airportService.GetByIdAsync(model.Origin);
-            Airport destination = await airportService.GetByIdAsync(model.Destination);
+            //Airport origin = await airportService.GetByIdAsync(model.Origin, CancellationToken.None);
+            //Airport destination = await airportService.GetByIdAsync(model.Destination);
 
-            if (origin == null || destination == null)
-            {
-                throw new ArgumentException($"You need to pick origin and destination to create a flight.");
-            }
+            //if (origin == null || destination == null)
+            //{
+            //    throw new ArgumentException($"You need to pick origin and destination to create a flight.");
+            //}
 
-            Aircraft aircraft = await aircraftService.GetByIdAsync(model.Aircraft);
+            Aircraft aircraft = await aircraftService.GetByIdAsync(model.Aircraft, CancellationToken.None);
 
             if (model.Departure < DateTime.UtcNow)
             {
                 throw new ArgumentException($"The chosen date for the flight is in the past.");
             }
 
-            Flight flight = FlightFactory.Create(origin, destination, aircraft, model);
+            Flight flight = FlightFactory.Create(null, null, aircraft, model);
 
             await seatService.CreateSeats(flight, aircraft.NumberOfSeats);
             await context.Flights.AddAsync(flight);
@@ -44,17 +46,37 @@
 
         public async Task<List<SelectListItem>> GetAll()
         {
-            string redisKey = "flightsInfo";
-            string? flightsJSON = await redis.StringGetAsync(redisKey);
-            List<FlightInfo> flights = [];
+            //string redisKey = "flightsInfo";
+            //string? flightsJSON = await redis.StringGetAsync(redisKey);
+            //List<FlightInfo> flights = [];
 
-            if (!string.IsNullOrEmpty(flightsJSON))
-            {
-                flights = JsonConvert.DeserializeObject<List<FlightInfo>>(flightsJSON) ?? [];
-            }
-            else
-            {
-                flights = await context.Flights
+            //if (!string.IsNullOrEmpty(flightsJSON))
+            //{
+            //    flights = JsonConvert.DeserializeObject<List<FlightInfo>>(flightsJSON) ?? [];
+            //}
+            //else
+            //{
+            //    flights = await context.Flights
+            //    .Where(x => !x.IsDeleted)
+            //    .Include(x => x.Origin)
+            //        .ThenInclude(x => x.City)
+            //    .Include(x => x.Origin)
+            //        .ThenInclude(x => x.Country)
+            //    .Select(x => new FlightInfo()
+            //    {
+            //        CityName = x.Origin.City.Name,
+            //        CountryName = x.Origin.Country.Name,
+            //        CityId = x.Origin.City.Id
+            //    })
+            //    .AsSplitQuery()
+            //    .AsNoTracking()
+            //    .ToListAsync();
+
+            //    flightsJSON = JsonConvert.SerializeObject(flights);
+            //    await redis.StringSetAsync(redisKey, flightsJSON);
+            //}
+
+            var flights = await context.Flights
                 .Where(x => !x.IsDeleted)
                 .Include(x => x.Origin)
                     .ThenInclude(x => x.City)
@@ -69,10 +91,6 @@
                 .AsSplitQuery()
                 .AsNoTracking()
                 .ToListAsync();
-
-                flightsJSON = JsonConvert.SerializeObject(flights);
-                await redis.StringSetAsync(redisKey, flightsJSON);
-            }
 
             List<SelectListItem> flightSelect = FlightFactory.GetFlightsForSelect(flights);
 
@@ -222,8 +240,8 @@
 
         public async Task<CreateFlightViewModel> CreateViewModel()
         {
-            List<SelectListItem> aircraft = await aircraftService.GetAircraftForSelect();
-            List<SelectListItem> countries = await countryService.GetCountriesForSelect();
+            List<SelectListItem> aircraft = await aircraftService.GetAircraftForSelect(CancellationToken.None);
+            List<SelectListItem> countries = await countryService.GetCountriesForSelect(CancellationToken.None);
 
             CreateFlightViewModel viewModel = FlightFactory.CreateViewModelForCreation(aircraft, countries);
 
@@ -249,16 +267,16 @@
             Flight? flight = await GetById(flightId) ??
                 throw new ArgumentException($"Flight with id {flightId} does not exist.");
 
-            List<SelectListItem> aircraft = await aircraftService.GetAircraftForSelect();
-            List<SelectListItem> countries = await countryService.GetCountriesForSelect();
+            List<SelectListItem> aircraft = await aircraftService.GetAircraftForSelect(CancellationToken.None);
+            List<SelectListItem> countries = await countryService.GetCountriesForSelect(CancellationToken.None);
 
-            IEnumerable<Airport> originAirports = await airportService.GetAllForCountry(flight.Origin.Country.Id);
-            IEnumerable<Airport> destinationAirports = await airportService.GetAllForCountry(flight.Destination.Country.Id);
+            //IEnumerable<Airport> originAirports = await airportService.GetAllForCountry(flight.Origin.Country.Id);
+            //IEnumerable<Airport> destinationAirports = await airportService.GetAllForCountry(flight.Destination.Country.Id);
 
-            List<SelectListItem> originAirportsSelect = AirportFactory.CreateAirportForSelect(originAirports);
-            List<SelectListItem> destinationAirportsSelect = AirportFactory.CreateAirportForSelect(destinationAirports);
+            //List<SelectListItem> originAirportsSelect = AirportFactory.CreateAirportForSelect(originAirports);
+            //List<SelectListItem> destinationAirportsSelect = AirportFactory.CreateAirportForSelect(destinationAirports);
 
-            FlightEditViewModel viewModel = FlightFactory.CreateEditViewModel(flight, aircraft, countries, originAirportsSelect, destinationAirportsSelect);
+            FlightEditViewModel viewModel = FlightFactory.CreateEditViewModel(flight, aircraft, countries, null, null);
 
             return viewModel;
         }

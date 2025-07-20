@@ -1,4 +1,6 @@
-﻿namespace BuzzAir.Factories
+﻿using BuzzAir.Areas.Admin.ViewModels.AirportDTOs;
+
+namespace BuzzAir.Factories
 {
     public static class FlightFactory
     {
@@ -12,8 +14,8 @@
 
         public static FlightViewModel CreateViewModel(Flight flight)
         {
-            AirportViewModel destination = AirportFactory.GetEditViewModel(flight.Destination);
-            AirportViewModel origin = AirportFactory.GetEditViewModel(flight.Origin);
+            EditAirportVM destination = AirportFactory.GetEditViewModel(flight.Destination);
+            EditAirportVM origin = AirportFactory.GetEditViewModel(flight.Origin);
 
             FlightViewModel viewModel = new()
             {

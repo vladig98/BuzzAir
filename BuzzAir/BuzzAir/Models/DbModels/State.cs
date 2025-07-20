@@ -8,8 +8,9 @@
         [Required]
         public Country Country { get; set; } = new Country();
         public string CountryId { get; set; } = string.Empty;
-        public ICollection<Address> Addresses { get; set; } = [];
-        public ICollection<Airport> Airports { get; set; } = [];
-        public ICollection<City> Cities { get; set; } = [];
+        public bool IsDeleted { get; set; }
+        public ICollection<Address> Addresses { get; set; } = new List<Address>();
+        public ICollection<Airport> Airports { get; set; } = new List<Airport>();
+        public ICollection<City> Cities { get; set; } = new List<City>();
     }
 }

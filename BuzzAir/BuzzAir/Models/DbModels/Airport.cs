@@ -22,10 +22,10 @@
         public double Latitude { get; set; }
         [Required]
         public double Longitude { get; set; }
-        [Required]
-        public string TimeZone { get; set; } = string.Empty;
+        public string Timezone { get; set; } = string.Empty;
+        public string TimezoneId { get; set; } = string.Empty;
         public bool IsDeleted { get; set; }
-        public ICollection<Flight> FlightsFromOrigin { get; set; } = [];
-        public ICollection<Flight> FlightsToDestination { get; set; } = [];
+        public ICollection<Flight> FlightsFromOrigin { get; set; } = new List<Flight>();
+        public ICollection<Flight> FlightsToDestination { get; set; } = new List<Flight>();
     }
 }

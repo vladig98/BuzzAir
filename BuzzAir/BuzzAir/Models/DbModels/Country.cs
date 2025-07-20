@@ -10,8 +10,9 @@
         // true for officially recognized countries and false for dependencies
         [Required]
         public bool IsCountry { get; set; }
-        public IEnumerable<TravelDocument> Nationalities { get; set; } = [];
-        public IEnumerable<TravelDocument> BirthCountries { get; set; } = [];
-        public IEnumerable<City> Cities { get; set; } = [];
+        public bool IsDeleted { get; set; }
+        public IEnumerable<TravelDocument> Nationalities { get; set; } = new List<TravelDocument>();
+        public IEnumerable<TravelDocument> BirthCountries { get; set; } = new List<TravelDocument>();
+        public IEnumerable<City> Cities { get; set; } = new List<City>();
     }
 }

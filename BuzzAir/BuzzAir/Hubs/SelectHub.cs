@@ -18,41 +18,37 @@ namespace BuzzAir.Hubs
             _flightsService = flightsService;
         }
 
-        public async Task SelectCountry(string countryId)
-        {
-            var states = await _stateService.GetAllAsync();
+        //public async Task SelectCountry(string countryId)
+        //{
+        //    StateDTO[] states = await _stateService.GetAllInACountryAsync(countryId);
 
-            states = states.Where(x => x.CountryId == countryId).OrderBy(x => x.Name).ToList();
+        //    await Clients.All.SendAsync("CountrySelected", states);
+        //}
 
-            await Clients.All.SendAsync("CountrySelected", states);
-        }
+        //public async Task SelectState(string countryId, string stateId)
+        //{
+        //    CityDTO[] cities = await _cityService.GetAllInACountryAndStateAsync(countryId, stateId);
 
-        public async Task SelectState(string stateId)
-        {
-            var cities = await _cityService.GetAllAsync();
+        //    await Clients.All.SendAsync("StateSelected", cities);
+        //}
 
-            cities = cities.Where(x => x.State?.Id == stateId).OrderBy(x => x.Name).ToList();
+        //public async Task SelectCountryForFlightOrigin(string countryId)
+        //{
+        //    var airports = await _airportService.GetAll();
 
-            await Clients.All.SendAsync("StateSelected", cities);
-        }
+        //    airports = airports.Where(x => x.CountryId == countryId).OrderBy(x => x.Name).ToList();
 
-        public async Task SelectCountryForFlightOrigin(string countryId)
-        {
-            var airports = await _airportService.GetAll();
+        //    await Clients.All.SendAsync("CountryFlightSelectedOrigin", airports);
+        //}
 
-            airports = airports.Where(x => x.CountryId == countryId).OrderBy(x => x.Name).ToList();
+        //public async Task SelectCountryForFlightDestination(string countryId)
+        //{
+        //    var airports = await _airportService.GetAll();
 
-            await Clients.All.SendAsync("CountryFlightSelectedOrigin", airports);
-        }
+        //    airports = airports.Where(x => x.CountryId == countryId).OrderBy(x => x.Name).ToList();
 
-        public async Task SelectCountryForFlightDestination(string countryId)
-        {
-            var airports = await _airportService.GetAll();
-
-            airports = airports.Where(x => x.CountryId == countryId).OrderBy(x => x.Name).ToList();
-
-            await Clients.All.SendAsync("CountryFlightSelectedDestination", airports);
-        }
+        //    await Clients.All.SendAsync("CountryFlightSelectedDestination", airports);
+        //}
 
         public async Task SelectDestinationsForHomePage(string cityId)
         {

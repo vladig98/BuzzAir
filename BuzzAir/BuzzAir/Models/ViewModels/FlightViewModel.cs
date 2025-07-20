@@ -1,11 +1,13 @@
-﻿namespace BuzzAir.Models.ViewModels
+﻿using BuzzAir.Areas.Admin.ViewModels.AirportDTOs;
+
+namespace BuzzAir.Models.ViewModels
 {
     public record FlightViewModel
     {
         [HiddenInput(DisplayValue = false)]
         public string Id { get; set; } = string.Empty;
-        public AirportViewModel Origin { get; set; } = new AirportViewModel();
-        public AirportViewModel Destination { get; set; } = new AirportViewModel();
+        public EditAirportVM Origin { get; set; } = new EditAirportVM();
+        public EditAirportVM Destination { get; set; } = new EditAirportVM();
         [HiddenInput(DisplayValue = false)]
         public DateTime Departure { get; set; }
         [HiddenInput(DisplayValue = false)]

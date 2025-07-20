@@ -10,7 +10,7 @@
                 var flight = Model.OutboundFlights[i];
                 <div class="mb-2">
                     <div class="bg-white p-3 border-bottom border-black border-2">
-                        <i class="fa-solid fa-plane-departure me-3"></i><span class="cityNames">@element[i].Origin.City.Name</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City.Name</span> @element[i].Destination.IATA
+                        <i class="fa-solid fa-plane-departure me-3"></i><span class="cityNames">@element[i].Origin.City</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City</span> @element[i].Destination.IATA
                     </div>
                     <div class="bg-light p-3 d-flex justify-content-between divButton">
                         <div>
@@ -36,10 +36,10 @@
                                 @Html.EditorFor(x => x.OutboundFlights[i].Price)
                                 @Html.EditorFor(x => x.OutboundFlights[i].Origin.IATA)
                                 @Html.EditorFor(x => x.OutboundFlights[i].Destination.IATA)
-                                @Html.EditorFor(x => x.OutboundFlights[i].Origin.City.Name)
+                                @Html.EditorFor(x => x.OutboundFlights[i].Origin.City)
                                 @Html.EditorFor(x => x.OutboundFlights[i].Origin.Name)
                                 @Html.EditorFor(x => x.OutboundFlights[i].FlightNumber)
-                                @Html.EditorFor(x => x.OutboundFlights[i].Destination.City.Name)
+                                @Html.EditorFor(x => x.OutboundFlights[i].Destination.City)
                                 @Html.EditorFor(x => x.OutboundFlights[i].Destination.Name)
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                     var flight = Model.InboundFlights[i];
                     <div class="mb-2">
                         <div class="bg-white p-3 border-bottom border-black border-2">
-                            <i class="fa-solid fa-plane-arrival me-3"></i><span class="cityNames">@element[i].Origin.City.Name</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City.Name</span> @element[i].Destination.IATA
+                            <i class="fa-solid fa-plane-arrival me-3"></i><span class="cityNames">@element[i].Origin.City</span> @element[i].Origin.IATA <i class="fa-solid fa-arrow-right-long mx-3"></i> <span class="cityNames">@element[i].Destination.City</span> @element[i].Destination.IATA
                         </div>
                         <div class="bg-light p-3 d-flex justify-content-between divButton">
                             <div>
@@ -83,10 +83,10 @@
                                     @Html.EditorFor(x => x.InboundFlights[i].Price)
                                     @Html.EditorFor(x => x.InboundFlights[i].Origin.IATA)
                                     @Html.EditorFor(x => x.InboundFlights[i].Destination.IATA)
-                                    @Html.EditorFor(x => x.InboundFlights[i].Origin.City.Name)
+                                    @Html.EditorFor(x => x.InboundFlights[i].Origin.City)
                                     @Html.EditorFor(x => x.InboundFlights[i].Origin.Name)
                                     @Html.EditorFor(x => x.InboundFlights[i].FlightNumber)
-                                    @Html.EditorFor(x => x.InboundFlights[i].Destination.City.Name)
+                                    @Html.EditorFor(x => x.InboundFlights[i].Destination.City)
                                     @Html.EditorFor(x => x.InboundFlights[i].Destination.Name)
                                 </div>
                             </div>

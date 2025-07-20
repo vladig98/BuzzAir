@@ -174,8 +174,8 @@
                 throw new ArgumentException($"The return date {model.Return:yyyy-MM-dd} must be after the departure date {model.Departure:yyyy-MM-dd}.");
             }
 
-            Task<City> originTask = cityService.GetByNameAsync(model.Origin);
-            Task<City> destinationTask = cityService.GetByNameAsync(model.Destination);
+            Task<City> originTask = cityService.GetByIdAsync(model.Origin, CancellationToken.None);
+            Task<City> destinationTask = cityService.GetByIdAsync(model.Destination, CancellationToken.None);
 
             await Task.WhenAll(originTask, destinationTask);
 

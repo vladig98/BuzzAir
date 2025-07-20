@@ -1,11 +1,11 @@
 ﻿@model PaginatedList<Flight>
 
-<h2 class="text-center border-bottom border-dark-subtle border-3 pb-3 mt-3 border-opacity-100">Flights</h2>
+<h2 class="text-center border-bottom border-3 pb-3 mt-3">Flights</h2>
 
-<table class="table table-primary table-striped table-hover w-75 mx-auto">
-    <thead>
-        <tr class="fw-bolder">
-            <th>Flight Number</th>
+<table class="table table-striped table-hover w-100 mx-auto">
+    <thead class="table-primary">
+        <tr class="fw-bold">
+            <th>Flight #</th>
             <th>Aircraft</th>
             <th>Origin</th>
             <th>Destination</th>
@@ -13,26 +13,28 @@
             <th>Departure</th>
             <th>Arrival</th>
             <th>Price</th>
-            <th>Actions</th>
+            <th class="text-center">Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var flight in Model)
+        @foreach (var f in Model)
         {
             <tr>
-                <td>@flight.FlightNumber</td>
-                <td>@flight.Aircraft.Name</td>
-                <td>@flight.Origin.IATA</td>
-                <td>@flight.Destination.IATA</td>
-                <td>@flight.DurationInMinutes</td>
-                <td>@flight.Departure.ToString("dd MMM yyyy HH:mm tt", CultureInfo.InvariantCulture)</td>
-                <td>@flight.Arrival.ToString("dd MMM yyyy HH:mm tt", CultureInfo.InvariantCulture)</td>
-                <td>$@flight.Price</td>
-                <td>
-                    <div class="d-flex justify-content-evenly">
-                        <a class="btn btn-primary" asp-controller="Flight" asp-action="Edit" asp-route-flightId="@flight.Id">Edit</a>
-                        <form asp-controller="Flight" asp-action="Delete" asp-route-flightId="@flight.Id" method="post">
-                            <input type="submit" class="btn btn-primary" value="Delete" />
+                <td>@f.FlightNumber</td>
+                <td>@f.Aircraft.Name</td>
+                <td>@f.Origin.IATA</td>
+                <td>@f.Destination.IATA</td>
+                <td>@f.DurationInMinutes mins</td>
+                <td>@f.Departure.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)</td>
+                <td>@f.Arrival.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)</td>
+                <td>$@f.Price</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <a asp-controller="Flight" asp-action="Edit" asp-route-flightId="@f.Id"
+                           class="btn btn-outline-primary">Edit</a>
+                        <form asp-controller="Flight" asp-action="Delete" asp-route-flightId="@f.Id"
+                              method="post" class="d-inline">
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
                         </form>
                     </div>
                 </td>
@@ -40,18 +42,12 @@
         }
     </tbody>
     <tfoot>
-        @{
-            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-        }
         <tr>
             <td colspan="9" class="text-end">
-                <a asp-controller="Flight" asp-action="All" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-primary @prevDisabled">
-                    Previous
-                </a>
-                <a asp-controller="Flight" asp-action="All" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-primary @nextDisabled">
-                    Next
-                </a>
+                <a asp-controller="Flight" asp-action="All" asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   class="btn btn-secondary @(!Model.HasPreviousPage ? "disabled" : "")">Previous</a>
+                <a asp-controller="Flight" asp-action="All" asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   class="btn btn-secondary @(!Model.HasNextPage ? "disabled" : "")">Next</a>
             </td>
         </tr>
     </tfoot>

@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta name="referrer" content="same-origin" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] BuzzAir</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,10 +64,13 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Aircraft</a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a asp-area="" asp-controller="Aircraft" asp-action="CreateAircraft" class="dropdown-item">Create Aircraft</a>
+                                        <a asp-area="Admin" asp-controller="Aircraft" asp-action="Create" class="dropdown-item">Create Aircraft</a>
                                     </li>
                                     <li>
-                                        <a asp-area="" asp-controller="Aircraft" asp-action="All" class="dropdown-item">All Aircraft</a>
+                                        <a asp-area="Admin" asp-controller="Aircraft" asp-action="All" class="dropdown-item">All Aircraft</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Aircraft" asp-action="AllDeleted" class="dropdown-item">All Deleted Aircraft</a>
                                     </li>
                                 </ul>
                             </li>
@@ -74,10 +78,13 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Airport</a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a asp-area="" asp-controller="Airport" asp-action="CreateAirport" class="dropdown-item">Create Airport</a>
+                                        <a asp-area="Admin" asp-controller="Airport" asp-action="Create" class="dropdown-item">Create Airport</a>
                                     </li>
                                     <li>
-                                        <a asp-area="" asp-controller="Airport" asp-action="All" class="dropdown-item">All Airports</a>
+                                        <a asp-area="Admin" asp-controller="Airport" asp-action="All" class="dropdown-item">All Airports</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Airport" asp-action="AllDeleted" class="dropdown-item">All Deleted Airports</a>
                                     </li>
                                 </ul>
                             </li>

@@ -32,11 +32,6 @@ namespace BuzzAir.Middleware
                     await SeedCities(_context);
                 }
 
-                if (!_context.Timezones.Any())
-                {
-                    await SeedTimezones(_context);
-                }
-
                 if (!_context.Airports.Any())
                 {
                     await SeedAirports(_context);
@@ -289,25 +284,6 @@ namespace BuzzAir.Middleware
             await _context.SaveChangesAsync();
         }
 
-        private async Task SeedTimezones(BuzzAirDbContext _context)
-        {
-            string json = File.ReadAllText("Data/timezones.json");
-            List<TimezoneModel> timezonesJson = JsonConvert.DeserializeObject<List<TimezoneModel>>(json);
-
-            foreach (var timezone in timezonesJson)
-            {
-                Timezone time = new Timezone
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = timezone.timezone
-                };
-
-                _context.Timezones.Add(time);
-            }
-
-            await _context.SaveChangesAsync();
-        }
-
         private async Task SeedAircraft(BuzzAirDbContext _context)
         {
             string json = File.ReadAllText("Data/aircraft.json");
@@ -374,7 +350,6 @@ namespace BuzzAir.Middleware
                     Longitude = model.lon,
                     Name = model.name,
                     State = state,
-                    TimeZone = model.tz,
                     CountryId = country.Id
                 };
 
