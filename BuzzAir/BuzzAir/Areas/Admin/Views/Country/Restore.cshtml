@@ -1,0 +1,32 @@
+﻿@using BuzzAir.Areas.Admin.ViewModels
+@using BuzzAir.Areas.Admin.ViewModels.CountryDTOs
+@model RestoreCountryVM
+
+<h2 class="text-center border-bottom border-3 pb-3 mt-3">Restore Country</h2>
+
+<form method="post" class="w-50 mx-auto" asp-area="Admin" asp-controller="Country" asp-action="Restore" asp-route-id="">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control-plaintext" placeholder="Name" readonly="readonly" />
+        <label asp-for="Name">Name</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Name)</span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="ISO" class="form-control-plaintext" placeholder="ISO" readonly="readonly" />
+        <label asp-for="ISO">ISO</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.ISO)</span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="IsCountry" class="form-control-plaintext" placeholder="IsCountry" readonly="readonly" />
+        <label asp-for="IsCountry">IsCountry</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.IsCountry)</span>
+    </div>
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">Restore</button>
+    </div>
+</form>

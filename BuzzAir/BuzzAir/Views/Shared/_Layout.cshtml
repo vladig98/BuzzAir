@@ -88,6 +88,48 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">City</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="City" asp-action="Create" class="dropdown-item">Create City</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="City" asp-action="All" class="dropdown-item">All Cities</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="City" asp-action="AllDeleted" class="dropdown-item">All Deleted Cities</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">State</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="State" asp-action="Create" class="dropdown-item">Create State</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="State" asp-action="All" class="dropdown-item">All States</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="State" asp-action="AllDeleted" class="dropdown-item">All Deleted States</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Country</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Country" asp-action="Create" class="dropdown-item">Create Country</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Country" asp-action="All" class="dropdown-item">All Countries</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Country" asp-action="AllDeleted" class="dropdown-item">All Deleted Countries</a>
+                                    </li>
+                                </ul>
+                            </li>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {

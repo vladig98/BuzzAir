@@ -1,0 +1,35 @@
+﻿@using BuzzAir.Areas.Admin.ViewModels
+@using BuzzAir.Areas.Admin.ViewModels.CountryDTOs
+@model CreateCountryVM
+
+<h2 class="text-center border-bottom border-3 pb-3 mt-3">Create Country</h2>
+
+<form method="post" class="w-50 mx-auto" asp-area="Admin" asp-controller="Country" asp-action="Create">
+    @Html.AntiForgeryToken()
+
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control" placeholder="Name" />
+        <label asp-for="Name">Name</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Name)</span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="ISO" class="form-control" placeholder="ISO" />
+        <label asp-for="ISO">ISO</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.ISO)</span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="IsCountry" class="form-control" placeholder="IsCountry" />
+        <label asp-for="IsCountry">IsCountry</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.IsCountry)</span>
+    </div>
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-dark">Create</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/js/selectAirport.js"></script>
+}

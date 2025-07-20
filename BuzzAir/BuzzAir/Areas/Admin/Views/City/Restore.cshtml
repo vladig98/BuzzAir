@@ -1,0 +1,35 @@
+﻿@using BuzzAir.Areas.Admin.ViewModels
+@using BuzzAir.Areas.Admin.ViewModels.CityDTOs
+@model RestoreCityVM
+
+<h2 class="text-center border-bottom border-3 pb-3 mt-3">Restore City</h2>
+
+<form method="post" class="w-50 mx-auto" asp-area="Admin" asp-controller="City" asp-action="Restore" asp-route-id="">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control-plaintext" placeholder="Name" readonly="readonly" />
+        <label asp-for="Name">Name</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Name)</span>
+    </div>
+
+    <div class="form-floating mb-4">
+        <input asp-for="CountryName" class="form-control-plaintext" placeholder="Country" readonly="readonly" />
+        <label asp-for="CountryName">Country</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.CountryName)</span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.StateName))
+    {
+        <div class="form-floating mb-4">
+            <input asp-for="StateName" class="form-control-plaintext" placeholder="State" readonly="readonly" />
+            <label asp-for="StateName">State</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.StateName)</span>
+        </div>
+    }
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">Restore</button>
+    </div>
+</form>

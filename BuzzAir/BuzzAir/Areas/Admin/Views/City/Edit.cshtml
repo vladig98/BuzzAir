@@ -1,0 +1,39 @@
+﻿@using BuzzAir.Areas.Admin.ViewModels
+@using BuzzAir.Areas.Admin.ViewModels.CityDTOs
+@model EditCityVM
+
+<h2 class="text-center border-bottom border-3 pb-3 mt-3">Edit City</h2>
+
+<form method="post" class="w-50 mx-auto" asp-area="Admin" asp-controller="City" asp-action="Edit" asp-route-id="">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.StateId)
+    @Html.HiddenFor(x => x.CountryId)
+
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control" placeholder="Name" />
+        <label asp-for="Name">Name</label>
+        <span class="text-danger">@Html.ValidationMessageFor(x => x.Name)</span>
+    </div>
+
+    <div class="row g-2 mb-3">
+        <div class="col form-floating">
+            <select asp-for="CountryId" asp-items="Model.Countries" class="form-select">
+                <option selected disabled value="">Country</option>
+            </select>
+            <label asp-for="CountryId">Country</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.CountryId)</span>
+        </div>
+        <div class="col form-floating">
+            <select asp-for="StateId" class="form-select d-none">
+                <option selected disabled value="">State</option>
+            </select>
+            <label asp-for="StateId">State</label>
+            <span class="text-danger">@Html.ValidationMessageFor(x => x.StateId)</span>
+        </div>
+    </div>
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</form>
