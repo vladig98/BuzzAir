@@ -55,7 +55,9 @@
                 Id = city.Id,
                 Name = city.Name,
                 CountryName = city.Country.Name,
-                StateName = city.State?.Name ?? string.Empty
+                StateName = city.State?.Name,
+                CountryId = city.CountryId,
+                StateId = city.StateId
             };
 
             return viewModel;

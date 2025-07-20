@@ -12,10 +12,10 @@
         public Country? Country { get; set; }
         public string CountryName { get; set; } = string.Empty;
         [HiddenInput]
-        public string StateId { get; set; } = string.Empty;
+        public string? StateId { get; set; } = string.Empty;
         [HiddenInput]
         public State? State { get; set; }
-        public string StateName { get; set; } = string.Empty;
+        public string? StateName { get; set; } = string.Empty;
 
         public List<SelectListItem> Countries { get; set; } = [];
         public List<SelectListItem> States { get; set; } = [];

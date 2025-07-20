@@ -4,7 +4,7 @@
 
 <h2 class="text-center border-bottom border-3 pb-3 mt-3">Delete City</h2>
 
-<form method="post" class="w-50 mx-auto" asp-area="Admin" asp-controller="City" asp-action="Delete" asp-route-id="">
+<form method="post" class="w-50 mx-auto" asp-area="Admin" asp-controller="City" asp-action="DeletePost" asp-route-id="">
     @Html.AntiForgeryToken()
     @Html.HiddenFor(x => x.Id)
 

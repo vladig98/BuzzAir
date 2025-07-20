@@ -25,7 +25,7 @@
             <span class="text-danger">@Html.ValidationMessageFor(x => x.CountryId)</span>
         </div>
         <div class="col form-floating">
-            <select asp-for="StateId" class="form-select d-none">
+            <select asp-for="StateId" class="form-select">
                 <option selected disabled value="">State</option>
             </select>
             <label asp-for="StateId">State</label>

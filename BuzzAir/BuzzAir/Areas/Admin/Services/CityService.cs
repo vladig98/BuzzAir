@@ -78,7 +78,7 @@
         {
             VerifyStringValue(id);
 
-            City city = await cityRepository.GetDeletedByIdAsync(id, CityEnum.None, token);
+            City city = await cityRepository.GetDeletedByIdAsync(id, CityEnum.All, token);
             RestoreCityVM model = CityFactory.GetRestoreViewModel(city);
 
             return model;
