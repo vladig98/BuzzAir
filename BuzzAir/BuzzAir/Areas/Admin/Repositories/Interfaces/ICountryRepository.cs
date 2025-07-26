@@ -8,6 +8,7 @@
         Task DeleteAsync(string id, CancellationToken token = default);
         Task EditAsync(Country country, CancellationToken token = default);
         Task<Country> GetByIdAsync(string id, CancellationToken token = default);
+        Task<Country> GetDeletedByIdAsync(string id, CancellationToken token = default);
         Task<long> GetCountAsync(CancellationToken token = default);
         Task<long> GetDeletedCountAsync(CancellationToken token = default);
         Task RestoreAsync(string id, CancellationToken token = default);

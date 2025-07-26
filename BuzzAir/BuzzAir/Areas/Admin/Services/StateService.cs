@@ -1,12 +1,14 @@
 ﻿namespace BuzzAir.Areas.Admin.Services
 {
-    public class StateService(IStateRepository stateRepository) : IStateService
+    public class StateService(
+        IStateRepository stateRepository,
+        ICachingService cachingService) : IStateService
     {
         public async Task<PaginatedList<StateDTO>> AllAsync(int? pageNumber, CancellationToken token)
         {
             long count = await stateRepository.GetCountAsync(token);
 
-            List<State> states = await stateRepository.AllAsync(pageNumber, GlobalConstants.ItemsPerPage, includeCountry: true, token);
+            List<State> states = await GetAllStatesAsync(pageNumber, GlobalConstants.ItemsPerPage, includeCountry: true, token);
             PaginatedList<StateDTO> paginatedList = StateFactory.GetPaginatedList(pageNumber ?? 0, count, states);
 
             return paginatedList;
@@ -16,7 +18,7 @@
         {
             long count = await stateRepository.GetDeletedCountAsync(token);
 
-            List<State> states = await stateRepository.AllDeletedAsync(pageNumber, GlobalConstants.ItemsPerPage, includeCountry: true, token);
+            List<State> states = await GetAllStatesAsync(pageNumber, GlobalConstants.ItemsPerPage, includeCountry: true, deleted: true, token);
             PaginatedList<StateDTO> paginatedList = StateFactory.GetPaginatedList(pageNumber ?? 0, count, states);
 
             return paginatedList;
@@ -44,7 +46,7 @@
             VerifyStringValue(model.CountryId);
             VerifyStringValue(model.Id);
 
-            State state = await stateRepository.GetByIdAsync(model.Id, includeCountry: false, token);
+            State state = await GetStateByIdAsync(model.Id, includeCountry: false, token);
             bool canChangeLocation = await stateRepository.CanChangeLocationAsync(model.Id, token);
 
             StateFactory.Update(state, model, canChangeLocation);
@@ -58,14 +60,14 @@
                 return null;
             }
 
-            return await stateRepository.GetByIdAsync(id, includeCountry: true, token);
+            return await GetStateByIdAsync(id, includeCountry: true, token);
         }
 
         public async Task<DeleteStateVM> GetDeleteDetailsAsync(string id, CancellationToken token)
         {
             VerifyStringValue(id);
 
-            State state = await stateRepository.GetByIdAsync(id, includeCountry: true, token);
+            State state = await GetStateByIdAsync(id, includeCountry: true, token);
             DeleteStateVM model = StateFactory.GetDeleteViewModel(state);
 
             return model;
@@ -75,7 +77,7 @@
         {
             VerifyStringValue(id);
 
-            State state = await stateRepository.GetByIdAsync(id, includeCountry: true, token);
+            State state = await GetStateByIdAsync(id, includeCountry: true, token);
             EditStateVM model = StateFactory.GetEditViewModel(state);
 
             return model;
@@ -85,7 +87,7 @@
         {
             VerifyStringValue(id);
 
-            State state = await stateRepository.GetByIdAsync(id, includeCountry: true, token);
+            State state = await GetStateByIdAsync(id, includeCountry: true, deleted: true, token);
             RestoreStateVM model = StateFactory.GetRestoreViewModel(state);
 
             return model;
@@ -93,7 +95,7 @@
 
         public async Task<List<SelectListItem>> GetStatesForSelectAsync(CancellationToken token)
         {
-            List<State> states = await stateRepository.AllAsync(null, null, includeCountry: true, token);
+            List<State> states = await GetAllStatesAsync(includeCountry: true, deleted: false, token: token);
             List<SelectListItem> statesSelect = StateFactory.GetStatesAsSelectItems(states);
 
             return statesSelect;
@@ -103,6 +105,48 @@
         {
             VerifyStringValue(id);
             await stateRepository.RestoreAsync(id, includeCountry: false, token);
+        }
+
+        private Task<List<State>> GetAllStatesAsync(
+            int? pageNumber = null,
+            int? itemPerPage = null,
+            bool includeCountry = false,
+            CancellationToken token = default) =>
+            GetAllStatesAsync(pageNumber, itemPerPage, includeCountry, deleted: false, token);
+
+        private Task<List<State>> GetAllStatesAsync(
+            int? pageNumber = null,
+            int? itemPerPage = null,
+            bool includeCountry = false,
+            bool deleted = false,
+            CancellationToken token = default)
+        {
+            async Task<List<State>> dbFunc(CancellationToken ct) { return await stateRepository.AllAsync(pageNumber, itemPerPage, includeCountry, ct); }
+            async Task<List<State>> dbFuncDeleted(CancellationToken ct) { return await stateRepository.AllDeletedAsync(pageNumber, itemPerPage, includeCountry, ct); }
+
+            if (deleted)
+            {
+                return cachingService.GetAsync(GlobalConstants.STATES_DELETED_CACHE_KEY, dbFuncDeleted, token);
+            }
+
+            return cachingService.GetAsync(GlobalConstants.STATES_CACHE_KEY, dbFunc, token);
+        }
+
+        private Task<State> GetStateByIdAsync(string id, bool includeCountry = false, CancellationToken token = default) =>
+            GetStateByIdAsync(id, includeCountry, deleted: false, token);
+
+        private Task<State> GetStateByIdAsync(string id, bool includeCountry = false, bool deleted = false, CancellationToken token = default)
+        {
+            string cacheKey = string.Format(GlobalConstants.STATE_CACHE_KEY, id);
+            async Task<State> dbFunc(CancellationToken ct) { return await stateRepository.GetByIdAsync(id, includeCountry, ct); }
+            async Task<State> dbFuncDeleted(CancellationToken ct) { return await stateRepository.GetDeletedByIdAsync(id, includeCountry, ct); }
+
+            if (deleted)
+            {
+                return cachingService.GetAsync(cacheKey, dbFuncDeleted, token);
+            }
+
+            return cachingService.GetAsync(cacheKey, dbFunc, token);
         }
 
         private static void VerifyStringValue(string value) =>

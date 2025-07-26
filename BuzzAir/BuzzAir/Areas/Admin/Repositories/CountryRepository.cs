@@ -43,6 +43,9 @@
         public Task<Country> GetByIdAsync(string id, CancellationToken token = default) =>
             GetCountryByIdAsync(id, isDeleted: false, token);
 
+        public Task<Country> GetDeletedByIdAsync(string id, CancellationToken token = default) =>
+            GetCountryByIdAsync(id, isDeleted: true, token);
+
         public Task<long> GetCountAsync(CancellationToken token = default) =>
             GetCountriesCountAsync(isDeleted: false, token);
 
