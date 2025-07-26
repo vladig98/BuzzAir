@@ -38,25 +38,57 @@ builder.Services.AddSingleton(sp =>
         cachingService = new InMemoryCachingService(memoryCache);
     }
 
-    //BuzzAirDbContext dbContext = sp.GetRequiredService<BuzzAirDbContext>();
-    //City[] cities = [.. dbContext.Cities.Include(x => x.State).Include(x => x.Country).AsNoTracking()];
-    //State[] states = [.. dbContext.States.Include(x => x.Country).AsNoTracking()];
-    //Country[] countries = [.. dbContext.Countries.AsNoTracking()];
+    using IServiceScope scope = sp.CreateScope();
+    using BuzzAirDbContext dbContext = scope.ServiceProvider.GetRequiredService<BuzzAirDbContext>();
+    logger.LogError("Got db context");
 
-    //foreach (City city in cities)
-    //{
-    //    cachingService.SetAsync(string.Format(GlobalConstants.CITY_CACHE_KEY, city.Id), city, CancellationToken.None);
-    //}
+    City[] cities = [.. dbContext.Cities.Include(x => x.State).Include(x => x.Country).AsNoTracking()];
+    State[] states = [.. dbContext.States.Include(x => x.Country).AsNoTracking()];
+    Country[] countries = [.. dbContext.Countries.AsNoTracking()];
+    Aircraft[] aircraft = [.. dbContext.Aircrafts.AsNoTracking()];
+    Airport[] airports = [.. dbContext.Airports.Include(x => x.City).Include(x => x.Country).Include(x => x.State).AsNoTracking()];
 
-    //foreach (State state in states)
-    //{
-    //    cachingService.SetAsync(string.Format(GlobalConstants.STATE_CACHE_KEY, state.Id), state, CancellationToken.None);
-    //}
+    foreach (City city in cities)
+    {
+        cachingService.SetAsync(string.Format(GlobalConstants.CITY_CACHE_KEY, city.Id), city, CancellationToken.None);
+    }
 
-    //foreach (Country country in countries)
-    //{
-    //    cachingService.SetAsync(string.Format(GlobalConstants.COUNTRY_CACHE_KEY, country.Id), country, CancellationToken.None);
-    //}
+    foreach (State state in states)
+    {
+        cachingService.SetAsync(string.Format(GlobalConstants.STATE_CACHE_KEY, state.Id), state, CancellationToken.None);
+    }
+
+    foreach (Country country in countries)
+    {
+        cachingService.SetAsync(string.Format(GlobalConstants.COUNTRY_CACHE_KEY, country.Id), country, CancellationToken.None);
+    }
+
+    foreach (Aircraft air in aircraft)
+    {
+        cachingService.SetAsync(string.Format(GlobalConstants.AIRCRAFT_CACHE_KEY, air.Id), air, CancellationToken.None);
+    }
+
+    foreach (Airport airport in airports)
+    {
+        cachingService.SetAsync(string.Format(GlobalConstants.AIRPORT_CACHE_KEY, airport.Id), airport, CancellationToken.None);
+    }
+
+    cachingService.SetAsync(GlobalConstants.CITIES_CACHE_KEY, cities.Where(x => !x.IsDeleted), CancellationToken.None);
+    cachingService.SetAsync(GlobalConstants.CITIES_DELETED_CACHE_KEY, cities.Where(x => x.IsDeleted), CancellationToken.None);
+
+    cachingService.SetAsync(GlobalConstants.COUNTRIES_CACHE_KEY, countries.Where(x => !x.IsDeleted), CancellationToken.None);
+    cachingService.SetAsync(GlobalConstants.COUNTRIES_DELETED_CACHE_KEY, countries.Where(x => x.IsDeleted), CancellationToken.None);
+
+    cachingService.SetAsync(GlobalConstants.STATES_CACHE_KEY, states.Where(x => !x.IsDeleted), CancellationToken.None);
+    cachingService.SetAsync(GlobalConstants.STATES_DELETED_CACHE_KEY, states.Where(x => x.IsDeleted), CancellationToken.None);
+
+    cachingService.SetAsync(GlobalConstants.AIRCRAFT_ALL_CACHE_KEY, aircraft.Where(x => !x.IsDeleted), CancellationToken.None);
+    cachingService.SetAsync(GlobalConstants.AIRCRAFT_DELETED_ALL_CACHE_KEY, aircraft.Where(x => x.IsDeleted), CancellationToken.None);
+
+    cachingService.SetAsync(GlobalConstants.AIRPORT_ALL_CACHE_KEY, airports.Where(x => !x.IsDeleted), CancellationToken.None);
+    cachingService.SetAsync(GlobalConstants.AIRPORT_DELETED_ALL_CACHE_KEY, airports.Where(x => x.IsDeleted), CancellationToken.None);
+
+    logger.LogError("All data cached");
 
     return cachingService;
 });
