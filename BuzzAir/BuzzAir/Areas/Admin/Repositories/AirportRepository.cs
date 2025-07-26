@@ -105,8 +105,7 @@
                 return query
                     .Include(x => x.City)
                     .Include(x => x.Country)
-                    .Include(x => x.State)
-                    .Include(x => x.Timezone);
+                    .Include(x => x.State);
             }
 
             if (includes.HasFlag(AirportEnum.City))
@@ -122,11 +121,6 @@
             if (includes.HasFlag(AirportEnum.State))
             {
                 query = query.Include(x => x.State);
-            }
-
-            if (includes.HasFlag(AirportEnum.Timezone))
-            {
-                query = query.Include(x => x.Timezone);
             }
 
             return query;

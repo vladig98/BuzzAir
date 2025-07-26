@@ -35,3 +35,8 @@ global using Newtonsoft.Json;
 global using StackExchange.Redis;
 global using System.ComponentModel.DataAnnotations;
 global using System.Globalization;
+global using BuzzAir.Models;
+global using BuzzAir.Utilities.Interfaces;
+global using Microsoft.Extensions.Caching.Distributed;
+global using Microsoft.Extensions.Caching.Memory;
+global using Newtonsoft.Json.Serialization;

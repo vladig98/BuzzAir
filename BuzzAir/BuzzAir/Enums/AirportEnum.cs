@@ -7,7 +7,6 @@
         City = 1 << 0,
         Country = 1 << 1,
         All = 3,
-        State = 1 << 2,
-        Timezone = 1 << 3
+        State = 1 << 2
     }
 }

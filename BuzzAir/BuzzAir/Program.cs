@@ -11,11 +11,55 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultTokenProviders()
     .AddDefaultUI();
 
-//builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
-//    ConnectionMultiplexer.Connect("localhost"));
+builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
+builder.Services.AddSingleton(sp =>
+{
+    ICachingService cachingService;
+    ILogger logger = sp.GetRequiredService<ILogger<Program>>();
+    logger.LogError("Getting cache service");
 
-//builder.Services.AddSingleton(sp =>
-//    sp.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
+    try
+    {
+        string redisConnectionString = builder.Configuration.GetConnectionString("Redis") ??
+            throw new InvalidOperationException("Connection string 'Redis' not found.");
+
+        logger.LogError("Trying to connect to redis");
+
+        ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
+        IDatabase redis = connectionMultiplexer.GetDatabase();
+
+        cachingService = new RedisCachingService(redis);
+    }
+    catch (Exception)
+    {
+        logger.LogError("Failed connecting to redis.");
+
+        IMemoryCache memoryCache = sp.GetRequiredService<IMemoryCache>();
+        cachingService = new InMemoryCachingService(memoryCache);
+    }
+
+    //BuzzAirDbContext dbContext = sp.GetRequiredService<BuzzAirDbContext>();
+    //City[] cities = [.. dbContext.Cities.Include(x => x.State).Include(x => x.Country).AsNoTracking()];
+    //State[] states = [.. dbContext.States.Include(x => x.Country).AsNoTracking()];
+    //Country[] countries = [.. dbContext.Countries.AsNoTracking()];
+
+    //foreach (City city in cities)
+    //{
+    //    cachingService.SetAsync(string.Format(GlobalConstants.CITY_CACHE_KEY, city.Id), city, CancellationToken.None);
+    //}
+
+    //foreach (State state in states)
+    //{
+    //    cachingService.SetAsync(string.Format(GlobalConstants.STATE_CACHE_KEY, state.Id), state, CancellationToken.None);
+    //}
+
+    //foreach (Country country in countries)
+    //{
+    //    cachingService.SetAsync(string.Format(GlobalConstants.COUNTRY_CACHE_KEY, country.Id), country, CancellationToken.None);
+    //}
+
+    return cachingService;
+});
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {

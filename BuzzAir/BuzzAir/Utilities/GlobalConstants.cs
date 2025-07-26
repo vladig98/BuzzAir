@@ -2,6 +2,28 @@
 {
     public static class GlobalConstants
     {
+        // Caching keys
+        public const string CITY_CACHE_KEY = "City:id={0}";
+        public const string STATE_CACHE_KEY = "State:id={0}";
+        public const string COUNTRY_CACHE_KEY = "Country:id={0}";
+        public const string AIRCRAFT_CACHE_KEY = "Aircraft:id={0}";
+        public const string AIRPORT_CACHE_KEY = "Airport:id={0}";
+
+        // Caching Lists
+        public const string CITIES_CACHE_KEY = "City:all";
+        public const string STATES_CACHE_KEY = "State:all";
+        public const string COUNTRIES_CACHE_KEY = "Country:all";
+        public const string AIRCRAFT_ALL_CACHE_KEY = "Aircraft:all";
+        public const string AIRPORT_ALL_CACHE_KEY = "Airport:all";
+
+        // Caching Deleted Lists
+        public const string CITIES_DELETED_CACHE_KEY = "City:deleted:all";
+        public const string STATES_DELETED_CACHE_KEY = "State:deleted:all";
+        public const string COUNTRIES_DELETED_CACHE_KEY = "Country:deleted:all";
+        public const string AIRCRAFT_DELETED_ALL_CACHE_KEY = "Aircraft:deleted:all";
+        public const string AIRPORT_DELETED_ALL_CACHE_KEY = "Airport:deleted:all";
+
+        // Misc
         public const decimal PriceFor20kg = 39;
         public const decimal PriceFor32kg = 72;
         public const string PriceFor20kgBag = "39";
