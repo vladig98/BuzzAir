@@ -36,11 +36,12 @@
 
         public Task<bool> CanChangeSeatsAsync(string id, int newSeatsNumber, CancellationToken token = default) =>
             dbContext.Flights
+                .Include(x => x.Aircraft)
                 .Where(flight =>
-                    flight.Arrival > DateTime.UtcNow &&
+                    flight.ArrivalUTC > DateTime.UtcNow &&
                     flight.AircraftId == id &&
                     !flight.IsDeleted)
-                .AllAsync(x => x.Seats.Count <= newSeatsNumber, token);
+                .AllAsync(x => x.Aircraft.NumberOfSeats <= newSeatsNumber, token);
 
         public Task<Aircraft> GetByIdAsync(string id, CancellationToken token = default) =>
             GetAircraftByIdAsync(id, isDeleted: false, token);

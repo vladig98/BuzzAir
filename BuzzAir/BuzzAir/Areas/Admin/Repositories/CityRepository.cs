@@ -44,12 +44,12 @@
         {
             bool hasFlightsFromCity = await dbContext.Flights
                 .Include(x => x.Origin)
-                .Where(x => x.Arrival > DateTime.UtcNow)
+                .Where(x => x.ArrivalUTC > DateTime.UtcNow)
                 .AnyAsync(x => x.Origin.CityId == id, token);
 
             bool hasFlightsToCity = await dbContext.Flights
                 .Include(x => x.Destination)
-                .Where(x => x.Arrival > DateTime.UtcNow)
+                .Where(x => x.ArrivalUTC > DateTime.UtcNow)
                 .AnyAsync(x => x.Destination.CityId == id, token);
 
             return !hasFlightsFromCity && !hasFlightsToCity;

@@ -2,41 +2,34 @@
 {
     public class Flight
     {
-        [Required]
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        [Required]
-        public string FlightNumber { get; set; } = string.Empty;
-        public string OriginId { get; set; } = string.Empty;
-        [JsonIgnore]
-        [Required]
-        public Airport Origin { get; set; } = new Airport();
-        public string DestinationId { get; set; } = string.Empty;
-        [JsonIgnore]
-        [Required]
-        public Airport Destination { get; set; } = new Airport();
-        [Required]
-        public string AircraftId { get; set; } = string.Empty;
-        [JsonIgnore]
-        [Required]
-        public Aircraft Aircraft { get; set; } = new Aircraft();
-        [Required]
-        public int DurationInMinutes { get; set; }
-        [Required]
-        public DateTime Departure { get; set; }
-        [Required]
-        public DateTime Arrival { get; set; }
-        [Required]
-        public decimal Price { get; set; }
-        [Required]
-        public int TakenSeats => Passengers.Count;
-        public ICollection<FlightPassenger> Passengers { get; set; } = [];
-        public ICollection<FlightSeat> Seats { get; set; } = [];
+
+        public required string FlightNumber { get; set; }
+
+        public required string OriginId { get; set; }
+        public required Airport Origin { get; set; }
+
+        public required string DestinationId { get; set; }
+        public required Airport Destination { get; set; }
+
+        public required string AircraftId { get; set; }
+        public required Aircraft Aircraft { get; set; }
+
+        public DateTime DepartureUTC { get; set; }
+        public DateTime ArrivalUTC { get; set; }
+
+        public decimal PriceInEur { get; set; }
+        public int TakenSeats { get; private set; }
+
         public bool IsDeleted { get; set; }
 
-        public override string ToString()
-        {
-            return $"[{Departure.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)}] {Origin.IATA} -> " +
-                $"{Destination.IATA} [{Arrival.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)}] ${Price}";
-        }
+        public ICollection<FlightPassenger> Passengers { get; set; } = new HashSet<FlightPassenger>();
+        public ICollection<BookingFlight> Bookings { get; set; } = new HashSet<BookingFlight>();
+
+        public int DurationInMinutes
+            => (int)(ArrivalUTC - DepartureUTC).TotalMinutes;
+
+        public int AvailableSeats
+            => Aircraft?.NumberOfSeats - TakenSeats ?? 0;
     }
 }

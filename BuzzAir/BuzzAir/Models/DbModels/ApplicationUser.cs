@@ -1,33 +1,20 @@
 ﻿namespace BuzzAir.Models.DbModels
 {
-    public class ApplicationUser : IdentityUser<string>, IPerson, IPassenger
+    public class ApplicationUser : IdentityUser<string>
     {
-        public ApplicationUser()
-        {
-            Bookings = new HashSet<UserBooking>();
-            Services = new List<PersonService>();
-        }
+        public required string FirstName { get; set; }
+        public required string LastName { get; set; }
 
-        public ICollection<UserBooking> Bookings { get; set; }
-
-        [Required]
-        public string AddressId { get; set; }
-        public Address Address { get; set; }
-
-        [Required]
-        public string FirstName { get; set; }
-
-        [Required]
-        public string LastName { get; set; }
-
-        [Required]
         public Gender Gender { get; set; }
-
-        public IdentityRole Role { get; set; }
-
-        [Required]
         public DateTime DateOfBirth { get; set; }
 
-        public List<PersonService> Services { get; set; }
+        public required City City { get; set; }
+        public required string CityId { get; set; }
+
+        public required string PostalCode { get; set; }
+        public required string Street { get; set; }
+
+        public string? PassengerId { get; set; }
+        public Passenger? Passenger { get; set; }
     }
 }

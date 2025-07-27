@@ -3,6 +3,6 @@
     public class Priority : Service
     {
         public override decimal Price { get; set; } = GlobalConstants.PriorityPrice;
-        public override string Name { get; set; } = "Priority";
+        public override string Name { get; set; } = nameof(Priority);
     }
 }

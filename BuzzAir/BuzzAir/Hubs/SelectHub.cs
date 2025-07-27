@@ -86,7 +86,7 @@ namespace BuzzAir.Hubs
 
             foreach (var flight in flights)
             {
-                dates.Add(flight.Departure);
+                dates.Add(flight.DepartureUTC);
             }
 
             StringBuilder sb = new StringBuilder();
@@ -112,7 +112,7 @@ namespace BuzzAir.Hubs
 
             foreach (var flight in flights)
             {
-                dates.Add(flight.Departure);
+                dates.Add(flight.DepartureUTC);
             }
 
             StringBuilder sb = new StringBuilder();

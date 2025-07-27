@@ -34,9 +34,8 @@
             {
                 Flight = flight,
                 FlightId = flight.Id,
-                Id = Guid.NewGuid().ToString(),
-                Person = (Person)passenger,
-                PersonId = ((Person)passenger).Id,
+                Passenger = (Passenger)passenger,
+                PassengerId = ((Passenger)passenger).Id,
                 SeatNumber = seat.SeatNumber
             };
 

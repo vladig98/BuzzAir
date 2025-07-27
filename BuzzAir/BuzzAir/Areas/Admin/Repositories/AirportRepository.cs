@@ -11,9 +11,9 @@
         public Task<bool> CanChangeLocationAsync(string id, CancellationToken token = default) =>
             dbContext.Airports
                 .Where(x => x.Id == id)
-                .Include(x => x.FlightsFromOrigin.Where(flight => flight.Arrival > DateTime.UtcNow))
-                .Include(x => x.FlightsToDestination.Where(flight => flight.Arrival > DateTime.UtcNow))
-                .AnyAsync(x => x.FlightsFromOrigin.Count > 0 && x.FlightsToDestination.Count > 0, token);
+                .Include(x => x.FlightsFrom.Where(flight => flight.ArrivalUTC > DateTime.UtcNow))
+                .Include(x => x.FlightsTo.Where(flight => flight.ArrivalUTC > DateTime.UtcNow))
+                .AnyAsync(x => x.FlightsFrom.Count > 0 && x.FlightsTo.Count > 0, token);
 
         public async Task CreateAsync(Airport airport, CancellationToken token = default)
         {

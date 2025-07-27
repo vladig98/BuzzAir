@@ -25,8 +25,8 @@
                 <td>@f.Origin.IATA</td>
                 <td>@f.Destination.IATA</td>
                 <td>@f.DurationInMinutes mins</td>
-                <td>@f.Departure.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)</td>
-                <td>@f.Arrival.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)</td>
+                <td>@f.DepartureUTC.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)</td>
+                <td>@f.ArrivalUTC.ToString("dd MMM yyyy HH:mm", CultureInfo.InvariantCulture)</td>
                 <td>$@f.Price</td>
                 <td class="text-center">
                     <div class="btn-group">

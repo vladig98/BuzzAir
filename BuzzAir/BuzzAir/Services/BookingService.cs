@@ -22,11 +22,11 @@
 
             // Make the seats available
             // TO DO: Fix this as it won't work
-            foreach (Flight flight in flights)
-            {
-                List<int> seats = [.. flight.Passengers.Select(x => x.SeatNumber)];
-                flight.Seats.Where(x => seats.Contains(x.SeatNumber)).First().IsAvailable = true;
-            }
+            //foreach (Flight flight in flights)
+            //{
+            //    List<int> seats = [.. flight.Passengers.Select(x => x.SeatNumber)];
+            //    flight.Seats.Where(x => seats.Contains(x.SeatNumber)).First().IsAvailable = true;
+            //}
 
             await context.SaveChangesAsync();
         }
@@ -49,7 +49,7 @@
                 .Include(x => x.Flights)
                     .ThenInclude(x => x.Flight)
                         .ThenInclude(x => x.Passengers)
-                            .ThenInclude(x => x.Person)
+                            .ThenInclude(x => x.Passenger)
                 .Include(x => x.Passengers)
                     .ThenInclude(x => x.Passenger)
                         .ThenInclude(x => x.Services)

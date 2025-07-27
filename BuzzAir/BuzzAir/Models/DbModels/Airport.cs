@@ -3,29 +3,21 @@
     public class Airport
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        [Required]
-        public string ICAO { get; set; } = string.Empty;
-        public string IATA { get; set; } = string.Empty;
-        [Required]
-        public string Name { get; set; } = string.Empty;
-        [Required]
-        public City City { get; set; } = new City();
-        public string CityId { get; set; } = string.Empty;
-        public State? State { get; set; }
-        public string? StateId { get; set; }
-        [Required]
-        public Country Country { get; set; } = new Country();
-        public string CountryId { get; set; } = string.Empty;
-        [Required]
-        public int Elevation { get; set; }
-        [Required]
-        public double Latitude { get; set; }
-        [Required]
-        public double Longitude { get; set; }
-        public string Timezone { get; set; } = string.Empty;
-        public string TimezoneId { get; set; } = string.Empty;
+
+        public required string ICAO { get; set; }
+        public required string IATA { get; set; }
+        public required string Name { get; set; }
+
+        public required City City { get; set; }
+        public required string CityId { get; set; }
+
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
+
+        public int? ElevationAboveSeaLevel { get; set; }
         public bool IsDeleted { get; set; }
-        public ICollection<Flight> FlightsFromOrigin { get; set; } = new List<Flight>();
-        public ICollection<Flight> FlightsToDestination { get; set; } = new List<Flight>();
+
+        public ICollection<Flight> FlightsFrom { get; set; } = new HashSet<Flight>();
+        public ICollection<Flight> FlightsTo { get; set; } = new HashSet<Flight>();
     }
 }

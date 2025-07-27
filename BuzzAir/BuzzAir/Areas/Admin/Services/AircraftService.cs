@@ -114,7 +114,7 @@
             return cachingService.GetAsync(GlobalConstants.AIRCRAFT_ALL_CACHE_KEY, dbFunc, token);
         }
 
-        private Task<Aircraft> GetAircraftByIdAsync(string id, CancellationToken token = default) => 
+        private Task<Aircraft> GetAircraftByIdAsync(string id, CancellationToken token = default) =>
             GetAircraftByIdAsync(id, deleted: false, token);
 
         private Task<Aircraft> GetAircraftByIdAsync(string id, bool deleted = false, CancellationToken token = default)

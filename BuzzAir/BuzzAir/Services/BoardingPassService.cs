@@ -23,10 +23,10 @@
                 return GlobalConstants.OneWayTicket;
             }
 
-            string departure = flight.Departure.ToString(GlobalConstants.TimeFormat);
+            string departure = flight.DepartureUTC.ToString(GlobalConstants.TimeFormat);
             string origin = flight.Origin.Name;
             string destination = flight.Destination.Name;
-            string arrival = flight.Arrival.ToString(GlobalConstants.TimeFormat);
+            string arrival = flight.ArrivalUTC.ToString(GlobalConstants.TimeFormat);
             string originIATA = flight.Origin.IATA;
             string destinationIATA = flight.Destination.IATA;
 

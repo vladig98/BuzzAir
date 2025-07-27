@@ -2,7 +2,7 @@
 {
     public interface IPassengerServiceService
     {
-        Task<PersonService> Create(IPassenger passenger, IService service);
+        Task<Models.DbModels.PassengerService> Create(IPassenger passenger, IService service);
         Task CreateAsync(IPassenger passenger, List<IService> services);
     }
 }

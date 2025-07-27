@@ -3,6 +3,6 @@
     public class Flexibility : Service
     {
         public override decimal Price { get; set; } = GlobalConstants.FlexibilityPrice;
-        public override string Name { get; set; } = "Flexibility";
+        public override string Name { get; set; } = nameof(Flexibility);
     }
 }

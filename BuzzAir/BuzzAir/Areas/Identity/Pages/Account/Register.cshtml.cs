@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Security.Claims;
 using System.Text.Encodings.Web;
 
 namespace BuzzAir.Areas.Identity.Pages.Account
@@ -143,7 +142,7 @@ namespace BuzzAir.Areas.Identity.Pages.Account
                 //    city = await _cityService.CreateAsync(country, Input.City);
                 //}
 
-                var address = new Address { Id = Guid.NewGuid().ToString(), City = city, Country = country, PostalCode = Input.Postal, Street = Input.Street };
+                var address = new Per { Id = Guid.NewGuid().ToString(), City = city, Country = country, PostalCode = Input.Postal, Street = Input.Street };
                 var user = new ApplicationUser { Id = Guid.NewGuid().ToString(), Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FirstName = Input.FullName, LastName = Input.FullName, Address = address, Gender = Input.Gender, Role = role };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await _userManager.AddToRoleAsync(user, role.Name);

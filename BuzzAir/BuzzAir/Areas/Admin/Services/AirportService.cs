@@ -97,17 +97,17 @@
         }
 
         private Task<List<Airport>> GetAllAirportsAsync(
-            int? pageNumber = null, 
-            int? itemPerPage = null, 
-            AirportEnum include = AirportEnum.None, 
+            int? pageNumber = null,
+            int? itemPerPage = null,
+            AirportEnum include = AirportEnum.None,
             CancellationToken token = default) =>
             GetAllAirportsAsync(pageNumber, itemPerPage, include, deleted: false, token);
 
         private Task<List<Airport>> GetAllAirportsAsync(
-            int? pageNumber = null, 
-            int? itemPerPage = null, 
-            AirportEnum include = AirportEnum.None, 
-            bool deleted = false, 
+            int? pageNumber = null,
+            int? itemPerPage = null,
+            AirportEnum include = AirportEnum.None,
+            bool deleted = false,
             CancellationToken token = default)
         {
             async Task<List<Airport>> dbFunc(CancellationToken ct) { return await airportRepository.AllAsync(pageNumber, itemPerPage, include, ct); }
@@ -115,10 +115,10 @@
 
             if (deleted)
             {
-                return cachingService.GetAsync(GlobalConstants.AIRPORT_DELETED_ALL_CACHE_KEY, dbFuncDeleted, token);
+                return cachingService.GetAsync(GlobalConstants.AIRPORTS_DELETED_CACHE_KEY, dbFuncDeleted, token);
             }
 
-            return cachingService.GetAsync(GlobalConstants.AIRPORT_ALL_CACHE_KEY, dbFunc, token);
+            return cachingService.GetAsync(GlobalConstants.AIRPORTS_CACHE_KEY, dbFunc, token);
         }
 
         private Task<Airport> GetAirportByIdAsync(string id, AirportEnum include, CancellationToken token = default) =>

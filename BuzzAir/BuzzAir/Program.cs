@@ -85,8 +85,8 @@ builder.Services.AddSingleton(sp =>
     cachingService.SetAsync(GlobalConstants.AIRCRAFT_ALL_CACHE_KEY, aircraft.Where(x => !x.IsDeleted), CancellationToken.None);
     cachingService.SetAsync(GlobalConstants.AIRCRAFT_DELETED_ALL_CACHE_KEY, aircraft.Where(x => x.IsDeleted), CancellationToken.None);
 
-    cachingService.SetAsync(GlobalConstants.AIRPORT_ALL_CACHE_KEY, airports.Where(x => !x.IsDeleted), CancellationToken.None);
-    cachingService.SetAsync(GlobalConstants.AIRPORT_DELETED_ALL_CACHE_KEY, airports.Where(x => x.IsDeleted), CancellationToken.None);
+    cachingService.SetAsync(GlobalConstants.AIRPORTS_CACHE_KEY, airports.Where(x => !x.IsDeleted), CancellationToken.None);
+    cachingService.SetAsync(GlobalConstants.AIRPORTS_DELETED_CACHE_KEY, airports.Where(x => x.IsDeleted), CancellationToken.None);
 
     logger.LogError("All data cached");
 

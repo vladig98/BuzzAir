@@ -3,6 +3,6 @@
     public class AirportCheckIn : Service
     {
         public override decimal Price { get; set; } = GlobalConstants.AirportCheckInPrice;
-        public override string Name { get; set; } = "AirportCheckIn";
+        public override string Name { get; set; } = nameof(AirportCheckIn);
     }
 }

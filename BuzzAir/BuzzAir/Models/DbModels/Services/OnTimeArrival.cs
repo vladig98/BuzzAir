@@ -3,6 +3,6 @@
     public class OnTimeArrival : Service
     {
         public override decimal Price { get; set; } = GlobalConstants.OnTimeArrivalPrice;
-        public override string Name { get; set; } = "OnTimeArrival";
+        public override string Name { get; set; } = nameof(OnTimeArrival);
     }
 }

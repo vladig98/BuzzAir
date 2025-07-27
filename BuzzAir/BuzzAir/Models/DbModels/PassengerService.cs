@@ -1,11 +1,11 @@
 ﻿namespace BuzzAir.Models.DbModels
 {
-    public class BookingPassenger
+    public class PassengerService
     {
-        public required string BookingId { get; set; }
-        public required Booking Booking { get; set; }
-
         public required string PassengerId { get; set; }
         public required Passenger Passenger { get; set; }
+
+        public required string ServiceId { get; set; }
+        public required Service Service { get; set; }
     }
 }

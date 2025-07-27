@@ -11,8 +11,6 @@
         Task RestoreAsync(string id, CancellationToken token);
         Task<PaginatedList<AircraftDTO>> AllAsync(int? pageNumber, CancellationToken token);
         Task<PaginatedList<AircraftDTO>> AllDeletedAsync(int? pageNumber, CancellationToken token);
-
-        // TO DO: Review this two
         Task<List<SelectListItem>> GetAircraftForSelect(CancellationToken token);
         Task<Aircraft> GetByIdAsync(string id, CancellationToken token);
     }

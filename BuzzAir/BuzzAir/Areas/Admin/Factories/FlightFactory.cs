@@ -1,4 +1,5 @@
-﻿namespace BuzzAir.Factories
+﻿
+namespace BuzzAir.Areas.Admin.Factories
 {
     public static class FlightFactory
     {
@@ -18,8 +19,8 @@
             FlightViewModel viewModel = new()
             {
                 Id = flight.Id,
-                Arrival = flight.Arrival,
-                Departure = flight.Departure,
+                Arrival = flight.ArrivalUTC,
+                Departure = flight.DepartureUTC,
                 Destination = destination,
                 FlightNumber = flight.FlightNumber,
                 Origin = origin,
@@ -36,10 +37,9 @@
             Flight flight = new()
             {
                 Aircraft = aircraft,
-                Arrival = arrival,
-                Departure = model.Departure,
+                ArrivalUTC = arrival,
+                DepartureUTC = model.Departure,
                 Destination = destination,
-                DurationInMinutes = model.DurationInMinutes,
                 FlightNumber = model.FlightNumber,
                 Origin = origin,
                 Price = model.Price,
@@ -51,12 +51,17 @@
             return flight;
         }
 
+        internal static Flight Create(CreateFlightVM model)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static FlightEditViewModel CreateEditViewModel(Flight flight, List<SelectListItem> aircraft, List<SelectListItem> countries,
             List<SelectListItem> originAirportsSelect, List<SelectListItem> destinationAirportsSelect)
         {
             FlightEditViewModel viewModel = new()
             {
-                Departure = flight.Departure,
+                Departure = flight.DepartureUTC,
                 Destination = flight.DestinationId,
                 DestinationCountry = flight.Destination.CountryId,
                 FlightNumber = flight.FlightNumber,
@@ -142,6 +147,11 @@
             }
 
             return list;
+        }
+
+        internal static PaginatedList<FlightDTO> GetPaginatedList(int v, long count, List<Flight> aircraft)
+        {
+            throw new NotImplementedException();
         }
     }
 }

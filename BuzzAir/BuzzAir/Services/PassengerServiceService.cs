@@ -2,9 +2,9 @@
 {
     public class PassengerServiceService(BuzzAirDbContext context) : IPassengerServiceService
     {
-        public async Task<PersonService> Create(IPassenger passenger, IService service)
+        public async Task<Models.DbModels.PassengerService> Create(IPassenger passenger, IService service)
         {
-            PersonService paxSevice = PersonServiceFactory.Create(passenger, service);
+            Models.DbModels.PassengerService paxSevice = PersonServiceFactory.Create(passenger, service);
 
             await context.PersonServices.AddAsync(paxSevice);
             await context.SaveChangesAsync();
@@ -14,18 +14,18 @@
 
         public async Task CreateAsync(IPassenger passenger, List<IService> services)
         {
-            List<Task<PersonService>> personServiceTasks = [];
+            List<Task<Models.DbModels.PassengerService>> personServiceTasks = [];
 
             foreach (IService service in services)
             {
-                Task<PersonService> personServiceTask = Create(passenger, service);
+                Task<Models.DbModels.PassengerService> personServiceTask = Create(passenger, service);
 
                 personServiceTasks.Add(personServiceTask);
             }
 
             await Task.WhenAll(personServiceTasks);
 
-            foreach (Task<PersonService> completedTask in personServiceTasks)
+            foreach (Task<Models.DbModels.PassengerService> completedTask in personServiceTasks)
             {
                 passenger.Services.Add(completedTask.Result);
             }

@@ -2,29 +2,22 @@
 {
     public class TravelDocument
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public DocumentType Type { get; set; }
 
-        [Required]
-        public DocumenType Type { get; set; }
-
-        [Required]
-        public string Number { get; set; }
-
-        [Required]
+        public required string Number { get; set; }
         public DateTime IssueDate { get; set; }
-
-        [Required]
         public DateTime ExpiryDate { get; set; }
 
-        [Required]
-        public string NationalityId { get; set; }
-        public Country Nationality { get; set; }
+        public required string NationalityId { get; set; }
+        public required Country Nationality { get; set; }
 
-        [Required]
-        public string BirthCountryId { get; set; }
-        public Country BirthCountry { get; set; }
+        public required string BirthCountryId { get; set; }
+        public required Country BirthCountry { get; set; }
 
-        [Required]
+        public required string PassengerId { get; set; }
+        public required Passenger Passenger { get; set; }
+
         public Gender Gender { get; set; }
     }
 }

@@ -82,29 +82,28 @@ namespace BuzzAir.Middleware
                 {
                     Aircraft = aircraft,
                     AircraftId = aircraft.Id,
-                    Arrival = departure.AddMinutes(duration),
+                    ArrivalUTC = departure.AddMinutes(duration),
                     Destination = destination,
                     DestinationId = destination.Id,
-                    DurationInMinutes = duration,
                     FlightNumber = string.Format("{0}{1}", flightNumber, lastDigit),
                     Id = Guid.NewGuid().ToString(),
                     Origin = origin,
                     OriginId = origin.Id,
                     Price = (decimal)(rnd.NextDouble() * (500 - 9.99) + 9.99),
-                    Departure = departure
+                    DepartureUTC = departure
                 };
 
-                for (int j = 1; j <= aircraft.NumberOfSeats; j++)
-                {
-                    goingFlight.Seats.Add(new FlightSeat()
-                    {
-                        Flight = goingFlight,
-                        FlightId = goingFlight.Id,
-                        Id = Guid.NewGuid().ToString(),
-                        IsAvailable = true,
-                        SeatNumber = j
-                    });
-                }
+                //for (int j = 1; j <= aircraft.NumberOfSeats; j++)
+                //{
+                //    goingFlight.Seats.Add(new FlightSeat()
+                //    {
+                //        Flight = goingFlight,
+                //        FlightId = goingFlight.Id,
+                //        Id = Guid.NewGuid().ToString(),
+                //        IsAvailable = true,
+                //        SeatNumber = j
+                //    });
+                //}
 
                 flights.Add(goingFlight);
 
@@ -116,29 +115,28 @@ namespace BuzzAir.Middleware
                     {
                         Aircraft = aircraft,
                         AircraftId = aircraft.Id,
-                        Arrival = newDeparture.AddMinutes(duration),
+                        ArrivalUTC = newDeparture.AddMinutes(duration),
                         Destination = origin,
                         DestinationId = origin.Id,
-                        DurationInMinutes = duration,
                         FlightNumber = string.Format("{0}{1}", flightNumber, lastDigit + 1),
                         Id = Guid.NewGuid().ToString(),
                         Origin = destination,
                         OriginId = destination.Id,
                         Price = (decimal)(rnd.NextDouble() * (500 - 9.99) + 9.99),
-                        Departure = newDeparture
+                        DepartureUTC = newDeparture
                     };
 
-                    for (int j = 1; j <= aircraft.NumberOfSeats; j++)
-                    {
-                        returnFlight.Seats.Add(new FlightSeat()
-                        {
-                            Flight = returnFlight,
-                            FlightId = returnFlight.Id,
-                            Id = Guid.NewGuid().ToString(),
-                            IsAvailable = true,
-                            SeatNumber = j
-                        });
-                    }
+                    //for (int j = 1; j <= aircraft.NumberOfSeats; j++)
+                    //{
+                    //    returnFlight.Seats.Add(new FlightSeat()
+                    //    {
+                    //        Flight = returnFlight,
+                    //        FlightId = returnFlight.Id,
+                    //        Id = Guid.NewGuid().ToString(),
+                    //        IsAvailable = true,
+                    //        SeatNumber = j
+                    //    });
+                    //}
 
                     flights.Add(returnFlight);
                 }
