@@ -14,8 +14,6 @@ namespace BuzzAir.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ICountryService _countryService;
-        private readonly ICityService _cityService;
         private readonly BuzzAirDbContext context;
 
         public RegisterModel(
@@ -24,10 +22,8 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ICountryService countryService,
             RoleManager<IdentityRole> roleManager,
-            BuzzAirDbContext context,
-            ICityService cityService)
+            BuzzAirDbContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -35,10 +31,8 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _countryService = countryService;
             _roleManager = roleManager;
             this.context = context;
-            _cityService = cityService;
         }
 
         [BindProperty]
@@ -102,14 +96,6 @@ namespace BuzzAir.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            List<SelectListItem> countries = new List<SelectListItem>();
-
-            SelectListGroup countryGroup = new SelectListGroup { Name = "Countries" };
-            SelectListGroup dependenciesGroup = new SelectListGroup { Name = "Dependencies and territories not offically recognized as countries" };
-
-            var countryValues = await _countryService.GetCountriesForSelect(CancellationToken.None);
-            Countries = countryValues.OrderBy(x => x.Group.Name).ThenBy(x => x.Text);
-
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -134,16 +120,23 @@ namespace BuzzAir.Areas.Identity.Pages.Account
                     await _roleManager.CreateAsync(role);
                 }
 
-                var country = await _countryService.GetByIdAsync(Input.Country, CancellationToken.None);
-                var city = await _cityService.GetByIdAsync(Input.City, CancellationToken.None);
+                City city = GetCity(Input.City);
 
-                //if (city == null)
-                //{
-                //    city = await _cityService.CreateAsync(country, Input.City);
-                //}
-
-                var address = new Per { Id = Guid.NewGuid().ToString(), City = city, Country = country, PostalCode = Input.Postal, Street = Input.Street };
-                var user = new ApplicationUser { Id = Guid.NewGuid().ToString(), Email = Input.Email, PhoneNumber = Input.PhoneNumber, UserName = Input.Username, FirstName = Input.FullName, LastName = Input.FullName, Address = address, Gender = Input.Gender, Role = role };
+                var user = new ApplicationUser 
+                { 
+                    Id = Guid.NewGuid().ToString(), 
+                    Email = Input.Email, 
+                    PhoneNumber = Input.PhoneNumber, 
+                    UserName = Input.Username, 
+                    FirstName = Input.FullName, 
+                    LastName = Input.FullName, 
+                    Gender = Input.Gender,
+                    PostalCode = Input.Postal,
+                    Street = Input.Street,
+                    City = city,
+                    CityId = city.Id,
+                };
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await _userManager.AddToRoleAsync(user, role.Name);
                 await _userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), role.Name));
@@ -176,18 +169,9 @@ namespace BuzzAir.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private ApplicationUser CreateUser()
+        private City GetCity(string city)
         {
-            try
-            {
-                return Activator.CreateInstance<ApplicationUser>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-            }
+            throw new NotImplementedException();
         }
 
         private IUserEmailStore<ApplicationUser> GetEmailStore()

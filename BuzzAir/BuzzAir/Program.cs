@@ -5,7 +5,7 @@ builder.Services.AddControllersWithViews();
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
         throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-builder.Services.AddDbContext<BuzzAirDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<BuzzAirDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<BuzzAirDbContext>()
     .AddDefaultTokenProviders()
@@ -46,7 +46,7 @@ builder.Services.AddSingleton(sp =>
     State[] states = [.. dbContext.States.Include(x => x.Country).AsNoTracking()];
     Country[] countries = [.. dbContext.Countries.AsNoTracking()];
     Aircraft[] aircraft = [.. dbContext.Aircrafts.AsNoTracking()];
-    Airport[] airports = [.. dbContext.Airports.Include(x => x.City).Include(x => x.Country).Include(x => x.State).AsNoTracking()];
+    Airport[] airports = [.. dbContext.Airports.Include(x => x.City).ThenInclude(x => x.State).Include(x => x.City).ThenInclude(x => x.Country).AsNoTracking()];
 
     foreach (City city in cities)
     {
@@ -135,32 +135,6 @@ builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
     facebookOptions.AccessDeniedPath = "/AccessDeniedPathInfo";
 });
 
-builder.Services.AddTransient<IAirportService, AirportService>();
-builder.Services.AddTransient<IFlightsService, FlightsService>();
-builder.Services.AddTransient<IAircraftService, AircraftService>();
-builder.Services.AddTransient<IBookingService, BookingService>();
-builder.Services.AddTransient<IUserBookingService, UserBookingService>();
-builder.Services.AddTransient<IPaymentService, PaymentService>();
-builder.Services.AddTransient<IBookingFlightService, BookingFlightService>();
-builder.Services.AddTransient<IBookingPassengerService, BookingPassengerService>();
-builder.Services.AddTransient<ICountryService, CountryService>();
-builder.Services.AddTransient<ICityService, CityService>();
-builder.Services.AddTransient<IStateService, StateService>();
-builder.Services.AddTransient<IPassengerService, PassengerService>();
-builder.Services.AddTransient<IPassengerServiceService, PassengerServiceService>();
-builder.Services.AddTransient<IFlightPassengerService, FlightPassengerService>();
-builder.Services.AddTransient<IServiceService, ServiceService>();
-builder.Services.AddTransient<IBoardingPassService, BoardingPassService>();
-builder.Services.AddTransient<IPriceCalculator, PriceCalculator>();
-builder.Services.AddTransient<ISeatService, SeatService>();
-
-// Repositories
-builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
-builder.Services.AddScoped<IAirportRepository, AirportRepository>();
-builder.Services.AddScoped<ICityRepository, CityRepository>();
-builder.Services.AddScoped<ICountryRepository, CountryRepository>();
-builder.Services.AddScoped<IStateRepository, StateRepository>();
-
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Events.OnRedirectToLogin = context =>
@@ -206,10 +180,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseDataSeeder();
 
 app.MapRazorPages();
-app.MapHub<SelectHub>("/getSelectOptions");
 
 app.MapControllerRoute(
     name: "IdentityArea",

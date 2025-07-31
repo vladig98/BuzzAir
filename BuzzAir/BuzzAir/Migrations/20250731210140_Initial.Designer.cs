@@ -3,74 +3,42 @@ using System;
 using BuzzAir.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace BuzzAir.Migrations
 {
     [DbContext(typeof(BuzzAirDbContext))]
-    [Migration("20231216124545_fixingSeat")]
-    partial class fixingSeat
+    [Migration("20250731210140_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "9.0.7")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("BuzzAir.Models.DbModels.Address", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CityId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CountryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StateId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("StateId");
-
-                    b.ToTable("Addresses");
-                });
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Aircraft", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("NumberOfSeats")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -80,51 +48,47 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.Airport", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("CityId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("CountryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Elevation")
-                        .HasColumnType("int");
+                    b.Property<int?>("ElevationAboveSeaLevel")
+                        .HasColumnType("integer");
 
                     b.Property<string>("IATA")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ICAO")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
+                    b.Property<decimal?>("Latitude")
+                        .HasPrecision(29, 28)
+                        .HasColumnType("numeric(29,28)");
+
+                    b.Property<decimal?>("Longitude")
+                        .HasPrecision(29, 28)
+                        .HasColumnType("numeric(29,28)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StateId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("TimeZone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("CountryId");
+                    b.HasIndex("IATA")
+                        .IsUnique();
 
-                    b.HasIndex("StateId");
+                    b.HasIndex("ICAO")
+                        .IsUnique();
 
                     b.ToTable("Airports");
                 });
@@ -132,89 +96,98 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    b.Property<string>("AddressId")
+                    b.Property<string>("CityId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("PassengerId")
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("CityId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasDatabaseName("UserNameIndex");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("PassengerId")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -222,85 +195,110 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.Booking", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("PaymentId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaymentId");
+                    b.HasIndex("PaymentId")
+                        .IsUnique();
 
                     b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.BookingFlight", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("FlightId")
+                        .HasColumnType("text");
 
                     b.Property<string>("BookingId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("FlightId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
+                    b.HasKey("FlightId", "BookingId");
 
                     b.HasIndex("BookingId");
-
-                    b.HasIndex("FlightId");
 
                     b.ToTable("BookingFlights");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.BookingPassenger", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("PassengerId")
+                        .HasColumnType("text");
 
                     b.Property<string>("BookingId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("PersonId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
+                    b.HasKey("PassengerId", "BookingId");
 
                     b.HasIndex("BookingId");
 
-                    b.HasIndex("PersonId");
-
                     b.ToTable("BookingPassengers");
+                });
+
+            modelBuilder.Entity("BuzzAir.Models.DbModels.ChangeLog", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AfterJSON")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BeforeJSON")
+                        .HasColumnType("text");
+
+                    b.Property<string>("EntityId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EntityName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("TimestampUTC")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChangeLogs");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.City", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("CountryId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("StateId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("TimezoneId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -308,26 +306,40 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("StateId");
 
+                    b.HasIndex("TimezoneId");
+
+                    b.HasIndex("Name", "StateId")
+                        .IsUnique();
+
                     b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Country", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ISO")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<bool>("IsCountry")
-                        .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsOfficiallyRecognizedCountry")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ISO")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Countries");
                 });
@@ -335,42 +347,47 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.Flight", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("AircraftId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("Arrival")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("ArrivalUTC")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("Departure")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("DepartureUTC")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DestinationId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("DurationInMinutes")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.Property<string>("FlightNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("OriginId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<decimal>("PriceInEur")
+                        .HasPrecision(29, 28)
+                        .HasColumnType("numeric(29,28)");
+
+                    b.Property<int>("TakenSeats")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AircraftId");
 
                     b.HasIndex("DestinationId");
+
+                    b.HasIndex("FlightNumber");
 
                     b.HasIndex("OriginId");
 
@@ -379,152 +396,134 @@ namespace BuzzAir.Migrations
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.FlightPassenger", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("FlightId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("PersonId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("PassengerId")
+                        .HasColumnType("text");
 
                     b.Property<int>("SeatNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.HasKey("FlightId", "PassengerId", "SeatNumber");
+
+                    b.HasIndex("PassengerId");
+
+                    b.ToTable("FlightPassengers");
+                });
+
+            modelBuilder.Entity("BuzzAir.Models.DbModels.Passenger", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DocumentId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FlightId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
-                    b.HasIndex("PersonId");
+                    b.ToTable("Passengers");
+                });
 
-                    b.ToTable("FlightPassengers");
+            modelBuilder.Entity("BuzzAir.Models.DbModels.PassengerService", b =>
+                {
+                    b.Property<string>("ServiceId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PassengerId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ServiceId", "PassengerId");
+
+                    b.HasIndex("PassengerId");
+
+                    b.ToTable("PassengerServices");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Payment", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
-                    b.Property<decimal>("Amount")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<decimal>("AmountInEur")
+                        .HasPrecision(29, 28)
+                        .HasColumnType("numeric(29,28)");
+
+                    b.Property<string>("BookingId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("CVC")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<int>("Card")
-                        .HasColumnType("int");
+                    b.Property<string>("Card")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("CardHolder")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("CardNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Currency")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookingId")
+                        .IsUnique();
 
                     b.ToTable("Payments");
-                });
-
-            modelBuilder.Entity("BuzzAir.Models.DbModels.Person", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("People");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("BuzzAir.Models.DbModels.PersonService", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PassengerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PersonId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ServiceId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("PassengerId");
-
-                    b.HasIndex("PersonId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("PersonServices");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Service", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(29, 28)
+                        .HasColumnType("numeric(29,28)");
+
+                    b.Property<string>("ServiceType")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("character varying(21)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Services");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Service");
+                    b.HasDiscriminator<string>("ServiceType").HasValue("Service");
 
                     b.UseTphMappingStrategy();
                 });
@@ -532,15 +531,18 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.State", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("CountryId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -552,11 +554,28 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.Timezone", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("Abbreviation")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
+
+                    b.Property<TimeSpan>("Offset")
+                        .HasColumnType("interval");
+
+                    b.Property<bool>("UsesDST")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -566,31 +585,37 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.TravelDocument", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("BirthCountryId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("IssueDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NationalityId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Number")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("PassengerId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -598,54 +623,34 @@ namespace BuzzAir.Migrations
 
                     b.HasIndex("NationalityId");
 
+                    b.HasIndex("PassengerId")
+                        .IsUnique();
+
                     b.ToTable("TravelDocuments");
-                });
-
-            modelBuilder.Entity("BuzzAir.Models.DbModels.UserBooking", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BookingId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("BookingId");
-
-                    b.ToTable("UserBookings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
                 });
@@ -654,19 +659,19 @@ namespace BuzzAir.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -679,19 +684,19 @@ namespace BuzzAir.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -703,17 +708,17 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -725,10 +730,10 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -740,36 +745,20 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("BuzzAir.Models.DbModels.Passenger", b =>
-                {
-                    b.HasBaseType("BuzzAir.Models.DbModels.Person");
-
-                    b.Property<int>("BaggageType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DocumentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasIndex("DocumentId");
-
-                    b.HasDiscriminator().HasValue("Passenger");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Services.AirportCheckIn", b =>
@@ -783,9 +772,12 @@ namespace BuzzAir.Migrations
                 {
                     b.HasBaseType("BuzzAir.Models.DbModels.Service");
 
-                    b.Property<decimal>("Kilos")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("BaggageType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Kilos")
+                        .HasColumnType("integer");
 
                     b.HasDiscriminator().HasValue("Baggage");
                 });
@@ -815,36 +807,11 @@ namespace BuzzAir.Migrations
                 {
                     b.HasBaseType("BuzzAir.Models.DbModels.Service");
 
-                    b.Property<int>("SeatType")
-                        .HasColumnType("int");
+                    b.Property<string>("SeatType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasDiscriminator().HasValue("Seat");
-                });
-
-            modelBuilder.Entity("BuzzAir.Models.DbModels.Address", b =>
-                {
-                    b.HasOne("BuzzAir.Models.DbModels.City", "City")
-                        .WithMany("Addresses")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BuzzAir.Models.DbModels.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BuzzAir.Models.DbModels.State", "State")
-                        .WithMany("Addresses")
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("City");
-
-                    b.Navigation("Country");
-
-                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Airport", b =>
@@ -855,47 +822,33 @@ namespace BuzzAir.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BuzzAir.Models.DbModels.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BuzzAir.Models.DbModels.State", "State")
-                        .WithMany("Airports")
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("City");
-
-                    b.Navigation("Country");
-
-                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.ApplicationUser", b =>
                 {
-                    b.HasOne("BuzzAir.Models.DbModels.Address", "Address")
+                    b.HasOne("BuzzAir.Models.DbModels.City", "City")
                         .WithMany()
-                        .HasForeignKey("AddressId")
+                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
+                    b.HasOne("BuzzAir.Models.DbModels.Passenger", "Passenger")
+                        .WithOne("User")
+                        .HasForeignKey("BuzzAir.Models.DbModels.ApplicationUser", "PassengerId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("Address");
+                    b.Navigation("City");
 
-                    b.Navigation("Role");
+                    b.Navigation("Passenger");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Booking", b =>
                 {
                     b.HasOne("BuzzAir.Models.DbModels.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne("Booking")
+                        .HasForeignKey("BuzzAir.Models.DbModels.Booking", "PaymentId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Payment");
@@ -906,13 +859,13 @@ namespace BuzzAir.Migrations
                     b.HasOne("BuzzAir.Models.DbModels.Booking", "Booking")
                         .WithMany("Flights")
                         .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BuzzAir.Models.DbModels.Flight", "Flight")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("FlightId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Booking");
@@ -925,18 +878,18 @@ namespace BuzzAir.Migrations
                     b.HasOne("BuzzAir.Models.DbModels.Booking", "Booking")
                         .WithMany("Passengers")
                         .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BuzzAir.Models.DbModels.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("BuzzAir.Models.DbModels.Passenger", "Passenger")
+                        .WithMany("Bookings")
+                        .HasForeignKey("PassengerId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Booking");
 
-                    b.Navigation("Person");
+                    b.Navigation("Passenger");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.City", b =>
@@ -952,27 +905,35 @@ namespace BuzzAir.Migrations
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("BuzzAir.Models.DbModels.Timezone", "Timezone")
+                        .WithMany("Cities")
+                        .HasForeignKey("TimezoneId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Country");
 
                     b.Navigation("State");
+
+                    b.Navigation("Timezone");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Flight", b =>
                 {
                     b.HasOne("BuzzAir.Models.DbModels.Aircraft", "Aircraft")
-                        .WithMany()
+                        .WithMany("Flights")
                         .HasForeignKey("AircraftId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BuzzAir.Models.DbModels.Airport", "Destination")
-                        .WithMany("FlightsToDestination")
+                        .WithMany("FlightsTo")
                         .HasForeignKey("DestinationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BuzzAir.Models.DbModels.Airport", "Origin")
-                        .WithMany("FlightsFromOrigin")
+                        .WithMany("FlightsFrom")
                         .HasForeignKey("OriginId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -989,43 +950,35 @@ namespace BuzzAir.Migrations
                     b.HasOne("BuzzAir.Models.DbModels.Flight", "Flight")
                         .WithMany("Passengers")
                         .HasForeignKey("FlightId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BuzzAir.Models.DbModels.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("BuzzAir.Models.DbModels.Passenger", "Passenger")
+                        .WithMany("Flights")
+                        .HasForeignKey("PassengerId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Flight");
 
-                    b.Navigation("Person");
+                    b.Navigation("Passenger");
                 });
 
-            modelBuilder.Entity("BuzzAir.Models.DbModels.PersonService", b =>
+            modelBuilder.Entity("BuzzAir.Models.DbModels.PassengerService", b =>
                 {
-                    b.HasOne("BuzzAir.Models.DbModels.ApplicationUser", null)
+                    b.HasOne("BuzzAir.Models.DbModels.Passenger", "Passenger")
                         .WithMany("Services")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("BuzzAir.Models.DbModels.Passenger", null)
-                        .WithMany("Services")
-                        .HasForeignKey("PassengerId");
-
-                    b.HasOne("BuzzAir.Models.DbModels.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("PassengerId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BuzzAir.Models.DbModels.Service", "Service")
-                        .WithMany()
+                        .WithMany("Passengers")
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Person");
+                    b.Navigation("Passenger");
 
                     b.Navigation("Service");
                 });
@@ -1033,9 +986,9 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.State", b =>
                 {
                     b.HasOne("BuzzAir.Models.DbModels.Country", "Country")
-                        .WithMany()
+                        .WithMany("States")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Country");
@@ -1044,39 +997,28 @@ namespace BuzzAir.Migrations
             modelBuilder.Entity("BuzzAir.Models.DbModels.TravelDocument", b =>
                 {
                     b.HasOne("BuzzAir.Models.DbModels.Country", "BirthCountry")
-                        .WithMany("BirthCountries")
+                        .WithMany("DocumentsBirthCountries")
                         .HasForeignKey("BirthCountryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BuzzAir.Models.DbModels.Country", "Nationality")
-                        .WithMany("Nationalities")
+                        .WithMany("DocumentsNationalities")
                         .HasForeignKey("NationalityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BuzzAir.Models.DbModels.Passenger", "Passenger")
+                        .WithOne("Document")
+                        .HasForeignKey("BuzzAir.Models.DbModels.TravelDocument", "PassengerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("BirthCountry");
 
                     b.Navigation("Nationality");
-                });
 
-            modelBuilder.Entity("BuzzAir.Models.DbModels.UserBooking", b =>
-                {
-                    b.HasOne("BuzzAir.Models.DbModels.ApplicationUser", "ApplicationUser")
-                        .WithMany("Bookings")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BuzzAir.Models.DbModels.Booking", "Booking")
-                        .WithMany()
-                        .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
-                    b.Navigation("Booking");
+                    b.Navigation("Passenger");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1130,29 +1072,16 @@ namespace BuzzAir.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BuzzAir.Models.DbModels.Passenger", b =>
+            modelBuilder.Entity("BuzzAir.Models.DbModels.Aircraft", b =>
                 {
-                    b.HasOne("BuzzAir.Models.DbModels.TravelDocument", "Document")
-                        .WithMany()
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Document");
+                    b.Navigation("Flights");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Airport", b =>
                 {
-                    b.Navigation("FlightsFromOrigin");
+                    b.Navigation("FlightsFrom");
 
-                    b.Navigation("FlightsToDestination");
-                });
-
-            modelBuilder.Entity("BuzzAir.Models.DbModels.ApplicationUser", b =>
-                {
-                    b.Navigation("Bookings");
-
-                    b.Navigation("Services");
+                    b.Navigation("FlightsTo");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Booking", b =>
@@ -1164,37 +1093,60 @@ namespace BuzzAir.Migrations
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.City", b =>
                 {
-                    b.Navigation("Addresses");
-
                     b.Navigation("Airports");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Country", b =>
                 {
-                    b.Navigation("BirthCountries");
-
                     b.Navigation("Cities");
 
-                    b.Navigation("Nationalities");
+                    b.Navigation("DocumentsBirthCountries");
+
+                    b.Navigation("DocumentsNationalities");
+
+                    b.Navigation("States");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.Flight", b =>
+                {
+                    b.Navigation("Bookings");
+
+                    b.Navigation("Passengers");
+                });
+
+            modelBuilder.Entity("BuzzAir.Models.DbModels.Passenger", b =>
+                {
+                    b.Navigation("Bookings");
+
+                    b.Navigation("Document")
+                        .IsRequired();
+
+                    b.Navigation("Flights");
+
+                    b.Navigation("Services");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BuzzAir.Models.DbModels.Payment", b =>
+                {
+                    b.Navigation("Booking")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BuzzAir.Models.DbModels.Service", b =>
                 {
                     b.Navigation("Passengers");
                 });
 
             modelBuilder.Entity("BuzzAir.Models.DbModels.State", b =>
                 {
-                    b.Navigation("Addresses");
-
-                    b.Navigation("Airports");
-
                     b.Navigation("Cities");
                 });
 
-            modelBuilder.Entity("BuzzAir.Models.DbModels.Passenger", b =>
+            modelBuilder.Entity("BuzzAir.Models.DbModels.Timezone", b =>
                 {
-                    b.Navigation("Services");
+                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

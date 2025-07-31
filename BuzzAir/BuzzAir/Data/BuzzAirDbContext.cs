@@ -142,11 +142,6 @@
 
             builder.Entity<Flight>(x =>
             {
-                x.Property(fl => fl.TakenSeats)
-                    .HasComputedColumnSql("(SELECT COUNT(*) FROM FlightPassenger WHERE FlightId = Id)", stored: true)
-                    .ValueGeneratedOnAddOrUpdate()
-                    .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
-
                 x.HasOne(fl => fl.Origin).WithMany(o => o.FlightsFrom).HasForeignKey(fl => fl.OriginId).OnDelete(DeleteBehavior.Restrict);
                 x.HasOne(fl => fl.Destination).WithMany(o => o.FlightsTo).HasForeignKey(fl => fl.DestinationId).OnDelete(DeleteBehavior.Restrict);
                 x.HasOne(fl => fl.Aircraft).WithMany(a => a.Flights).HasForeignKey(fl => fl.AircraftId).OnDelete(DeleteBehavior.Restrict);
@@ -246,27 +241,6 @@
             builder.Entity<Baggage>(x =>
             {
                 x.Property(b => b.BaggageType).HasConversion<string>();
-                x.Property(b => b.Price).HasComputedColumnSql(
-                    @$"CASE 
-                        WHEN BaggageType = '{BaggageType.TwentyKilos}' 
-                        THEN {GlobalConstants.PriceFor20kg} 
-                        WHEN BaggageType = '{BaggageType.ThirtyTwoKilos}' 
-                        THEN {GlobalConstants.PriceFor32kg} 
-                        ELSE {GlobalConstants.PriceForCabin} 
-                    END", stored: true)
-                .ValueGeneratedOnAddOrUpdate()
-                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
-
-                x.Property(b => b.Kilos).HasComputedColumnSql(
-                    @$"CASE 
-                        WHEN BaggageType = '{BaggageType.TwentyKilos}' 
-                        THEN {GlobalConstants.TwentyKilos} 
-                        WHEN BaggageType = '{BaggageType.ThirtyTwoKilos}' 
-                        THEN {GlobalConstants.ThrityTwoKilos} 
-                        ELSE {GlobalConstants.CabinKilos} 
-                    END", stored: true)
-                .ValueGeneratedOnAddOrUpdate()
-                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             });
 
             builder.Entity<Service>()

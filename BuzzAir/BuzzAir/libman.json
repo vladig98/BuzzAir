@@ -32,10 +32,6 @@
         "dist/browser/signalr.js",
         "dist/browser/signalr.min.js"
       ]
-    },
-    {
-      "library": "air-datepicker@latest",
-      "destination": "wwwroot/lib/air-datepicker"
     }
   ]
 }

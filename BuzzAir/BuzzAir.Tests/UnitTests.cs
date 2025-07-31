@@ -1,9 +1,5 @@
 ﻿using BuzzAir.Data;
-using BuzzAir.Models.DbModels;
-using BuzzAir.Services;
-using BuzzAir.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Xunit;
 
 namespace BuzzAir.Tests
 {

@@ -1,10 +1,9 @@
-﻿@model ErrorViewModel
-@using System.Net
+﻿@using System.Net
 @{
     ViewData["Title"] = "Error";
     var statusCode = Model.StatusCode;
     string statusText = statusCode.HasValue
-        ? $"{statusCode.Value} - {((HttpStatusCode)statusCode.Value).ToString().SplitCamelCase()}"
+        ? $"{statusCode.Value} - {((HttpStatusCode)statusCode.Value).ToString()}"
         : "Unexpected Error";
 }
 

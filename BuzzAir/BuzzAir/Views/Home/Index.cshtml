@@ -2,8 +2,6 @@
     ViewData["Title"] = "Home";
 }
 
-@model IndexViewModel
-
 @{
     var slides = new[]
     {
@@ -67,25 +65,6 @@
             @foreach (var option in new[] { ("Return", "Return"), ("OneWay", "One Way") })
             {
                 <div class="form-check">
-                    @if (option.Item1 == "Return")
-                    {
-                        <input checked 
-                               class="form-check-input"
-                               type="radio"
-                               asp-for="IsReturning"
-                               name="isReturning"
-                               id="isReturning_@option.Item1"
-                               value="@option.Item1" />
-                    }
-                    else
-                    {
-                        <input class="form-check-input"
-                               type="radio"
-                               asp-for="IsReturning"
-                               name="isReturning"
-                               id="isReturning_@option.Item1"
-                               value="@option.Item1" />
-                    }
                     <label 
                         class="form-check-label" 
                         for="isReturning_@option.Item1">
@@ -96,61 +75,12 @@
         </div>
 
         <div class="col-md-4">
-            <div class="form-floating mb-3">
-                <select 
-                    class="form-select form-select-lg" 
-                    asp-for="Origin" 
-                    asp-items="Model.Origins" 
-                    id="originSelect">
-                    <option hidden disabled value="">Select origin</option>
-                </select>
-                <label for="originSelect">Origin</label>
-            </div>
-            <div class="form-floating">
-                <select 
-                    class="form-select form-select-lg" 
-                    asp-for="Destination" 
-                    asp-items="Model.Destinations" 
-                    id="destinationSelect">
-                    <option hidden disabled value="">Select destination</option>
-                </select>
-                <label for="destinationSelect">Destination</label>
-            </div>
         </div>
 
         <div class="col-md-4">
-            <div class="form-floating mb-3">
-                <input autocomplete="off"
-                    type="text" 
-                    class="form-control form-control-lg" 
-                    asp-for="Departure" 
-                    id="departureDate" 
-                    placeholder="Departure date" />
-                <label for="departureDate">Departure</label>
-            </div>
-            <div class="form-floating" id="returnGroup">
-                <input autocomplete="off"
-                    type="text" 
-                    class="form-control form-control-lg" 
-                    asp-for="Return" 
-                    id="returnDate" 
-                    placeholder="Return date" />
-                <label for="returnDate">Return</label>
-            </div>
         </div>
 
         <div class="col-md-2">
-            <div class="form-floating">
-                <input 
-                    type="number" 
-                    min="1" 
-                    max="10"
-                    class="form-control form-control-lg" 
-                    asp-for="Passengers" 
-                    id="passengersCount" 
-                    placeholder="Passengers" />
-                <label for="passengersCount">Passengers</label>
-            </div>
         </div>
 
         <div class="col-md-2 d-grid">
