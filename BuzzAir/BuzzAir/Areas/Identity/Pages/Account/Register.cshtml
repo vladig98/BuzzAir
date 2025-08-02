@@ -1,5 +1,4 @@
 ﻿@page
-@using BuzzAir.Models.DbModels.Enums
 @model RegisterModel
 
 @{
@@ -49,7 +48,10 @@
                             <label asp-for="Input.Gender" class="form-label"></label>
                             <select asp-for="Input.Gender" class="form-select">
                                 <option selected disabled value="">Select Gender</option>
-                                @foreach (var value in Enum.GetValues<Gender>())
+                                @{
+                                    IEnumerable<Gender> genders = Enum.GetValues<Gender>();
+                                }
+                                @foreach (Gender value in genders)
                                 {
                                     <option value="@value">@value</option>
                                 }

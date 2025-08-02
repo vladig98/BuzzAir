@@ -1,64 +1,46 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace BuzzAir.Areas.Identity.Pages.Account.Manage
+internal class Disable2faModel(
+    UserManager<ApplicationUser> userManager,
+    ILogger<Disable2faModel> logger) : PageModel
 {
-    public class Disable2faModel : PageModel
+    /// <summary>
+    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+    ///     directly from your code. This API may change or be removed in future releases.
+    /// </summary>
+    [TempData]
+    public string StatusMessage { get; set; } = string.Empty;
+
+    public async Task<IActionResult> OnGet()
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILogger<Disable2faModel> _logger;
+        ApplicationUser? user = await userManager.GetUserAsync(User);
 
-        public Disable2faModel(
-            UserManager<ApplicationUser> userManager,
-            ILogger<Disable2faModel> logger)
+        return user == null
+            ? NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.")
+            : !await userManager.GetTwoFactorEnabledAsync(user)
+            ? throw new InvalidOperationException($"Cannot disable 2FA for user as it's not currently enabled.")
+            : (IActionResult)Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        ApplicationUser? user = await userManager.GetUserAsync(User);
+        if (user == null)
         {
-            _userManager = userManager;
-            _logger = logger;
+            return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        [TempData]
-        public string StatusMessage { get; set; }
-
-        public async Task<IActionResult> OnGet()
+        IdentityResult disable2faResult = await userManager.SetTwoFactorEnabledAsync(user, false);
+        if (!disable2faResult.Succeeded)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            if (!await _userManager.GetTwoFactorEnabledAsync(user))
-            {
-                throw new InvalidOperationException($"Cannot disable 2FA for user as it's not currently enabled.");
-            }
-
-            return Page();
+            throw new InvalidOperationException($"Unexpected error occurred disabling 2FA.");
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
+        logger.LogInformation("User with ID '{UserId}' has disabled 2fa.", userManager.GetUserId(User));
+        StatusMessage = "2fa has been disabled. You can reenable 2fa when you setup an authenticator app";
 
-            var disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
-            if (!disable2faResult.Succeeded)
-            {
-                throw new InvalidOperationException($"Unexpected error occurred disabling 2FA.");
-            }
-
-            _logger.LogInformation("User with ID '{UserId}' has disabled 2fa.", _userManager.GetUserId(User));
-            StatusMessage = "2fa has been disabled. You can reenable 2fa when you setup an authenticator app";
-            return RedirectToPage("./TwoFactorAuthentication");
-        }
+        return RedirectToPage("./TwoFactorAuthentication");
     }
 }

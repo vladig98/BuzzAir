@@ -1,5 +1,4 @@
 ﻿@page
-@using Microsoft.AspNetCore.Http.Features
 @model TwoFactorAuthenticationModel
 
 @{
@@ -12,7 +11,7 @@
     <partial name="_StatusMessage" for="StatusMessage" />
 
     @{
-        var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
+        ITrackingConsentFeature? consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
     }
     <div class="row justify-content-center">
         <div class="col-md-8">

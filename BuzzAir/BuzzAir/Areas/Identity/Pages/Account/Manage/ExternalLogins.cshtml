@@ -55,7 +55,7 @@
             <hr />
             <form asp-page-handler="LinkLogin" method="post">
                 <div class="d-flex flex-wrap gap-2">
-                    @foreach (var provider in Model.OtherLogins)
+                    @foreach (AuthenticationScheme provider in Model.OtherLogins)
                     {
                         <button id="@($"link-login-button-{provider.Name}")"
                                 type="submit"

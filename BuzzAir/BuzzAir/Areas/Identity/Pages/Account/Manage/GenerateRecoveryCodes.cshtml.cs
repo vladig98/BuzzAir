@@ -1,76 +1,59 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace BuzzAir.Areas.Identity.Pages.Account.Manage
+internal class GenerateRecoveryCodesModel(
+    UserManager<ApplicationUser> userManager,
+    ILogger<GenerateRecoveryCodesModel> logger) : PageModel
 {
-    public class GenerateRecoveryCodesModel : PageModel
+    /// <summary>
+    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+    ///     directly from your code. This API may change or be removed in future releases.
+    /// </summary>
+    [TempData]
+    public string[] RecoveryCodes { get; set; } = [];
+
+    /// <summary>
+    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+    ///     directly from your code. This API may change or be removed in future releases.
+    /// </summary>
+    [TempData]
+    public string StatusMessage { get; set; } = string.Empty;
+
+    public async Task<IActionResult> OnGetAsync()
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILogger<GenerateRecoveryCodesModel> _logger;
-
-        public GenerateRecoveryCodesModel(
-            UserManager<ApplicationUser> userManager,
-            ILogger<GenerateRecoveryCodesModel> logger)
+        ApplicationUser? user = await userManager.GetUserAsync(User);
+        if (user == null)
         {
-            _userManager = userManager;
-            _logger = logger;
+            return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        [TempData]
-        public string[] RecoveryCodes { get; set; }
+        bool isTwoFactorEnabled = await userManager.GetTwoFactorEnabledAsync(user);
+        return !isTwoFactorEnabled
+            ? throw new InvalidOperationException($"Cannot generate recovery codes for user because they do not have 2FA enabled.")
+            : (IActionResult)Page();
+    }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        [TempData]
-        public string StatusMessage { get; set; }
-
-        public async Task<IActionResult> OnGetAsync()
+    public async Task<IActionResult> OnPostAsync()
+    {
+        ApplicationUser? user = await userManager.GetUserAsync(User);
+        if (user == null)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var isTwoFactorEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
-            if (!isTwoFactorEnabled)
-            {
-                throw new InvalidOperationException($"Cannot generate recovery codes for user because they do not have 2FA enabled.");
-            }
-
-            return Page();
+            return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        bool isTwoFactorEnabled = await userManager.GetTwoFactorEnabledAsync(user);
+        string userId = await userManager.GetUserIdAsync(user);
+        if (!isTwoFactorEnabled)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var isTwoFactorEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
-            var userId = await _userManager.GetUserIdAsync(user);
-            if (!isTwoFactorEnabled)
-            {
-                throw new InvalidOperationException($"Cannot generate recovery codes for user as they do not have 2FA enabled.");
-            }
-
-            var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
-            RecoveryCodes = recoveryCodes.ToArray();
-
-            _logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
-            StatusMessage = "You have generated new recovery codes.";
-            return RedirectToPage("./ShowRecoveryCodes");
+            throw new InvalidOperationException($"Cannot generate recovery codes for user as they do not have 2FA enabled.");
         }
+
+        IEnumerable<string>? recoveryCodes = await userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+        RecoveryCodes = recoveryCodes?.ToArray() ?? [];
+
+        logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
+        StatusMessage = "You have generated new recovery codes.";
+        return RedirectToPage("./ShowRecoveryCodes");
     }
 }

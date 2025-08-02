@@ -73,7 +73,7 @@
                     {
                         <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                             <div class="d-flex flex-column gap-2">
-                                @foreach (var provider in Model.ExternalLogins)
+                                @foreach (AuthenticationScheme provider in Model.ExternalLogins ?? [])
                                 {
                                     <button type="submit"
                                             class="btn btn-outline-secondary"

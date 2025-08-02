@@ -5,13 +5,10 @@
     if (!string.IsNullOrWhiteSpace(Model))
     {
         // Determine alert type: “danger” if message starts with “Error” (case‐insensitive), otherwise “success”
-        var alertType = Model.StartsWith("Error", StringComparison.OrdinalIgnoreCase)
-            ? "danger"
-            : "success";
+        string alertType = Model.StartsWith("Error", StringComparison.OrdinalIgnoreCase) ? "danger" : "success";
         <div class="alert alert-@alertType alert-dismissible fade show" role="alert">
             @Model
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        ;
     }
 }

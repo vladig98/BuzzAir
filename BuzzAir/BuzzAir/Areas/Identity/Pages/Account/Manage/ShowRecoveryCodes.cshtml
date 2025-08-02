@@ -25,7 +25,10 @@
                     </div>
 
                     <div class="row row-cols-1 row-cols-md-2 g-3">
-                        @for (var i = 0; i < Model.RecoveryCodes.Length; i++)
+                        @{
+                            int codesLength = Model.RecoveryCodes.Length;
+                        }
+                        @for (int i = 0; i < codesLength; i++)
                         {
                             <div class="col">
                                 <div class="bg-light border rounded p-2 text-center">

@@ -1,5 +1,4 @@
-﻿@using BuzzAir.Utilities
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/air-datepicker/air-datepicker.css" />
 </head>
 <body>
     <header>
@@ -131,7 +129,7 @@
                                 </ul>
                             </li>
                         }
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User?.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
                                 <a asp-area="" asp-controller="Booking" asp-action="All" class="nav-link">All Bookings</a>
@@ -157,10 +155,6 @@
     </div>
 
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
-    <script src="~/lib/air-datepicker/air-datepicker.js"></script>
-    @* Needed for the date picker locale *@
-    <script>var exports = {};</script>
-    <script src="~/lib/air-datepicker/locale/en.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>

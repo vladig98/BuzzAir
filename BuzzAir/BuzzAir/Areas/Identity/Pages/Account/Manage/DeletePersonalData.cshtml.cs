@@ -1,97 +1,66 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace BuzzAir.Areas.Identity.Pages.Account.Manage
+internal class DeletePersonalDataModel(
+    UserManager<ApplicationUser> userManager,
+    SignInManager<ApplicationUser> signInManager,
+    ILogger<DeletePersonalDataModel> logger) : PageModel
 {
-    public class DeletePersonalDataModel : PageModel
+    /// <summary>
+    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+    ///     directly from your code. This API may change or be removed in future releases.
+    /// </summary>
+    [BindProperty]
+    public DeletePersonalDataInputModel Input { get; set; } = null!;
+
+    /// <summary>
+    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+    ///     directly from your code. This API may change or be removed in future releases.
+    /// </summary>
+    public bool RequirePassword { get; set; }
+
+    public async Task<IActionResult> OnGet()
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger<DeletePersonalDataModel> _logger;
-
-        public DeletePersonalDataModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            ILogger<DeletePersonalDataModel> logger)
+        ApplicationUser? user = await userManager.GetUserAsync(User);
+        if (user == null)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
+            return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        [BindProperty]
-        public InputModel Input { get; set; }
+        RequirePassword = await userManager.HasPasswordAsync(user);
+        return Page();
+    }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public class InputModel
+    public async Task<IActionResult> OnPostAsync()
+    {
+        ApplicationUser? user = await userManager.GetUserAsync(User);
+        if (user == null)
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
+            return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public bool RequirePassword { get; set; }
-
-        public async Task<IActionResult> OnGet()
+        RequirePassword = await userManager.HasPasswordAsync(user);
+        if (RequirePassword)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (!await userManager.CheckPasswordAsync(user, Input.Password))
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                ModelState.AddModelError(string.Empty, "Incorrect password.");
+                return Page();
             }
-
-            RequirePassword = await _userManager.HasPasswordAsync(user);
-            return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        IdentityResult result = await userManager.DeleteAsync(user);
+        string userId = await userManager.GetUserIdAsync(user);
+        if (!result.Succeeded)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            RequirePassword = await _userManager.HasPasswordAsync(user);
-            if (RequirePassword)
-            {
-                if (!await _userManager.CheckPasswordAsync(user, Input.Password))
-                {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
-                    return Page();
-                }
-            }
-
-            var result = await _userManager.DeleteAsync(user);
-            var userId = await _userManager.GetUserIdAsync(user);
-            if (!result.Succeeded)
-            {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
-            }
-
-            await _signInManager.SignOutAsync();
-
-            _logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
-
-            return Redirect("~/");
+            throw new InvalidOperationException($"Unexpected error occurred deleting user.");
         }
+
+        await signInManager.SignOutAsync();
+
+        logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+
+        return Redirect("~/");
     }
 }

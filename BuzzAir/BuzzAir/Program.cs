@@ -16,14 +16,11 @@ builder.Services.AddSingleton(sp =>
 {
     ICachingService cachingService;
     ILogger logger = sp.GetRequiredService<ILogger<Program>>();
-    logger.LogError("Getting cache service");
 
     try
     {
         string redisConnectionString = builder.Configuration.GetConnectionString("Redis") ??
             throw new InvalidOperationException("Connection string 'Redis' not found.");
-
-        logger.LogError("Trying to connect to redis");
 
         ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
         IDatabase redis = connectionMultiplexer.GetDatabase();
@@ -32,15 +29,12 @@ builder.Services.AddSingleton(sp =>
     }
     catch (Exception)
     {
-        logger.LogError("Failed connecting to redis.");
-
         IMemoryCache memoryCache = sp.GetRequiredService<IMemoryCache>();
         cachingService = new InMemoryCachingService(memoryCache);
     }
 
     using IServiceScope scope = sp.CreateScope();
     using BuzzAirDbContext dbContext = scope.ServiceProvider.GetRequiredService<BuzzAirDbContext>();
-    logger.LogError("Got db context");
 
     City[] cities = [.. dbContext.Cities.Include(x => x.State).Include(x => x.Country).AsNoTracking()];
     State[] states = [.. dbContext.States.Include(x => x.Country).AsNoTracking()];
@@ -50,45 +44,48 @@ builder.Services.AddSingleton(sp =>
 
     foreach (City city in cities)
     {
-        cachingService.SetAsync(string.Format(GlobalConstants.CITY_CACHE_KEY, city.Id), city, CancellationToken.None);
+        string key = string.Format(CultureInfo.InvariantCulture, GlobalConstants.CITY_CACHE_KEY, city.Id);
+        _ = cachingService.SetAsync(key, city, CancellationToken.None);
     }
 
     foreach (State state in states)
     {
-        cachingService.SetAsync(string.Format(GlobalConstants.STATE_CACHE_KEY, state.Id), state, CancellationToken.None);
+        string key = string.Format(CultureInfo.InvariantCulture, GlobalConstants.STATE_CACHE_KEY, state.Id);
+        _ = cachingService.SetAsync(key, state, CancellationToken.None);
     }
 
     foreach (Country country in countries)
     {
-        cachingService.SetAsync(string.Format(GlobalConstants.COUNTRY_CACHE_KEY, country.Id), country, CancellationToken.None);
+        string key = string.Format(CultureInfo.InvariantCulture, GlobalConstants.COUNTRY_CACHE_KEY, country.Id);
+        _ = cachingService.SetAsync(key, country, CancellationToken.None);
     }
 
     foreach (Aircraft air in aircraft)
     {
-        cachingService.SetAsync(string.Format(GlobalConstants.AIRCRAFT_CACHE_KEY, air.Id), air, CancellationToken.None);
+        string key = string.Format(CultureInfo.InvariantCulture, GlobalConstants.AIRCRAFT_CACHE_KEY, air.Id);
+        _ = cachingService.SetAsync(key, air, CancellationToken.None);
     }
 
     foreach (Airport airport in airports)
     {
-        cachingService.SetAsync(string.Format(GlobalConstants.AIRPORT_CACHE_KEY, airport.Id), airport, CancellationToken.None);
+        string key = string.Format(CultureInfo.InvariantCulture, GlobalConstants.AIRPORT_CACHE_KEY, airport.Id);
+        _ = cachingService.SetAsync(key, airport, CancellationToken.None);
     }
 
-    cachingService.SetAsync(GlobalConstants.CITIES_CACHE_KEY, cities.Where(x => !x.IsDeleted), CancellationToken.None);
-    cachingService.SetAsync(GlobalConstants.CITIES_DELETED_CACHE_KEY, cities.Where(x => x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.CITIES_CACHE_KEY, cities.Where(x => !x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.CITIES_DELETED_CACHE_KEY, cities.Where(x => x.IsDeleted), CancellationToken.None);
 
-    cachingService.SetAsync(GlobalConstants.COUNTRIES_CACHE_KEY, countries.Where(x => !x.IsDeleted), CancellationToken.None);
-    cachingService.SetAsync(GlobalConstants.COUNTRIES_DELETED_CACHE_KEY, countries.Where(x => x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.COUNTRIES_CACHE_KEY, countries.Where(x => !x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.COUNTRIES_DELETED_CACHE_KEY, countries.Where(x => x.IsDeleted), CancellationToken.None);
 
-    cachingService.SetAsync(GlobalConstants.STATES_CACHE_KEY, states.Where(x => !x.IsDeleted), CancellationToken.None);
-    cachingService.SetAsync(GlobalConstants.STATES_DELETED_CACHE_KEY, states.Where(x => x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.STATES_CACHE_KEY, states.Where(x => !x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.STATES_DELETED_CACHE_KEY, states.Where(x => x.IsDeleted), CancellationToken.None);
 
-    cachingService.SetAsync(GlobalConstants.AIRCRAFT_ALL_CACHE_KEY, aircraft.Where(x => !x.IsDeleted), CancellationToken.None);
-    cachingService.SetAsync(GlobalConstants.AIRCRAFT_DELETED_ALL_CACHE_KEY, aircraft.Where(x => x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.AIRCRAFT_ALL_CACHE_KEY, aircraft.Where(x => !x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.AIRCRAFT_DELETED_ALL_CACHE_KEY, aircraft.Where(x => x.IsDeleted), CancellationToken.None);
 
-    cachingService.SetAsync(GlobalConstants.AIRPORTS_CACHE_KEY, airports.Where(x => !x.IsDeleted), CancellationToken.None);
-    cachingService.SetAsync(GlobalConstants.AIRPORTS_DELETED_CACHE_KEY, airports.Where(x => x.IsDeleted), CancellationToken.None);
-
-    logger.LogError("All data cached");
+    _ = cachingService.SetAsync(GlobalConstants.AIRPORTS_CACHE_KEY, airports.Where(x => !x.IsDeleted), CancellationToken.None);
+    _ = cachingService.SetAsync(GlobalConstants.AIRPORTS_DELETED_CACHE_KEY, airports.Where(x => x.IsDeleted), CancellationToken.None);
 
     return cachingService;
 });
@@ -121,13 +118,9 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services.Configure<MvcViewOptions>(options =>
-{
-    // Disable hidden checkboxes
-    options.HtmlHelperOptions.CheckBoxHiddenInputRenderMode = CheckBoxHiddenInputRenderMode.None;
-});
+    options.HtmlHelperOptions.CheckBoxHiddenInputRenderMode = CheckBoxHiddenInputRenderMode.None);
 
-IConfiguration configuration = builder.Configuration;
-
+ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
 {
     facebookOptions.AppId = configuration["Authentication:Facebook:AppId"] ?? string.Empty;
@@ -155,18 +148,15 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 
-builder.Services.Configure<RazorViewEngineOptions>(options =>
-{
-    options.AreaViewLocationFormats.Add("~/Views/Shared/{0}.cshtml");
-});
+builder.Services.Configure<RazorViewEngineOptions>(options => options.AreaViewLocationFormats.Add("~/Views/Shared/{0}.cshtml"));
 
 WebApplication app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-    app.UseWebSockets();
+    _ = app.UseExceptionHandler("/Home/Error");
+    _ = app.UseHsts();
+    _ = app.UseWebSockets();
 }
 
 app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");

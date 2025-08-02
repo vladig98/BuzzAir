@@ -15,7 +15,11 @@
 
 <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" aria-label="Homepage slideshow">
     <div class="carousel-indicators">
-        @for (var i = 0; i < slides.Length; i++)
+        @{
+            int slidesLength = slides.Length;
+        }
+
+        @for (int i = 0; i < slidesLength; i++)
         {
             <button 
                 type="button" 
@@ -28,7 +32,7 @@
         }
     </div>
     <div class="carousel-inner">
-        @for (var i = 0; i < slides.Length; i++)
+        @for (int i = 0; i < slidesLength; i++)
         {
             var slide = slides[i];
             <div class="carousel-item @(i == 0 ? "active" : null)">
@@ -62,7 +66,7 @@
         class="row g-3">
         
         <div class="col-12 d-flex gap-3 justify-content-center">
-            @foreach (var option in new[] { ("Return", "Return"), ("OneWay", "One Way") })
+            @foreach ((string, string) option in new[] { ("Return", "Return"), ("OneWay", "One Way") })
             {
                 <div class="form-check">
                     <label 
