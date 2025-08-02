@@ -8,5 +8,5 @@ public class Aircraft
     public string Name { get; set; } = string.Empty;
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<Flight> Flights { get; } = new HashSet<Flight>();
+    public ICollection<Flight> Flights { get; } = new HashSet<Flight>();
 }

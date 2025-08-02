@@ -19,12 +19,12 @@ public class Flight
     public DateTime ArrivalUTC { get; set; }
 
     public decimal PriceInEur { get; set; }
-    public int TakenSeats { get; private set; }
+    public int TakenSeats { get; set; }
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<FlightPassenger> Passengers { get; } = new HashSet<FlightPassenger>();
-    public virtual ICollection<BookingFlight> Bookings { get; } = new HashSet<BookingFlight>();
+    public ICollection<FlightPassenger> Passengers { get; } = new HashSet<FlightPassenger>();
+    public ICollection<BookingFlight> Bookings { get; } = new HashSet<BookingFlight>();
 
     public int DurationInMinutes
         => (int)(ArrivalUTC - DepartureUTC).TotalMinutes;

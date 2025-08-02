@@ -17,6 +17,6 @@ public class Airport
     public int? ElevationAboveSeaLevel { get; set; }
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<Flight> FlightsFrom { get; } = new HashSet<Flight>();
-    public virtual ICollection<Flight> FlightsTo { get; } = new HashSet<Flight>();
+    public ICollection<Flight> FlightsFrom { get; } = new HashSet<Flight>();
+    public ICollection<Flight> FlightsTo { get; } = new HashSet<Flight>();
 }

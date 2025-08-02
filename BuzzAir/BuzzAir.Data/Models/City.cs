@@ -17,5 +17,6 @@ public class City
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<Airport> Airports { get; } = new HashSet<Airport>();
+    public ICollection<Airport> Airports { get; } = new HashSet<Airport>();
+    public ICollection<ApplicationUser> Users { get; } = new HashSet<ApplicationUser>();
 }

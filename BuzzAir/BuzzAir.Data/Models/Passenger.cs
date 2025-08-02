@@ -16,7 +16,7 @@ public class Passenger
     public string? UserId { get; set; }
     public ApplicationUser? User { get; set; }
 
-    public virtual ICollection<PassengerService> Services { get; } = new HashSet<PassengerService>();
-    public virtual ICollection<FlightPassenger> Flights { get; } = new HashSet<FlightPassenger>();
-    public virtual ICollection<BookingPassenger> Bookings { get; } = new HashSet<BookingPassenger>();
+    public ICollection<PassengerService> Services { get; } = new HashSet<PassengerService>();
+    public ICollection<FlightPassenger> Flights { get; } = new HashSet<FlightPassenger>();
+    public ICollection<BookingPassenger> Bookings { get; } = new HashSet<BookingPassenger>();
 }

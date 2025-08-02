@@ -6,5 +6,5 @@ public abstract class Service
     public abstract decimal Price { get; set; }
     public abstract string Name { get; set; }
 
-    public virtual ICollection<PassengerService> Passengers { get; } = new HashSet<PassengerService>();
+    public ICollection<PassengerService> Passengers { get; } = new HashSet<PassengerService>();
 }

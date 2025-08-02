@@ -10,8 +10,8 @@ public class Country
     public bool IsOfficiallyRecognizedCountry { get; set; } = true;
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<City> Cities { get; } = new HashSet<City>();
-    public virtual ICollection<State> States { get; } = new HashSet<State>();
-    public virtual ICollection<TravelDocument> DocumentsNationalities { get; } = new HashSet<TravelDocument>();
-    public virtual ICollection<TravelDocument> DocumentsBirthCountries { get; } = new HashSet<TravelDocument>();
+    public ICollection<City> Cities { get; } = new HashSet<City>();
+    public ICollection<State> States { get; } = new HashSet<State>();
+    public ICollection<TravelDocument> DocumentsNationalities { get; } = new HashSet<TravelDocument>();
+    public ICollection<TravelDocument> DocumentsBirthCountries { get; } = new HashSet<TravelDocument>();
 }

@@ -9,6 +9,6 @@ public class Booking
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<BookingFlight> Flights { get; } = new HashSet<BookingFlight>();
-    public virtual ICollection<BookingPassenger> Passengers { get; } = new HashSet<BookingPassenger>();
+    public ICollection<BookingFlight> Flights { get; } = new HashSet<BookingFlight>();
+    public ICollection<BookingPassenger> Passengers { get; } = new HashSet<BookingPassenger>();
 }

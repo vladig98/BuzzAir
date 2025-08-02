@@ -138,38 +138,61 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                        .IsRequired();
         }
 
-        IEnumerable<IMutableProperty> decimalValues = entityTypes
-            .SelectMany(t => t.GetProperties())
-            .Where(p => p.ClrType == typeof(decimal));
-
-        // Decimal defaults: money columns use (18,2)
-        foreach (IMutableProperty decimalValue in decimalValues)
+        // ---- ApplicationUser ----
+        _ = builder.Entity<ApplicationUser>(e =>
         {
-            _ = builder.Entity(decimalValue.DeclaringType.ClrType)
-                       .Property(decimalValue.Name)
-                       .HasPrecision(18, 2)
-                       .IsRequired();
-        }
+            _ = e.HasOne(u => u.Passenger)
+                 .WithOne(p => p.User)
+                 .HasForeignKey<ApplicationUser>(u => u.PassengerId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired(false);
+            _ = e.HasOne(u => u.City)
+                 .WithMany(c => c.Users)
+                 .HasForeignKey(u => u.CityId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
+            _ = e.Property(u => u.FirstName).IsRequired().HasMaxLength(50);
+            _ = e.Property(u => u.LastName).IsRequired().HasMaxLength(50);
+            _ = e.Property(u => u.PostalCode).IsRequired().HasMaxLength(20);
+            _ = e.Property(u => u.Street).IsRequired().HasMaxLength(150);
+            _ = e.Property(u => u.Gender)
+                 .IsRequired()
+                 .HasConversion<string>();
+            _ = e.Property(u => u.DateOfBirth)
+                 .IsRequired();
+        });
 
-        // -------- Enums as strings --------
-        foreach (IMutableEntityType entityType in entityTypes)
+        // ---- BookingPassenger ----
+        _ = builder.Entity<BookingPassenger>(e =>
         {
-            Type clrType = entityType.ClrType;
-            EntityTypeBuilder entityBuilder = builder.Entity(clrType);
+            _ = e.HasKey(bp => new { bp.PassengerId, bp.BookingId });
+            _ = e.HasOne(bp => bp.Booking)
+                 .WithMany(b => b.Passengers)
+                 .HasForeignKey(bp => bp.BookingId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
+            _ = e.HasOne(bp => bp.Passenger)
+                 .WithMany(p => p.Bookings)
+                 .HasForeignKey(bp => bp.PassengerId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
+        });
 
-            foreach (IMutableProperty prop in entityType.GetProperties())
-            {
-                Type type = prop.ClrType;
-                Type enumType = Nullable.GetUnderlyingType(type) ?? type;
-
-                if (enumType.IsEnum)
-                {
-                    _ = entityBuilder.Property(prop.Name)
-                                     .HasConversion<string>()
-                                     .IsRequired();
-                }
-            }
-        }
+        // ---- BookingFlight ----
+        _ = builder.Entity<BookingFlight>(e =>
+        {
+            _ = e.HasKey(bf => new { bf.FlightId, bf.BookingId });
+            _ = e.HasOne(bf => bf.Booking)
+                 .WithMany(b => b.Flights)
+                 .HasForeignKey(bf => bf.BookingId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
+            _ = e.HasOne(bf => bf.Flight)
+                 .WithMany(f => f.Bookings)
+                 .HasForeignKey(bf => bf.FlightId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
+        });
 
         // ---- Aircraft ----
         _ = builder.Entity<Aircraft>(e =>
@@ -205,6 +228,14 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .HasForeignKey(a => a.CityId)
                  .OnDelete(DeleteBehavior.Restrict)
                  .IsRequired();
+            _ = e.HasMany(a => a.FlightsFrom)
+                 .WithOne(f => f.Origin)
+                 .HasForeignKey(f => f.OriginId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(a => a.FlightsTo)
+                 .WithOne(f => f.Destination)
+                 .HasForeignKey(f => f.DestinationId)
+                 .OnDelete(DeleteBehavior.Restrict);
             // optional coords
             _ = e.Property(a => a.Latitude).HasPrecision(9, 6);
             _ = e.Property(a => a.Longitude).HasPrecision(9, 6);
@@ -233,6 +264,15 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .HasForeignKey(c => c.TimezoneId)
                  .OnDelete(DeleteBehavior.Restrict)
                  .IsRequired();
+            _ = e.HasMany(c => c.Airports)
+                 .WithOne(a => a.City)
+                 .HasForeignKey(a => a.CityId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(c => c.Users)
+                 .WithOne(u => u.City)
+                 .HasForeignKey(u => u.CityId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
         });
 
         // ---- State ----
@@ -248,6 +288,10 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .HasForeignKey(s => s.CountryId)
                  .OnDelete(DeleteBehavior.Restrict)
                  .IsRequired();
+            _ = e.HasMany(s => s.Cities)
+                 .WithOne(c => c.State)
+                 .HasForeignKey(c => c.StateId)
+                 .OnDelete(DeleteBehavior.Restrict);
         });
 
         // ---- Country ----
@@ -262,6 +306,22 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .HasMaxLength(2);
             _ = e.Property(c => c.IsOfficiallyRecognizedCountry).IsRequired();
             _ = e.Property(c => c.IsDeleted).IsRequired();
+            _ = e.HasMany(c => c.Cities)
+                 .WithOne(ci => ci.Country)
+                 .HasForeignKey(ci => ci.CountryId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(c => c.States)
+                 .WithOne(st => st.Country)
+                 .HasForeignKey(st => st.CountryId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(c => c.DocumentsNationalities)
+                 .WithOne(td => td.Nationality)
+                 .HasForeignKey(td => td.NationalityId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(c => c.DocumentsBirthCountries)
+                 .WithOne(td => td.BirthCountry)
+                 .HasForeignKey(td => td.BirthCountryId)
+                 .OnDelete(DeleteBehavior.Restrict);
         });
 
         // ---- Timezone ----
@@ -279,6 +339,11 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .HasMaxLength(10);
             _ = e.Property(tz => tz.UsesDST).IsRequired();
             _ = e.Property(tz => tz.IsDeleted).IsRequired();
+            _ = e.Property(tz => tz.Offset).IsRequired();
+            _ = e.HasMany(tz => tz.Cities)
+                 .WithOne(c => c.Timezone)
+                 .HasForeignKey(c => c.TimezoneId)
+                 .OnDelete(DeleteBehavior.Restrict);
         });
 
         // ---- Flight ----
@@ -309,6 +374,17 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .HasForeignKey(f => f.AircraftId)
                  .OnDelete(DeleteBehavior.Restrict)
                  .IsRequired();
+            _ = e.HasMany(f => f.Passengers)
+                 .WithOne(fp => fp.Flight)
+                 .HasForeignKey(fp => fp.FlightId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(f => f.Bookings)
+                 .WithOne(bf => bf.Flight)
+                 .HasForeignKey(bf => bf.FlightId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.Property(f => f.TakenSeats)
+                 .IsRequired()
+                 .HasMaxLength(2000);
         });
 
         // ---- FlightPassenger ----
@@ -325,6 +401,7 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .HasForeignKey(fp => fp.PassengerId)
                  .OnDelete(DeleteBehavior.Restrict)
                  .IsRequired();
+            _ = e.Property(fp => fp.SeatNumber).IsRequired();
         });
 
         // ---- Passenger ----
@@ -348,9 +425,21 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .WithOne(u => u.Passenger)
                  .HasForeignKey<ApplicationUser>(u => u.PassengerId)
                  .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(p => p.Services)
+                 .WithOne(ps => ps.Passenger)
+                 .HasForeignKey(ps => ps.PassengerId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(p => p.Flights)
+                 .WithOne(fp => fp.Passenger)
+                 .HasForeignKey(fp => fp.PassengerId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasMany(p => p.Bookings)
+                 .WithOne(bp => bp.Passenger)
+                 .HasForeignKey(bp => bp.PassengerId)
+                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ---- Payment & Booking ----
+        // ---- Payment ----
         _ = builder.Entity<Payment>(e =>
         {
             _ = e.HasKey(p => p.Id);
@@ -377,6 +466,7 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .IsRequired();
         });
 
+        // ---- Booking ----
         _ = builder.Entity<Booking>(e =>
         {
             _ = e.HasKey(b => b.Id);
@@ -389,20 +479,33 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .WithOne(bp => bp.Booking)
                  .HasForeignKey(bp => bp.BookingId)
                  .OnDelete(DeleteBehavior.Restrict);
+            _ = e.HasOne(b => b.Payment)
+                 .WithOne(p => p.Booking)
+                 .HasForeignKey<Booking>(b => b.PaymentId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
         });
 
-        // ---- Service hierarchy & PassengerService ----
-        _ = builder.Entity<Service>()
-            .HasKey(s => s.Id);
-        _ = builder.Entity<Service>()
-            .HasDiscriminator<string>("ServiceType")
-            .HasValue<AirportCheckIn>(nameof(AirportCheckIn))
-            .HasValue<Baggage>(nameof(Baggage))
-            .HasValue<Flexibility>(nameof(Flexibility))
-            .HasValue<OnTimeArrival>(nameof(OnTimeArrival))
-            .HasValue<Priority>(nameof(Priority))
-            .HasValue<Seat>(nameof(Seat));
+        // ---- Service hierarchy ----
+        _ = builder.Entity<Service>(e =>
+        {
+            _ = e.HasKey(s => s.Id);
+            _ = e.HasDiscriminator<string>("ServiceType")
+                 .HasValue<AirportCheckIn>(nameof(AirportCheckIn))
+                 .HasValue<Baggage>(nameof(Baggage))
+                 .HasValue<Flexibility>(nameof(Flexibility))
+                 .HasValue<OnTimeArrival>(nameof(OnTimeArrival))
+                 .HasValue<Priority>(nameof(Priority))
+                 .HasValue<Seat>(nameof(Seat));
+            _ = e.Property(s => s.Price).IsRequired().HasPrecision(18, 2);
+            _ = e.Property(s => s.Name).IsRequired().HasMaxLength(100);
+            _ = e.HasMany(s => s.Passengers)
+                 .WithOne(ps => ps.Service)
+                 .HasForeignKey(ps => ps.ServiceId)
+                 .OnDelete(DeleteBehavior.Restrict);
+        });
 
+        // ---- PassengerService ----
         _ = builder.Entity<PassengerService>(e =>
         {
             _ = e.HasKey(ps => new { ps.ServiceId, ps.PassengerId });
@@ -416,6 +519,7 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
                  .OnDelete(DeleteBehavior.Restrict);
         });
 
+        // ---- TravelDocument ----
         _ = builder.Entity<TravelDocument>(e =>
         {
             _ = e.HasKey(td => td.Id);
@@ -438,6 +542,11 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
             _ = e.HasOne(td => td.BirthCountry)
                  .WithMany(c => c.DocumentsBirthCountries)
                  .HasForeignKey(td => td.BirthCountryId)
+                 .OnDelete(DeleteBehavior.Restrict)
+                 .IsRequired();
+            _ = e.HasOne(td => td.Passenger)
+                 .WithOne(p => p.Document)
+                 .HasForeignKey<TravelDocument>(td => td.PassengerId)
                  .OnDelete(DeleteBehavior.Restrict)
                  .IsRequired();
         });

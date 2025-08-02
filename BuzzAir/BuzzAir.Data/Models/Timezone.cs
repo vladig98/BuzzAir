@@ -13,5 +13,5 @@ public class Timezone
     public bool UsesDST { get; set; }
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<City> Cities { get; } = new HashSet<City>();
+    public ICollection<City> Cities { get; } = new HashSet<City>();
 }
