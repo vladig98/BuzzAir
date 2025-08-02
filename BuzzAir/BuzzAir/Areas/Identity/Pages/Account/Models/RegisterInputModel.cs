@@ -1,6 +1,6 @@
 ﻿namespace BuzzAir.Areas.Identity.Pages.Account.Models;
 
-internal class RegisterInputModel
+internal sealed class RegisterInputModel
 {
     [Required]
     [EmailAddress]

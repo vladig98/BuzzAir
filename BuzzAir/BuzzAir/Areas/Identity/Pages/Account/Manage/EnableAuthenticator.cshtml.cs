@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal class EnableAuthenticatorModel(
+internal sealed class EnableAuthenticatorModel(
     UserManager<ApplicationUser> userManager,
     ILogger<EnableAuthenticatorModel> logger,
     UrlEncoder urlEncoder) : PageModel

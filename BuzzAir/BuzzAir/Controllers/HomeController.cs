@@ -1,6 +1,6 @@
 ﻿namespace BuzzAir.Controllers;
 
-internal class HomeController() : Controller
+internal sealed class HomeController() : Controller
 {
     [HttpGet]
     public IActionResult Index()

@@ -1,6 +1,6 @@
 ﻿namespace BuzzAir.Utilities;
 
-internal class RedisCachingService(IDatabase redis) : ICachingService
+internal sealed class RedisCachingService(IDatabase redis) : ICachingService
 {
     private readonly JsonSerializerSettings _jsonOptions = new()
     {

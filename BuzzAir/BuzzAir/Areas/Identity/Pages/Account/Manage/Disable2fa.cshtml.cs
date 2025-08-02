@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal class Disable2faModel(
+internal sealed class Disable2faModel(
     UserManager<ApplicationUser> userManager,
     ILogger<Disable2faModel> logger) : PageModel
 {

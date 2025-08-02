@@ -2,8 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal class TwoFactorAuthenticationModel(
-    UserManager<ApplicationUser> userManager, 
+internal sealed class TwoFactorAuthenticationModel(
+    UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager) : PageModel
 {
 

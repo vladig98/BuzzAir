@@ -1,6 +1,6 @@
 ﻿namespace BuzzAir.Areas.Identity.Pages.Account.Models;
 
-internal class LoginInputModel
+internal sealed class LoginInputModel
 {
     [Required]
     public string Username { get; set; } = string.Empty;

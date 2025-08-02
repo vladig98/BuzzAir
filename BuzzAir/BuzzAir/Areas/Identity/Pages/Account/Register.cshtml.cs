@@ -1,6 +1,6 @@
 ﻿namespace BuzzAir.Areas.Identity.Pages.Account;
 
-internal class RegisterModel(
+internal sealed class RegisterModel(
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager,
     ILogger<RegisterModel> logger,
@@ -38,21 +38,21 @@ internal class RegisterModel(
 
             City city = GetCity(Input.City);
 
-            ApplicationUser user = new() 
-            { 
-                Id = Guid.NewGuid().ToString(), 
-                Email = Input.Email, 
-                PhoneNumber = Input.PhoneNumber, 
-                UserName = Input.Username, 
-                FirstName = Input.FullName, 
-                LastName = Input.FullName, 
+            ApplicationUser user = new()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Email = Input.Email,
+                PhoneNumber = Input.PhoneNumber,
+                UserName = Input.Username,
+                FirstName = Input.FullName,
+                LastName = Input.FullName,
                 Gender = Input.Gender,
                 PostalCode = Input.Postal,
                 Street = Input.Street,
                 City = city,
                 CityId = city.Id,
             };
-            
+
             IdentityResult result = await userManager.CreateAsync(user, Input.Password);
             _ = await userManager.AddToRoleAsync(user, role.Name);
             _ = await userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), role.Name));

@@ -18,6 +18,9 @@ internal static class GlobalConstants
     public const string AIRPORTS_CACHE_KEY = "Airport:all";
     public const string FLIGHTS_CACHE_KEY = "Flight:all";
 
+    // Roles
+    public const string AdminRole = "Admin";
+
     // Misc
     public const decimal PriceForCabin = 0;
     public const decimal PriceFor20kg = 39;

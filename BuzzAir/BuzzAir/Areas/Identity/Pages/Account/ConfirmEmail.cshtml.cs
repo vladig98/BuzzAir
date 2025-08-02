@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account;
 
-internal class ConfirmEmailModel(UserManager<ApplicationUser> userManager) : PageModel
+internal sealed class ConfirmEmailModel(UserManager<ApplicationUser> userManager) : PageModel
 {
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

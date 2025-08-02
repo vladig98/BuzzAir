@@ -1,6 +1,6 @@
 ﻿namespace BuzzAir.Utilities;
 
-internal class InMemoryCachingService(IMemoryCache memoryCache) : ICachingService
+internal sealed class InMemoryCachingService(IMemoryCache memoryCache) : ICachingService
 {
     public Task SetAsync<T>(string key, T @object, CancellationToken token)
     {

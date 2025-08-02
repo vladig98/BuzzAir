@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal class EmailModel(
+internal sealed class EmailModel(
     UserManager<ApplicationUser> userManager,
     IEmailSender emailSender) : PageModel
 {

@@ -3,7 +3,7 @@
 namespace BuzzAir.Areas.Identity.Pages.Account;
 
 [AllowAnonymous]
-internal class RegisterConfirmationModel(UserManager<ApplicationUser> userManager, IEmailSender sender) : PageModel
+internal sealed class RegisterConfirmationModel(UserManager<ApplicationUser> userManager) : PageModel
 {
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

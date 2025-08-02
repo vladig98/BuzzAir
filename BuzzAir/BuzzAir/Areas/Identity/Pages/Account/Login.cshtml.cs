@@ -1,7 +1,7 @@
 ﻿namespace BuzzAir.Areas.Identity.Pages.Account;
 
 [AllowAnonymous]
-internal class LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger) : PageModel
+internal sealed class LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger) : PageModel
 {
     [BindProperty]
     public LoginInputModel Input { get; set; } = null!;
@@ -37,7 +37,7 @@ internal class LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<
         {
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-            Microsoft.AspNetCore.Identity.SignInResult result = 
+            Microsoft.AspNetCore.Identity.SignInResult result =
                 await signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: true);
 
             if (result.Succeeded)

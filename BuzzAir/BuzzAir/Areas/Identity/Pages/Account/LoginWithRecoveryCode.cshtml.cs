@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account;
 
-internal class LoginWithRecoveryCodeModel(
+internal sealed class LoginWithRecoveryCodeModel(
     SignInManager<ApplicationUser> signInManager,
     UserManager<ApplicationUser> userManager,
     ILogger<LoginWithRecoveryCodeModel> logger) : PageModel
@@ -24,7 +24,7 @@ internal class LoginWithRecoveryCodeModel(
     public async Task<IActionResult> OnGetAsync(string? returnUrl = null)
     {
         // Ensure the user has gone through the username & password screen first
-        _ = await signInManager.GetTwoFactorAuthenticationUserAsync() 
+        _ = await signInManager.GetTwoFactorAuthenticationUserAsync()
             ?? throw new InvalidOperationException($"Unable to load two-factor authentication user."); ;
 
         ReturnUrl = returnUrl ?? string.Empty;
@@ -39,7 +39,7 @@ internal class LoginWithRecoveryCodeModel(
             return Page();
         }
 
-        ApplicationUser user = await signInManager.GetTwoFactorAuthenticationUserAsync() 
+        ApplicationUser user = await signInManager.GetTwoFactorAuthenticationUserAsync()
             ?? throw new InvalidOperationException($"Unable to load two-factor authentication user.");
 
         string recoveryCode = Input.RecoveryCode.Replace(" ", string.Empty, StringComparison.Ordinal);

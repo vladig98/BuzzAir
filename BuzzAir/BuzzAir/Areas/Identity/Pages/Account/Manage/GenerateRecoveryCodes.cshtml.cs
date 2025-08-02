@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal class GenerateRecoveryCodesModel(
+internal sealed class GenerateRecoveryCodesModel(
     UserManager<ApplicationUser> userManager,
     ILogger<GenerateRecoveryCodesModel> logger) : PageModel
 {

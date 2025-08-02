@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal class PersonalDataModel(UserManager<ApplicationUser> userManager) : PageModel
+internal sealed class PersonalDataModel(UserManager<ApplicationUser> userManager) : PageModel
 {
     public async Task<IActionResult> OnGet()
     {

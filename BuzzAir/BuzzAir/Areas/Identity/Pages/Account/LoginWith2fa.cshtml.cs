@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account;
 
-internal class LoginWith2faModel(
+internal sealed class LoginWith2faModel(
     SignInManager<ApplicationUser> signInManager,
     UserManager<ApplicationUser> userManager,
     ILogger<LoginWith2faModel> logger) : PageModel
@@ -33,7 +33,7 @@ internal class LoginWith2faModel(
     public async Task<IActionResult> OnGetAsync(bool rememberMe, string? returnUrl = null)
     {
         // Ensure the user has gone through the username & password screen first
-        _ = await _signInManager.GetTwoFactorAuthenticationUserAsync() 
+        _ = await _signInManager.GetTwoFactorAuthenticationUserAsync()
             ?? throw new InvalidOperationException($"Unable to load two-factor authentication user.");
 
         ReturnUrl = returnUrl ?? string.Empty;
@@ -51,7 +51,7 @@ internal class LoginWith2faModel(
 
         returnUrl ??= Url.Content("~/");
 
-        ApplicationUser user = await _signInManager.GetTwoFactorAuthenticationUserAsync() 
+        ApplicationUser user = await _signInManager.GetTwoFactorAuthenticationUserAsync()
             ?? throw new InvalidOperationException($"Unable to load two-factor authentication user.");
 
         string authenticatorCode = Input.TwoFactorCode.Replace(" ", string.Empty, StringComparison.Ordinal).Replace("-", string.Empty, StringComparison.Ordinal);

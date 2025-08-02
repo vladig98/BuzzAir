@@ -3,7 +3,7 @@
 namespace BuzzAir.Areas.Identity.Pages.Account;
 
 [AllowAnonymous]
-internal class ExternalLoginModel : PageModel
+internal sealed class ExternalLoginModel : PageModel
 {
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -84,7 +84,7 @@ internal class ExternalLoginModel : PageModel
         }
 
         // Sign in the user with this external login provider if the user already has a login.
-        Microsoft.AspNetCore.Identity.SignInResult result = 
+        Microsoft.AspNetCore.Identity.SignInResult result =
             await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
         if (result.Succeeded)
