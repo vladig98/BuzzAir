@@ -4,6 +4,7 @@ internal sealed class CountryConfiguration : IEntityTypeConfiguration<Country>
     public void Configure(EntityTypeBuilder<Country> builder)
     {
         _ = builder.HasKey(c => c.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(c => c.Name)
                    .IsRequired()
                    .HasMaxLength(100);

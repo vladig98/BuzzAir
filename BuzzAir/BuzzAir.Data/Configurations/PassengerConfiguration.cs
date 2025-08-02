@@ -4,6 +4,7 @@ internal sealed class PassengerConfiguration : IEntityTypeConfiguration<Passenge
     public void Configure(EntityTypeBuilder<Passenger> builder)
     {
         _ = builder.HasKey(p => p.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(p => p.FirstName)
                    .IsRequired()
                    .HasMaxLength(50);

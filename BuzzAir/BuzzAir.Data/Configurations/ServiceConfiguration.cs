@@ -4,6 +4,7 @@ internal sealed class ServiceConfiguration : IEntityTypeConfiguration<Service>
     public void Configure(EntityTypeBuilder<Service> builder)
     {
         _ = builder.HasKey(s => s.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.HasDiscriminator<string>("ServiceType")
                    .HasValue<AirportCheckIn>(nameof(AirportCheckIn))
                    .HasValue<Baggage>(nameof(Baggage))

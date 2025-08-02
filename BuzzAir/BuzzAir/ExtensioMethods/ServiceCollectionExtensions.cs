@@ -7,7 +7,9 @@ internal static class ServiceCollectionExtensions
         string cs = config.GetConnectionString("DefaultConnection")
                  ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-        _ = services.AddDbContext<BuzzAirDbContext>(o => o.UseNpgsql(cs));
+        _ = services.AddDbContext<BuzzAirDbContext>(o => 
+            o.UseNpgsql(cs, x => x.MigrationsAssembly(typeof(BuzzAirDbContext).GetTypeInfo().Assembly.GetName().Name)));
+
         return services;
     }
 

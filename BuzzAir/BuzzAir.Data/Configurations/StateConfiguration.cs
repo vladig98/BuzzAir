@@ -4,6 +4,7 @@ internal sealed class StateConfiguration : IEntityTypeConfiguration<State>
     public void Configure(EntityTypeBuilder<State> builder)
     {
         _ = builder.HasKey(s => s.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(s => s.Name)
                    .IsRequired()
                    .HasMaxLength(100);

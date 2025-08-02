@@ -3,6 +3,7 @@ internal sealed class ApplicationUserConfiguration : IEntityTypeConfiguration<Ap
 {
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.HasOne(u => u.Passenger)
                    .WithOne(p => p.User)
                    .HasForeignKey<ApplicationUser>(u => u.PassengerId)

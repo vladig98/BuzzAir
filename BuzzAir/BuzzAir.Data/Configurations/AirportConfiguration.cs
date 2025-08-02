@@ -4,6 +4,7 @@ internal sealed class AirportConfiguration : IEntityTypeConfiguration<Airport>
     public void Configure(EntityTypeBuilder<Airport> builder)
     {
         _ = builder.HasKey(a => a.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(a => a.ICAO)
                    .IsRequired()
                    .HasMaxLength(4);

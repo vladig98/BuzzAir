@@ -4,6 +4,7 @@ internal sealed class ChangeLogConfiguration : IEntityTypeConfiguration<ChangeLo
     public void Configure(EntityTypeBuilder<ChangeLog> builder)
     {
         _ = builder.HasKey(cl => cl.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(cl => cl.EntityName)
                    .IsRequired()
                    .HasMaxLength(100);

@@ -4,6 +4,7 @@ internal sealed class TimezoneConfiguration : IEntityTypeConfiguration<Timezone>
     public void Configure(EntityTypeBuilder<Timezone> builder)
     {
         _ = builder.HasKey(tz => tz.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(tz => tz.Name)
                    .IsRequired()
                    .HasMaxLength(100);

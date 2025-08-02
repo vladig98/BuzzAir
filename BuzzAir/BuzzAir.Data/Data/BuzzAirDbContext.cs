@@ -37,6 +37,8 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
         Database.SetCommandTimeout(180);
     }
 
+    public BuzzAirDbContext() { }
+
     public override int SaveChanges()
     {
         OverrideDateUpdated();
@@ -123,22 +125,6 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
         {
             return;
         }
-
-        //List<IMutableEntityType> entityTypes = [.. builder.Model.GetEntityTypes()];
-
-        //IEnumerable<IMutableProperty> primaryKeys = entityTypes
-        //    .SelectMany(t => t.GetProperties())
-        //    .Where(p => p.ClrType == typeof(string) && p.IsPrimaryKey());
-
-        //// ---- Global conventions ----
-        //// All string PKs get max length 450
-        //foreach (IMutableProperty primaryKey in primaryKeys)
-        //{
-        //    _ = builder.Entity(primaryKey.DeclaringType.ClrType)
-        //               .Property(primaryKey.Name)
-        //               .HasMaxLength(450)
-        //               .IsRequired();
-        //}
 
         _ = builder.ApplyConfiguration(new AircraftConfiguration());
         _ = builder.ApplyConfiguration(new AirportConfiguration());

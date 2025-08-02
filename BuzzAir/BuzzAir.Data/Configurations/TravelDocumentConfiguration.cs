@@ -4,6 +4,7 @@ internal sealed class TravelDocumentConfiguration : IEntityTypeConfiguration<Tra
     public void Configure(EntityTypeBuilder<TravelDocument> builder)
     {
         _ = builder.HasKey(td => td.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(td => td.Number)
                    .IsRequired()
                    .HasMaxLength(50);

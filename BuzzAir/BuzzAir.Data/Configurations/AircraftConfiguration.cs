@@ -4,6 +4,7 @@ internal sealed class AircraftConfiguration : IEntityTypeConfiguration<Aircraft>
     public void Configure(EntityTypeBuilder<Aircraft> builder)
     {
         _ = builder.HasKey(a => a.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(a => a.Name)
                    .IsRequired()
                    .HasMaxLength(100);

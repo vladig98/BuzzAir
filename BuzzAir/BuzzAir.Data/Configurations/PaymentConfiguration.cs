@@ -4,6 +4,7 @@ internal sealed class PaymentConfiguration : IEntityTypeConfiguration<Payment>
     public void Configure(EntityTypeBuilder<Payment> builder)
     {
         _ = builder.HasKey(p => p.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(p => p.Card)
                    .IsRequired()
                    .HasConversion<string>();

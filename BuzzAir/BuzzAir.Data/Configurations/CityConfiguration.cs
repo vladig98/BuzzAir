@@ -4,6 +4,7 @@ internal sealed class CityConfiguration : IEntityTypeConfiguration<City>
     public void Configure(EntityTypeBuilder<City> builder)
     {
         _ = builder.HasKey(c => c.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(c => c.Name)
                    .IsRequired()
                    .HasMaxLength(100);

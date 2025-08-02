@@ -4,6 +4,7 @@ internal sealed class BookingConfiguration : IEntityTypeConfiguration<Booking>
     public void Configure(EntityTypeBuilder<Booking> builder)
     {
         _ = builder.HasKey(b => b.Id);
+        _ = builder.Property(a => a.Id).HasMaxLength(450).IsRequired();
         _ = builder.Property(b => b.IsDeleted).IsRequired();
         _ = builder.HasMany(b => b.Flights)
                    .WithOne(bf => bf.Booking)

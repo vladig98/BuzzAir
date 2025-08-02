@@ -18,9 +18,6 @@ app.ConfigureStaticFiles();
 app.ConfigureRoutingAndAuth();
 app.ConfigureEndpoints();
 
-IdentityPageModelsInitializer.EnsureInitialized();
-IdentityPageAccountModelsInitializer.EnsureInitialized();
-IdentityPageInputModelsInitializer.EnsureInitialized();
-ControllersInitializer.EnsureInitialized();
+Initializer.EnsureInitialized();
 
 app.Run();

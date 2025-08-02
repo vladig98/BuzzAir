@@ -10,3 +10,5 @@ global using Microsoft.EntityFrameworkCore.Metadata;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Newtonsoft.Json;
 global using System.Security.Claims;
+global using Microsoft.EntityFrameworkCore.Migrations;
+global using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
