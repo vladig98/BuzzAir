@@ -1,14 +1,10 @@
-﻿global using BuzzAir.Areas.Identity.Pages.Account;
-global using BuzzAir.Areas.Identity.Pages.Account.Manage;
-global using BuzzAir.Areas.Identity.Pages.Account.Models;
-global using BuzzAir.Controllers;
+﻿global using BuzzAir.Areas.Identity.Pages.Account.Models;
 global using BuzzAir.Data.Data;
 global using BuzzAir.Data.Enums;
 global using BuzzAir.Data.Models;
 global using BuzzAir.ExtensioMethods;
 global using BuzzAir.Factories;
 global using BuzzAir.Utilities;
-global using BuzzAir.Utilities.DummyInitializers;
 global using BuzzAir.Utilities.Interfaces;
 global using Microsoft.AspNetCore.Authentication;
 global using Microsoft.AspNetCore.Authorization;

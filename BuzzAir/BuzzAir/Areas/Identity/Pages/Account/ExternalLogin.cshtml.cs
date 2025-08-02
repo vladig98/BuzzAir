@@ -3,7 +3,11 @@
 namespace BuzzAir.Areas.Identity.Pages.Account;
 
 [AllowAnonymous]
-internal sealed class ExternalLoginModel : PageModel
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1056 // URI-like properties should not be strings
+#pragma warning disable CA1515 // Consider making public types internal
+#pragma warning disable CA1054 // URI-like parameters should not be strings
+public sealed class ExternalLoginModel : PageModel
 {
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -44,6 +48,7 @@ internal sealed class ExternalLoginModel : PageModel
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
+
     public string ReturnUrl { get; set; } = string.Empty;
 
     /// <summary>
@@ -192,3 +197,7 @@ internal sealed class ExternalLoginModel : PageModel
             : (IUserEmailStore<ApplicationUser>)_userStore;
     }
 }
+#pragma warning restore CA1056 // URI-like properties should not be strings
+#pragma warning restore CA1054 // URI-like parameters should not be strings
+#pragma warning restore CA1515 // Consider making public types internal
+#pragma warning restore IDE0079 // Remove unnecessary suppression

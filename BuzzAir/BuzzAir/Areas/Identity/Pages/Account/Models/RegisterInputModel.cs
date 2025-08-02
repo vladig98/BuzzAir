@@ -1,6 +1,10 @@
 ﻿namespace BuzzAir.Areas.Identity.Pages.Account.Models;
 
-internal sealed class RegisterInputModel
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1515 // Consider making public types internal
+public sealed class RegisterInputModel
+#pragma warning restore CA1515 // Consider making public types internal
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 {
     [Required]
     [EmailAddress]

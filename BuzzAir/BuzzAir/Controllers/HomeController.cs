@@ -1,6 +1,10 @@
 ﻿namespace BuzzAir.Controllers;
 
-internal sealed class HomeController() : Controller
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1515 // Consider making public types internal
+public sealed class HomeController() : Controller
+#pragma warning restore CA1515 // Consider making public types internal
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 {
     [HttpGet]
     public IActionResult Index()

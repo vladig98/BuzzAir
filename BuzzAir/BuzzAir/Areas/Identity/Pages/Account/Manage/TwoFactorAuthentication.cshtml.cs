@@ -2,9 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal sealed class TwoFactorAuthenticationModel(
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1515 // Consider making public types internal
+public sealed class TwoFactorAuthenticationModel(
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager) : PageModel
+#pragma warning restore CA1515 // Consider making public types internal
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 {
 
     /// <summary>

@@ -1,6 +1,11 @@
 ﻿namespace BuzzAir.Areas.Identity.Pages.Account;
 
-internal sealed class RegisterModel(
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1056 // URI-like properties should not be strings
+#pragma warning disable CA1515 // Consider making public types internal
+#pragma warning disable CA2227 // Collection properties should be read only
+#pragma warning disable CA1054 // URI-like parameters should not be strings
+public sealed class RegisterModel(
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager,
     ILogger<RegisterModel> logger,
@@ -90,3 +95,8 @@ internal sealed class RegisterModel(
         throw new NotImplementedException();
     }
 }
+#pragma warning restore CA1056 // URI-like properties should not be strings
+#pragma warning restore CA1054 // URI-like parameters should not be strings
+#pragma warning restore CA1515 // Consider making public types internal
+#pragma warning restore CA2227 // Collection properties should be read only
+#pragma warning restore IDE0079 // Remove unnecessary suppression

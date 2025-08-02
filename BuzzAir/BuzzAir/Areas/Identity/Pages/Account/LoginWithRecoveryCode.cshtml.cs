@@ -2,7 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account;
 
-internal sealed class LoginWithRecoveryCodeModel(
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1056 // URI-like properties should not be strings
+#pragma warning disable CA1515 // Consider making public types internal
+#pragma warning disable CA1054 // URI-like parameters should not be strings
+public sealed class LoginWithRecoveryCodeModel(
     SignInManager<ApplicationUser> signInManager,
     UserManager<ApplicationUser> userManager,
     ILogger<LoginWithRecoveryCodeModel> logger) : PageModel
@@ -65,3 +69,7 @@ internal sealed class LoginWithRecoveryCodeModel(
         }
     }
 }
+#pragma warning restore CA1056 // URI-like properties should not be strings
+#pragma warning restore CA1054 // URI-like parameters should not be strings
+#pragma warning restore CA1515 // Consider making public types internal
+#pragma warning restore IDE0079 // Remove unnecessary suppression

@@ -2,7 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 namespace BuzzAir.Areas.Identity.Pages.Account.Manage;
 
-internal sealed class EnableAuthenticatorModel(
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1056 // URI-like properties should not be strings
+#pragma warning disable CA1515 // Consider making public types internal
+#pragma warning disable CA1819 // Properties should not return arrays
+#pragma warning disable CA1054 // URI-like parameters should not be strings
+public sealed class EnableAuthenticatorModel(
     UserManager<ApplicationUser> userManager,
     ILogger<EnableAuthenticatorModel> logger,
     UrlEncoder urlEncoder) : PageModel
@@ -144,3 +149,8 @@ internal sealed class EnableAuthenticatorModel(
             unformattedKey);
     }
 }
+#pragma warning restore CA1056 // URI-like properties should not be strings
+#pragma warning restore CA1054 // URI-like parameters should not be strings
+#pragma warning restore CA1819 // Properties should not return arrays
+#pragma warning restore CA1515 // Consider making public types internal
+#pragma warning restore IDE0079 // Remove unnecessary suppression

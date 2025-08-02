@@ -18,6 +18,4 @@ app.ConfigureStaticFiles();
 app.ConfigureRoutingAndAuth();
 app.ConfigureEndpoints();
 
-Initializer.EnsureInitialized();
-
 app.Run();
