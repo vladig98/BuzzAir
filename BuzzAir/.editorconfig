@@ -1,6 +1,13 @@
 # Remove the line below if you want to inherit .editorconfig settings from higher directories
 root = true
 
+[*.{cs,vb}]
+# 1) All compiler warnings ⇒ errors
+build_property.TreatWarningsAsErrors = true
+
+# 2) All analyzer diagnostics (info, suggestion, warning) ⇒ errors
+dotnet_analyzer_diagnostic.severity = error
+
 # C# files
 [*.cs]
 
