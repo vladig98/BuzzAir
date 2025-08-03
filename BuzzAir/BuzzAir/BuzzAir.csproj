@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Attributes\" />
-    <Folder Include="Areas\Admin\Factories\" />
     <Folder Include="Areas\Admin\Repositories\Interfaces\" />
     <Folder Include="Areas\Admin\ViewModels\StateViewModels\" />
   </ItemGroup>

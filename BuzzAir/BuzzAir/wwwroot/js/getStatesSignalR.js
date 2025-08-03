@@ -6,7 +6,7 @@ async function loadStates(countryId) {
     try {
         const states = await connection.invoke('GetStatesByCountry', countryId);
         const stateSelect = document.getElementById('stateSelect');
-        stateSelect.innerHTML = '<option disabled hidden selected value="">Select a state</option>';
+        stateSelect.innerHTML = '<option selected value="">Select a state</option>';
         for (const s of states) {
             const opt = document.createElement('option');
             opt.value = s.id;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (countryId) {
             loadStates(countryId);
         } else {
-            stateSelect.innerHTML = '<option disabled hidden selected value="">Select a state</option>';
+            stateSelect.innerHTML = '<option selected value="">Select a state</option>';
             stateSelect.disabled = true;
         }
     });

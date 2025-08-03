@@ -29,11 +29,11 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
     public DbSet<Priority> Priorities { get; set; }
     public DbSet<Seat> Seats { get; set; }
 
-    private readonly IHttpContextAccessor? _httpContextAccessor;
+    //private readonly IHttpContextAccessor? _httpContextAccessor;
 
-    public BuzzAirDbContext(DbContextOptions<BuzzAirDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
+    public BuzzAirDbContext(DbContextOptions<BuzzAirDbContext> options/*, IHttpContextAccessor httpContextAccessor*/) : base(options)
     {
-        _httpContextAccessor = httpContextAccessor;
+        //_httpContextAccessor = httpContextAccessor;
         Database.SetCommandTimeout(180);
     }
 
@@ -63,58 +63,58 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
         return base.SaveChangesAsync(cancellationToken);
     }
 
-    private void OverrideDateUpdated()
+    private static void OverrideDateUpdated()
     {
-        DateTime now = DateTime.UtcNow;
-        string userId = _httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ??
-            throw new InvalidOperationException("No user in context");
+        //DateTime now = DateTime.UtcNow;
+        //string userId = _httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ??
+        //    throw new InvalidOperationException("No user in context");
 
-        IEnumerable<EntityEntry> entities = ChangeTracker.Entries()
-            .Where(e => e.State is EntityState.Modified or EntityState.Added or EntityState.Deleted);
+        //IEnumerable<EntityEntry> entities = ChangeTracker.Entries()
+        //    .Where(e => e.State is EntityState.Modified or EntityState.Added or EntityState.Deleted);
 
-        foreach (EntityEntry entity in entities)
-        {
-            IEntityType meta = entity.Metadata;
-            HashSet<string> navNames =
-            [
-                .. meta.GetNavigations().Select(n => n.Name),
-                .. meta.GetSkipNavigations().Select(sn => sn.Name),
-            ];
+        //foreach (EntityEntry entity in entities)
+        //{
+        //    IEntityType meta = entity.Metadata;
+        //    HashSet<string> navNames =
+        //    [
+        //        .. meta.GetNavigations().Select(n => n.Name),
+        //        .. meta.GetSkipNavigations().Select(sn => sn.Name),
+        //    ];
 
-            Dictionary<string, string?> before = meta.GetProperties().Where(p => !navNames.Contains(p.Name)).ToDictionary(p => p.Name, p => entity.OriginalValues[p]?.ToString());
-            Dictionary<string, string?> after = meta.GetProperties().Where(p => !navNames.Contains(p.Name)).ToDictionary(p => p.Name, p => entity.CurrentValues[p]?.ToString());
+        //    Dictionary<string, string?> before = meta.GetProperties().Where(p => !navNames.Contains(p.Name)).ToDictionary(p => p.Name, p => entity.OriginalValues[p]?.ToString());
+        //    Dictionary<string, string?> after = meta.GetProperties().Where(p => !navNames.Contains(p.Name)).ToDictionary(p => p.Name, p => entity.CurrentValues[p]?.ToString());
 
-            ChangeLog changeLog = new()
-            {
-                EntityName = meta.ClrType.Name,
-                EntityId = string.Join(",", meta.FindPrimaryKey()?.Properties.Select(p => entity.Property(p.Name).CurrentValue?.ToString()) ?? []) ?? string.Empty,
-                UserId = userId,
-                TimestampUTC = now
-            };
+        //    ChangeLog changeLog = new()
+        //    {
+        //        EntityName = meta.ClrType.Name,
+        //        EntityId = string.Join(",", meta.FindPrimaryKey()?.Properties.Select(p => entity.Property(p.Name).CurrentValue?.ToString()) ?? []) ?? string.Empty,
+        //        UserId = userId,
+        //        TimestampUTC = now
+        //    };
 
-            if (entity.State == EntityState.Added)
-            {
-                changeLog.BeforeJSON = null;
-                changeLog.AfterJSON = after == null || after.Count == 0 ? null : JsonConvert.SerializeObject(after);
-                changeLog.Action = ChangeType.Added;
-            }
+        //    if (entity.State == EntityState.Added)
+        //    {
+        //        changeLog.BeforeJSON = null;
+        //        changeLog.AfterJSON = after == null || after.Count == 0 ? null : JsonConvert.SerializeObject(after);
+        //        changeLog.Action = ChangeType.Added;
+        //    }
 
-            if (entity.State == EntityState.Deleted)
-            {
-                changeLog.BeforeJSON = before == null || before.Count == 0 ? null : JsonConvert.SerializeObject(before);
-                changeLog.AfterJSON = null;
-                changeLog.Action = ChangeType.Deleted;
-            }
+        //    if (entity.State == EntityState.Deleted)
+        //    {
+        //        changeLog.BeforeJSON = before == null || before.Count == 0 ? null : JsonConvert.SerializeObject(before);
+        //        changeLog.AfterJSON = null;
+        //        changeLog.Action = ChangeType.Deleted;
+        //    }
 
-            if (entity.State == EntityState.Modified)
-            {
-                changeLog.BeforeJSON = before == null || before.Count == 0 ? null : JsonConvert.SerializeObject(before);
-                changeLog.AfterJSON = after == null || after.Count == 0 ? null : JsonConvert.SerializeObject(after);
-                changeLog.Action = ChangeType.Modified;
-            }
+        //    if (entity.State == EntityState.Modified)
+        //    {
+        //        changeLog.BeforeJSON = before == null || before.Count == 0 ? null : JsonConvert.SerializeObject(before);
+        //        changeLog.AfterJSON = after == null || after.Count == 0 ? null : JsonConvert.SerializeObject(after);
+        //        changeLog.Action = ChangeType.Modified;
+        //    }
 
-            _ = ChangeLogs.Add(changeLog);
-        }
+        //    _ = ChangeLogs.Add(changeLog);
+        //}
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

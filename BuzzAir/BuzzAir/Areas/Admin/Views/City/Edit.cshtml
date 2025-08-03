@@ -1,0 +1,80 @@
+﻿@model EditCityVM
+@{
+    ViewData["Title"] = "Edit City";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Edit City</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="City" asp-action="Edit" method="post" novalidate>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control" placeholder="City name" />
+                            <label asp-for="Name">City Name</label>
+                            <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6 form-floating">
+                                <select asp-for="CountryId" asp-items="Model.Countries"
+                                        class="form-select" id="countrySelect">
+                                    @if (string.IsNullOrWhiteSpace(Model.CountryId))
+                                    {
+                                        <option disabled hidden selected value="">Select a country</option>
+                                    }
+                                    else
+                                    {
+                                        <option disabled hidden value="">Select a country</option>
+                                    }
+                                </select>
+                                <label asp-for="CountryId">Country</label>
+                                <span asp-validation-for="CountryId" class="invalid-feedback d-block"></span>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                                <select asp-for="StateId" asp-items="Model.States" class="form-select" id="stateSelect">
+                                    <option value="">Select a state</option>
+                                </select>
+                                <label asp-for="StateId">State</label>
+                                <span asp-validation-for="StateId" class="invalid-feedback d-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select asp-for="TimezoneId" asp-items="Model.Timezones"
+                                    class="form-select">
+                                @if (string.IsNullOrWhiteSpace(Model.TimezoneId))
+                                {
+                                    <option disabled hidden selected value="">Select a timezone</option>
+                                }
+                                else
+                                {
+                                    <option disabled hidden value="">Select a timezone</option>
+                                }
+                            </select>
+                            <label asp-for="TimezoneId">Timezone</label>
+                            <span asp-validation-for="TimezoneId" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="City" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/getStatesSignalR.js"></script>
+}

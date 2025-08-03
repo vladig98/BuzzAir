@@ -1,12 +1,12 @@
 ﻿namespace BuzzAir.DataValidators;
 
-public class CreateCityVMValidator : AbstractValidator<CreateCityVM>
+public class EditCityVMValidator : AbstractValidator<EditCityVM>
 {
     private readonly ICountryService _countryService;
     private readonly IStateService _stateService;
     private readonly ITimezoneService _timezoneService;
 
-    public CreateCityVMValidator(
+    public EditCityVMValidator(
         ICountryService countryService,
         IStateService stateService,
         ITimezoneService timezoneService)
@@ -41,5 +41,10 @@ public class CreateCityVMValidator : AbstractValidator<CreateCityVM>
             .WithMessage("Please select a timezone.")
             .MustAsync(async (id, ct) => await _timezoneService.ExistsAsync(id, ct))
             .WithMessage("Selected timezone is not valid.");
+
+        // Id shouldn't be empty
+        _ = RuleFor(x => x.Id)
+            .NotEmpty()
+            .WithMessage("City Id is required.");
     }
 }

@@ -37,3 +37,4 @@ global using BuzzAir.DataValidators;
 global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.AspNetCore.Mvc.ModelBinding;
 global using FluentValidation.Results;
+global using BuzzAir.Areas.Admin.Factories;

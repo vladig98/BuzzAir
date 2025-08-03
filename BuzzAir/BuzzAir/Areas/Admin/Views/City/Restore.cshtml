@@ -1,0 +1,53 @@
+﻿@model RestoreCityVM
+@{
+    ViewData["Title"] = "Restore City";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-info shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Restore City</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="City" asp-action="Restore" method="post" class="row g-3">
+                        @* hide the Id *@
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <input type="hidden" asp-for="CountryName" />
+                        <input type="hidden" asp-for="StateName" />
+                        <input type="hidden" asp-for="TimezoneName" />
+
+                        <div class="col-12 form-floating">
+                            <input asp-for="Name" class="form-control disabled" disabled readonly />
+                            <label asp-for="Name">City</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="CountryName" class="form-control disabled" disabled readonly />
+                            <label asp-for="CountryName">Country</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="StateName" class="form-control disabled" disabled readonly />
+                            <label asp-for="StateName">State</label>
+                        </div>
+
+                        <div class="col-12 form-floating">
+                            <input asp-for="TimezoneName" class="form-control disabled" disabled readonly />
+                            <label asp-for="TimezoneName">Timezone</label>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-success">
+                                Restore
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="City" asp-action="Deleted" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
