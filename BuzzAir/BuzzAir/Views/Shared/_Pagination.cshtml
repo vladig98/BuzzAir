@@ -1,0 +1,82 @@
+﻿@model (int Current, int Total, string Area, string Controller, string Action)
+
+@if (Model.Total > 1)
+{
+    <nav aria-label="Pagination" class="mt-4">
+        <ul class="pagination justify-content-center flex-wrap">
+            @{
+                int current = Model.Current;
+                int total = Model.Total;
+
+                // if few pages, show all
+                if (total < 7)
+                {
+                    for (int i = 1; i <= total; i++)
+                    {
+                        <li class="page-item @(i == current ? "active" : "")">
+                            <a class="page-link" asp-area="@Model.Area" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pageNumber="@i">@i</a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    // first 3
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        <li class="page-item @(i == current ? "active" : "")">
+                            <a class="page-link" asp-area="@Model.Area" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pageNumber="@i">@i</a>
+                        </li>
+                    }
+
+                    // middle?
+                    if (current > 4)
+                    {
+                        <li class="page-item disabled"><span class="page-link">…</span></li>
+                    }
+
+                    if (current >= 4 && current <= total - 3)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" asp-area="@Model.Area" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pageNumber="@current">@current</a>
+                        </li>
+                    }
+
+                    if (current < total - 3)
+                    {
+                        <li class="page-item disabled"><span class="page-link">…</span></li>
+                    }
+
+                    // last 3
+                    for (int i = total - 2; i <= total; i++)
+                    {
+                        <li class="page-item @(i == current ? "active" : "")">
+                            <a class="page-link" asp-area="@Model.Area" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pageNumber="@i">@i</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </nav>
+
+    @if (total >= 7)
+    {
+        <div class="d-flex justify-content-center align-items-center mt-3">
+            <span class="me-2">Page</span>
+            <form class="d-flex align-items-center"
+                  asp-area="@Model.Area" asp-controller="@Model.Controller" asp-action="@Model.Action" method="get">
+                <input type="number"
+                       name="pageNumber"
+                       min="1"
+                       max="@total"
+                       class="form-control form-control-sm"
+                       style="width: 80px;"
+                       value="@current" />
+                <button type="submit"
+                        class="btn btn-sm btn-primary ms-2">
+                    Go
+                </button>
+            </form>
+            <span class="ms-2">out of @total</span>
+        </div>
+    }
+}

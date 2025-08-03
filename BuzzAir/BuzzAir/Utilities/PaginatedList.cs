@@ -18,6 +18,13 @@ public sealed class PaginatedList<T> : List<T>
     /// </summary>
     public PaginatedList(IEnumerable<T> items, int count, int pageIndex, int pageSize)
     {
+        if (count > 0)
+        {
+            pageIndex = Math.Clamp(pageIndex, 1, count);
+        }
+
+        pageSize = Math.Clamp(pageSize, 10, 100);
+
         TotalCount = count;
         PageSize = pageSize;
         PageIndex = pageIndex;
