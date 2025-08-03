@@ -5,7 +5,6 @@ namespace BuzzAir.Areas.Identity.Pages.Account;
 [AllowAnonymous]
 #pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA1056 // URI-like properties should not be strings
-#pragma warning disable CA1515 // Consider making public types internal
 #pragma warning disable CA1054 // URI-like parameters should not be strings
 public sealed class RegisterConfirmationModel(UserManager<ApplicationUser> userManager) : PageModel
 {
@@ -61,5 +60,4 @@ public sealed class RegisterConfirmationModel(UserManager<ApplicationUser> userM
 }
 #pragma warning restore CA1056 // URI-like properties should not be strings
 #pragma warning restore CA1054 // URI-like parameters should not be strings
-#pragma warning restore CA1515 // Consider making public types internal
 #pragma warning restore IDE0079 // Remove unnecessary suppression

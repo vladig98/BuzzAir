@@ -27,3 +27,8 @@ global using System.Reflection;
 global using System.Security.Claims;
 global using System.Text;
 global using System.Text.Encodings.Web;
+global using Microsoft.AspNetCore.SignalR;
+global using BuzzAir.Areas.Admin.Services.Interfaces;
+global using BuzzAir.Areas.Admin.DTOs;
+global using BuzzAir.Areas.Admin.ViewModels.CityViewModels;
+global using BuzzAir.Areas.Admin.Services;

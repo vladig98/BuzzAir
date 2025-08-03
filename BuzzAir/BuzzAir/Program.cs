@@ -10,6 +10,7 @@ builder.Services.AddCaching(builder.Configuration);
 builder.Services.AddAuthenticationProviders(builder.Configuration);
 builder.Services.AddCookiePolicy();
 builder.Services.AddMvcOptions();
+builder.Services.AddCustomAppServices();
 
 WebApplication app = builder.Build();
 
@@ -17,5 +18,6 @@ app.ConfigureErrorHandling();
 app.ConfigureStaticFiles();
 app.ConfigureRoutingAndAuth();
 app.ConfigureEndpoints();
+app.MapSignalRHubs();
 
 app.Run();

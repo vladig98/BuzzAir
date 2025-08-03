@@ -1,4 +1,6 @@
-﻿namespace BuzzAir.ExtensioMethods;
+﻿using BuzzAir.Hubs;
+
+namespace BuzzAir.ExtensioMethods;
 
 internal static class WebApplicationExtensions
 {
@@ -48,6 +50,13 @@ internal static class WebApplicationExtensions
         _ = app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        return app;
+    }
+
+    public static WebApplication MapSignalRHubs(this WebApplication app)
+    {
+        _ = app.MapHub<LocationHub>("/locationHub");
 
         return app;
     }
