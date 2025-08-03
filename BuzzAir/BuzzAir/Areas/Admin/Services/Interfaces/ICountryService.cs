@@ -1,6 +1,8 @@
-﻿namespace BuzzAir.Areas.Admin.Services.Interfaces;
+﻿
+namespace BuzzAir.Areas.Admin.Services.Interfaces;
 
 public interface ICountryService
 {
     Task<List<CountryDTO>> GetAllCountriesAsync(CancellationToken token = default);
+    Task<Country> GetCountryBYIdAsync(string countryId, CancellationToken token);
 }

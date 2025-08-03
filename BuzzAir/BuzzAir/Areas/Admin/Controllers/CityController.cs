@@ -1,7 +1,11 @@
 ﻿namespace BuzzAir.Areas.Admin.Controllers;
 
 [Area(GlobalConstants.AdminRole)]
-public class CityController(ICountryService countryService, ITimezoneService timezoneService) : Controller
+public class CityController(
+    ICountryService countryService,
+    ITimezoneService timezoneService,
+    ICityService cityService,
+    IValidationService validationService) : Controller
 {
     [HttpGet]
     public async Task<IActionResult> Create(CancellationToken token)
@@ -37,8 +41,17 @@ public class CityController(ICountryService countryService, ITimezoneService tim
     }
 
     [HttpPost]
-    public Task<IActionResult> Create(CreateCityVM viewModel, CancellationToken token)
+    public async Task<IActionResult> Create(CreateCityVM viewModel, CancellationToken token)
     {
-        throw new NotImplementedException("City creation is under construction");
+        await validationService.ValidateAsync(viewModel, ModelState, token);
+
+        if (!ModelState.IsValid)
+        {
+            return View(viewModel);
+        }
+
+        await cityService.AddCityAsync(viewModel, token);
+
+        return Redirect("/");
     }
 }

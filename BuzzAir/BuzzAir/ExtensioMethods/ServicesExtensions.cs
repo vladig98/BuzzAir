@@ -7,6 +7,8 @@ internal static class ServicesExtensions
         _ = services.AddScoped<IStateService, StateService>();
         _ = services.AddScoped<ICountryService, CountryService>();
         _ = services.AddScoped<ITimezoneService, TimezoneService>();
+        _ = services.AddScoped<ICityService, CityService>();
+        _ = services.AddScoped<IValidationService, ValidationService>();
 
         return services;
     }

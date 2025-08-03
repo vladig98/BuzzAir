@@ -32,3 +32,8 @@ global using BuzzAir.Areas.Admin.Services.Interfaces;
 global using BuzzAir.Areas.Admin.DTOs;
 global using BuzzAir.Areas.Admin.ViewModels.CityViewModels;
 global using BuzzAir.Areas.Admin.Services;
+global using FluentValidation;
+global using BuzzAir.DataValidators;
+global using Microsoft.AspNetCore.Mvc.Filters;
+global using Microsoft.AspNetCore.Mvc.ModelBinding;
+global using FluentValidation.Results;
