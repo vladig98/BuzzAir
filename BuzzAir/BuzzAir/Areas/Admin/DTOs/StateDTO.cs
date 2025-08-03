@@ -1,3 +1,3 @@
 ﻿namespace BuzzAir.Areas.Admin.DTOs;
 
-public record class StateDTO(string Id, string Name);
+public record class StateDTO(string Id, string Name, string Country);

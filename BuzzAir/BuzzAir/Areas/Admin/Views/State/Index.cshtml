@@ -1,0 +1,38 @@
+﻿@model PaginatedList<StateDTO>
+
+@{
+    ViewData["Title"] = "States";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>States</h1>
+        <a asp-area="Admin" asp-controller="State" asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-lg"></i> Add State
+        </a>
+    </div>
+
+    <div class="row g-4">
+        @foreach (StateDTO state in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@state.Name</h5>
+                        <p class="card-text mb-1"><strong>Country:</strong> @state.Country</p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-area="Admin" asp-controller="State" asp-action="Edit" asp-route-id="@state.Id" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                            <a asp-area="Admin" asp-controller="State" asp-action="Delete" asp-route-id="@state.Id" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-pencil"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @await Html.PartialAsync("_Pagination", (Model.PageIndex, Model.TotalPages, "Admin", "State", "Index"))
+</div>

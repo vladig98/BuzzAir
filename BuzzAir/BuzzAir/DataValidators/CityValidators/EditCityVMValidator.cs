@@ -1,4 +1,4 @@
-﻿namespace BuzzAir.DataValidators;
+﻿namespace BuzzAir.DataValidators.CityValidators;
 
 public class EditCityVMValidator : AbstractValidator<EditCityVM>
 {

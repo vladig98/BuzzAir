@@ -1,8 +1,8 @@
-﻿namespace BuzzAir.DataValidators;
+﻿namespace BuzzAir.DataValidators.CityValidators;
 
-public class RestoreCityVMValidator : AbstractValidator<RestoreCityVM>
+public class DeleteCityVMValidator : AbstractValidator<DeleteCityVM>
 {
-    public RestoreCityVMValidator()
+    public DeleteCityVMValidator()
     {
         // Id is required (hidden field, but must round-trip)
         _ = RuleFor(x => x.Id)

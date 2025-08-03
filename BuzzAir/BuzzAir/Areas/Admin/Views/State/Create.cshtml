@@ -1,0 +1,47 @@
+﻿@model CreateStateVM
+
+@{
+    ViewData["Title"] = "Create State";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Create State</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="State" asp-action="Create" method="post" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Name" class="form-control" placeholder="State name" />
+                                    <label asp-for="Name">State Name</label>
+                                    <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="CountryId" asp-items="Model.Countries" class="form-select" id="countrySelect" placeholder="Country">
+                                        <option selected disabled hidden value="">Select a country</option>
+                                    </select>
+                                    <label asp-for="CountryId">Country</label>
+                                    <span asp-validation-for="CountryId" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-end">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-plus-lg"></i> Create State
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="State" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

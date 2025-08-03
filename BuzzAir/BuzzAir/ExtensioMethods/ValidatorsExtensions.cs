@@ -4,10 +4,17 @@ public static class ValidatorsExtensions
 {
     public static IServiceCollection AddValidators(this IServiceCollection services)
     {
+        // Cities
         _ = services.AddScoped<IValidator<CreateCityVM>, CreateCityVMValidator>();
         _ = services.AddScoped<IValidator<EditCityVM>, EditCityVMValidator>();
         _ = services.AddScoped<IValidator<DeleteCityVM>, DeleteCityVMValidator>();
         _ = services.AddScoped<IValidator<RestoreCityVM>, RestoreCityVMValidator>();
+
+        // States
+        _ = services.AddScoped<IValidator<CreateStateVM>, CreateStateVMValidator>();
+        _ = services.AddScoped<IValidator<EditStateVM>, EditStateVMValidator>();
+        _ = services.AddScoped<IValidator<DeleteStateVM>, DeleteStateVMValidator>();
+        _ = services.AddScoped<IValidator<RestoreStateVM>, RestoreStateVMValidator>();
 
         return services;
     }

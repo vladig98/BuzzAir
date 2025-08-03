@@ -11,7 +11,7 @@ public sealed class CityService(
         ArgumentNullException.ThrowIfNull(model);
 
         Country country = await countryService.GetCountryByIdAsync(model.CountryId, token);
-        State? state = await stateService.GetStateByIdAsync(model.StateId, token);
+        State? state = await stateService.GetStateModelByIdAsync(model.StateId, token);
         Timezone timezone = await timezoneService.GetTimezoneByIdAsync(model.TimezoneId, token);
 
         City city = new()
