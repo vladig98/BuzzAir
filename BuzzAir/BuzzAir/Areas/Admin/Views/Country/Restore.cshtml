@@ -1,0 +1,47 @@
+﻿@model RestoreCountryVM
+@{
+    ViewData["Title"] = "Restore Country";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-info shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Restore Country</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Country" asp-action="Restore" method="post" class="row g-3">
+                        @* hide the Id *@
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <input type="hidden" asp-for="ISO" />
+                        <input type="hidden" asp-for="IsOfficiallyRecognizedCountry" />
+
+                        <div class="col-12 form-floating">
+                            <input asp-for="Name" class="form-control disabled" disabled readonly />
+                            <label asp-for="Name">City</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="ISO" class="form-control disabled" disabled readonly />
+                            <label asp-for="ISO">ISO</label>
+                        </div>
+
+                        <div class="col-md-6 form-check form-switch">
+                            <input asp-for="IsOfficiallyRecognizedCountry" class="form-check-input disabled" disabled type="checkbox" />
+                            <label asp-for="IsOfficiallyRecognizedCountry" class="form-check-label disabled" disabled>Officially recognized country?</label>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-success">
+                                Restore
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Country" asp-action="Deleted" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

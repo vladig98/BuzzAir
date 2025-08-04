@@ -31,7 +31,7 @@ public class CityController(
     [HttpGet]
     public async Task<IActionResult> Create(CancellationToken token)
     {
-        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(token);
+        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(null, null, token);
         List<TimezoneDTO> timezones = await timezoneService.GetTimezonesAsync(token);
 
         CreateCityVM model = CityFactory.BuildCreateCityVM(countries, timezones);
@@ -59,7 +59,7 @@ public class CityController(
         CityDTO city = await cityService.GetCityByIdAsync(id, token);
         string countryId = await countryService.GetIdByNameAsync(city.Country, token);
 
-        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(token);
+        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(null, null, token);
         List<StateDTO> states = await stateService.GetStatesByCountryAsync(countryId, token);
         List<TimezoneDTO> timezones = await timezoneService.GetTimezonesAsync(token);
 

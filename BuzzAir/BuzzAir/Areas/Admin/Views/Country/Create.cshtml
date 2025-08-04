@@ -1,0 +1,67 @@
+﻿@model CreateCountryVM
+
+@{
+    ViewData["Title"] = "Create Country";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Create Country</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Country" asp-action="Create" method="post" novalidate>
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Name" class="form-control" placeholder="Country name" />
+                                    <label asp-for="Name">Country Name</label>
+                                    <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="ISO" class="form-control" placeholder="Country ISO" />
+                                    <label asp-for="ISO">ISO Code</label>
+                                    <span asp-validation-for="ISO" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check form-switch">
+                                    <input asp-for="IsOfficiallyRecognizedCountry"
+                                           class="form-check-input"
+                                           type="checkbox" />
+                                    <label asp-for="IsOfficiallyRecognizedCountry"
+                                           class="form-check-label">
+                                        Officially recognized country?
+                                    </label>
+                                    <span asp-validation-for="IsOfficiallyRecognizedCountry"
+                                          class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-4 text-end">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-plus-lg"></i> Create Country
+                            </button>
+                            <a asp-area="Admin"
+                               asp-controller="Country"
+                               asp-action="Index"
+                               asp-route-pageNumber="1"
+                               class="btn btn-secondary ms-2">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

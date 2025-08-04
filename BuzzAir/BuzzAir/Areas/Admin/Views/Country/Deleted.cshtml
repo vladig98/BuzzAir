@@ -1,0 +1,29 @@
+﻿@model PaginatedList<CountryDTO>
+
+@{
+    ViewData["Title"] = "Deleted Countries";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4">Deleted Countries</h1>
+
+    <div class="row g-4">
+        @foreach (CountryDTO country in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="card h-100 bg-light shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">@country.Name</h5>
+                        <p class="card-text mb-1"><strong>ISO:</strong> @country.ISO</p>
+                        <p class="card-text mb-3"><strong>Officially Recognized as Country:</strong> @country.IsOfficiallyRecognizedCountry</p>
+                        <a asp-area="Admin" asp-controller="Country" asp-action="Restore" asp-route-id="@country.Id" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-pencil"></i> Restore
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @await Html.PartialAsync("_Pagination", (Model.PageIndex, Model.TotalPages, "Admin", "Country", "Deleted"))
+</div>

@@ -7,7 +7,7 @@ public sealed class StateService(
     public async Task AddStateAsync(CreateStateVM viewModel, CancellationToken token = default)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
-        Country country = await countryService.GetCountryByIdAsync(viewModel.CountryId, token);
+        Country country = await countryService.GetCountryModelByIdAsync(viewModel.CountryId, token);
 
         State state = new()
         {
@@ -31,12 +31,12 @@ public sealed class StateService(
 
     public Task DeleteAsync(string id, CancellationToken token = default)
     {
-        return dbContext.States.Where(s => s.Id == id).ExecuteUpdateAsync(s => s.SetProperty(p => p.IsDeleted, p => true), token);
+        return dbContext.States.Where(s => s.Id == id && !s.IsDeleted).ExecuteUpdateAsync(s => s.SetProperty(p => p.IsDeleted, p => true), token);
     }
 
     public Task<bool> ExistsAsync(string id, CancellationToken token = default)
     {
-        return dbContext.States.AnyAsync(s => s.Id == id, token);
+        return dbContext.States.AnyAsync(s => s.Id == id && !s.IsDeleted, token);
     }
 
     public async Task<List<StateDTO>> GetAllDeletedStatesAsync(int pageNumber, int itemsPerPage, CancellationToken token = default)
@@ -117,14 +117,14 @@ public sealed class StateService(
 
     public Task<State?> GetStateModelByIdAsync(string? stateId, CancellationToken token = default)
     {
-        return dbContext.States.FirstOrDefaultAsync(s => s.Id == stateId, token);
+        return dbContext.States.FirstOrDefaultAsync(s => s.Id == stateId && !s.IsDeleted, token);
     }
 
     public Task<List<StateDTO>> GetStatesByCountryAsync(string countryId, CancellationToken token = default)
     {
         return dbContext.States
             .Include(s => s.Country)
-            .Where(s => s.CountryId == countryId)
+            .Where(s => s.CountryId == countryId && !s.IsDeleted && !s.Country.IsDeleted)
             .AsNoTracking()
             .Select(s => new StateDTO(s.Id, s.Name, s.Country.Name))
             .ToListAsync(token);
@@ -132,19 +132,19 @@ public sealed class StateService(
 
     public Task HardDeleteAsync(string id, CancellationToken token = default)
     {
-        return dbContext.States.Where(s => s.Id == id).ExecuteDeleteAsync(token);
+        return dbContext.States.Where(s => s.Id == id && !s.IsDeleted).ExecuteDeleteAsync(token);
     }
 
     public Task RestoreAsync(string id, CancellationToken token = default)
     {
-        return dbContext.States.Where(s => s.Id == id).ExecuteUpdateAsync(s => s.SetProperty(p => p.IsDeleted, p => false), token);
+        return dbContext.States.Where(s => s.Id == id && s.IsDeleted).ExecuteUpdateAsync(s => s.SetProperty(p => p.IsDeleted, p => false), token);
     }
 
     public Task UpdateStateAsync(EditStateVM viewModel, CancellationToken token = default)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
 
-        return dbContext.States.Where(s => s.Id == viewModel.Id)
+        return dbContext.States.Where(s => s.Id == viewModel.Id && !s.IsDeleted)
             .ExecuteUpdateAsync(p => p
                 .SetProperty(
                     s => s.Name,

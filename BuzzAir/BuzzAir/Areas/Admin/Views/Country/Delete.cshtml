@@ -1,0 +1,50 @@
+﻿@model DeleteCountryVM
+@{
+    ViewData["Title"] = "Delete Country";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Delete Country</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Country" asp-action="Delete" method="post" class="row g-3">
+                        @* hide the Id *@
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <input type="hidden" asp-for="ISO" />
+                        <input type="hidden" asp-for="IsOfficiallyRecognizedCountry" />
+
+                        <div class="col-12 form-floating">
+                            <input asp-for="Name" class="form-control disabled" disabled readonly />
+                            <label asp-for="Name">Country</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="ISO" class="form-control disabled" disabled readonly />
+                            <label asp-for="ISO">ISO</label>
+                        </div>
+
+                        <div class="col-md-6 form-check form-switch">
+                            <input asp-for="IsOfficiallyRecognizedCountry" class="form-check-input disabled" disabled type="checkbox" />
+                            <label asp-for="IsOfficiallyRecognizedCountry" class="form-check-label disabled" disabled>Officially recognized country?</label>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="submit" name="hard" value="false" class="btn btn-warning">
+                                Delete
+                            </button>
+                            <button type="submit" name="hard" value="true" class="btn btn-danger ms-2">
+                                Delete Forever
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Country" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

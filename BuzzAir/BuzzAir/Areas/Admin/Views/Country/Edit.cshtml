@@ -1,0 +1,56 @@
+﻿@model EditCountryVM
+@{
+    ViewData["Title"] = "Edit Country";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Edit Country</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Country" asp-action="Edit" method="post" novalidate>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control" placeholder="Country name" />
+                            <label asp-for="Name">Country Name</label>
+                            <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input asp-for="ISO" class="form-control" placeholder="Country ISO" />
+                                <label asp-for="ISO">ISO Code</label>
+                                <span asp-validation-for="ISO" class="invalid-feedback d-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check form-switch">
+                                <input asp-for="IsOfficiallyRecognizedCountry"
+                                       class="form-check-input"
+                                       type="checkbox" />
+                                <label asp-for="IsOfficiallyRecognizedCountry"
+                                       class="form-check-label">
+                                    Officially recognized country?
+                                </label>
+                                <span asp-validation-for="IsOfficiallyRecognizedCountry"
+                                      class="invalid-feedback d-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Country" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

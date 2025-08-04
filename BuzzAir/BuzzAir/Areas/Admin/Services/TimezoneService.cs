@@ -4,12 +4,12 @@ public class TimezoneService(BuzzAirDbContext dbContext) : ITimezoneService
 {
     public Task<bool> ExistsAsync(string id, CancellationToken token = default)
     {
-        return dbContext.Timezones.AnyAsync(t => t.Id == id, token);
+        return dbContext.Timezones.AnyAsync(t => t.Id == id && !t.IsDeleted, token);
     }
 
     public async Task<Timezone> GetTimezoneByIdAsync(string timezoneId, CancellationToken token = default)
     {
-        Timezone timezone = await dbContext.Timezones.FirstOrDefaultAsync(t => t.Id == timezoneId, token)
+        Timezone timezone = await dbContext.Timezones.FirstOrDefaultAsync(t => t.Id == timezoneId && !t.IsDeleted, token)
             ?? throw new KeyNotFoundException($"Can't find a timezone with id {timezoneId}.");
 
         return timezone;

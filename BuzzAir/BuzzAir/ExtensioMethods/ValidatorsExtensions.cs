@@ -16,6 +16,10 @@ public static class ValidatorsExtensions
         _ = services.AddScoped<IValidator<DeleteStateVM>, DeleteStateVMValidator>();
         _ = services.AddScoped<IValidator<RestoreStateVM>, RestoreStateVMValidator>();
 
+        // Countries
+        _ = services.AddScoped<IValidator<CreateCountryVM>, CreateCountryVMValidator>();
+        _ = services.AddScoped<IValidator<EditCountryVM>, EditCountryVMValidator>();
+
         return services;
     }
 }

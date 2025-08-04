@@ -39,3 +39,5 @@ global using System.Reflection;
 global using System.Security.Claims;
 global using System.Text;
 global using System.Text.Encodings.Web;
+global using BuzzAir.Areas.Admin.ViewModels.CountryViewModels;
+global using BuzzAir.DataValidators.CountryValidators;

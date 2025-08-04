@@ -1,42 +1,38 @@
 ﻿namespace BuzzAir.Areas.Admin.Controllers;
 
 [Area(GlobalConstants.AdminRole)]
-public class StateController(
-    IStateService stateService,
+public class CountryController(
     ICountryService countryService,
     IValidationService validationService) : Controller
 {
     [HttpGet]
     public async Task<IActionResult> Index(int pageNumber, CancellationToken token)
     {
-        List<StateDTO> states = await stateService.GetAllStatesAsync(pageNumber, 100, token);
-        int count = await stateService.CountAsync(token);
+        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(pageNumber, 100, token);
+        int count = await countryService.GetCountAsync(token);
 
-        PaginatedList<StateDTO> pagination = new(states, count, pageNumber, 100);
+        PaginatedList<CountryDTO> pagination = new(countries, count, pageNumber, 100);
         return View(pagination);
     }
 
     [HttpGet]
     public async Task<IActionResult> Deleted(int pageNumber, CancellationToken token)
     {
-        List<StateDTO> states = await stateService.GetAllDeletedStatesAsync(pageNumber, 100, token);
-        int count = await stateService.CountDeletedAsync(token);
+        List<CountryDTO> countries = await countryService.GetAllDeletedCountriesAsync(pageNumber, 100, token);
+        int count = await countryService.GetDeletedCountAsync(token);
 
-        PaginatedList<StateDTO> pagination = new(states, count, pageNumber, 100);
+        PaginatedList<CountryDTO> pagination = new(countries, count, pageNumber, 100);
         return View(pagination);
     }
 
     [HttpGet]
-    public async Task<IActionResult> Create(CancellationToken token)
+    public IActionResult Create()
     {
-        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(null, null, token);
-        CreateStateVM model = StateFactory.BuildCreateStateVM(countries);
-
-        return View(model);
+        return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateStateVM viewModel, CancellationToken token)
+    public async Task<IActionResult> Create(CreateCountryVM viewModel, CancellationToken token)
     {
         await validationService.ValidateAsync(viewModel, ModelState, token);
 
@@ -45,23 +41,21 @@ public class StateController(
             return View(viewModel);
         }
 
-        await stateService.AddStateAsync(viewModel, token);
+        await countryService.AddCountryAsync(viewModel, token);
         return Redirect(nameof(Index));
     }
 
     [HttpGet]
     public async Task<IActionResult> Edit(string id, CancellationToken token)
     {
-        StateDTO state = await stateService.GetStateByIdAsync(id, token);
-
-        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(null, null, token);
-        EditStateVM model = StateFactory.BuildEditStateVM(state, countries);
+        CountryDTO country = await countryService.GetCountryByIdAsync(id, token);
+        EditCountryVM model = CountryFactory.BuildEditCountryVM(country);
 
         return View(model);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(EditStateVM viewModel, CancellationToken token)
+    public async Task<IActionResult> Edit(EditCountryVM viewModel, CancellationToken token)
     {
         if (viewModel is null)
         {
@@ -74,21 +68,21 @@ public class StateController(
             return View(viewModel);
         }
 
-        await stateService.UpdateStateAsync(viewModel, token);
+        await countryService.UpdateCountryAsync(viewModel, token);
         return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
     public async Task<IActionResult> Delete(string id, CancellationToken token)
     {
-        StateDTO state = await stateService.GetStateByIdAsync(id, token);
-        DeleteStateVM model = StateFactory.BuildDeleteStateVM(state);
+        CountryDTO country = await countryService.GetCountryByIdAsync(id, token);
+        DeleteCountryVM model = CountryFactory.BuildDeleteCountryVM(country);
 
         return View(model);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Delete(DeleteStateVM viewModel, bool hard, CancellationToken token)
+    public async Task<IActionResult> Delete(DeleteCountryVM viewModel, bool hard, CancellationToken token)
     {
         if (viewModel is null)
         {
@@ -103,11 +97,11 @@ public class StateController(
 
         if (hard)
         {
-            await stateService.HardDeleteAsync(viewModel.Id, token);
+            await countryService.HardDeleteAsync(viewModel.Id, token);
         }
         else
         {
-            await stateService.DeleteAsync(viewModel.Id, token);
+            await countryService.DeleteAsync(viewModel.Id, token);
         }
 
         return RedirectToAction(nameof(Deleted));
@@ -116,14 +110,14 @@ public class StateController(
     [HttpGet]
     public async Task<IActionResult> Restore(string id, CancellationToken token)
     {
-        StateDTO state = await stateService.GetDeletedStateByIdAsync(id, token);
-        RestoreStateVM model = StateFactory.BuildRestoreStateVM(state);
+        CountryDTO country = await countryService.GetDeletedCountryByIdAsync(id, token);
+        RestoreCountryVM model = CountryFactory.BuildRestoreCountryVM(country);
 
         return View(model);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Restore(RestoreStateVM viewModel, CancellationToken token)
+    public async Task<IActionResult> Restore(RestoreCountryVM viewModel, CancellationToken token)
     {
         if (viewModel is null)
         {
@@ -136,7 +130,7 @@ public class StateController(
             return View(viewModel);
         }
 
-        await stateService.RestoreAsync(viewModel.Id, token);
+        await countryService.RestoreAsync(viewModel.Id, token);
         return RedirectToAction(nameof(Index));
     }
 }

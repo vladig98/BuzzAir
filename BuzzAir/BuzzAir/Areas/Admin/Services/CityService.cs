@@ -10,7 +10,7 @@ public sealed class CityService(
     {
         ArgumentNullException.ThrowIfNull(model);
 
-        Country country = await countryService.GetCountryByIdAsync(model.CountryId, token);
+        Country country = await countryService.GetCountryModelByIdAsync(model.CountryId, token);
         State? state = await stateService.GetStateModelByIdAsync(model.StateId, token);
         Timezone timezone = await timezoneService.GetTimezoneByIdAsync(model.TimezoneId, token);
 
@@ -28,7 +28,7 @@ public sealed class CityService(
 
     public Task DeleteAsync(string id, CancellationToken token = default)
     {
-        return dbContext.Cities.Where(c => c.Id == id).ExecuteUpdateAsync(c => c.SetProperty(p => p.IsDeleted, p => true), token);
+        return dbContext.Cities.Where(c => c.Id == id && !c.IsDeleted).ExecuteUpdateAsync(c => c.SetProperty(p => p.IsDeleted, p => true), token);
     }
 
     public async Task<List<CityDTO>> GetAllCitiiesAsync(int pageNumber, int itemsPerPage, CancellationToken token = default)
@@ -127,19 +127,19 @@ public sealed class CityService(
 
     public Task HardDeleteAsync(string id, CancellationToken token = default)
     {
-        return dbContext.Cities.Where(c => c.Id == id).ExecuteDeleteAsync(token);
+        return dbContext.Cities.Where(c => c.Id == id && !c.IsDeleted).ExecuteDeleteAsync(token);
     }
 
     public Task RestoreAsync(string id, CancellationToken token = default)
     {
-        return dbContext.Cities.Where(c => c.Id == id).ExecuteUpdateAsync(c => c.SetProperty(p => p.IsDeleted, p => false), token);
+        return dbContext.Cities.Where(c => c.Id == id && c.IsDeleted).ExecuteUpdateAsync(c => c.SetProperty(p => p.IsDeleted, p => false), token);
     }
 
     public Task UpdateCityAsync(EditCityVM viewModel, CancellationToken token = default)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
 
-        return dbContext.Cities.Where(c => c.Id == viewModel.Id)
+        return dbContext.Cities.Where(c => c.Id == viewModel.Id && !c.IsDeleted)
             .ExecuteUpdateAsync(p => p
                 .SetProperty(
                     c => c.StateId,
