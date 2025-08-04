@@ -33,7 +33,8 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
 
         IQueryable<Country> countriesQuery = dbContext.Countries
             .Where(c => !c.IsDeleted)
-            .OrderBy(c => c.Name);
+            .OrderByDescending(c => c.IsOfficiallyRecognizedCountry)
+            .ThenBy(c => c.Name);
 
         if (pageNumber is not null && itemsPerPage is not null)
         {
@@ -60,7 +61,8 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
 
         IQueryable<Country> countriesQuery = dbContext.Countries
             .Where(c => c.IsDeleted)
-            .OrderBy(c => c.Name);
+            .OrderByDescending(c => c.IsOfficiallyRecognizedCountry)
+            .ThenBy(c => c.Name);
 
         if (pageNumber is not null && itemsPerPage is not null)
         {
