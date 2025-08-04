@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "Countries";
+
+    List<CountryDTO> official = [.. Model.Where(c => c.IsOfficiallyRecognizedCountry)];
+    List<CountryDTO> deps = [.. Model.Where(c => !c.IsOfficiallyRecognizedCountry)];
 }
 
 <div class="container py-4">
@@ -12,28 +15,59 @@
         </a>
     </div>
 
-    <div class="row g-4">
-        @foreach (CountryDTO country in Model)
-        {
-            <div class="col-sm-6 col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">@country.Name</h5>
-                        <p class="card-text mb-1"><strong>ISO:</strong> @country.ISO</p>
-                        <p class="card-text mb-3"><strong>Officially Recognized as Country:</strong> @country.IsOfficiallyRecognizedCountry</p>
-                        <div class="d-flex justify-content-between">
-                            <a asp-area="Admin" asp-controller="Country" asp-action="Edit" asp-route-id="@country.Id" class="btn btn-outline-primary btn-sm">
-                                <i class="bi bi-pencil"></i> Edit
-                            </a>
-                            <a asp-area="Admin" asp-controller="Country" asp-action="Delete" asp-route-id="@country.Id" class="btn btn-outline-primary btn-sm">
-                                <i class="bi bi-pencil"></i> Delete
-                            </a>
+    @* Official ones *@
+    @if (official.Count > 0)
+    {
+        <h3 class="text-success">Officially Recognized Countries</h3>
+        <div class="row g-4 mb-5">
+            @foreach (CountryDTO country in official)
+            {
+                <div class="col-sm-6 col-md-4">
+                    <div class="card h-100 bg-light shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@country.Name</h5>
+                            <p class="card-text mb-1"><strong>ISO:</strong> @country.ISO</p>
+                            <div class="d-flex justify-content-between">
+                                <a asp-area="Admin" asp-controller="Country" asp-action="Edit" asp-route-id="@country.Id" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </a>
+                                <a asp-area="Admin" asp-controller="Country" asp-action="Delete" asp-route-id="@country.Id" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Delete
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+    }
+
+    @* Dependencies *@
+    @if (deps.Count > 0)
+    {
+        <h3 class="text-secondary">Territories / Dependencies</h3>
+        <div class="row g-4 mb-5">
+            @foreach (CountryDTO country in deps)
+            {
+                <div class="col-sm-6 col-md-4">
+                    <div class="card h-100 bg-light shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@country.Name</h5>
+                            <p class="card-text mb-1"><strong>ISO:</strong> @country.ISO</p>
+                            <div class="d-flex justify-content-between">
+                                <a asp-area="Admin" asp-controller="Country" asp-action="Edit" asp-route-id="@country.Id" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </a>
+                                <a asp-area="Admin" asp-controller="Country" asp-action="Delete" asp-route-id="@country.Id" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
 
     @await Html.PartialAsync("_Pagination", (Model.PageIndex, Model.TotalPages, "Admin", "Country", "Index"))
 </div>
