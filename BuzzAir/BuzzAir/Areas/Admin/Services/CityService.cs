@@ -87,6 +87,31 @@ public sealed class CityService(
         return dtos;
     }
 
+    public Task<List<CityDTO>> GetCitiesByStateAndCountryAsync(string? stateId, string countryId, CancellationToken token = default)
+    {
+        IQueryable<City> cities = dbContext.Cities.Include(c => c.State)
+                                                  .Include(c => c.Country)
+                                                  .Include(c => c.Timezone)
+                                                  .Where(c => !c.IsDeleted);
+
+        if (!string.IsNullOrWhiteSpace(stateId))
+        {
+            cities = cities.Where(c => c.StateId == stateId && c.State!.CountryId == countryId);
+        }
+
+        cities = cities.Where(c => c.CountryId == countryId);
+
+        return cities
+            .Select(c =>
+                new CityDTO(
+                    c.Id,
+                    c.Name,
+                    c.Country.Name,
+                    c.State == null ? null : c.State.Name,
+                    c.Timezone.Name))
+            .ToListAsync(token);
+    }
+
     public async Task<CityDTO> GetCityByIdAsync(string id, CancellationToken token = default)
     {
         City city = await dbContext.Cities.Include(c => c.Country)
@@ -99,6 +124,12 @@ public sealed class CityService(
         CityDTO dto = new(city.Id, city.Name, city.Country.Name, city.State?.Name, city.Timezone.Name);
 
         return dto;
+    }
+
+    public async Task<City> GetCityModelByIdAsync(string cityId, CancellationToken token = default)
+    {
+        return await dbContext.Cities.FirstOrDefaultAsync(c => c.Id == cityId && !c.IsDeleted, token)
+            ?? throw new KeyNotFoundException($"Can't find a city with id {cityId}");
     }
 
     public Task<int> GetCountAsync(CancellationToken token = default)

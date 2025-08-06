@@ -10,18 +10,35 @@ public sealed class RegisterModel(
     ILogger<RegisterModel> logger,
     IEmailSender emailSender,
     RoleManager<IdentityRole> roleManager,
-    BuzzAirDbContext context) : PageModel
+    BuzzAirDbContext context,
+    ICountryService countryService,
+    ICityService cityService) : PageModel
 {
     [BindProperty]
     public RegisterInputModel Input { get; set; } = null!;
     public string ReturnUrl { get; set; } = string.Empty;
     public IList<AuthenticationScheme> ExternalLogins { get; set; } = [];
+
     public IEnumerable<SelectListItem> Countries { get; set; } = [];
+    public IEnumerable<SelectListItem> States { get; set; } = [];
+    public IEnumerable<SelectListItem> Cities { get; set; } = [];
 
     public async Task OnGetAsync(string? returnUrl = null)
     {
         ReturnUrl = returnUrl ?? string.Empty;
         ExternalLogins = [.. await signInManager.GetExternalAuthenticationSchemesAsync()];
+
+        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(null, null);
+
+        SelectListGroup countryGroup = new() { Name = "Officially recognized countries" };
+        SelectListGroup dependencyGroup = new() { Name = "Territories not officially recognized as coutnries" };
+
+        Countries = countries.Select(c => new SelectListItem()
+        {
+            Text = c.Name,
+            Value = c.Id,
+            Group = c.IsOfficiallyRecognizedCountry ? countryGroup : dependencyGroup
+        });
     }
 
     public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
@@ -40,7 +57,7 @@ public sealed class RegisterModel(
                 _ = await roleManager.CreateAsync(role);
             }
 
-            City city = GetCity(Input.City);
+            City city = await cityService.GetCityModelByIdAsync(Input.CityId);
 
             ApplicationUser user = new()
             {
@@ -87,11 +104,6 @@ public sealed class RegisterModel(
 
         // If we got this far, something failed, redisplay form
         return Page();
-    }
-
-    private City GetCity(string city)
-    {
-        throw new NotImplementedException();
     }
 }
 #pragma warning restore CA1056 // URI-like properties should not be strings

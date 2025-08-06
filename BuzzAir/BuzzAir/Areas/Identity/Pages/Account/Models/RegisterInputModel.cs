@@ -37,11 +37,15 @@ public sealed class RegisterInputModel
 
     [Required]
     [Display(Name = "City")]
-    public string City { get; set; } = string.Empty;
+    public string CityId { get; set; } = string.Empty;
 
     [Required]
     [Display(Name = "Country")]
-    public string Country { get; set; } = string.Empty;
+    public string CountryId { get; set; } = string.Empty;
+
+    [Required]
+    [Display(Name = "State")]
+    public string? StateId { get; set; } = string.Empty;
 
     [Required]
     [Display(Name = "Postal Code")]

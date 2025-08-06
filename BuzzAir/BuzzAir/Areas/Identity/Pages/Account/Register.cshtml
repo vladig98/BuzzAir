@@ -72,24 +72,31 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Input.Country" class="form-label"></label>
-                            <select asp-for="Input.Country" class="form-select" asp-items="Model.Countries">
-                                <option selected disabled value="">Select Country</option>
-                            </select>
-                            <span asp-validation-for="Input.Country" class="text-danger small"></span>
+                            <label asp-for="Input.Postal" class="form-label"></label>
+                            <input asp-for="Input.Postal" class="form-control" />
+                            <span asp-validation-for="Input.Postal" class="text-danger small"></span>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="Input.City" class="form-label"></label>
-                                <input asp-for="Input.City" class="form-control" />
-                                <span asp-validation-for="Input.City" class="text-danger small"></span>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="Input.Postal" class="form-label"></label>
-                                <input asp-for="Input.Postal" class="form-control" />
-                                <span asp-validation-for="Input.Postal" class="text-danger small"></span>
-                            </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.CountryId" class="form-label">Country</label>
+                            <select asp-for="Input.CountryId" asp-items="Model.Countries"
+                                    class="form-select" id="countrySelect">
+                                <option disabled hidden selected value="">Select a country</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3" id="stateWrapper" style="display:none;">
+                            <label asp-for="Input.StateId" class="form-label">State</label>
+                            <select asp-for="Input.StateId" class="form-select" id="stateSelect">
+                                <option disabled hidden selected value="">Select a state</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3" id="cityWrapper" style="display:none;">
+                            <label asp-for="Input.CityId" class="form-label">City</label>
+                            <select asp-for="Input.CityId" class="form-select" id="citySelect">
+                                <option disabled hidden selected value="">Select a city</option>
+                            </select>
                         </div>
 
                         <div class="d-grid mt-4">
@@ -104,4 +111,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/getStatesSignalR.js"></script>
 }

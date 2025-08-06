@@ -3,40 +3,58 @@
     .build();
 
 async function loadStates(countryId) {
-    try {
-        const states = await connection.invoke('GetStatesByCountry', countryId);
-        const stateSelect = document.getElementById('stateSelect');
-        stateSelect.innerHTML = '<option selected value="">Select a state</option>';
-        for (const s of states) {
-            const opt = document.createElement('option');
-            opt.value = s.id;
-            opt.text = s.name;
-            stateSelect.appendChild(opt);
-        }
-        stateSelect.disabled = false;
-    } catch (err) {
-        console.error(err.toString());
+    const states = await connection.invoke('GetStatesByCountry', countryId);
+    const s = document.getElementById('stateSelect');
+    const sWrapper = document.getElementById('stateWrapper');
+    const c = document.getElementById('citySelect');
+    const cWrapper = document.getElementById('cityWrapper');
+
+    if (states.length > 0) {
+        // populate & show states
+        s.innerHTML = '<option disabled hidden selected value="">Select a state</option>';
+        states.forEach(x => s.append(new Option(x.name, x.id)));
+        s.disabled = false;
+        sWrapper.style.display = '';      // un-hide
+        // clear cities until state chosen
+        c.innerHTML = '<option disabled hidden selected value="">Select a city</option>';
+        c.disabled = true;
+        cWrapper.style.display = 'none';
+    }
+    else {
+        // hide state, load all cities for country
+        sWrapper.style.display = 'none';
+        await loadCities(null, countryId);
     }
 }
 
-connection.start()
-    .then(() => console.log('SignalR connected'))
-    .catch(err => console.error('SignalR connection error: ', err));
+async function loadCities(stateId, countryId) {
+    const cities = await connection.invoke('GetCitiesByStateAndCountry', stateId, countryId);
+    const c = document.getElementById('citySelect');
+    const cWrapper = document.getElementById('cityWrapper');
+    c.innerHTML = '<option disabled hidden selected value="">Select a city</option>';
+    cities.forEach(x => c.append(new Option(x.name, x.id)));
+    c.disabled = false;
+    cWrapper.style.display = '';
+}
+
+connection.start().catch(console.error);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const countrySelect = document.getElementById('countrySelect');
-    if (!countrySelect) {
-        return;
-    }
+    const country = document.getElementById('countrySelect');
+    const state = document.getElementById('stateSelect');
 
-    countrySelect.addEventListener('change', e => {
-        const countryId = e.target.value;
-        const stateSelect = document.getElementById('stateSelect');
-        if (countryId) {
-            loadStates(countryId);
-        } else {
-            stateSelect.innerHTML = '<option selected value="">Select a state</option>';
-            stateSelect.disabled = true;
+    country.addEventListener('change', e => {
+        const cid = e.target.value;
+        if (cid) loadStates(cid);
+        else {
+            document.getElementById('stateWrapper').style.display = 'none';
+            document.getElementById('cityWrapper').style.display = 'none';
         }
+    });
+
+    state.addEventListener('change', e => {
+        const sid = e.target.value;
+        const cid = country.value;
+        if (cid) loadCities(sid || null, cid);
     });
 });

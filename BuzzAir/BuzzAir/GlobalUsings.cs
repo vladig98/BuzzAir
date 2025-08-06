@@ -41,3 +41,4 @@ global using System.Text;
 global using System.Text.Encodings.Web;
 global using BuzzAir.Areas.Admin.ViewModels.CountryViewModels;
 global using BuzzAir.DataValidators.CountryValidators;
+global using BuzzAir.Hubs;
