@@ -19,6 +19,14 @@ public static class ValidatorsExtensions
         // Countries
         _ = services.AddScoped<IValidator<CreateCountryVM>, CreateCountryVMValidator>();
         _ = services.AddScoped<IValidator<EditCountryVM>, EditCountryVMValidator>();
+        _ = services.AddScoped<IValidator<DeleteCountryVM>, DeleteCountryVMValidator>();
+        _ = services.AddScoped<IValidator<RestoreCountryVM>, RestoreCountryVMValidator>();
+
+        // Timezones
+        _ = services.AddScoped<IValidator<CreateTimezoneVM>, CreateTimezoneVMValidator>();
+        _ = services.AddScoped<IValidator<EditTimezoneVM>, EditTimezoneVMValidator>();
+        _ = services.AddScoped<IValidator<DeleteTimezoneVM>, DeleteTimezoneVMValidator>();
+        _ = services.AddScoped<IValidator<RestoreTimezoneVM>, RestoreTimezoneVMValidator>();
 
         return services;
     }

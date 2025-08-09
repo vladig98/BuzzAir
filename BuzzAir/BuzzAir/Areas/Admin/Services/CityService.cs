@@ -12,7 +12,7 @@ public sealed class CityService(
 
         Country country = await countryService.GetCountryModelByIdAsync(model.CountryId, token);
         State? state = await stateService.GetStateModelByIdAsync(model.StateId, token);
-        Timezone timezone = await timezoneService.GetTimezoneByIdAsync(model.TimezoneId, token);
+        Timezone timezone = await timezoneService.GetTimezoneModelByIdAsync(model.TimezoneId, token);
 
         City city = new()
         {

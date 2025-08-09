@@ -1,6 +1,4 @@
-﻿
-
-namespace BuzzAir.Areas.Admin.Factories;
+﻿namespace BuzzAir.Areas.Admin.Factories;
 
 public sealed class StateFactory
 {

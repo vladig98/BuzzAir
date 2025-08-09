@@ -1,0 +1,68 @@
+﻿@model EditTimezoneVM
+@{
+    ViewData["Title"] = "Edit Timezone";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Edit Timezone</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Timezone" asp-action="Edit" method="post" novalidate>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control" placeholder="Timezone name" />
+                            <label asp-for="Name">Timezone Name</label>
+                            <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Identifier" class="form-control" placeholder="Identifier" />
+                                    <label asp-for="Identifier">Identifier</label>
+                                    <span asp-validation-for="Identifier" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Abbreviation" class="form-control" placeholder="Abbreviation" />
+                                    <label asp-for="Abbreviation">Abbreviation</label>
+                                    <span asp-validation-for="Abbreviation" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Offset" class="form-control" placeholder="+02:00" />
+                                    <label asp-for="Offset">Offset (hh:mm)</label>
+                                    <span asp-validation-for="Offset" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div class="form-check form-switch">
+                                    <input asp-for="UsesDST" class="form-check-input" type="checkbox" />
+                                    <label asp-for="UsesDST" class="form-check-label">Uses DST?</label>
+                                    <span asp-validation-for="UsesDST" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Timezone" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
