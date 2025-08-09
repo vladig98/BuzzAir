@@ -1,0 +1,93 @@
+﻿@model EditFlightVM
+
+@{
+    ViewData["Title"] = "Edit Flight";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-10 col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Edit Flight</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Flight" asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input asp-for="FlightNumber" class="form-control" />
+                                    <label asp-for="FlightNumber">Flight Number</label>
+                                    <span asp-validation-for="FlightNumber" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <select asp-for="OriginId" asp-items="Model.OriginAirports" class="form-select">
+                                        <option disabled hidden selected value="">Select origin</option>
+                                    </select>
+                                    <label asp-for="OriginId">Origin Airport</label>
+                                    <span asp-validation-for="OriginId" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <select asp-for="DestinationId" asp-items="Model.DestinationAirports" class="form-select">
+                                        <option disabled hidden selected value="">Select destination</option>
+                                    </select>
+                                    <label asp-for="DestinationId">Destination Airport</label>
+                                    <span asp-validation-for="DestinationId" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="AircraftId" asp-items="Model.Aircraft" class="form-select">
+                                        <option disabled hidden selected value="">Select aircraft</option>
+                                    </select>
+                                    <label asp-for="AircraftId">Aircraft</label>
+                                    <span asp-validation-for="AircraftId" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <input asp-for="DepartureUTC" class="form-control" type="datetime-local" />
+                                    <label asp-for="DepartureUTC">Departure (UTC)</label>
+                                    <span asp-validation-for="DepartureUTC" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <input asp-for="ArrivalUTC" class="form-control" type="datetime-local" />
+                                    <label asp-for="ArrivalUTC">Arrival (UTC)</label>
+                                    <span asp-validation-for="ArrivalUTC" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input asp-for="PriceInEur" class="form-control" type="number" step="0.01" />
+                                    <label asp-for="PriceInEur">Price (EUR)</label>
+                                    <span asp-validation-for="PriceInEur" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Flight" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

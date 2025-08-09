@@ -1,6 +1,4 @@
-﻿using BuzzAir.Hubs;
-
-namespace BuzzAir.ExtensioMethods;
+﻿namespace BuzzAir.ExtensioMethods;
 
 internal static class WebApplicationExtensions
 {

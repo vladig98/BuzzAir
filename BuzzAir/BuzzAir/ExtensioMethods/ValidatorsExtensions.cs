@@ -28,6 +28,12 @@ public static class ValidatorsExtensions
         _ = services.AddScoped<IValidator<DeleteTimezoneVM>, DeleteTimezoneVMValidator>();
         _ = services.AddScoped<IValidator<RestoreTimezoneVM>, RestoreTimezoneVMValidator>();
 
+        // Flights
+        _ = services.AddScoped<IValidator<CreateFlightVM>, CreateFlightVMValidator>();
+        _ = services.AddScoped<IValidator<EditFlightVM>, EditFlightVMValidator>();
+        _ = services.AddScoped<IValidator<DeleteFlightVM>, DeleteFlightVMValidator>();
+        _ = services.AddScoped<IValidator<RestoreFlightVM>, RestoreFlightVMValidator>();
+
         return services;
     }
 }
