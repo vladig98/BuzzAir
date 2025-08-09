@@ -2,6 +2,7 @@
 global using BuzzAir.Areas.Admin.Factories;
 global using BuzzAir.Areas.Admin.Services;
 global using BuzzAir.Areas.Admin.Services.Interfaces;
+global using BuzzAir.Areas.Admin.ViewModels.AircraftViewModels;
 global using BuzzAir.Areas.Admin.ViewModels.CityViewModels;
 global using BuzzAir.Areas.Admin.ViewModels.CountryViewModels;
 global using BuzzAir.Areas.Admin.ViewModels.FlightViewModels;
@@ -11,6 +12,7 @@ global using BuzzAir.Areas.Identity.Pages.Account.Models;
 global using BuzzAir.Data.Data;
 global using BuzzAir.Data.Enums;
 global using BuzzAir.Data.Models;
+global using BuzzAir.DataValidators.AircraftValidators;
 global using BuzzAir.DataValidators.CityValidators;
 global using BuzzAir.DataValidators.CountryValidators;
 global using BuzzAir.DataValidators.FlightValidators;

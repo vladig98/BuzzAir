@@ -1,0 +1,44 @@
+﻿@model EditAircraftVM
+@{
+    ViewData["Title"] = "Edit Aircraft";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Edit Aircraft</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Aircraft" asp-action="Edit" method="post" novalidate>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control" placeholder="Aircraft name" />
+                            <label asp-for="Name">Aircraft Name</label>
+                            <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="NumberOfSeats" class="form-control" placeholder="Number of seats" />
+                                    <label asp-for="NumberOfSeats">Number of seats</label>
+                                    <span asp-validation-for="NumberOfSeats" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Aircraft" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

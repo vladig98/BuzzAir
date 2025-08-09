@@ -34,6 +34,12 @@ public static class ValidatorsExtensions
         _ = services.AddScoped<IValidator<DeleteFlightVM>, DeleteFlightVMValidator>();
         _ = services.AddScoped<IValidator<RestoreFlightVM>, RestoreFlightVMValidator>();
 
+        // Aircraft
+        _ = services.AddScoped<IValidator<CreateAircraftVM>, CreateAircraftVMValidator>();
+        _ = services.AddScoped<IValidator<EditAircraftVM>, EditAircraftVMValidator>();
+        _ = services.AddScoped<IValidator<DeleteAircraftVM>, DeleteAircraftVMValidator>();
+        _ = services.AddScoped<IValidator<RestoreAircraftVM>, RestoreAircraftVMValidator>();
+
         return services;
     }
 }
