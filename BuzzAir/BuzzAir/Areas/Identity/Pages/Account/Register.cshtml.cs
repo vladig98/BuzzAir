@@ -10,7 +10,6 @@ public sealed class RegisterModel(
     ILogger<RegisterModel> logger,
     IEmailSender emailSender,
     RoleManager<IdentityRole> roleManager,
-    BuzzAirDbContext context,
     ICountryService countryService,
     ICityService cityService) : PageModel
 {
@@ -43,63 +42,76 @@ public sealed class RegisterModel(
 
     public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
     {
-        returnUrl ??= Url.Content("~/Identity/Account/Confirm");
-        if (ModelState.IsValid)
+        returnUrl ??= Url.Content("~/");
+        ExternalLogins = [.. await signInManager.GetExternalAuthenticationSchemesAsync()];
+
+        if (!ModelState.IsValid)
         {
-            IdentityRole role = new()
-            {
-                Name = !context.AppUsers.Any() ? "Admin" : "User"
-            };
+            return Page();
+        }
 
-            bool x = await roleManager.RoleExistsAsync(role.Name);
-            if (!x)
-            {
-                _ = await roleManager.CreateAsync(role);
-            }
+        const string roleName = "User";
 
-            City city = await cityService.GetCityModelByIdAsync(Input.CityId);
+        IdentityRole role = new(roleName);
+        role.Name ??= roleName;
 
-            ApplicationUser user = new()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Email = Input.Email,
-                PhoneNumber = Input.PhoneNumber,
-                UserName = Input.Username,
-                FirstName = Input.FullName,
-                LastName = Input.FullName,
-                Gender = Input.Gender,
-                PostalCode = Input.Postal,
-                Street = Input.Street,
-                City = city,
-                CityId = city.Id,
-            };
+        if (!await roleManager.RoleExistsAsync(role.Name))
+        {
+            _ = await roleManager.CreateAsync(role);
+        }
 
-            IdentityResult result = await userManager.CreateAsync(user, Input.Password);
+        City city = await cityService.GetCityModelByIdAsync(Input.CityId);
+
+        ApplicationUser user = new()
+        {
+            Id = Guid.NewGuid().ToString(),
+            Email = Input.Email,
+            PhoneNumber = Input.PhoneNumber,
+            UserName = Input.Username,
+            FirstName = Input.FullName,
+            LastName = Input.FullName,
+            Gender = Input.Gender,
+            PostalCode = Input.Postal,
+            Street = Input.Street,
+            City = city,
+            CityId = city.Id,
+        };
+
+        IdentityResult result = await userManager.CreateAsync(user, Input.Password);
+
+        if (result.Succeeded)
+        {
             _ = await userManager.AddToRoleAsync(user, role.Name);
             _ = await userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), role.Name));
-            if (result.Succeeded)
+
+            logger.LogInformation("User created a new account with password.");
+
+            string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+            string? callbackUrl = Url.Page(
+                "/Account/ConfirmEmail",
+                pageHandler: null,
+                values: new { userId = user.Id, code },
+                protocol: Request.Scheme);
+
+            await emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl ?? string.Empty)}'>clicking here</a>.");
+
+            if (userManager.Options.SignIn.RequireConfirmedAccount)
             {
-                logger.LogInformation("User created a new account with password.");
-                //this.context.UserRoles.Add(new IdentityUserRole<string> { RoleId = role.Id, UserId = user.Id });
-                //this.context.SaveChanges();
-
-                string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                string? callbackUrl = Url.Page(
-                    "/Account/ConfirmEmail",
-                    pageHandler: null,
-                    values: new { userId = user.Id, code },
-                    protocol: Request.Scheme);
-
-                await emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl ?? string.Empty)}'>clicking here</a>.");
-
-                //await _signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
+            }
+            else
+            {
+                await signInManager.SignInAsync(user, isPersistent: false);
                 return LocalRedirect(returnUrl);
             }
-            foreach (IdentityError error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
+        }
+
+        foreach (IdentityError error in result.Errors)
+        {
+            ModelState.AddModelError(string.Empty, error.Description);
         }
 
         // If we got this far, something failed, redisplay form
