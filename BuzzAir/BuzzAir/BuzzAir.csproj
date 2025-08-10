@@ -28,11 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Attributes\" />
-    <Folder Include="Areas\Admin\Repositories\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BuzzAir.Data\BuzzAir.Data.csproj" />
   </ItemGroup>
 
