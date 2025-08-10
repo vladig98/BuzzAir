@@ -1,0 +1,114 @@
+﻿@model EditAirportVM
+
+@{
+    ViewData["Title"] = "Edit Airport";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Edit Airport</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Airport" asp-action="Edit" method="post" novalidate>
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Name" class="form-control" placeholder="Airport name" />
+                                    <label asp-for="Name">Airport Name</label>
+                                    <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="ICAO" class="form-control text-uppercase" placeholder="ICAO" maxlength="4" />
+                                    <label asp-for="ICAO">ICAO</label>
+                                    <span asp-validation-for="ICAO" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="IATA" class="form-control text-uppercase" placeholder="IATA" maxlength="3" />
+                                    <label asp-for="IATA">IATA</label>
+                                    <span asp-validation-for="IATA" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Latitude"
+                                           class="form-control"
+                                           placeholder="Latitude"
+                                           type="number"
+                                           step="0.000001"
+                                           min="-90"
+                                           max="90" />
+                                    <label asp-for="Latitude">Latitude (°)</label>
+                                    <span asp-validation-for="Latitude" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Longitude"
+                                           class="form-control"
+                                           placeholder="Longitude"
+                                           type="number"
+                                           step="0.000001"
+                                           min="-180"
+                                           max="180" />
+                                    <label asp-for="Longitude">Longitude (°)</label>
+                                    <span asp-validation-for="Longitude" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="ElevationAboveSeaLevel"
+                                           class="form-control"
+                                           placeholder="Elevation"
+                                           type="number"
+                                           step="1"
+                                           min="-500"
+                                           max="10000" />
+                                    <label asp-for="ElevationAboveSeaLevel">Elevation (m)</label>
+                                    <span asp-validation-for="ElevationAboveSeaLevel" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="CityId" asp-items="Model.CityOptions" class="form-select">
+                                        <option value="">Select a city</option>
+                                    </select>
+                                    <label asp-for="CityId">City</label>
+                                    <span asp-validation-for="CityId" class="invalid-feedback d-block"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                            <a asp-area="Admin"
+                               asp-controller="Airport"
+                               asp-action="Index"
+                               asp-route-pageNumber="1"
+                               class="btn btn-secondary ms-2">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model DeleteAirportVM
+
+@{
+    ViewData["Title"] = "Delete Airport";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Delete Airport</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-area="Admin" asp-controller="Airport" asp-action="Delete" method="post" class="row g-3">
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ICAO" />
+                        <input type="hidden" asp-for="IATA" />
+                        <input type="hidden" asp-for="Name" />
+                        <input type="hidden" asp-for="Latitude" />
+                        <input type="hidden" asp-for="Longitude" />
+                        <input type="hidden" asp-for="ElevationAboveSeaLevel" />
+                        <input type="hidden" asp-for="CityName" />
+
+                        <div class="col-12 form-floating">
+                            <input asp-for="Name" class="form-control disabled" disabled readonly />
+                            <label asp-for="Name">Airport</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="ICAO" class="form-control disabled" disabled readonly />
+                            <label asp-for="ICAO">ICAO</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="IATA" class="form-control disabled" disabled readonly />
+                            <label asp-for="IATA">IATA</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="CityName" class="form-control disabled" disabled readonly />
+                            <label asp-for="CityName">City</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="ElevationAboveSeaLevel" class="form-control disabled" disabled readonly />
+                            <label asp-for="ElevationAboveSeaLevel">Elevation (m)</label>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="submit" name="hard" value="false" class="btn btn-warning">
+                                Delete
+                            </button>
+                            <button type="submit" name="hard" value="true" class="btn btn-danger ms-2">
+                                Delete Forever
+                            </button>
+                            <a class="btn btn-secondary ms-2" asp-area="Admin" asp-controller="Airport" asp-action="Index" asp-route-pageNumber="1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

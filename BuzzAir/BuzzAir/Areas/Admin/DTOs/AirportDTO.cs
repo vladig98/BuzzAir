@@ -9,5 +9,5 @@ public sealed record class AirportDTO(
     string CityId,
     decimal? Latitude,
     decimal? Longitude,
-    decimal? ElevationAboveSeaLevel
+    int? ElevationAboveSeaLevel
 );

@@ -1,0 +1,37 @@
+﻿@model PaginatedList<AirportDTO>
+
+@{
+    ViewData["Title"] = "Deleted Airports";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4">Deleted Airports</h1>
+
+    <div class="row g-4 mb-5">
+        @foreach (AirportDTO a in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="card h-100 bg-light shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@a.Name (@a.ICAO)</h5>
+                        <p class="card-text mb-1"><strong>IATA:</strong> @a.IATA</p>
+                        <p class="card-text mb-1"><strong>City:</strong> @a.City</p>
+                        <p class="card-text mb-1">
+                            <strong>Coords:</strong>
+                            @(a.Latitude.HasValue && a.Longitude.HasValue ? $"{a.Latitude.Value:#.######}, {a.Longitude.Value:#.######}" : "N/A")
+                        </p>
+                        <p class="card-text mb-2"><strong>Elevation:</strong> @(a.ElevationAboveSeaLevel?.ToString() ?? "N/A") m</p>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-area="Admin" asp-controller="Airport" asp-action="Restore" asp-route-id="@a.Id" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-arrow-counterclockwise"></i> Restore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @await Html.PartialAsync("_Pagination", (Model.PageIndex, Model.TotalPages, "Admin", "Airport", "Deleted"))
+</div>

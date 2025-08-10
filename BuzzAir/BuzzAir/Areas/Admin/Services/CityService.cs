@@ -31,7 +31,12 @@ public sealed class CityService(
         return dbContext.Cities.Where(c => c.Id == id && !c.IsDeleted).ExecuteUpdateAsync(c => c.SetProperty(p => p.IsDeleted, p => true), token);
     }
 
-    public async Task<List<CityDTO>> GetAllCitiiesAsync(int pageNumber, int itemsPerPage, CancellationToken token = default)
+    public Task<bool> ExistsByIdAsync(string id, CancellationToken token = default)
+    {
+        return dbContext.Cities.AnyAsync(c => c.Id == id && !c.IsDeleted, token);
+    }
+
+    public async Task<List<CityDTO>> GetAllCitiiesAsync(int? pageNumber, int? itemsPerPage, CancellationToken token = default)
     {
         int count = await dbContext.Cities.CountAsync(c => !c.IsDeleted, token);
 
@@ -40,26 +45,28 @@ public sealed class CityService(
             return [];
         }
 
-        pageNumber = Math.Clamp(pageNumber, 1, count);
-        itemsPerPage = Math.Clamp(itemsPerPage, 10, 100);
-
-        List<City> cities = await dbContext.Cities
+        IQueryable<City> citiesQuery = dbContext.Cities
             .Include(c => c.Country)
             .Include(c => c.State)
             .Include(c => c.Timezone)
-            .Where(x => !x.IsDeleted)
-            .OrderBy(c => c.Name)
-            .Skip((pageNumber - 1) * itemsPerPage)
-            .Take(itemsPerPage)
-            .AsNoTracking()
-            .ToListAsync(token);
+            .Where(c => !c.IsDeleted)
+            .OrderBy(c => c.Name);
 
+        if (pageNumber is not null && itemsPerPage is not null)
+        {
+            pageNumber = Math.Clamp(pageNumber.Value, 1, count);
+            itemsPerPage = Math.Clamp(itemsPerPage.Value, 10, 100);
+
+            citiesQuery = citiesQuery.Skip((pageNumber.Value - 1) * itemsPerPage.Value).Take(itemsPerPage.Value);
+        }
+
+        List<City> cities = await citiesQuery.AsNoTracking().ToListAsync(token);
         List<CityDTO> dtos = [.. cities.Select(c => new CityDTO(c.Id, c.Name, c.Country.Name, c.State?.Name, c.Timezone.Name))];
 
         return dtos;
     }
 
-    public async Task<List<CityDTO>> GetAllDeletedCitiiesAsync(int pageNumber, int itemsPerPage, CancellationToken token = default)
+    public async Task<List<CityDTO>> GetAllDeletedCitiiesAsync(int? pageNumber, int? itemsPerPage, CancellationToken token = default)
     {
         int count = await dbContext.Cities.CountAsync(c => c.IsDeleted, token);
 
@@ -68,20 +75,22 @@ public sealed class CityService(
             return [];
         }
 
-        pageNumber = Math.Clamp(pageNumber, 1, count);
-        itemsPerPage = Math.Clamp(itemsPerPage, 10, 100);
-
-        List<City> cities = await dbContext.Cities
+        IQueryable<City> citiesQuery = dbContext.Cities
             .Include(c => c.Country)
             .Include(c => c.State)
             .Include(c => c.Timezone)
-            .Where(x => x.IsDeleted)
-            .OrderBy(c => c.Name)
-            .Skip((pageNumber - 1) * itemsPerPage)
-            .Take(itemsPerPage)
-            .AsNoTracking()
-            .ToListAsync(token);
+            .Where(c => c.IsDeleted)
+            .OrderBy(c => c.Name);
 
+        if (pageNumber is not null && itemsPerPage is not null)
+        {
+            pageNumber = Math.Clamp(pageNumber.Value, 1, count);
+            itemsPerPage = Math.Clamp(itemsPerPage.Value, 10, 100);
+
+            citiesQuery = citiesQuery.Skip((pageNumber.Value - 1) * itemsPerPage.Value).Take(itemsPerPage.Value);
+        }
+
+        List<City> cities = await citiesQuery.AsNoTracking().ToListAsync(token);
         List<CityDTO> dtos = [.. cities.Select(c => new CityDTO(c.Id, c.Name, c.Country.Name, c.State?.Name, c.Timezone.Name))];
 
         return dtos;
