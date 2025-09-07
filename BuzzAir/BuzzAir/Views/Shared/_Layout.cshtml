@@ -33,28 +33,19 @@
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link active">Home</a>
                         </li>
-                        @if (!User.IsInRole(GlobalConstants.AdminRole))
-                        {
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Home" asp-action="About" class="nav-link">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="nav-link">Privacy</a>
-                            </li>
-                        }
-                        else
+                        @if (User.IsInRole(GlobalConstants.AdminRole))
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Flight</a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a asp-area="" asp-controller="Flight" asp-action="CreateFlight" class="dropdown-item">Create Flight</a>
+                                        <a asp-area="Admin" asp-controller="Flight" asp-action="Create" class="dropdown-item">Create Flight</a>
                                     </li>
                                     <li>
-                                        <a asp-area="" asp-controller="Flight" asp-action="All" class="dropdown-item">All Flights</a>
+                                        <a asp-area="Admin" asp-controller="Flight" asp-action="Index" class="dropdown-item">All Flights</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Flight" asp-action="Deleted" class="dropdown-item">All Deleted Flights</a>
                                     </li>
                                 </ul>
                             </li>
@@ -65,10 +56,10 @@
                                         <a asp-area="Admin" asp-controller="Aircraft" asp-action="Create" class="dropdown-item">Create Aircraft</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="Aircraft" asp-action="All" class="dropdown-item">All Aircraft</a>
+                                        <a asp-area="Admin" asp-controller="Aircraft" asp-action="Index" class="dropdown-item">All Aircraft</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="Aircraft" asp-action="AllDeleted" class="dropdown-item">All Deleted Aircraft</a>
+                                        <a asp-area="Admin" asp-controller="Aircraft" asp-action="Deleted" class="dropdown-item">All Deleted Aircraft</a>
                                     </li>
                                 </ul>
                             </li>
@@ -79,10 +70,10 @@
                                         <a asp-area="Admin" asp-controller="Airport" asp-action="Create" class="dropdown-item">Create Airport</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="Airport" asp-action="All" class="dropdown-item">All Airports</a>
+                                        <a asp-area="Admin" asp-controller="Airport" asp-action="Index" class="dropdown-item">All Airports</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="Airport" asp-action="AllDeleted" class="dropdown-item">All Deleted Airports</a>
+                                        <a asp-area="Admin" asp-controller="Airport" asp-action="Deleted" class="dropdown-item">All Deleted Airports</a>
                                     </li>
                                 </ul>
                             </li>
@@ -93,10 +84,10 @@
                                         <a asp-area="Admin" asp-controller="City" asp-action="Create" class="dropdown-item">Create City</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="City" asp-action="All" class="dropdown-item">All Cities</a>
+                                        <a asp-area="Admin" asp-controller="City" asp-action="Index" class="dropdown-item">All Cities</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="City" asp-action="AllDeleted" class="dropdown-item">All Deleted Cities</a>
+                                        <a asp-area="Admin" asp-controller="City" asp-action="Deleted" class="dropdown-item">All Deleted Cities</a>
                                     </li>
                                 </ul>
                             </li>
@@ -107,10 +98,10 @@
                                         <a asp-area="Admin" asp-controller="State" asp-action="Create" class="dropdown-item">Create State</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="State" asp-action="All" class="dropdown-item">All States</a>
+                                        <a asp-area="Admin" asp-controller="State" asp-action="Index" class="dropdown-item">All States</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="State" asp-action="AllDeleted" class="dropdown-item">All Deleted States</a>
+                                        <a asp-area="Admin" asp-controller="State" asp-action="Deleted" class="dropdown-item">All Deleted States</a>
                                     </li>
                                 </ul>
                             </li>
@@ -121,20 +112,30 @@
                                         <a asp-area="Admin" asp-controller="Country" asp-action="Create" class="dropdown-item">Create Country</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="Country" asp-action="All" class="dropdown-item">All Countries</a>
+                                        <a asp-area="Admin" asp-controller="Country" asp-action="Index" class="dropdown-item">All Countries</a>
                                     </li>
                                     <li>
-                                        <a asp-area="Admin" asp-controller="Country" asp-action="AllDeleted" class="dropdown-item">All Deleted Countries</a>
+                                        <a asp-area="Admin" asp-controller="Country" asp-action="Deleted" class="dropdown-item">All Deleted Countries</a>
                                     </li>
                                 </ul>
                             </li>
-                        }
+                        }}
+
                         @if (User?.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
                                 <a asp-area="" asp-controller="Booking" asp-action="All" class="nav-link">All Bookings</a>
                             </li>
                         }
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="About" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="nav-link">Privacy</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
