@@ -31,4 +31,9 @@
     <ProjectReference Include="..\BuzzAir.Data\BuzzAir.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\backgrounds\" />
+    <Folder Include="wwwroot\images\logos\" />
+  </ItemGroup>
+
 </Project>
