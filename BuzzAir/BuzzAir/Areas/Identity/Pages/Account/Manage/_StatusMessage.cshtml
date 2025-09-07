@@ -1,14 +1,11 @@
 ﻿@model string
 
-@{
-    // Only render if there’s a non‐empty status message
-    if (!string.IsNullOrWhiteSpace(Model))
-    {
-        // Determine alert type: “danger” if message starts with “Error” (case‐insensitive), otherwise “success”
-        string alertType = Model.StartsWith("Error", StringComparison.OrdinalIgnoreCase) ? "danger" : "success";
-        <div class="alert alert-@alertType alert-dismissible fade show" role="alert">
-            @Model
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
+@if (!string.IsNullOrWhiteSpace(Model))
+{
+    string alertType = Model.StartsWith("Error", StringComparison.OrdinalIgnoreCase) ? "danger" : "success";
+    <div class="alert alert-@alertType d-flex align-items-center shadow-sm rounded-3 p-3 fade show" role="alert">
+        <i class="fas @(alertType == "danger" ? "fa-exclamation-circle" : "fa-check-circle") fa-lg me-2"></i>
+        <div>@Model</div>
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }

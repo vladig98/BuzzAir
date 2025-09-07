@@ -1,26 +1,29 @@
 ﻿@page
 @model PersonalDataModel
-
 @{
     ViewData["Title"] = "Personal Data";
-    ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
 <div class="container py-5">
-    <h3 class="mb-4">@ViewData["Title"]</h3>
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">@ViewData["Title"]</h2>
+        <p class="text-muted">Download or permanently delete your personal data</p>
+    </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <p>Your account contains personal data that you have provided to us. This page allows you to download or permanently delete that data.</p>
-                    <p><strong>Deleting this data will permanently remove your account and cannot be undone.</strong></p>
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body p-4">
+                    <p>Your account contains personal data that you have provided. You can <strong>download</strong> or <strong>permanently delete</strong> it.</p>
+                    <p class="text-danger small">⚠️ Deleting your data will also delete your account and cannot be undone.</p>
 
-                    <div class="d-flex gap-2 justify-content-between">
-                        <form id="download-data" asp-page="DownloadPersonalData" method="post">
-                            <button class="btn btn-primary">Download Data</button>
-                        </form>
-                        <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete Account & Data</a>
+                    <div class="d-flex gap-2 mt-3">
+                        <a asp-page="DownloadPersonalData" class="btn btn-outline-primary">
+                            <i class="fa-solid fa-download me-2"></i> Download Data
+                        </a>
+                        <a asp-page="DeletePersonalData" class="btn btn-danger">
+                            <i class="fa-solid fa-trash me-2"></i> Delete Account
+                        </a>
                     </div>
                 </div>
             </div>

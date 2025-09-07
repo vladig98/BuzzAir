@@ -8,7 +8,7 @@ public sealed class DownloadPersonalDataModel(
 {
     public IActionResult OnGet()
     {
-        return NotFound();
+        return Page();
     }
 
     public async Task<IActionResult> OnPostAsync()
