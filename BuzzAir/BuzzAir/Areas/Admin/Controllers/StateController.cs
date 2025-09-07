@@ -1,5 +1,6 @@
 ﻿namespace BuzzAir.Areas.Admin.Controllers;
 
+[Authorize(Roles = GlobalConstants.AdminRole)]
 [Area(GlobalConstants.AdminRole)]
 public class StateController(
     IStateService stateService,
