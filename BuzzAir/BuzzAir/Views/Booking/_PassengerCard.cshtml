@@ -1,0 +1,48 @@
+﻿@* Rendered as a template (no model). JS will clone this node and fill values. *@
+
+<div class="passenger-card">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="fw-bold passenger-title">Passenger</div>
+        <button type="button" class="btn btn-sm btn-outline-secondary toggle-doc">Toggle ID</button>
+    </div>
+
+    <div class="row g-2 mb-2">
+        <div class="col-md-6 form-floating">
+            <input class="form-control" data-field="firstName" placeholder="First name" />
+            <label>First name</label>
+        </div>
+        <div class="col-md-6 form-floating">
+            <input class="form-control" data-field="lastName" placeholder="Last name" />
+            <label>Last name</label>
+        </div>
+    </div>
+
+    <div class="row g-2 mb-3">
+        <div class="col-md-4 form-floating">
+            <input type="date" class="form-control" data-field="dob" />
+            <label>Date of birth</label>
+        </div>
+        <div class="col-md-4 form-floating">
+            <select class="form-select" data-field="gender">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label>Gender</label>
+        </div>
+    </div>
+
+    <div class="travel-doc-section hidden mb-2">
+        <div class="row g-2">
+            <div class="col-md-6 form-floating">
+                <input class="form-control" data-field="docNumber" placeholder="Document number" />
+                <label>Document number</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="date" class="form-control" data-field="docExpiry" />
+                <label>Expiry</label>
+            </div>
+        </div>
+    </div>
+</div>

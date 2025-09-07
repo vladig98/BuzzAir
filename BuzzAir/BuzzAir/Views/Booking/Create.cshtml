@@ -1,0 +1,212 @@
+﻿@model CreateBookingDto
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create Booking";
+}
+
+<div class="container my-4">
+    <div class="booking-page">
+        <!-- Sidebar summary -->
+        <aside class="booking-sidebar">
+            <div class="summary-card">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="step-badge">✓</span>
+                    <div>
+                        <div class="fw-bold">Booking Progress</div>
+                        <div class="small-muted">Review selections while you edit</div>
+                    </div>
+                </div>
+
+                <div class="mb-3 left-mini">
+                    <strong>Outbound:</strong> <div id="summaryOutbound" class="ms-1 small-muted">—</div>
+                    <strong class="mt-2 d-block">Inbound:</strong> <div id="summaryInbound" class="ms-1 small-muted">—</div>
+                    <strong class="mt-2 d-block">Passengers:</strong> <div id="summaryPax" class="ms-1 small-muted">0</div>
+                </div>
+
+                <hr />
+
+                <div class="left-mini">
+                    <strong>Services</strong>
+                    <ul id="summaryServiceList" class="ps-3 small-muted mt-2 mb-2"></ul>
+                </div>
+
+                <hr />
+
+                <div class="left-mini">
+                    <strong>Total</strong>
+                    <div id="summaryTotal" class="fw-bold fs-5 mt-1">€0.00</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-grow-1">
+            <!-- STEP 1: Flight selection -->
+            <section id="stepFlights" class="section-card mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="mb-0">1. Select Flights</h4>
+                        <div class="small-muted">Choose outbound and inbound (if return)</div>
+                    </div>
+                    <div class="small-muted">Step 1 of 3</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Outbound flights</label>
+                    <div id="outboundGrid" class="flight-grid">
+                        @foreach (var f in Model.OutboundFlights)
+                        {
+                            <partial name="_FlightCard" model="f" />
+                        }
+                    </div>
+                </div>
+
+                <div id="inboundSection" class="mb-3 @(Model.InboundFlights == null || !Model.InboundFlights.Any() ? "hidden" : "")">
+                    <label class="form-label">Inbound flights</label>
+                    <div id="inboundGrid" class="flight-grid">
+                        @foreach (var f in Model.InboundFlights ?? [])
+                        {
+                            <partial name="_FlightCard" model="f" />
+                        }
+                    </div>
+                </div>
+
+                <div class="step-controls">
+                    <div></div>
+                    <div>
+                        <button id="flightsNextBtn" class="btn btn-primary btn-lg">Next</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 2: Passengers -->
+            <section id="stepPassengers" class="section-card mb-4 hidden">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="mb-0">2. Passenger Details</h4>
+                        <div class="small-muted">Add name, DOB and (optionally) travel document</div>
+                    </div>
+                    <div class="small-muted">Step 2 of 3</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Passengers</label>
+                    <select id="passengersCount" class="form-select w-auto">
+                        @for (int i = 1; i <= 6; i++)
+                        {
+                            @if (i == Model.PassengersCount)
+                            {
+                                <option value="@i" selected>@i passenger@(i>1?"s":"")</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i passenger@(i>1?"s":"")</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div id="passengersContainer">
+                    @* JS will fill passenger cards by cloning partial below *@
+                </div>
+
+                <div class="step-controls">
+                    <button id="passengersBackBtn" class="btn btn-outline-secondary">Back</button>
+                    <button id="passengersNextBtn" class="btn btn-primary btn-lg">Next</button>
+                </div>
+            </section>
+
+            <!-- STEP 3: Services -->
+            <section id="stepServices" class="section-card mb-4 hidden">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="mb-0">3. Add Services</h4>
+                        <div class="small-muted">Choose extras per passenger</div>
+                    </div>
+                    <div class="small-muted">Step 3 of 3</div>
+                </div>
+
+                <div id="servicesContainer" class="mb-3">
+                    @* JS will populate by cloning service partials *@
+                </div>
+
+                <div class="step-controls">
+                    <button id="servicesBackBtn" class="btn btn-outline-secondary">Back</button>
+                    <button id="servicesNextBtn" class="btn btn-primary btn-lg">Proceed to Payment</button>
+                </div>
+            </section>
+
+            <!-- PAYMENT -->
+            <section id="stepPayment" class="section-card mb-4 hidden">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="mb-0">Payment</h4>
+                        <div class="small-muted">Secure payment (we recommend tokenized provider)</div>
+                    </div>
+                    <div class="small-muted">Confirm & Pay</div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input id="cardHolder" class="form-control" placeholder="Cardholder name" />
+                            <label for="cardHolder">Cardholder</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input id="cardNumber" class="form-control" placeholder="Card number" />
+                            <label for="cardNumber">Card number</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-floating mb-2">
+                            <input id="cardExpiry" class="form-control" placeholder="MM/YY" />
+                            <label for="cardExpiry">Expiry</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-floating mb-2">
+                            <input id="cardCvc" class="form-control" placeholder="CVC" />
+                            <label for="cardCvc">CVC</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end d-flex align-items-end justify-content-end">
+                        <div>
+                            <div class="small-muted">Total</div>
+                            <div id="paymentTotal" class="fw-bold fs-5">€0.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-controls mt-3">
+                    <button id="paymentBackBtn" class="btn btn-outline-secondary">Back</button>
+                    <button id="payBtn" class="btn btn-success btn-lg">Pay Now</button>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Hidden partials/templates: clone these in JS (partials avoid heavy HTML in JS) -->
+<div id="templates" class="d-none">
+    <div id="templatePassenger">
+        <partial name="_PassengerCard" />
+    </div>
+
+    <div id="templateService">
+        @foreach (var svc in Model.Services ?? Enumerable.Empty<ServiceDto>())
+        {
+            <partial name="_ServicePill" model="svc" />
+        }
+    </div>
+</div>
+
+@* Anti-forgery token: we will read this value in JS to include in the final POST *@
+<form id="antiForgeryForm" class="d-none">
+    @Html.AntiForgeryToken()
+</form>
+
+@section Scripts {
+    <script src="~/js/createBooking.fromViewModel.js"></script>
+}

@@ -1,0 +1,30 @@
+﻿@model FlightDTO
+@{
+    // FlightDto fields assumed: Id, FlightNumber, OriginName, DestinationName, DepartureUtc, ArrivalUtc, PriceInEur, Summary
+    var id = Model?.Id ?? "";
+    var flightNumber = Model?.FlightNumber ?? "";
+    var origin = Model?.Origin ?? "";
+    var dest = Model?.Destionation ?? "";
+    var dep = Model?.DepartureUTC.ToString("o") ?? "";
+    var arr = Model?.ArrivalUTC.ToString("o") ?? "";
+    var price = Model?.PriceInEur ?? 0m;
+}
+<article class="flight-card"
+         data-id="@id"
+         data-flight-number="@flightNumber"
+         data-origin-name="@origin"
+         data-destination-name="@dest"
+         data-departure="@dep"
+         data-arrival="@arr"
+         data-price="@price">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+            <div class="fw-bold">@flightNumber</div>
+            <div class="small-muted">@origin → @dest</div>
+        </div>
+        <div class="text-end">
+            <div class="fw-bold">€@price</div>
+            <div class="small-muted">@Model?.DepartureUTC.ToLocalTime().ToString("HH:mm") → @Model?.ArrivalUTC.ToLocalTime().ToString("HH:mm")</div>
+        </div>
+    </div>
+</article>

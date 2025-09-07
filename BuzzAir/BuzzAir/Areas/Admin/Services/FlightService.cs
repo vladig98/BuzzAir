@@ -182,6 +182,37 @@ public class FlightService(
         return dto;
     }
 
+    public async Task<IList<FlightDTO>> GetFlightsByAirportsAndDatesAsync(string originId, string destinationId, DateTime departureDate, CancellationToken token = default)
+    {
+        DateTime departureStart = new(departureDate.Year, departureDate.Month, departureDate.Day);
+        DateTime departureEnd = departureStart.AddDays(1);
+
+        departureStart = DateTime.SpecifyKind(departureStart, DateTimeKind.Utc);
+        departureEnd = DateTime.SpecifyKind(departureEnd, DateTimeKind.Utc);
+
+        List<FlightDTO> flightModels = await dbContext.Flights.Where(x =>
+            x.OriginId == originId
+            && x.DestinationId == destinationId
+            && x.DepartureUTC >= departureStart
+            && x.DepartureUTC < departureEnd)
+        .Select(c => new FlightDTO(
+            c.Id,
+            c.FlightNumber,
+            c.Origin.Name,
+            c.OriginId,
+            c.Destination.Name,
+            c.DestinationId,
+            c.Aircraft.Name,
+            c.AircraftId,
+            c.DepartureUTC,
+            c.ArrivalUTC,
+            c.PriceInEur,
+            c.TakenSeats)
+        ).ToListAsync(token);
+
+        return [.. flightModels];
+    }
+
     public Task<Dictionary<string, DateTime>> GetFlightsDatesBasedOnOriginAndDestination(string originId, string destinationId, CancellationToken token = default)
     {
         return dbContext.Flights.Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted && x.OriginId == originId && x.DestinationId == destinationId)

@@ -42,7 +42,7 @@
                 <h2 class="mt-2 fw-bold">Find Your Flight</h2>
             </div>
 
-            <form asp-controller="Booking" asp-action="CreateGet" method="post" id="bookingForm" class="row g-3">
+            <form asp-controller="Booking" asp-action="Create" method="get" id="bookingForm" class="row g-3">
 
                 <!-- Trip Type -->
                 <div class="col-12 d-flex justify-content-center gap-4 mb-2">
@@ -59,13 +59,13 @@
                 <!-- From / To -->
                 <div class="col-md-6">
                     <label for="fromSelect" class="form-label">From</label>
-                    <select id="fromSelect" name="from" class="form-select" required>
+                    <select id="fromSelect" name="originId" class="form-select" required>
                         <option value="">Select departure...</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="toSelect" class="form-label">To</label>
-                    <select id="toSelect" name="to" class="form-select" required disabled>
+                    <select id="toSelect" name="destinationId" class="form-select" required disabled>
                         <option value="">Select destination...</option>
                     </select>
                 </div>

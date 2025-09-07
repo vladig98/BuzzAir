@@ -1,0 +1,10 @@
+﻿@model ServiceDto
+@{
+    var id = Model?.Id ?? Guid.NewGuid().ToString();
+    var name = Model?.Name ?? "";
+    var price = Model?.Price ?? 0m;
+}
+<div class="service-pill" data-service-id="@id" role="button" tabindex="0">
+    <span class="me-2">@name</span>
+    <small class="small-muted">(@price.ToString("C"))</small>
+</div>
