@@ -182,6 +182,38 @@ public class FlightService(
         return dto;
     }
 
+    public Task<Dictionary<string, DateTime>> GetFlightsDatesBasedOnOriginAndDestination(string originId, string destinationId, CancellationToken token = default)
+    {
+        return dbContext.Flights.Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted && x.OriginId == originId && x.DestinationId == destinationId)
+                                .ToDictionaryAsync(x => x.Id, x => x.DepartureUTC, token);
+    }
+
+    public Task<Dictionary<string, string>> GetFutureFlightsDestinationsBasedOnOriginAsync(string originId, CancellationToken token = default)
+    {
+        return dbContext.Flights.Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted && x.OriginId == originId)
+                                .Include(x => x.Destination)
+                                .Select(x => new { x.DestinationId, x.Destination.Name })
+                                .OrderBy(x => x.Name)
+                                .GroupBy(x => x.DestinationId)
+                                .ToDictionaryAsync(x => x.Key, x => x.First().Name, token);
+    }
+
+    public Task<Dictionary<string, string>> GetFutureFlightsOriginsAsync(CancellationToken token = default)
+    {
+        return dbContext.Flights.Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted)
+                                .Include(x => x.Origin)
+                                .Select(x => new { x.OriginId, x.Origin.Name })
+                                .OrderBy(x => x.Name)
+                                .GroupBy(x => x.OriginId)
+                                .ToDictionaryAsync(x => x.Key, x => x.First().Name, token);
+    }
+
+    public Task<Dictionary<string, DateTime>> GetReturnFlightsDatesBasedOnOriginAndDestination(string originId, string destinationId, DateTime earliest, CancellationToken token = default)
+    {
+        return dbContext.Flights.Where(x => x.DepartureUTC > earliest && !x.IsDeleted && x.OriginId == originId && x.DestinationId == destinationId)
+                                .ToDictionaryAsync(x => x.Id, x => x.DepartureUTC, token);
+    }
+
     public Task HardDeleteAsync(string id, CancellationToken token = default)
     {
         return dbContext.Flights.Where(c => c.Id == id && !c.IsDeleted).ExecuteDeleteAsync(token);

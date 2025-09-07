@@ -23,6 +23,10 @@
       "destination": "wwwroot/lib/qrcodejs"
     },
     {
+      "library": "flatpickr@latest",
+      "destination": "wwwroot/lib/flatpickr"
+    },
+    {
       // Comment this out
       // Use unpkg to get the rest
       // Uncomment this and use jsdelivr to get SignalR

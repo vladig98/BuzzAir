@@ -55,6 +55,7 @@ internal static class WebApplicationExtensions
     public static WebApplication MapSignalRHubs(this WebApplication app)
     {
         _ = app.MapHub<LocationHub>("/locationHub");
+        _ = app.MapHub<FlightHub>("/flightHub");
 
         return app;
     }
