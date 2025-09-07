@@ -1,11 +1,12 @@
 ﻿namespace BuzzAir.Controllers;
 
-public sealed class HomeController() : Controller
+public sealed class HomeController(IFlightService flightService) : Controller
 {
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index(CancellationToken token)
     {
-        return View();
+        List<FlightDTO> flights = await flightService.GetAllFlightsAsync(1, 100, token);
+        return View(flights);
     }
 
     [HttpGet]
@@ -27,7 +28,6 @@ public sealed class HomeController() : Controller
     }
 
     [HttpGet]
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View();

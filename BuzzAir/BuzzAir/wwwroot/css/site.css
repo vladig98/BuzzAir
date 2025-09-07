@@ -12,6 +12,20 @@ html, body {
     padding: 0;
 }
 
+/* Flight search card styling */
+.search-container {
+    z-index: 20;
+}
+
+.card {
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
 body {
     min-height: 100vh;
     font-family: system-ui, sans-serif;

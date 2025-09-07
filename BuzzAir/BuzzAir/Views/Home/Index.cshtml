@@ -13,97 +13,77 @@
     };
 }
 
-<div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" aria-label="Homepage slideshow">
-    <div class="carousel-indicators">
-        @{
-            int slidesLength = slides.Length;
-        }
-
-        @for (int i = 0; i < slidesLength; i++)
-        {
-            <button 
-                type="button" 
-                data-bs-target="#carousel" 
-                data-bs-slide-to="@i" 
-                class="@(i == 0 ? "active" : null)" 
-                aria-current="@(i == 0 ? "true" : null)" 
-                aria-label="Slide @(i + 1)">
-            </button>
-        }
-    </div>
-    <div class="carousel-inner">
-        @for (int i = 0; i < slidesLength; i++)
+<!-- Hero Carousel -->
+<div id="carousel" class="carousel slide carousel-fade vh-100" data-bs-ride="carousel" aria-label="Homepage slideshow">
+    <div class="carousel-inner h-100">
+        @for (int i = 0; i < slides.Length; i++)
         {
             var slide = slides[i];
-            <div class="carousel-item @(i == 0 ? "active" : null)">
-                <img src="@slide.Src" 
-                     class="d-block w-100" 
-                     alt="@slide.Alt" />
+            <div class="carousel-item h-100 @(i == 0 ? "active" : null)">
+                <img src="@slide.Src" class="d-block w-100 h-100 object-fit-cover" alt="@slide.Alt" />
             </div>
         }
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
 
-<div id="searchBar" class="position-absolute top-50 start-50 translate-middle p-4 bg-white rounded shadow">
-    <div class="mb-3 text-center">
-        <i class="fa-solid fa-plane fa-2x"></i>
-        <h2 class="mt-2">Flights</h2>
-    </div>
-    <form 
-        asp-controller="Booking"
-        asp-action="CreateGet"
-        method="post" 
-        name="searchFlightsForm" 
-        id="bookingForm"
-        class="row g-3">
-        
-        <div class="col-12 d-flex gap-3 justify-content-center">
-            @foreach ((string, string) option in new[] { ("Return", "Return"), ("OneWay", "One Way") })
-            {
-                <div class="form-check">
-                    <label 
-                        class="form-check-label" 
-                        for="isReturning_@option.Item1">
-                        @option.Item2
-                    </label>
+<!-- Flight Search Card -->
+<div class="search-container position-absolute top-50 start-50 translate-middle w-100 px-3">
+    <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 900px;">
+        <div class="card-body p-4">
+            <div class="text-center mb-4">
+                <i class="fa-solid fa-plane-departure fa-2x text-primary"></i>
+                <h2 class="mt-2 fw-bold">Find Your Flight</h2>
+            </div>
+
+            <form asp-controller="Booking" asp-action="CreateGet" method="post" id="bookingForm" class="row g-3">
+
+                <!-- Trip Type -->
+                <div class="col-12 d-flex justify-content-center gap-4 mb-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tripType" id="returnTrip" value="Return" checked>
+                        <label class="form-check-label" for="returnTrip">Return</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tripType" id="oneWayTrip" value="OneWay">
+                        <label class="form-check-label" for="oneWayTrip">One Way</label>
+                    </div>
                 </div>
-            }
-        </div>
 
-        <div class="col-md-4">
-        </div>
+                <!-- From / To -->
+                <div class="col-md-6">
+                    <label for="fromSelect" class="form-label">From</label>
+                    <select id="fromSelect" name="from" class="form-select" required>
+                        <option value="">Select departure...</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="toSelect" class="form-label">To</label>
+                    <select id="toSelect" name="to" class="form-select" required disabled>
+                        <option value="">Select destination...</option>
+                    </select>
+                </div>
 
-        <div class="col-md-4">
-        </div>
+                <!-- Dates -->
+                <div class="col-md-6">
+                    <label for="departureDate" class="form-label">Departure</label>
+                    <input type="date" id="departureDate" name="departureDate" class="form-control" required disabled>
+                </div>
+                <div class="col-md-6" id="returnDateWrapper">
+                    <label for="returnDate" class="form-label">Return</label>
+                    <input type="date" id="returnDate" name="returnDate" class="form-control" disabled>
+                </div>
 
-        <div class="col-md-2">
+                <!-- Search button -->
+                <div class="col-12 d-grid mt-3">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fa-solid fa-magnifying-glass me-2"></i> Search Flights
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <div class="col-md-2 d-grid">
-            <button 
-                type="submit" 
-                class="btn btn-dark btn-lg">
-                <i class="fa-solid fa-magnifying-glass me-1"></i>
-                Search
-            </button>
-        </div>
-    </form>
-
-    <div id="text" class="mt-4 text-center">
-        <h1>Welcome to BuzzAir</h1>
-        <h5 class="text-muted">Explore the world of opportunities.</h5>
     </div>
 </div>
 
 @section Scripts {
-    <script src="~/js/selectHome.js"></script>
-    <script>HomePage()</script>
+    <script src="~/js/home.js"></script>
 }
