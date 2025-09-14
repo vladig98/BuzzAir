@@ -9,7 +9,7 @@
             <div class="form-check p-3 border rounded mb-2">
                 <input class="form-check-input" type="radio" value="@Model.OutboundFlights[i].Id" name="OutboundId" id="@Model.OutboundFlights[i].Id">
                 <label class="form-check-label fw-bold" for="@Model.OutboundFlights[i].Id">
-                    @Model.OutboundFlights[i].Origin - @Model.OutboundFlights[i].Destionation
+                    @Model.OutboundFlights[i].Origin - @Model.OutboundFlights[i].Destination
                     <p class="text-muted small">
                         @Model.OutboundFlights[i].DepartureUTC - @Model.OutboundFlights[i].ArrivalUTC
                     </p>
@@ -23,7 +23,7 @@
             <div class="form-check p-3 border rounded mb-2">
                 <input class="form-check-input" type="radio" value="@Model.InboundFlights[i].Id" name="InboundId" id="@Model.InboundFlights[i].Id">
                 <label class="form-check-label fw-bold" for="@Model.InboundFlights[i].Id">
-                    @Model.InboundFlights[i].Origin - @Model.InboundFlights[i].Destionation
+                    @Model.InboundFlights[i].Origin - @Model.InboundFlights[i].Destination
                     <p class="text-muted small">
                         @Model.InboundFlights[i].DepartureUTC - @Model.InboundFlights[i].ArrivalUTC
                     </p>
@@ -95,7 +95,7 @@
         {
             <h5>Passenger @(i + 1)</h5>
             <div class="d-flex flex-wrap gap-2">
-                @foreach (var service in Model.Services)
+                @foreach (ServiceDto service in Model.Services)
                 {
                     <div class="form-check form-check-inline service-pill">
                         <input name="Passengers[@i].ServiceIds" class="form-check-input" type="checkbox" value="@service.Id" id="@($"service{service.Name}{i}")">
@@ -103,18 +103,18 @@
                     </div>
                 }
             </div>
-            @foreach (var bag in Model.BaggageService)
+            @foreach (ServiceDto bag in Model.BaggageService)
             {
                 <div class="form-check">
-                    <input name="Passengers[@i].ServiceIds" class="form-check-input" type="radio" value="@bag.Id" name="@($"baggage{i}")" id="@($"baggage{bag.BaggageType}{i}")">
+                    <input name="Passengers[@i].Baggage" class="form-check-input" type="radio" value="@bag.Id" name="@($"baggage{i}")" id="@($"baggage{bag.BaggageType}{i}")">
                     <label class="form-check-label" for="@($"baggage{bag.BaggageType}{i}")">@bag.Name (@bag.Kilos kg) - €@bag.Price</label>
                 </div>
             }
-            @foreach (var seat in Model.SeatsServices)
+            @foreach (ServiceDto seat in Model.SeatsServices)
             {
                 <div class="form-check">
-                    <input name="Passengers[@i].ServiceIds" class="form-check-input" type="radio" value="@seat.Id" name="@($"seat{i}")" id="@($"seat{seat.SeatType}{i}")">
-                    <label class="form-check-label" for="@($"seat{seat.SeatType}{i}")">@seat.Name - €@seat.Price</label>
+                    <input name="Passengers[@i].Seats" class="form-check-input" type="radio" value="@seat.Id" name="@($"seat{i}")" id="@($"seat{seat.SeatType}{i}")">
+                    <label class="form-check-label" for="@($"seat{seat.SeatType}{i}")">@seat.Name (@seat.SeatType.ToString()) - €@seat.Price</label>
                 </div>
             }
         }

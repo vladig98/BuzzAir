@@ -5,13 +5,12 @@ public sealed record class FlightDTO(
     string FlightNumber,
     string Origin,
     string OriginId,
-    string Destionation,
-    string DestionationId,
+    string Destination,
+    string DestinationId,
     string AircraftModel,
     string AircraftModelId,
     DateTime DepartureUTC,
     DateTime ArrivalUTC,
     decimal PriceInEur,
-    int TakenSeats,
-    SeatMapDto? SeatMap = null
+    int TakenSeats
 );

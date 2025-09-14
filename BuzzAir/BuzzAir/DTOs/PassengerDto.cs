@@ -8,4 +8,6 @@ public class PassengerDto
     public string? Gender { get; set; }
     public TravelDocumentDto? TravelDocument { get; set; }
     public IList<string> ServiceIds { get; } = [];
+    public IList<string> Baggage { get; } = [];
+    public IList<string> Seats { get; } = [];
 }
