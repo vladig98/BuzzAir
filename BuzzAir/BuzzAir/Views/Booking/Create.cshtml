@@ -7,7 +7,7 @@
         @for (int i = 0; i < Model.OutboundFlights.Count; i++)
         {
             <div class="form-check p-3 border rounded mb-2">
-                <input class="form-check-input" type="radio" value="@Model.OutboundFlights[i].Id" name="OutboundId" id="@Model.OutboundFlights[i].Id">
+                <input data-price="@Model.OutboundFlights[i].PriceInEur" class="form-check-input" type="radio" value="@Model.OutboundFlights[i].Id" name="OutboundId" id="@Model.OutboundFlights[i].Id">
                 <label class="form-check-label fw-bold" for="@Model.OutboundFlights[i].Id">
                     @Model.OutboundFlights[i].Origin - @Model.OutboundFlights[i].Destination
                     <p class="text-muted small">
@@ -17,18 +17,21 @@
             </div>
         }
 
-        <h3 class="mt-4">Inbound Flights</h3>
-        @for (int i = 0; i < Model.InboundFlights.Count; i++)
+        @if (Model.InboundFlights.Count > 0)
         {
-            <div class="form-check p-3 border rounded mb-2">
-                <input class="form-check-input" type="radio" value="@Model.InboundFlights[i].Id" name="InboundId" id="@Model.InboundFlights[i].Id">
-                <label class="form-check-label fw-bold" for="@Model.InboundFlights[i].Id">
-                    @Model.InboundFlights[i].Origin - @Model.InboundFlights[i].Destination
-                    <p class="text-muted small">
-                        @Model.InboundFlights[i].DepartureUTC - @Model.InboundFlights[i].ArrivalUTC
-                    </p>
-                </label>
-            </div>
+            <h3 class="mt-4">Inbound Flights</h3>
+            @for (int i = 0; i < Model.InboundFlights.Count; i++)
+            {
+                <div class="form-check p-3 border rounded mb-2">
+                    <input data-price="@Model.InboundFlights[i].PriceInEur" class="form-check-input" type="radio" value="@Model.InboundFlights[i].Id" name="InboundId" id="@Model.InboundFlights[i].Id">
+                    <label class="form-check-label fw-bold" for="@Model.InboundFlights[i].Id">
+                        @Model.InboundFlights[i].Origin - @Model.InboundFlights[i].Destination
+                        <p class="text-muted small">
+                            @Model.InboundFlights[i].DepartureUTC - @Model.InboundFlights[i].ArrivalUTC
+                        </p>
+                    </label>
+                </div>
+            }
         }
     </div>
 
@@ -98,7 +101,7 @@
                 @foreach (ServiceDto service in Model.Services)
                 {
                     <div class="form-check form-check-inline service-pill">
-                        <input name="Passengers[@i].ServiceIds" class="form-check-input" type="checkbox" value="@service.Id" id="@($"service{service.Name}{i}")">
+                        <input data-price="@service.Price" name="Passengers[@i].ServiceIds" class="form-check-input" type="checkbox" value="@service.Id" id="@($"service{service.Name}{i}")">
                         <label class="form-check-label" for="@($"service{service.Name}{i}")">@service.Name (€@service.Price)</label>
                     </div>
                 }
@@ -106,14 +109,14 @@
             @foreach (ServiceDto bag in Model.BaggageService)
             {
                 <div class="form-check">
-                    <input name="Passengers[@i].Baggage" class="form-check-input" type="radio" value="@bag.Id" name="@($"baggage{i}")" id="@($"baggage{bag.BaggageType}{i}")">
+                    <input data-price="@bag.Price" name="Passengers[@i].Baggage" class="form-check-input" type="radio" value="@bag.Id" name="@($"baggage{i}")" id="@($"baggage{bag.BaggageType}{i}")">
                     <label class="form-check-label" for="@($"baggage{bag.BaggageType}{i}")">@bag.Name (@bag.Kilos kg) - €@bag.Price</label>
                 </div>
             }
             @foreach (ServiceDto seat in Model.SeatsServices)
             {
                 <div class="form-check">
-                    <input name="Passengers[@i].Seats" class="form-check-input" type="radio" value="@seat.Id" name="@($"seat{i}")" id="@($"seat{seat.SeatType}{i}")">
+                    <input data-price="@seat.Price" name="Passengers[@i].Seats" class="form-check-input" type="radio" value="@seat.Id" name="@($"seat{i}")" id="@($"seat{seat.SeatType}{i}")">
                     <label class="form-check-label" for="@($"seat{seat.SeatType}{i}")">@seat.Name (@seat.SeatType.ToString()) - €@seat.Price</label>
                 </div>
             }
@@ -123,6 +126,14 @@
     <!-- SECTION 4: PAYMENT -->
     <div data-section class="d-none">
         <h3>Payment</h3>
+
+        <div class="alert alert-info mt-3 fw-bold">
+            Total Price: <span id="totalPrice">€0.00</span>
+        </div>
+
+        <!-- Hidden input that will be posted with the form -->
+        <input type="hidden" id="totalPriceInput" name="Payment.AmountInEur" value="0.00" />
+
         <select name="Payment.CardType" id="cardType" class="form-select mb-3">
             <option hidden disabled selected>Select a card type</option>
             @foreach (object? item in Enum.GetValues(typeof(CardType)))

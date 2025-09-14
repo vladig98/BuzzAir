@@ -88,3 +88,40 @@ document.addEventListener("DOMContentLoaded", () => {
         wireSelectionHighlights();
     }
 })();
+
+
+const totalPriceEl = document.getElementById("totalPrice");
+const totalPriceInput = document.getElementById("totalPriceInput");
+
+function updateTotalPrice() {
+    let total = 0;
+
+    // Outbound Flight
+    const selectedOutbound = document.querySelector("input[name='OutboundId']:checked");
+    if (selectedOutbound) total += parseFloat(selectedOutbound.dataset.price);
+
+    // Inbound Flight
+    const selectedInbound = document.querySelector("input[name='InboundId']:checked");
+    if (selectedInbound) total += parseFloat(selectedInbound.dataset.price);
+
+    // Services
+    document.querySelectorAll("input[name^='Passengers'][name$='ServiceIds']:checked")
+        .forEach(s => total += parseFloat(s.dataset.price));
+
+    // Baggage
+    document.querySelectorAll("input[name^='Passengers'][name$='Baggage']:checked")
+        .forEach(b => total += parseFloat(b.dataset.price));
+
+    // Seats
+    document.querySelectorAll("input[name^='Passengers'][name$='Seats']:checked")
+        .forEach(s => total += parseFloat(s.dataset.price));
+
+    totalPriceEl.textContent = `€${total.toFixed(2)}`;
+    totalPriceInput.value = total.toFixed(2);
+}
+
+// Attach listeners
+document.querySelectorAll("input[type='radio'], input[type='checkbox']")
+    .forEach(el => el.addEventListener("change", updateTotalPrice));
+
+updateTotalPrice(); // Run once on page load
