@@ -1,212 +1,146 @@
 ﻿@model CreateBookingDto
-@{
-    Layout = "_Layout";
-    ViewData["Title"] = "Create Booking";
-}
 
-<div class="container my-4">
-    <div class="booking-page">
-        <!-- Sidebar summary -->
-        <aside class="booking-sidebar">
-            <div class="summary-card">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="step-badge">✓</span>
-                    <div>
-                        <div class="fw-bold">Booking Progress</div>
-                        <div class="small-muted">Review selections while you edit</div>
-                    </div>
-                </div>
-
-                <div class="mb-3 left-mini">
-                    <strong>Outbound:</strong> <div id="summaryOutbound" class="ms-1 small-muted">—</div>
-                    <strong class="mt-2 d-block">Inbound:</strong> <div id="summaryInbound" class="ms-1 small-muted">—</div>
-                    <strong class="mt-2 d-block">Passengers:</strong> <div id="summaryPax" class="ms-1 small-muted">0</div>
-                </div>
-
-                <hr />
-
-                <div class="left-mini">
-                    <strong>Services</strong>
-                    <ul id="summaryServiceList" class="ps-3 small-muted mt-2 mb-2"></ul>
-                </div>
-
-                <hr />
-
-                <div class="left-mini">
-                    <strong>Total</strong>
-                    <div id="summaryTotal" class="fw-bold fs-5 mt-1">€0.00</div>
-                </div>
+<form id="bookingForm" asp-controller="Booking" asp-action="CreateBooking">
+    <!-- SECTION 1: FLIGHT SELECTION -->
+    <div data-section>
+        <h3>Outbound Flights</h3>
+        @for (int i = 0; i < Model.OutboundFlights.Count; i++)
+        {
+            <div class="form-check p-3 border rounded mb-2">
+                <input class="form-check-input" type="radio" value="@Model.OutboundFlights[i].Id" name="OutboundId" id="@Model.OutboundFlights[i].Id">
+                <label class="form-check-label fw-bold" for="@Model.OutboundFlights[i].Id">
+                    @Model.OutboundFlights[i].Origin - @Model.OutboundFlights[i].Destionation
+                    <p class="text-muted small">
+                        @Model.OutboundFlights[i].DepartureUTC - @Model.OutboundFlights[i].ArrivalUTC
+                    </p>
+                </label>
             </div>
-        </aside>
+        }
 
-        <!-- Main content -->
-        <main class="flex-grow-1">
-            <!-- STEP 1: Flight selection -->
-            <section id="stepFlights" class="section-card mb-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <h4 class="mb-0">1. Select Flights</h4>
-                        <div class="small-muted">Choose outbound and inbound (if return)</div>
-                    </div>
-                    <div class="small-muted">Step 1 of 3</div>
-                </div>
+        <h3 class="mt-4">Inbound Flights</h3>
+        @for (int i = 0; i < Model.InboundFlights.Count; i++)
+        {
+            <div class="form-check p-3 border rounded mb-2">
+                <input class="form-check-input" type="radio" value="@Model.InboundFlights[i].Id" name="InboundId" id="@Model.InboundFlights[i].Id">
+                <label class="form-check-label fw-bold" for="@Model.InboundFlights[i].Id">
+                    @Model.InboundFlights[i].Origin - @Model.InboundFlights[i].Destionation
+                    <p class="text-muted small">
+                        @Model.InboundFlights[i].DepartureUTC - @Model.InboundFlights[i].ArrivalUTC
+                    </p>
+                </label>
+            </div>
+        }
+    </div>
 
+    <!-- SECTION 2: PASSENGERS -->
+    <div data-section class="d-none">
+        <h3>Passengers</h3>
+        @for (int i = 0; i < Model.Passengers.Count; i++)
+        {
+            <h5>Passenger @(i + 1)</h5>
+            <div class="p-3 border rounded mb-4">
                 <div class="mb-3">
-                    <label class="form-label">Outbound flights</label>
-                    <div id="outboundGrid" class="flight-grid">
-                        @foreach (var f in Model.OutboundFlights)
-                        {
-                            <partial name="_FlightCard" model="f" />
-                        }
-                    </div>
+                    <label for="@($"firstName{i}")" class="form-label">First Name</label>
+                    <input name="Passengers[@i].FirstName" type="text" class="form-control" id="@($"firstName{i}")">
                 </div>
-
-                <div id="inboundSection" class="mb-3 @(Model.InboundFlights == null || !Model.InboundFlights.Any() ? "hidden" : "")">
-                    <label class="form-label">Inbound flights</label>
-                    <div id="inboundGrid" class="flight-grid">
-                        @foreach (var f in Model.InboundFlights ?? [])
-                        {
-                            <partial name="_FlightCard" model="f" />
-                        }
-                    </div>
-                </div>
-
-                <div class="step-controls">
-                    <div></div>
-                    <div>
-                        <button id="flightsNextBtn" class="btn btn-primary btn-lg">Next</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STEP 2: Passengers -->
-            <section id="stepPassengers" class="section-card mb-4 hidden">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <h4 class="mb-0">2. Passenger Details</h4>
-                        <div class="small-muted">Add name, DOB and (optionally) travel document</div>
-                    </div>
-                    <div class="small-muted">Step 2 of 3</div>
-                </div>
-
                 <div class="mb-3">
-                    <label class="form-label">Passengers</label>
-                    <select id="passengersCount" class="form-select w-auto">
-                        @for (int i = 1; i <= 6; i++)
+                    <label for="@($"lastName{i}")" class="form-label">Last Name</label>
+                    <input name="Passengers[@i].LastName" type="text" class="form-control" id="@($"lastName{i}")">
+                </div>
+                <div class="mb-3">
+                    <label for="@($"dob{i}")" class="form-label">Date of Birth</label>
+                    <input name="Passengers[@i].DateOfBirth" type="date" class="form-control" id="@($"dob{i}")">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="Male" name="Passengers[@i].Gender" id="@($"male{i}")">
+                    <label class="form-check-label" for="@($"male{i}")">Male</label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" value="Female" name="Passengers[@i].Gender" id="@($"female{i}")">
+                    <label class="form-check-label" for="@($"female{i}")">Female</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="@($"checkInNow{i}")">
+                    <label class="form-check-label" for="@($"checkInNow{i}")">Check in now</label>
+                </div>
+
+                <!-- Hidden travel document details -->
+                <div class="d-none mt-3 p-3 border rounded">
+                    <select name="Passengers[@i].TravelDocument.DocumentType" id="@($"travelDocType{i}")" class="form-select mb-2">
+                        <option hidden disabled selected>Select a travel document</option>
+                        @foreach (object? item in Enum.GetValues(typeof(DocumentType)))
                         {
-                            @if (i == Model.PassengersCount)
-                            {
-                                <option value="@i" selected>@i passenger@(i>1?"s":"")</option>
-                            }
-                            else
-                            {
-                                <option value="@i">@i passenger@(i>1?"s":"")</option>
-                            }
+                            <option value="@item">@item.ToString()</option>
+                        }
+                    </select>
+                    <input name="Passengers[@i].TravelDocument.Number" type="text" class="form-control mb-2" id="@($"documentNumber{i}")" placeholder="Document Number">
+                    <input name="Passengers[@i].TravelDocument.IssueDate" type="date" class="form-control mb-2" id="@($"issueDate{i}")" placeholder="Issue Date">
+                    <input name="Passengers[@i].TravelDocument.ExpiryDate" type="date" class="form-control mb-2" id="@($"expiryDate{i}")" placeholder="Expiry Date">
+                    <select name="Passengers[@i].TravelDocument.NationalityId" id="@($"nationality{i}")" class="form-select">
+                        <option hidden disabled selected>Select your nationality</option>
+                        @foreach (SelectListItem country in Model.CountriesSelect)
+                        {
+                            <option value="@country.Value">@country.Text</option>
                         }
                     </select>
                 </div>
-
-                <div id="passengersContainer">
-                    @* JS will fill passenger cards by cloning partial below *@
-                </div>
-
-                <div class="step-controls">
-                    <button id="passengersBackBtn" class="btn btn-outline-secondary">Back</button>
-                    <button id="passengersNextBtn" class="btn btn-primary btn-lg">Next</button>
-                </div>
-            </section>
-
-            <!-- STEP 3: Services -->
-            <section id="stepServices" class="section-card mb-4 hidden">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <h4 class="mb-0">3. Add Services</h4>
-                        <div class="small-muted">Choose extras per passenger</div>
-                    </div>
-                    <div class="small-muted">Step 3 of 3</div>
-                </div>
-
-                <div id="servicesContainer" class="mb-3">
-                    @* JS will populate by cloning service partials *@
-                </div>
-
-                <div class="step-controls">
-                    <button id="servicesBackBtn" class="btn btn-outline-secondary">Back</button>
-                    <button id="servicesNextBtn" class="btn btn-primary btn-lg">Proceed to Payment</button>
-                </div>
-            </section>
-
-            <!-- PAYMENT -->
-            <section id="stepPayment" class="section-card mb-4 hidden">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <h4 class="mb-0">Payment</h4>
-                        <div class="small-muted">Secure payment (we recommend tokenized provider)</div>
-                    </div>
-                    <div class="small-muted">Confirm & Pay</div>
-                </div>
-
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="form-floating mb-2">
-                            <input id="cardHolder" class="form-control" placeholder="Cardholder name" />
-                            <label for="cardHolder">Cardholder</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-floating mb-2">
-                            <input id="cardNumber" class="form-control" placeholder="Card number" />
-                            <label for="cardNumber">Card number</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-floating mb-2">
-                            <input id="cardExpiry" class="form-control" placeholder="MM/YY" />
-                            <label for="cardExpiry">Expiry</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-floating mb-2">
-                            <input id="cardCvc" class="form-control" placeholder="CVC" />
-                            <label for="cardCvc">CVC</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-end d-flex align-items-end justify-content-end">
-                        <div>
-                            <div class="small-muted">Total</div>
-                            <div id="paymentTotal" class="fw-bold fs-5">€0.00</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step-controls mt-3">
-                    <button id="paymentBackBtn" class="btn btn-outline-secondary">Back</button>
-                    <button id="payBtn" class="btn btn-success btn-lg">Pay Now</button>
-                </div>
-            </section>
-        </main>
-    </div>
-</div>
-
-<!-- Hidden partials/templates: clone these in JS (partials avoid heavy HTML in JS) -->
-<div id="templates" class="d-none">
-    <div id="templatePassenger">
-        <partial name="_PassengerCard" />
-    </div>
-
-    <div id="templateService">
-        @foreach (var svc in Model.Services ?? Enumerable.Empty<ServiceDto>())
-        {
-            <partial name="_ServicePill" model="svc" />
+            </div>
         }
     </div>
-</div>
 
-@* Anti-forgery token: we will read this value in JS to include in the final POST *@
-<form id="antiForgeryForm" class="d-none">
-    @Html.AntiForgeryToken()
+    <!-- SECTION 3: SERVICES -->
+    <div data-section class="d-none">
+        <h3>Services</h3>
+        @for (int i = 0; i < Model.Passengers.Count; i++)
+        {
+            <h5>Passenger @(i + 1)</h5>
+            <div class="d-flex flex-wrap gap-2">
+                @foreach (var service in Model.Services)
+                {
+                    <div class="form-check form-check-inline service-pill">
+                        <input name="Passengers[@i].ServiceIds" class="form-check-input" type="checkbox" value="@service.Id" id="@($"service{service.Name}{i}")">
+                        <label class="form-check-label" for="@($"service{service.Name}{i}")">@service.Name (€@service.Price)</label>
+                    </div>
+                }
+            </div>
+            @foreach (var bag in Model.BaggageService)
+            {
+                <div class="form-check">
+                    <input name="Passengers[@i].ServiceIds" class="form-check-input" type="radio" value="@bag.Id" name="@($"baggage{i}")" id="@($"baggage{bag.BaggageType}{i}")">
+                    <label class="form-check-label" for="@($"baggage{bag.BaggageType}{i}")">@bag.Name (@bag.Kilos kg) - €@bag.Price</label>
+                </div>
+            }
+            @foreach (var seat in Model.SeatsServices)
+            {
+                <div class="form-check">
+                    <input name="Passengers[@i].ServiceIds" class="form-check-input" type="radio" value="@seat.Id" name="@($"seat{i}")" id="@($"seat{seat.SeatType}{i}")">
+                    <label class="form-check-label" for="@($"seat{seat.SeatType}{i}")">@seat.Name - €@seat.Price</label>
+                </div>
+            }
+        }
+    </div>
+
+    <!-- SECTION 4: PAYMENT -->
+    <div data-section class="d-none">
+        <h3>Payment</h3>
+        <select name="Payment.CardType" id="cardType" class="form-select mb-3">
+            <option hidden disabled selected>Select a card type</option>
+            @foreach (object? item in Enum.GetValues(typeof(CardType)))
+            {
+                <option value="@item">@item.ToString()</option>
+            }
+        </select>
+        <input name="Payment.CardNumber" type="text" class="form-control mb-2" id="cardNumber" placeholder="1234 1234 1234 1234">
+        <input name="Payment.ExpiryDate" type="month" class="form-control mb-2" id="cardExpiryDate">
+        <input name="Payment.CardHolder" type="text" class="form-control mb-2" id="cardHolder" placeholder="John Doe">
+        <input name="Payment.CVC" type="text" class="form-control mb-2" id="cvc" placeholder="123">
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <button type="button" class="btn btn-outline-secondary" id="prevBtn">Previous</button>
+        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+    </div>
 </form>
 
-@section Scripts {
-    <script src="~/js/createBooking.fromViewModel.js"></script>
-}
+
+<script src="~/js/createBooking.js"></script>

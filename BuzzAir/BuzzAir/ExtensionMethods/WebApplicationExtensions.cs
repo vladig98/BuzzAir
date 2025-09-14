@@ -1,4 +1,4 @@
-﻿namespace BuzzAir.ExtensioMethods;
+﻿namespace BuzzAir.ExtensionMethods;
 
 internal static class WebApplicationExtensions
 {

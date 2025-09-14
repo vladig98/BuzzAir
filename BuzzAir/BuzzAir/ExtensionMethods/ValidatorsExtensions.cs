@@ -1,4 +1,4 @@
-﻿namespace BuzzAir.ExtensioMethods;
+﻿namespace BuzzAir.ExtensionMethods;
 
 public static class ValidatorsExtensions
 {

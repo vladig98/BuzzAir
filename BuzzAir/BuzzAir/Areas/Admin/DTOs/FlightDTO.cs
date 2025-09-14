@@ -12,5 +12,6 @@ public sealed record class FlightDTO(
     DateTime DepartureUTC,
     DateTime ArrivalUTC,
     decimal PriceInEur,
-    int TakenSeats
+    int TakenSeats,
+    SeatMapDto? SeatMap = null
 );

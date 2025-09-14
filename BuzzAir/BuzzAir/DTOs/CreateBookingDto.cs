@@ -5,12 +5,60 @@ public class CreateBookingDto
     public IList<FlightDTO> OutboundFlights { get; } = [];
     public IList<FlightDTO> InboundFlights { get; } = [];
     public IList<ServiceDto> Services { get; } = [];
-    public int PassengersCount { get; set; } = 1;
+    public IList<ServiceDto> BaggageService { get; } = [];
+    public IList<ServiceDto> SeatsServices { get; } = [];
+    public IEnumerable<SelectListItem> CountriesSelect { get; } = [];
     public string OutboundId { get; set; } = string.Empty;
     public string? InboundId { get; set; }
     public IList<PassengerDto> Passengers { get; } = [];
-    public Dictionary<int, List<string>> PassengerServices { get; } = [];
     public PaymentDto Payment { get; set; } = new();
+
+    public void AddServices(IList<ServiceDto> services)
+    {
+        if (services is null)
+        {
+            return;
+        }
+
+        foreach (ServiceDto service in services)
+        {
+            Services.Add(service);
+        }
+    }
+
+    public void AddSeats(IList<ServiceDto> seats)
+    {
+        if (seats is null)
+        {
+            return;
+        }
+
+        foreach (ServiceDto seat in seats)
+        {
+            SeatsServices.Add(seat);
+        }
+    }
+
+    public void AddBaggage(IList<ServiceDto> baggage)
+    {
+        if (baggage is null)
+        {
+            return;
+        }
+
+        foreach (ServiceDto bag in baggage)
+        {
+            BaggageService.Add(bag);
+        }
+    }
+
+    public void AddPassengers(int passengersCount)
+    {
+        for (int i = 0; i < passengersCount; i++)
+        {
+            Passengers.Add(new PassengerDto());
+        }
+    }
 
     public void AddOutboundFlight(IList<FlightDTO> outboundFlights)
     {

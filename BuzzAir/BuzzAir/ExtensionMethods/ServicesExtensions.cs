@@ -1,4 +1,4 @@
-﻿namespace BuzzAir.ExtensioMethods;
+﻿namespace BuzzAir.ExtensionMethods;
 
 internal static class ServicesExtensions
 {
@@ -12,6 +12,7 @@ internal static class ServicesExtensions
         _ = services.AddScoped<IAircraftService, AircraftService>();
         _ = services.AddScoped<IAirportService, AirportService>();
         _ = services.AddScoped<IValidationService, ValidationService>();
+        _ = services.AddScoped<IServicesService, ServicesService>();
 
         return services;
     }

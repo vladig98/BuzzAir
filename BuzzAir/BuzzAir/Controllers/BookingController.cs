@@ -1,21 +1,44 @@
 ﻿namespace BuzzAir.Controllers;
 
-public class BookingController(IFlightService flightService) : Controller
+public class BookingController(
+    IFlightService flightService,
+    IServicesService servicesService) : Controller
 {
     [HttpGet]
-    public async Task<IActionResult> Create(string originId, string destinationId, DateTime departureDate, DateTime? returnDate, CancellationToken token)
+    public async Task<IActionResult> Create(
+        string originId,
+        string destinationId,
+        DateTime departureDate,
+        DateTime? returnDate,
+        int passengersCount,
+        CancellationToken token)
     {
-        CreateBookingDto dto = new();
-
         IList<FlightDTO> outboundFlights = await flightService.GetFlightsByAirportsAndDatesAsync(originId, destinationId, departureDate, token);
-        dto.AddOutboundFlight(outboundFlights);
+        IList<FlightDTO> inboundFlights = [];
+        IList<ServiceDto> services = await servicesService.GetServicesAsync(token);
+        IList<ServiceDto> baggage = await servicesService.GetBaggageServicesAsync(token);
+        IList<ServiceDto> seats = await servicesService.GetSeatServicesAsync(token);
 
         if (returnDate.HasValue)
         {
-            IList<FlightDTO> inboundFlights = await flightService.GetFlightsByAirportsAndDatesAsync(destinationId, originId, returnDate.Value, token);
-            dto.AddInboundFlight(inboundFlights);
+            inboundFlights = await flightService.GetFlightsByAirportsAndDatesAsync(destinationId, originId, returnDate.Value, token);
         }
 
+        CreateBookingDto dto = new();
+
+        dto.AddOutboundFlight(outboundFlights);
+        dto.AddInboundFlight(inboundFlights);
+        dto.AddPassengers(passengersCount);
+        dto.AddServices(services);
+        dto.AddBaggage(baggage);
+        dto.AddSeats(seats);
+
         return View(dto);
+    }
+
+    [HttpPost]
+    public Task<IActionResult> CreateBooking(CreateBookingDto data, CancellationToken token)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -190,25 +190,32 @@ public class FlightService(
         departureStart = DateTime.SpecifyKind(departureStart, DateTimeKind.Utc);
         departureEnd = DateTime.SpecifyKind(departureEnd, DateTimeKind.Utc);
 
-        List<FlightDTO> flightModels = await dbContext.Flights.Where(x =>
-            x.OriginId == originId
-            && x.DestinationId == destinationId
-            && x.DepartureUTC >= departureStart
-            && x.DepartureUTC < departureEnd)
-        .Select(c => new FlightDTO(
-            c.Id,
-            c.FlightNumber,
-            c.Origin.Name,
-            c.OriginId,
-            c.Destination.Name,
-            c.DestinationId,
-            c.Aircraft.Name,
-            c.AircraftId,
-            c.DepartureUTC,
-            c.ArrivalUTC,
-            c.PriceInEur,
-            c.TakenSeats)
-        ).ToListAsync(token);
+        List<Flight> flights = await dbContext.Flights
+            .Include(x => x.Origin)
+            .Include(x => x.Destination)
+            .Include(x => x.Aircraft)
+            .Where(x =>
+                x.OriginId == originId &&
+                x.DestinationId == destinationId &&
+                x.DepartureUTC >= departureStart &&
+                x.DepartureUTC < departureEnd)
+            .AsNoTracking()
+            .ToListAsync(token);
+
+        List<FlightDTO> flightModels = [.. flights
+            .Select(c => new FlightDTO(
+                c.Id,
+                c.FlightNumber,
+                c.Origin.Name,
+                c.OriginId,
+                c.Destination.Name,
+                c.DestinationId,
+                c.Aircraft.Name,
+                c.AircraftId,
+                c.DepartureUTC,
+                c.ArrivalUTC,
+                c.PriceInEur,
+                c.TakenSeats))];
 
         return [.. flightModels];
     }

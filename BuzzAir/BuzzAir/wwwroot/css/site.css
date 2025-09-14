@@ -6,147 +6,257 @@
     --font-lilita: 'Lilita One', sans-serif;
 }
 
-.booking-page {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    padding: 1rem;
-}
-
-.booking-sidebar {
-    width: 260px;
-    position: sticky;
-    top: 1.25rem;
-}
-
-.summary-card {
+/* ===== Booking page styles (for your current markup) ===== */
+form#bookingForm {
+    max-width: 1100px;
+    margin: 28px auto;
+    padding: 22px;
+    background: linear-gradient(180deg,#ffffff,#fbfdff);
     border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 8px 24px rgba(6,6,10,.06);
-    background: #fff;
+    box-shadow: 0 10px 34px rgba(12,15,20,0.06);
+    border: 1px solid rgba(15,23,42,0.04);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: #0f1724;
 }
 
-.step-badge {
+    /* Section headings */
+    form#bookingForm h3 {
+        font-size: 1.12rem;
+        margin-bottom: 12px;
+        color: #0b365f;
+        font-weight: 700;
+    }
+
+    /* ---- Flight cards (the .form-check containers) ---- */
+    form#bookingForm .form-check.p-3.border.rounded {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding: 14px;
+        transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+        background: #fff;
+        border: 1px solid rgba(15,23,42,0.04);
+    }
+
+        form#bookingForm .form-check.p-3.border.rounded:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(12,15,20,0.06);
+        }
+
+    /* make the radio & label align nicely */
+    form#bookingForm .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-top: 6px;
+        margin-left: 4px;
+        flex: 0 0 auto;
+    }
+
+    form#bookingForm .form-check-label {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+        cursor: pointer;
+        padding-left: 6px;
+        min-width: 0;
+    }
+
+        /* small text in the label */
+        form#bookingForm .form-check-label .text-muted {
+            display: block;
+            font-size: .92rem;
+            color: #6b7280;
+        }
+
+    /* visual active state: when radio is checked highlight the label */
+    form#bookingForm input[type="radio"]:checked + .form-check-label,
+    form#bookingForm .form-check.selected {
+        border-radius: 10px;
+        background: linear-gradient(90deg, rgba(13,110,253,0.03), rgba(13,110,253,0.01));
+        border: 1px solid rgba(13,110,253,0.12);
+        box-shadow: 0 12px 30px rgba(13,110,253,0.06);
+    }
+
+        /* ensure the checked label text stands out */
+        form#bookingForm input[type="radio"]:checked + .form-check-label .fw-semibold,
+        form#bookingForm .form-check.selected .fw-semibold {
+            color: #0d3e78;
+        }
+
+    /* ---- Passenger cards ---- */
+    form#bookingForm .p-3.border.rounded.mb-4 {
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid rgba(15,23,42,0.04);
+        box-shadow: 0 6px 18px rgba(12,15,20,0.04);
+        padding: 16px !important;
+    }
+
+    /* labels and inputs */
+    form#bookingForm .form-label {
+        font-weight: 600;
+        color: #0b365f;
+        font-size: .95rem;
+    }
+
+    form#bookingForm .form-control {
+        border-radius: 8px;
+    }
+
+    /* travel doc block (hidden by default using bootstrap .d-none). When visible - card styling */
+    form#bookingForm .d-none ~ .travel-doc,
+    form#bookingForm .travel-doc,
+    form#bookingForm .p-3.border.rounded .travel-doc {
+        /* travel doc is already hidden by .d-none; when shown it should look like a card */
+    }
+
+    form#bookingForm .p-3.border.rounded .travel-doc,
+    form#bookingForm .travel-doc {
+        border-top: 1px dashed #e6e6e6;
+        padding-top: 12px;
+        margin-top: 12px;
+    }
+
+/* ---- Services (pills) ---- */
+.service-pill {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    background: #f1f3f5;
-    font-weight: 600;
-    margin-right: .5rem;
-}
-
-.section-card {
-    background: linear-gradient(180deg,#fff,#fbfdff);
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 6px 18px rgba(9,10,15,.04);
-}
-
-.flight-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-    gap: 1rem;
-}
-
-.flight-card {
-    border-radius: 10px;
-    padding: 0.9rem;
+    gap: .6rem;
+    padding: .35rem .8rem;
+    border-radius: 999px;
+    border: 1px solid #eef2f6;
+    background: #fbfdff;
     cursor: pointer;
-    border: 1px solid transparent;
-    transition: all .18s ease;
-    background: #fff;
+    transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+    margin: 4px 6px 4px 0;
 }
 
-    .flight-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(6,6,10,.06);
+    .service-pill:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(12,15,20,0.04);
     }
 
-    .flight-card.active {
-        border-color: #0d6efd;
-        box-shadow: 0 10px 30px rgba(13,110,253,.08);
+    .service-pill .form-check-input {
+        margin-right: .5rem;
+        transform: scale(1.02);
     }
 
-.flight-meta {
-    font-size: .9rem;
-    color: #6b7280;
+    .service-pill .form-check-label {
+        margin: 0;
+    }
+
+    /* show as active when clicked (JS toggles .selected on wrapper) */
+    .service-pill.selected {
+        background: #0d6efd;
+        color: #fff;
+        border-color: rgba(13,110,253,0.2);
+    }
+
+/* ---- Baggage / seat radio styling (option look) ---- */
+form#bookingForm .form-check {
+    margin-bottom: .5rem;
 }
 
-.passenger-card {
+form#bookingForm input[type="radio"] {
+    transform: none;
+}
+
+/* ---- Summary / totals (if you add them later) ---- */
+#summaryTotal, #paymentTotal {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #0d3e78;
+}
+
+/* ---- Buttons (Prev/Next) ---- */
+#prevBtn, #nextBtn {
+    min-width: 140px;
+    padding: 10px 18px;
     border-radius: 10px;
-    padding: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+#prevBtn {
     background: #fff;
-    box-shadow: 0 6px 18px rgba(6,6,10,.04);
+    border: 1px solid #e6e6e6;
+    color: #0b365f;
+}
+
+#nextBtn {
+    background: #0d6efd;
+    color: #fff;
+    border: none;
+    box-shadow: 0 8px 20px rgba(13,110,253,0.08);
+}
+
+/* responsive adjustments */
+@media (max-width: 767px) {
+    form#bookingForm {
+        padding: 14px;
+        margin: 12px;
+    }
+
+        form#bookingForm .form-check-label {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+    #prevBtn, #nextBtn {
+        width: 48%;
+        font-size: 15px;
+    }
+
+    .service-pill {
+        margin-bottom: 8px;
+    }
+}
+
+
+/* Layout & responsive sidebar */
+.booking-page .section-title {
+    font-weight: 600;
     margin-bottom: 1rem;
 }
 
+.passenger-card {
+    border-radius: 1rem;
+    border: 1px solid #e1e1e1;
+}
+
 .service-pill {
-    display: inline-flex;
-    gap: .5rem;
-    align-items: center;
-    padding: .45rem .6rem;
-    border-radius: 999px;
-    border: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    transition: background 0.2s ease-in-out;
+}
+
+    .service-pill:hover {
+        background-color: #e9ecef;
+    }
+
+.list-group-item {
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
 
-    .service-pill.active {
-        background: #0d6efd;
-        color: #fff;
-        border-color: #0d6efd;
-    }
-
-.step-controls {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.small-muted {
-    font-size: .875rem;
-    color: #6c757d;
-}
-
-.left-mini {
-    font-size: .9rem;
-    color: #374151;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-pills .nav-link {
-    border-radius: 30px;
-    padding: 0.75rem 1.25rem;
-    font-weight: 500;
-    color: #6c757d;
-    transition: all 0.2s ease-in-out;
-}
-
-    .nav-pills .nav-link:hover {
+    .list-group-item:hover {
         background-color: #f1f3f5;
-        color: #0d6efd;
     }
 
-    .nav-pills .nav-link.active {
-        background-color: #0d6efd;
-        color: #fff !important;
-        box-shadow: 0 0.5rem 1rem rgba(13,110,253,.15);
-    }
+.travel-doc {
+    border-top: 1px dashed #ccc;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
 
-.card {
-    background: #fff;
+@media (max-width: 768px) {
+    .passenger-card {
+        padding: 1rem;
+    }
 }
 
 /* Flight search card styling */
