@@ -13,6 +13,11 @@ internal static class ServicesExtensions
         _ = services.AddScoped<IAirportService, AirportService>();
         _ = services.AddScoped<IValidationService, ValidationService>();
         _ = services.AddScoped<IServicesService, ServicesService>();
+        _ = services.AddScoped<IBookingService, BookingService>();
+        _ = services.AddScoped<IPassengersService, PassengersService>();
+        _ = services.AddScoped<IPaymentService, PaymentService>();
+        _ = services.AddScoped<ISeatService, SeatService>();
+        _ = services.AddScoped<ITravelDocumentService, TravelDocumentService>();
 
         return services;
     }

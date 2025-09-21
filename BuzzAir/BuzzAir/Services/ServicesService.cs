@@ -41,6 +41,11 @@ public class ServicesService(BuzzAirDbContext dbContext) : IServicesService
         return services;
     }
 
+    public Task<Service?> GetServiceModelByIdAsync(string id, CancellationToken token)
+    {
+        return dbContext.Services.FirstOrDefaultAsync(s => s.Id == id, token);
+    }
+
     public async Task<List<ServiceDto>> GetServicesAsync(CancellationToken token)
     {
         List<AirportCheckIn> airportCheckIns = await dbContext.AirportCheckIns.ToListAsync(token);

@@ -51,6 +51,7 @@ global using StackExchange.Redis;
 global using System.ComponentModel.DataAnnotations;
 global using System.Globalization;
 global using System.Reflection;
+global using System.Security.Cryptography;
 global using System.Security.Claims;
 global using System.Text;
 global using System.Text.Encodings.Web;

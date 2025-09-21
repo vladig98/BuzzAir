@@ -9,4 +9,5 @@ public class Aircraft
     public bool IsDeleted { get; set; }
 
     public ICollection<Flight> Flights { get; } = new HashSet<Flight>();
+    public ICollection<SeatMap> SeatMap { get; } = new HashSet<SeatMap>();
 }

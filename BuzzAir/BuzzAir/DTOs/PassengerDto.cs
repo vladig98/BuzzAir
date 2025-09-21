@@ -10,4 +10,6 @@ public class PassengerDto
     public IList<string> ServiceIds { get; } = [];
     public IList<string> Baggage { get; } = [];
     public IList<string> Seats { get; } = [];
+    public int? SeatSelectionInbound { get; set; }
+    public int? SeatSelectionOutbound { get; set; }
 }

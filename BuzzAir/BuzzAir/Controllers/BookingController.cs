@@ -2,7 +2,8 @@
 
 public class BookingController(
     IFlightService flightService,
-    IServicesService servicesService) : Controller
+    IServicesService servicesService,
+    IBookingService bookingService) : Controller
 {
     [HttpGet]
     public async Task<IActionResult> Create(
@@ -37,8 +38,10 @@ public class BookingController(
     }
 
     [HttpPost]
-    public Task<IActionResult> CreateBooking(CreateBookingDto data, CancellationToken token)
+    public async Task<IActionResult> CreateBooking(CreateBookingDto data, CancellationToken token)
     {
-        throw new NotImplementedException();
+        await bookingService.CreateBookingAsync(data, token);
+
+        return View();
     }
 }

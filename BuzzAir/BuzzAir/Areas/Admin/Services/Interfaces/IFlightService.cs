@@ -10,6 +10,7 @@ public interface IFlightService
     Task<int> GetDeletedCountAsync(CancellationToken token = default);
     Task<FlightDTO> GetDeletedFlightByIdAsync(string id, CancellationToken token = default);
     Task<FlightDTO> GetFlightByIdAsync(string id, CancellationToken token = default);
+    Task<Flight?> GetFlightModelByIdAsync(string? flightId, CancellationToken token);
     Task<IList<FlightDTO>> GetFlightsByAirportsAndDatesAsync(string originId, string destinationId, DateTime departureDate, CancellationToken token = default);
     Task<Dictionary<string, DateTime>> GetFlightsDatesBasedOnOriginAndDestination(string originId, string destinationId, CancellationToken token = default);
     Task<Dictionary<string, string>> GetFutureFlightsDestinationsBasedOnOriginAsync(string originId, CancellationToken token = default);
