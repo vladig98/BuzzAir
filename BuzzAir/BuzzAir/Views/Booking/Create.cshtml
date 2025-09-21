@@ -98,35 +98,79 @@
         }
     </div>
 
-    <!-- SECTION 3: SERVICES -->
+    <!-- SECTION 3: SERVICES + SEAT MAP -->
     <div data-section class="d-none">
-        <h3>Services</h3>
+        <h3>Services & Seat Selection</h3>
+
         @for (int i = 0; i < Model.Passengers.Count; i++)
         {
             <h5>Passenger @(i + 1)</h5>
-            <div class="d-flex flex-wrap gap-2">
+
+            <!-- Services Section -->
+            <div class="d-flex flex-wrap gap-2 mb-4">
                 @foreach (ServiceDto service in Model.Services)
                 {
                     <div class="form-check form-check-inline service-pill">
-                        <input data-price="@service.Price" name="Passengers[@i].ServiceIds" class="form-check-input" type="checkbox" value="@service.Id" id="@($"service{service.Name}{i}")">
+                        <input data-price="@service.Price" name="Passengers[@i].ServiceIds"
+                               class="form-check-input" type="checkbox"
+                               value="@service.Id" id="@($"service{service.Name}{i}")">
                         <label class="form-check-label" for="@($"service{service.Name}{i}")">@service.Name (€@service.Price)</label>
                     </div>
                 }
             </div>
-            @foreach (ServiceDto bag in Model.BaggageService)
-            {
-                <div class="form-check">
-                    <input data-price="@bag.Price" name="Passengers[@i].Baggage" class="form-check-input" type="radio" value="@bag.Id" name="@($"baggage{i}")" id="@($"baggage{bag.BaggageType}{i}")">
-                    <label class="form-check-label" for="@($"baggage{bag.BaggageType}{i}")">@bag.Name (@bag.Kilos kg) - €@bag.Price</label>
+
+            <!-- Baggage Section -->
+            <div class="mb-4">
+                <h6>Select Baggage</h6>
+                @foreach (ServiceDto bag in Model.BaggageService)
+                {
+                    <div class="form-check">
+                        <input data-price="@bag.Price" name="Passengers[@i].Baggage" class="form-check-input" type="radio" value="@bag.Id" name="@($"baggage{i}")" id="@($"baggage{bag.BaggageType}{i}")">
+                        <label class="form-check-label" for="@($"baggage{bag.BaggageType}{i}")">@bag.Name (@bag.Kilos kg) - €@bag.Price</label>
+                    </div>
+                }
+            </div>
+
+            <!-- Seat Map Section -->
+            <div class="seat-map-container mb-4">
+                <h6>Select Seat (Outbound)</h6>
+                <div id="seatMapOutbound-@i" class="seat-map" data-passenger-index="@i" data-direction="outbound">
+                    <!-- Seat Map will be rendered by JS -->
                 </div>
-            }
-            @foreach (ServiceDto seat in Model.SeatsServices)
-            {
+                <input type="hidden" name="Passengers[@i].SeatSelectionOutbound" id="seatSelectionOutbound-@i" />
+
+                @if (Model.InboundFlights.Count > 0)
+                {
+                    <h6 class="mt-3">Select Seat (Inbound)</h6>
+                    <div id="seatMapInbound-@i" class="seat-map" data-passenger-index="@i" data-direction="inbound">
+                        <!-- Seat Map will be rendered by JS -->
+                    </div>
+                    <input type="hidden" name="Passengers[@i].SeatSelectionInbound" id="seatSelectionInbound-@i" />
+                }
+            </div>
+
+            <!-- Seat Type Radio Buttons -->
+            <div class="mb-3">
+                <label class="fw-bold">Seat Type</label>
                 <div class="form-check">
-                    <input data-price="@seat.Price" name="Passengers[@i].Seats" class="form-check-input" type="radio" value="@seat.Id" name="@($"seat{i}")" id="@($"seat{seat.SeatType}{i}")">
-                    <label class="form-check-label" for="@($"seat{seat.SeatType}{i}")">@seat.Name (@seat.SeatType.ToString()) - €@seat.Price</label>
+                    <input id="@($"noSeat{i}")" class="form-check-input seat-type" type="radio" name="Passengers[@i].Seats"
+                           value="@Model.SeatsServices.First(s => s.SeatType == SeatType.None).Id"
+                           data-seat-type="None" checked>
+                    <label for="@($"noSeat{i}")" class="form-check-label">Random (Free)</label>
                 </div>
-            }
+                <div class="form-check">
+                    <input id="@($"normalSeat{i}")" class="form-check-input seat-type" type="radio" name="Passengers[@i].Seats"
+                           value="@Model.SeatsServices.First(s => s.SeatType == SeatType.Normal).Id"
+                           data-seat-type="Normal">
+                    <label for="@($"normalSeat{i}")" class="form-check-label">Normal Seat (€@Model.SeatsServices.First(s => s.SeatType == SeatType.Normal).Price)</label>
+                </div>
+                <div class="form-check">
+                    <input id="@($"extraLegRoomSeat{i}")" class="form-check-input seat-type" type="radio" name="Passengers[@i].Seats"
+                           value="@Model.SeatsServices.First(s => s.SeatType == SeatType.ExtraLegRoom).Id"
+                           data-seat-type="ExtraLegRoom">
+                    <label for="@($"extraLegRoomSeat{i}")" class="form-check-label">Extra Leg Room (€@Model.SeatsServices.First(s => s.SeatType == SeatType.ExtraLegRoom).Price)</label>
+                </div>
+            </div>
         }
     </div>
 

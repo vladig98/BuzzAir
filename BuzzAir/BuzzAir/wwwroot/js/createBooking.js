@@ -57,6 +57,129 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    let connection = new signalR.HubConnectionBuilder()
+        .withUrl("/seatMapHub")
+        .build();
+
+    connection.start().then(() => console.log("SignalR connected."));
+
+    document.querySelectorAll("input[name='OutboundId']").forEach(radio => {
+        radio.addEventListener("change", (e) => {
+            let flightId = e.target.value;
+            connection.invoke("SendSeatMap", flightId, "outbound");
+        });
+    });
+
+    document.querySelectorAll("input[name='InboundId']").forEach(radio => {
+        radio.addEventListener("change", (e) => {
+            let flightId = e.target.value;
+            connection.invoke("SendSeatMap", flightId, "inbound");
+        });
+    });
+
+    connection.on("ReceiveSeatMap", (seatMap, direction) => {
+        document.querySelectorAll(`.seat-map[data-direction='${direction}']`).forEach(container => {
+            renderSeatMap(container, seatMap);
+            disableExtraLegRoomIfNeeded(container, seatMap);
+        });
+    });
+
+    function disableExtraLegRoomIfNeeded(container, seatMap) {
+        let extraAvailable = seatMap.some(s => s.type === "ExtraLegRoom" && !s.taken);
+        if (!extraAvailable) {
+            let passengerIndex = container.dataset.passengerIndex;
+            let extraRadio = document.querySelector(
+                `input[name='Passengers[${passengerIndex}].Seats'][data-seat-type='ExtraLegRoom']`
+            );
+            if (extraRadio) extraRadio.disabled = true;
+        }
+    }
+
+    function renderSeatMap(container, seats) {
+        container.innerHTML = "";
+        seats.forEach((seat, idx) => {
+            let seatDiv = document.createElement("div");
+            seatDiv.classList.add("seat");
+            seatDiv.dataset.seatType = seat.type;
+            seatDiv.dataset.seatNumber = seat.number;
+            seatDiv.textContent = seat.number;
+
+            if (seat.taken) {
+                seatDiv.classList.add("taken");
+            } else {
+                seatDiv.classList.add("available");
+                seatDiv.addEventListener("click", () => selectSeat(container, seatDiv));
+            }
+
+            if ((idx + 1) % 6 === 4) {
+                let gap = document.createElement("div");
+                gap.classList.add("seat", "empty");
+                container.appendChild(gap);
+            }
+
+            container.appendChild(seatDiv);
+        });
+
+        container.style.display = "none";
+    }
+
+    function selectSeat(container, seatDiv) {
+        container.querySelectorAll(".seat.selected").forEach(s => s.classList.remove("selected"));
+        seatDiv.classList.add("selected");
+
+        let passengerIndex = container.dataset.passengerIndex;
+        let direction = container.dataset.direction;
+        document.querySelector(`#seatSelection${capitalize(direction)}-${passengerIndex}`).value =
+            seatDiv.dataset.seatNumber;
+    }
+
+    function toggleSeatLocks(container, selectedType) {
+        container.querySelectorAll(".seat.available").forEach(seat => {
+            if (selectedType === "Normal" && seat.dataset.seatType === "ExtraLegRoom") {
+                seat.classList.add("locked");
+                seat.style.pointerEvents = "none";
+            } else if (selectedType === "ExtraLegRoom" && seat.dataset.seatType === "Normal") {
+                seat.classList.add("locked");
+                seat.style.pointerEvents = "none";
+            } else {
+                seat.classList.remove("locked");
+                seat.style.pointerEvents = "auto";
+            }
+        });
+    }
+
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    document.querySelectorAll(".seat-type").forEach(radio => {
+        radio.addEventListener("change", (e) => {
+            let seatType = e.target.dataset.seatType;
+            let passengerIndex = e.target.name.match(/\d+/)[0];
+
+            ["Outbound", "Inbound"].forEach(direction => {
+                let container = document.querySelector(`#seatMap${direction}-${passengerIndex}`);
+                if (!container) return;
+
+                if (seatType === "None") {
+                    // Hide map and clear selected seat value
+                    container.style.display = "none";
+                } else {
+                    container.style.display = "grid"; // show again
+                    toggleSeatLocks(container, seatType);
+                }
+
+                let hiddenInput = document.querySelector(
+                    `#seatSelection${capitalize(direction)}-${passengerIndex}`
+                );
+
+                if (hiddenInput) hiddenInput.value = ""; // clear selected seat
+                container.querySelectorAll(".seat.selected").forEach(s => s.classList.remove("selected"));
+            });
+        });
+    });
+
 });
 
 // Add this at the end of your existing createBooking.js (after DOMContentLoaded init or inside it)
