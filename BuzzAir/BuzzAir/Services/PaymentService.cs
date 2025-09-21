@@ -20,7 +20,7 @@ public class PaymentService(BuzzAirDbContext dbContext) : IPaymentService
             CardHolder = data.CardHolder,
             CardNumber = data.CardNumber,
             CVC = data.CVC,
-            ExpiryDate = data.ExpiryDate,
+            ExpiryDate = DateTime.SpecifyKind(data.ExpiryDate, DateTimeKind.Utc),
             AmountInEur = totalAmountInEur
         };
 

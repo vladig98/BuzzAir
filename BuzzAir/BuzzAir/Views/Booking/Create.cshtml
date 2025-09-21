@@ -86,6 +86,13 @@
                             <option value="@country.Value">@country.Text</option>
                         }
                     </select>
+                    <select name="Passengers[@i].TravelDocument.BirthCountryId" id="@($"birthCountry{i}")" class="form-select">
+                        <option hidden disabled selected>Select your birth country</option>
+                        @foreach (SelectListItem country in Model.CountriesSelect)
+                        {
+                            <option value="@country.Value">@country.Text</option>
+                        }
+                    </select>
                 </div>
             </div>
         }

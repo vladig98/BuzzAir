@@ -3,7 +3,8 @@
 public class BookingController(
     IFlightService flightService,
     IServicesService servicesService,
-    IBookingService bookingService) : Controller
+    IBookingService bookingService,
+    ICountryService countryService) : Controller
 {
     [HttpGet]
     public async Task<IActionResult> Create(
@@ -27,6 +28,9 @@ public class BookingController(
 
         CreateBookingDto dto = new();
 
+        List<CountryDTO> countries = await countryService.GetAllCountriesAsync(null, null, token);
+
+        dto.AddCountries(countries);
         dto.AddOutboundFlight(outboundFlights);
         dto.AddInboundFlight(inboundFlights);
         dto.AddPassengers(passengersCount);

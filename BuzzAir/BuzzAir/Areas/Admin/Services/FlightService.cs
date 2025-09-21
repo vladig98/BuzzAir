@@ -184,7 +184,10 @@ public class FlightService(
 
     public Task<Flight?> GetFlightModelByIdAsync(string? flightId, CancellationToken token)
     {
-        return dbContext.Flights.Include(x => x.Aircraft).FirstOrDefaultAsync(x => x.Id == flightId, token);
+        return dbContext.Flights.Include(x => x.Aircraft)
+                                .ThenInclude(x => x.SeatMap)
+                                .Include(x => x.Passengers)
+                                .FirstOrDefaultAsync(x => x.Id == flightId, token);
     }
 
     public async Task<IList<FlightDTO>> GetFlightsByAirportsAndDatesAsync(string originId, string destinationId, DateTime departureDate, CancellationToken token = default)

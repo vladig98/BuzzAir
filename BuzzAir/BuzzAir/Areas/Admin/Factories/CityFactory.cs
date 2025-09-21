@@ -10,7 +10,7 @@ public static class CityFactory
         }
 
         SelectListGroup countryGroup = new() { Name = "Officially recognized countries" };
-        SelectListGroup dependencyGroup = new() { Name = "Territories not officially recognized as coutnries" };
+        SelectListGroup dependencyGroup = new() { Name = "Territories not officially recognized as countries" };
 
         CreateCityVM model = new();
 

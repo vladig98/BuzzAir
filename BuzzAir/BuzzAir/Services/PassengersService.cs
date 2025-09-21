@@ -21,7 +21,7 @@ public class PassengersService(
 
         Passenger passenger = new()
         {
-            DateOfBirth = data.DateOfBirth,
+            DateOfBirth = DateTime.SpecifyKind(data.DateOfBirth, DateTimeKind.Utc),
             FirstName = data.FirstName,
             Gender = gender,
             LastName = data.LastName

@@ -23,9 +23,9 @@ public class TravelDocumentService(
 
         TravelDocument travelDocument = new()
         {
-            ExpiryDate = data.ExpiryDate,
+            ExpiryDate = DateTime.SpecifyKind(data.ExpiryDate, DateTimeKind.Utc),
             Gender = gender,
-            IssueDate = data.IssueDate,
+            IssueDate = DateTime.SpecifyKind(data.IssueDate, DateTimeKind.Utc),
             Number = data.Number,
             Type = document,
             BirthCountry = birthCountry,

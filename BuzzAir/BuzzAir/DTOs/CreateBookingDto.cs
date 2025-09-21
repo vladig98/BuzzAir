@@ -7,7 +7,7 @@ public class CreateBookingDto
     public IList<ServiceDto> Services { get; } = [];
     public IList<ServiceDto> BaggageService { get; } = [];
     public IList<ServiceDto> SeatsServices { get; } = [];
-    public IEnumerable<SelectListItem> CountriesSelect { get; } = [];
+    public IList<SelectListItem> CountriesSelect { get; } = [];
     public string OutboundId { get; set; } = string.Empty;
     public string? InboundId { get; set; }
     public IList<PassengerDto> Passengers { get; } = [];
@@ -83,6 +83,27 @@ public class CreateBookingDto
         foreach (FlightDTO flight in inboundFlights)
         {
             InboundFlights.Add(flight);
+        }
+    }
+
+    public void AddCountries(IList<CountryDTO> countries)
+    {
+        if (countries is null)
+        {
+            return;
+        }
+
+        SelectListGroup countryGroup = new() { Name = "Officially recognized countries" };
+        SelectListGroup dependencyGroup = new() { Name = "Territories not officially recognized as countries" };
+
+        foreach (CountryDTO country in countries)
+        {
+            CountriesSelect.Add(new SelectListItem()
+            {
+                Text = country.Name,
+                Value = country.Id,
+                Group = country.IsOfficiallyRecognizedCountry ? countryGroup : dependencyGroup
+            });
         }
     }
 }
