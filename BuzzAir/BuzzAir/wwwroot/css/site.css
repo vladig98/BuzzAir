@@ -1,461 +1,276 @@
-﻿:root {
-    /* Reusable spacing and sizing variables */
-    --carousel-height: 90vh;
-    --searchbar-offset: 10%;
-    --searchbar-margin: 13%;
-    --font-lilita: 'Lilita One', sans-serif;
-}
-
-/*
-    Seat Map
-*/
-.seat-map {
-    display: grid;
-    grid-template-columns: repeat(7, 40px);
-    gap: 6px;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.seat {
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-    .seat.available {
-        background: #d4edda;
-    }
-    /* green */
-    .seat.taken {
-        background: #f8d7da;
-        cursor: not-allowed;
-    }
-    /* red */
-    .seat.locked {
-        background: #e2e3e5;
-        cursor: not-allowed;
-        position: relative;
-    }
-
-        .seat.locked::after {
-            content: "🔒";
-            font-size: 14px;
-            position: absolute;
-        }
-
-    .seat.selected {
-        background: #0d6efd;
-        color: white;
-    }
-
-    .seat.empty {
-        background: transparent;
-        pointer-events: none;
-    }
-
-
-/* ===== Booking page styles (for your current markup) ===== */
-form#bookingForm {
-    max-width: 1100px;
-    margin: 28px auto;
-    padding: 22px;
-    background: linear-gradient(180deg,#ffffff,#fbfdff);
-    border-radius: 12px;
-    box-shadow: 0 10px 34px rgba(12,15,20,0.06);
-    border: 1px solid rgba(15,23,42,0.04);
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+﻿/* Namespaced under .booking-wizard to avoid overriding site styles */
+.booking-wizard {
+    --accent: #0d6efd;
+    --muted: #6b7280;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
     color: #0f1724;
 }
 
-    /* Section headings */
-    form#bookingForm h3 {
-        font-size: 1.12rem;
-        margin-bottom: 12px;
-        color: #0b365f;
-        font-weight: 700;
-    }
+/* Card */
+.booking-wizard {
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 18px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 34px rgba(12,15,20,0.06);
+    border: 1px solid rgba(15,23,42,0.04);
+}
 
-    /* ---- Flight cards (the .form-check containers) ---- */
-    form#bookingForm .form-check.p-3.border.rounded {
+    /* Top: steps + summary */
+    .booking-wizard .bw-top {
         display: flex;
-        gap: 1rem;
-        align-items: center;
-        padding: 14px;
-        transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-        background: #fff;
-        border: 1px solid rgba(15,23,42,0.04);
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 14px;
     }
 
-        form#bookingForm .form-check.p-3.border.rounded:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(12,15,20,0.06);
+    .booking-wizard .bw-steps {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex: 1;
+    }
+
+    .booking-wizard .bw-step {
+        background: rgba(13,110,253,0.03);
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--muted);
+    }
+
+        .booking-wizard .bw-step.active {
+            background: rgba(13,110,253,0.12);
+            color: var(--accent);
+            box-shadow: 0 8px 20px rgba(13,110,253,0.06);
         }
 
-    /* make the radio & label align nicely */
-    form#bookingForm .form-check-input {
-        width: 18px;
-        height: 18px;
-        margin-top: 6px;
-        margin-left: 4px;
-        flex: 0 0 auto;
+    .booking-wizard .bw-summary {
+        width: 300px;
+        min-width: 220px;
+        padding: 10px;
+        border-radius: 8px;
+        background: rgba(13,110,253,0.02);
+        border: 1px solid rgba(13,110,253,0.04);
+        color: #0b365f;
+        font-size: 0.92rem;
     }
 
-    form#bookingForm .form-check-label {
-        flex: 1 1 auto;
+    .booking-wizard .bw-s-line {
         display: flex;
         justify-content: space-between;
-        gap: 1rem;
-        align-items: center;
-        cursor: pointer;
-        padding-left: 6px;
-        min-width: 0;
+        margin-bottom: 6px;
     }
 
-        /* small text in the label */
-        form#bookingForm .form-check-label .text-muted {
-            display: block;
-            font-size: .92rem;
+        .booking-wizard .bw-s-line .label {
             color: #6b7280;
+            margin-right: 8px;
         }
 
-    /* visual active state: when radio is checked highlight the label */
-    form#bookingForm input[type="radio"]:checked + .form-check-label,
-    form#bookingForm .form-check.selected {
-        border-radius: 10px;
-        background: linear-gradient(90deg, rgba(13,110,253,0.03), rgba(13,110,253,0.01));
-        border: 1px solid rgba(13,110,253,0.12);
-        box-shadow: 0 12px 30px rgba(13,110,253,0.06);
+    .booking-wizard .bw-total {
+        font-weight: 800;
+        color: var(--accent);
+        margin-top: 6px;
     }
 
-        /* ensure the checked label text stands out */
-        form#bookingForm input[type="radio"]:checked + .form-check-label .fw-semibold,
-        form#bookingForm .form-check.selected .fw-semibold {
-            color: #0d3e78;
-        }
+    .booking-wizard .bw-progressbar {
+        height: 6px;
+        background: rgba(15,23,42,0.03);
+        border-radius: 6px;
+        margin-top: 8px;
+        overflow: hidden;
+    }
 
-    /* ---- Passenger cards ---- */
-    form#bookingForm .p-3.border.rounded.mb-4 {
+    .booking-wizard .bw-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--accent);
+        transition: width .28s ease;
+    }
+
+    /* Sections */
+    .booking-wizard .bw-section {
+        padding: 6px 0 12px 0;
+    }
+
+    .booking-wizard .bw-hidden {
+        display: none !important;
+    }
+
+    /* Flight cards */
+    .booking-wizard .bw-flight-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #eef7ff;
+        margin-bottom: 10px;
         background: #fff;
-        border-radius: 10px;
-        border: 1px solid rgba(15,23,42,0.04);
-        box-shadow: 0 6px 18px rgba(12,15,20,0.04);
-        padding: 16px !important;
+        transition: transform .12s ease, box-shadow .12s ease;
     }
 
-    /* labels and inputs */
-    form#bookingForm .form-label {
-        font-weight: 600;
-        color: #0b365f;
-        font-size: .95rem;
-    }
-
-    form#bookingForm .form-control {
-        border-radius: 8px;
-    }
-
-    /* travel doc block (hidden by default using bootstrap .d-none). When visible - card styling */
-    form#bookingForm .d-none ~ .travel-doc,
-    form#bookingForm .travel-doc,
-    form#bookingForm .p-3.border.rounded .travel-doc {
-        /* travel doc is already hidden by .d-none; when shown it should look like a card */
-    }
-
-    form#bookingForm .p-3.border.rounded .travel-doc,
-    form#bookingForm .travel-doc {
-        border-top: 1px dashed #e6e6e6;
-        padding-top: 12px;
-        margin-top: 12px;
-    }
-
-/* ---- Services (pills) ---- */
-.service-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: .6rem;
-    padding: .35rem .8rem;
-    border-radius: 999px;
-    border: 1px solid #eef2f6;
-    background: #fbfdff;
-    cursor: pointer;
-    transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
-    margin: 4px 6px 4px 0;
-}
-
-    .service-pill:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(12,15,20,0.04);
-    }
-
-    .service-pill .form-check-input {
-        margin-right: .5rem;
-        transform: scale(1.02);
-    }
-
-    .service-pill .form-check-label {
-        margin: 0;
-    }
-
-    /* show as active when clicked (JS toggles .selected on wrapper) */
-    .service-pill.selected {
-        background: #0d6efd;
-        color: #fff;
-        border-color: rgba(13,110,253,0.2);
-    }
-
-/* ---- Baggage / seat radio styling (option look) ---- */
-form#bookingForm .form-check {
-    margin-bottom: .5rem;
-}
-
-form#bookingForm input[type="radio"] {
-    transform: none;
-}
-
-/* ---- Summary / totals (if you add them later) ---- */
-#summaryTotal, #paymentTotal {
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: #0d3e78;
-}
-
-/* ---- Buttons (Prev/Next) ---- */
-#prevBtn, #nextBtn {
-    min-width: 140px;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-}
-
-#prevBtn {
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    color: #0b365f;
-}
-
-#nextBtn {
-    background: #0d6efd;
-    color: #fff;
-    border: none;
-    box-shadow: 0 8px 20px rgba(13,110,253,0.08);
-}
-
-/* responsive adjustments */
-@media (max-width: 767px) {
-    form#bookingForm {
-        padding: 14px;
-        margin: 12px;
-    }
-
-        form#bookingForm .form-check-label {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 6px;
+        .booking-wizard .bw-flight-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(13,110,253,0.04);
         }
 
-    #prevBtn, #nextBtn {
-        width: 48%;
-        font-size: 15px;
+    .booking-wizard .flight-price {
+        font-weight: 800;
+        color: var(--accent);
     }
 
-    .service-pill {
-        margin-bottom: 8px;
-    }
-}
-
-
-/* Layout & responsive sidebar */
-.booking-page .section-title {
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.passenger-card {
-    border-radius: 1rem;
-    border: 1px solid #e1e1e1;
-}
-
-.service-pill {
-    background-color: #f8f9fa;
-    border-radius: 20px;
-    padding: 0.25rem 0.75rem;
-    transition: background 0.2s ease-in-out;
-}
-
-    .service-pill:hover {
-        background-color: #e9ecef;
+    /* selected state */
+    .booking-wizard .selected {
+        box-shadow: 0 12px 28px rgba(13,110,253,0.06);
+        border-radius: 10px;
     }
 
-.list-group-item {
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-
-    .list-group-item:hover {
-        background-color: #f1f3f5;
+    /* passenger card */
+    .booking-wizard .passenger-card {
+        background: #fff;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #eef7ff;
+        margin-bottom: 12px;
     }
 
-.travel-doc {
-    border-top: 1px dashed #ccc;
-    margin-top: 1rem;
-    padding-top: 1rem;
-}
-
-@media (max-width: 768px) {
-    .passenger-card {
-        padding: 1rem;
-    }
-}
-
-/* Flight search card styling */
-.search-container {
-    z-index: 20;
-}
-
-.card {
-    backdrop-filter: blur(6px);
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.object-fit-cover {
-    object-fit: cover;
-}
-
-body {
-    min-height: 100vh;
-    font-family: system-ui, sans-serif;
-}
-
-/* --- Carousel --- */
-#carousel .carousel-inner .carousel-item img {
-    width: 100%;
-    height: var(--carousel-height);
-    object-fit: cover;
-    opacity: 0.7;
-}
-
-/* --- Validation & Sections --- */
-.field-validation-error {
-    color: red;
-}
-
-.sections {
-    min-height: 95vh;
-}
-
-/* --- Utility classes --- */
-.times {
-    font-size: 2.25rem; /* 36px */
-    font-weight: 900;
-}
-
-.cityNames {
-    color: blue;
-    font-size: 1.5rem; /* 24px */
-}
-
-.leftmargin {
-    margin-left: 0.5rem;
-}
-
-.divButton {
-    cursor: pointer;
-}
-
-/* --- Boarding pass / baggage UI --- */
-.baggageDiv {
-    width: 10rem;
-    aspect-ratio: 1;
-    min-height: 3rem;
-}
-
-/* --- Search bar positioning --- */
-#searchBar {
-    position: absolute;
-    top: var(--searchbar-offset);
-    left: var(--searchbar-margin);
-    width: calc(100% - (var(--searchbar-margin) * 2));
-    z-index: 1;
-}
-
-#tab {
-    background: #fff;
-    padding: 0.5rem;
-    width: 10%;
-}
-
-#searchBar form {
-    background: #fff;
-    padding: 0.5rem;
-}
-
-/* --- Typographic styling --- */
-#text {
-    position: absolute;
-    top: -75%;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    font-family: var(--font-lilita);
-}
-
-    #text h1 {
-        font-size: 7rem; /* 120px */
-        margin: 0.2em 0;
+    /* travel doc */
+    .booking-wizard .travel-doc {
+        background: #fbfdff;
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px dashed #e6eefb;
     }
 
-    #text h5 {
-        font-size: 2rem; /* 40px */
-        margin: 0;
-        font-weight: 400;
-        color: rgba(255,255,255,0.9);
+    /* service pills */
+    .booking-wizard .service-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid #eef6ff;
+        background: #fff;
+        cursor: pointer;
+        transition: transform .08s ease;
     }
 
-/* --- Form layout tweaks --- */
-.group > div > select,
-.group > div > input,
-#searchBar > form > div > input {
-    width: 100%;
-}
+        .booking-wizard .service-pill:hover {
+            transform: translateY(-2px);
+        }
 
-/* --- Floating placeholder animation --- */
-.inputContainer {
-    position: relative;
-}
+    /* baggage */
+    .booking-wizard .baggage-list label {
+        display: block;
+        padding: 8px;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        cursor: pointer;
+    }
 
-.customPlaceholder {
-    position: absolute;
-    left: 1rem;
-    top: 1.25rem;
-    padding: 0;
-    color: #8e8e8e;
-    font-weight: 500;
-    font-size: 1.125rem; /* 20px */
-    transition: 0.2s;
-}
+    /* seat map */
+    .booking-wizard .seat-map {
+        display: grid;
+        grid-template-columns: repeat(7, 44px);
+        gap: 8px;
+        justify-content: center;
+        margin-top: 8px;
+    }
 
-.inputContainer > input:focus ~ .customPlaceholder,
-.inputContainer > select:focus ~ .customPlaceholder,
-.selectedSelect + .customPlaceholder {
-    top: -0.75rem;
-    left: 1rem;
-    font-size: 0.9rem;
-    background: #fff;
-    padding: 0 0.25rem;
-}
+    .booking-wizard .seat {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        user-select: none;
+    }
 
-/* --- Date input “mask” styling --- */
-/* Hide built-in date fields when within allowed range */
-input[type="date"]:in-range::-webkit-datetime-edit-year-field,
-input[type="date"]:in-range::-webkit-datetime-edit-month-field,
-input[type="date"]:in-range::-webkit-datetime-edit-day-field,
-input[type="date"]:in-range::-webkit-datetime-edit-text {
-    color: transparent;
+        .booking-wizard .seat.available {
+            background: #d1fae5;
+            cursor: pointer;
+        }
+
+        .booking-wizard .seat.taken {
+            background: #fee2e2;
+            color: #7f1d1d;
+            cursor: not-allowed;
+            opacity: 0.95;
+        }
+
+        .booking-wizard .seat.locked {
+            background: #eef2f5;
+            color: #9aa7b2;
+            cursor: not-allowed;
+        }
+
+        .booking-wizard .seat.selected {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(13,110,253,0.08);
+        }
+
+        .booking-wizard .seat.empty {
+            background: transparent;
+            pointer-events: none;
+        }
+
+    /* Payment block */
+    .booking-wizard .alert {
+        background: #eef5ff;
+        color: #0b365f;
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid rgba(13,110,253,0.06);
+    }
+
+    .booking-wizard .wizard-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .booking-wizard .btn {
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .booking-wizard .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        box-shadow: 0 10px 30px rgba(13,110,253,0.08);
+    }
+
+    .booking-wizard .btn-outline-secondary {
+        background: #fff;
+        border: 1px solid #e6eefb;
+        color: #0b365f;
+    }
+
+/* simple responsive */
+@media (max-width: 900px) {
+    .booking-wizard .bw-top {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .booking-wizard .bw-summary {
+        width: 100%;
+    }
+
+    .booking-wizard .seat-map {
+        grid-template-columns: repeat(5, 40px);
+        gap: 6px;
+    }
 }

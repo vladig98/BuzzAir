@@ -1,147 +1,289 @@
 ﻿"use strict";
 
+/*
+  createBooking.js
+  - No Razor in JS. Reads everything from the DOM.
+  - Keeps all existing input names and hidden fields intact.
+  - Seat map is 3 + aisle + 3 columns.
+  - Locked seats show padlock; seats with price show money bag badge.
+  - Detailed summary on the right shows selected flights + passenger-by-passenger info.
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("[CreateBooking] Booting page...");
+    const form = document.getElementById("bookingForm");
+    if (!form) return;
 
-    // Grab all sections
-    const sections = Array.from(document.querySelectorAll("[data-section]"));
-    let currentIndex = 0;
+    const passengerCount = Number(form.dataset.passengers || 0);
+    const hasInboundAttr = form.dataset.hasInbound || "false";
+    const hasInbound = hasInboundAttr.toLowerCase() === "true" || hasInboundAttr === "1";
 
-    function showSection(index) {
-        sections.forEach((sec, i) => {
-            sec.classList.toggle("d-none", i !== index);
-        });
-    }
-
-    // Show first section by default
-    showSection(currentIndex);
-
-    // Wire up navigation buttons
-    const nextBtn = document.getElementById("nextBtn");
+    // DOM references
+    const sections = Array.from(form.querySelectorAll("[data-section]"));
+    const steps = Array.from(form.querySelectorAll(".bw-step"));
     const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const detailedSummary = document.getElementById("detailedSummary");
+    const passengersSummaryList = document.getElementById("passengersSummaryList");
+    const summaryOutboundShort = document.getElementById("summaryOutboundShort");
+    const summaryInboundShort = document.getElementById("summaryInboundShort");
+    const summaryPassengersShort = document.getElementById("summaryPassengersShort");
+    const summaryTotalShort = document.getElementById("summaryTotalShort");
+    const totalPriceEl = document.getElementById("totalPrice");
+    const totalPriceInput = document.getElementById("totalPriceInput");
+    const progressFill = document.getElementById("bwProgressFill");
 
-    function updateNavButtons() {
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.textContent = currentIndex === sections.length - 1 ? "Confirm & Pay" : "Next";
+    let currentIndex = 0;
+    const maxIndex = sections.length - 1;
+
+    // show section helper
+    function showSection(idx) {
+        sections.forEach((s, i) => s.classList.toggle("bw-hidden", i !== idx));
+        steps.forEach((st, i) => st.classList.toggle("active", i <= idx));
+        if (progressFill) progressFill.style.width = `${(idx / maxIndex) * 100}%`;
+        prevBtn.disabled = idx === 0;
+        nextBtn.textContent = idx === maxIndex ? "Confirm & Pay" : "Next";
+        currentIndex = idx;
+        updateSummary();
+        if (idx === 2) requestSeatMapsForSelectedFlights();
     }
 
+    // initial
+    showSection(0);
+
+    // step clicking
+    steps.forEach(s => s.addEventListener("click", () => {
+        const idx = Number(s.dataset.step);
+        if (!isNaN(idx)) showSection(idx);
+    }));
+
+    prevBtn.addEventListener("click", () => { if (currentIndex > 0) showSection(currentIndex - 1); });
     nextBtn.addEventListener("click", () => {
-        if (currentIndex < sections.length - 1) {
-            currentIndex++;
-            showSection(currentIndex);
-            updateNavButtons();
-        } else {
-            console.log("[CreateBooking] Submitting booking...");
-            document.getElementById("bookingForm").submit();
-        }
+        if (currentIndex < maxIndex) showSection(currentIndex + 1);
+        else form.submit();
     });
 
-    prevBtn.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            showSection(currentIndex);
-            updateNavButtons();
-        }
-    });
-
-    updateNavButtons();
-
-    // Wire up Check-in Now toggles
-    const checkInToggles = document.querySelectorAll("[id^='checkInNow']");
-    checkInToggles.forEach(toggle => {
-        toggle.addEventListener("change", (e) => {
-            const index = toggle.id.replace("checkInNow", "");
-            const hiddenSection = toggle.closest(".mb-3, .form-check").nextElementSibling;
-            if (hiddenSection) {
-                hiddenSection.classList.toggle("d-none", !e.target.checked);
+    // prettier gender segmented control (labels act as toggles)
+    document.querySelectorAll(".gender-toggle").forEach(gt => {
+        const labels = gt.querySelectorAll(".gender-btn");
+        labels.forEach(lbl => {
+            lbl.addEventListener("click", () => {
+                // find corresponding hidden input and check it
+                const forId = lbl.getAttribute("for");
+                const inp = document.getElementById(forId);
+                if (inp) {
+                    inp.checked = true;
+                    // style - make sibling labels reflect state
+                    labels.forEach(l => l.classList.toggle("active", l === lbl));
+                }
+            });
+        });
+        // init active state if radio pre-checked
+        gt.querySelectorAll("input[type='radio']").forEach(inp => {
+            if (inp.checked) {
+                const lbl = gt.querySelector(`label[for="${inp.id}"]`);
+                if (lbl) lbl.classList.add("active");
             }
         });
     });
 
-    let connection = new signalR.HubConnectionBuilder()
-        .withUrl("/seatMapHub")
-        .build();
-
-    connection.start().then(() => console.log("SignalR connected."));
-
-    document.querySelectorAll("input[name='OutboundId']").forEach(radio => {
-        radio.addEventListener("change", (e) => {
-            let flightId = e.target.value;
-            connection.invoke("SendSeatMap", flightId, "outbound");
+    // check-in toggle -> show travel doc block for passenger
+    form.querySelectorAll(".check-in-toggle").forEach(t => {
+        t.addEventListener("change", (e) => {
+            const container = e.target.closest("[data-passenger-index]");
+            if (!container) return;
+            const travel = container.querySelector(".travel-doc");
+            if (travel) travel.classList.toggle("bw-hidden", !e.target.checked);
+            updateSummary();
         });
     });
 
-    document.querySelectorAll("input[name='InboundId']").forEach(radio => {
-        radio.addEventListener("change", (e) => {
-            let flightId = e.target.value;
-            connection.invoke("SendSeatMap", flightId, "inbound");
-        });
+    // highlight selected cards (flight/service/baggage)
+    form.addEventListener("change", (e) => {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        const el = e.target;
+        if (el.type === "radio") {
+            const name = el.name;
+            form.querySelectorAll(`input[type="radio"][name="${CSS.escape(name)}"]`).forEach(r => {
+                const card = r.closest(".bw-flight-card") || r.closest(".baggage-item") || r.closest(".seat-type-item");
+                if (card) card.classList.toggle("selected", r.checked);
+            });
+        }
+        // update totals and summary on any change
+        updateTotalPrice();
+        updateSummary();
     });
 
-    connection.on("ReceiveSeatMap", (seatMap, direction) => {
-        document.querySelectorAll(`.seat-map[data-direction='${direction}']`).forEach(container => {
-            renderSeatMap(container, seatMap);
-            disableExtraLegRoomIfNeeded(container, seatMap);
-        });
+    // initial highlight
+    form.querySelectorAll("input[type='radio']").forEach(r => {
+        if (r.checked) {
+            const card = r.closest(".bw-flight-card") || r.closest(".baggage-item") || r.closest(".seat-type-item");
+            if (card) card.classList.add("selected");
+        }
     });
 
-    function disableExtraLegRoomIfNeeded(container, seatMap) {
-        let extraAvailable = seatMap.some(s => s.type === "ExtraLegRoom" && !s.taken);
-        if (!extraAvailable) {
-            let passengerIndex = container.dataset.passengerIndex;
-            let extraRadio = document.querySelector(
-                `input[name='Passengers[${passengerIndex}].Seats'][data-seat-type='ExtraLegRoom']`
-            );
-            if (extraRadio) extraRadio.disabled = true;
+    // ------------------- Seat maps -------------------
+    // Desired layout: 3 + aisle + 3 => grid-template-columns: repeat(3, size) 16px repeat(3, size)
+    function seatGridColumnsCss(sizePx = 48) {
+        return `repeat(3, ${sizePx}px) 18px repeat(3, ${sizePx}px)`;
+    }
+
+    // SignalR optional connection
+    let connection = null;
+    if (window.signalR) {
+        try {
+            connection = new signalR.HubConnectionBuilder().withUrl("/seatMapHub").build();
+            connection.start().then(() => console.log("SignalR connected")).catch(err => console.warn("SignalR start:", err));
+            connection.on("ReceiveSeatMap", (seatMap, direction, flightId) => {
+                document.querySelectorAll(`.seat-map[data-direction='${direction}']`).forEach(container => {
+                    renderSeatMap(container, seatMap);
+                    // apply locks depending on seat-type
+                    const pi = container.dataset.passengerIndex;
+                    const seatTypeRadio = form.querySelector(`input[name='Passengers[${pi}].Seats']:checked`);
+                    if (seatTypeRadio) toggleSeatLocks(container, seatTypeRadio.dataset.seatType);
+                });
+            });
+        } catch (err) {
+            console.warn("SignalR init error", err);
+            connection = null;
         }
     }
 
+    // Request seat maps for selected flights
+    function requestSeatMapsForSelectedFlights() {
+        const out = form.querySelector("input[name='OutboundId']:checked");
+        const inb = form.querySelector("input[name='InboundId']:checked");
+        if (connection) {
+            if (out) connection.invoke("SendSeatMap", out.value, "outbound").catch(console.error);
+            if (inb) connection.invoke("SendSeatMap", inb.value, "inbound").catch(console.error);
+        } else {
+            // fallback: generate a deterministic demo map by flight id so UI works offline
+            if (out) {
+                document.querySelectorAll(`.seat-map[data-direction='outbound']`).forEach(container => {
+                    renderSeatMap(container, generateSeatMapDemo(out.value));
+                });
+            }
+            if (inb) {
+                document.querySelectorAll(`.seat-map[data-direction='inbound']`).forEach(container => {
+                    renderSeatMap(container, generateSeatMapDemo(inb.value));
+                });
+            }
+        }
+        updateSummary();
+    }
+
+    // deterministic demo generator: consistent per flightId
+    function generateSeatMapDemo(flightId) {
+        let hash = 0;
+        for (let i = 0; i < flightId.length; i++) hash = (hash << 5) - hash + flightId.charCodeAt(i);
+        hash = Math.abs(hash);
+        const rows = 12; // show 12 rows
+        const seats = [];
+        for (let r = 1; r <= rows; r++) {
+            // left block A,B,C
+            for (let c = 0; c < 3; c++) {
+                const seatNumber = `${r}${String.fromCharCode(65 + c)}`;
+                const seed = (hash + r * 17 + c * 23) % 100;
+                const taken = seed < 18; // ~18% taken
+                const type = (c === 1 && r % 4 === 0) ? "ExtraLegRoom" : "Normal"; // occasional extra leg
+                const price = (type === "ExtraLegRoom") ? 20.0 : 0;
+                seats.push({ number: seatNumber, type, taken, price });
+            }
+            // aisle marker
+            seats.push({ aisleGapBefore: true });
+            // right block D,E,F
+            for (let c = 3; c < 6; c++) {
+                const seatNumber = `${r}${String.fromCharCode(65 + c)}`;
+                const seed = (hash + r * 13 + c * 19) % 100;
+                const taken = seed < 16;
+                const type = (c === 4 && r % 5 === 0) ? "ExtraLegRoom" : "Normal";
+                const price = (type === "ExtraLegRoom") ? 20.0 : 0;
+                seats.push({ number: seatNumber, type, taken, price });
+            }
+        }
+        return seats;
+    }
+
+    // Render seat map using 3+aisle+3 columns
     function renderSeatMap(container, seats) {
         container.innerHTML = "";
-        seats.forEach((seat, idx) => {
-            let seatDiv = document.createElement("div");
-            seatDiv.classList.add("seat");
-            seatDiv.dataset.seatType = seat.type;
-            seatDiv.dataset.seatNumber = seat.number;
-            seatDiv.textContent = seat.number;
+        // set grid template
+        container.style.display = "grid";
+        container.style.gridTemplateColumns = seatGridColumnsCss(48);
+        container.style.gap = "8px";
 
-            if (seat.taken) {
-                seatDiv.classList.add("taken");
-            } else {
-                seatDiv.classList.add("available");
-                seatDiv.addEventListener("click", () => selectSeat(container, seatDiv));
-            }
-
-            if ((idx + 1) % 6 === 4) {
-                let gap = document.createElement("div");
-                gap.classList.add("seat", "empty");
+        seats.forEach(item => {
+            if (item.aisleGapBefore) {
+                const gap = document.createElement("div");
+                gap.className = "seat empty";
+                gap.style.background = "transparent";
+                // ensure gap occupies the aisle column: create an empty placeholder sized like the 18px defined
+                gap.style.width = "18px";
+                gap.style.pointerEvents = "none";
                 container.appendChild(gap);
+                return;
             }
 
-            container.appendChild(seatDiv);
+            const s = document.createElement("div");
+            s.className = "seat";
+            s.textContent = item.number;
+            s.dataset.seatNumber = item.number;
+            s.dataset.seatType = item.type || "Normal";
+            if (item.price !== undefined) s.dataset.price = item.price;
+
+            if (item.taken) {
+                s.classList.add("taken");
+            } else {
+                s.classList.add("available");
+                s.addEventListener("click", () => {
+                    if (s.classList.contains("locked") || s.classList.contains("taken")) return;
+                    selectSeat(container, s);
+                });
+            }
+
+            // if priced show money bag badge
+            if (item.price && Number(item.price) > 0) {
+                const badge = document.createElement("span");
+                badge.className = "seat-price-badge";
+                badge.textContent = "💰";
+                s.appendChild(badge);
+            }
+
+            container.appendChild(s);
         });
 
-        container.style.display = "none";
+        // set visible/hidden based on seat-type radio for that passenger
+        const pi = container.dataset.passengerIndex;
+        const seatTypeRadio = form.querySelector(`input[name='Passengers[${pi}].Seats']:checked`);
+        if (seatTypeRadio && seatTypeRadio.dataset.seatType === "None") {
+            container.style.display = "none";
+        } else {
+            container.style.display = "grid";
+            // apply locks
+            if (seatTypeRadio) toggleSeatLocks(container, seatTypeRadio.dataset.seatType);
+        }
     }
 
-    function selectSeat(container, seatDiv) {
+    function selectSeat(container, seatEl) {
         container.querySelectorAll(".seat.selected").forEach(s => s.classList.remove("selected"));
-        seatDiv.classList.add("selected");
-
-        let passengerIndex = container.dataset.passengerIndex;
-        let direction = container.dataset.direction;
-        document.querySelector(`#seatSelection${capitalize(direction)}-${passengerIndex}`).value =
-            seatDiv.dataset.seatNumber;
+        seatEl.classList.add("selected");
+        const pi = container.dataset.passengerIndex;
+        const dir = container.dataset.direction;
+        const hid = document.getElementById(`seatSelection${capitalize(dir)}-${pi}`);
+        if (hid) hid.value = seatEl.dataset.seatNumber || "";
+        updateTotalPrice();
+        updateSummary();
     }
 
+    function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    // lock mismatched seats based on selected seat-type
     function toggleSeatLocks(container, selectedType) {
         container.querySelectorAll(".seat.available").forEach(seat => {
-            if (selectedType === "Normal" && seat.dataset.seatType === "ExtraLegRoom") {
+            const t = seat.dataset.seatType || "Normal";
+            if ((selectedType === "Normal" && t === "ExtraLegRoom") || (selectedType === "ExtraLegRoom" && t === "Normal")) {
                 seat.classList.add("locked");
                 seat.style.pointerEvents = "none";
-            } else if (selectedType === "ExtraLegRoom" && seat.dataset.seatType === "Normal") {
-                seat.classList.add("locked");
-                seat.style.pointerEvents = "none";
+                // show padlock overlay (CSS will use ::after)
             } else {
                 seat.classList.remove("locked");
                 seat.style.pointerEvents = "auto";
@@ -149,102 +291,164 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-    document.querySelectorAll(".seat-type").forEach(radio => {
+    // seat-type radio behavior
+    form.querySelectorAll(".seat-type").forEach(radio => {
         radio.addEventListener("change", (e) => {
-            let seatType = e.target.dataset.seatType;
-            let passengerIndex = e.target.name.match(/\d+/)[0];
-
-            ["Outbound", "Inbound"].forEach(direction => {
-                let container = document.querySelector(`#seatMap${direction}-${passengerIndex}`);
+            const matches = radio.name.match(/\d+/);
+            if (!matches) return;
+            const pi = matches[0];
+            ["Outbound", "Inbound"].forEach(dir => {
+                const container = document.getElementById(`seatMap${dir}-${pi}`);
                 if (!container) return;
-
-                if (seatType === "None") {
-                    // Hide map and clear selected seat value
+                if (radio.dataset.seatType === "None") {
                     container.style.display = "none";
+                    const hid = document.getElementById(`seatSelection${dir}-${pi}`);
+                    if (hid) hid.value = "";
+                    container.querySelectorAll(".seat.selected").forEach(s => s.classList.remove("selected"));
                 } else {
-                    container.style.display = "grid"; // show again
-                    toggleSeatLocks(container, seatType);
+                    container.style.display = "grid";
+                    toggleSeatLocks(container, radio.dataset.seatType);
                 }
-
-                let hiddenInput = document.querySelector(
-                    `#seatSelection${capitalize(direction)}-${passengerIndex}`
-                );
-
-                if (hiddenInput) hiddenInput.value = ""; // clear selected seat
-                container.querySelectorAll(".seat.selected").forEach(s => s.classList.remove("selected"));
             });
+            updateTotalPrice();
+            updateSummary();
+        });
+
+        // initial visibility
+        if (radio.checked) {
+            const matches = radio.name.match(/\d+/);
+            if (matches) {
+                const pi = matches[0];
+                const cOut = document.getElementById(`seatMapOutbound-${pi}`);
+                const cIn = document.getElementById(`seatMapInbound-${pi}`);
+                const show = radio.dataset.seatType !== "None";
+                if (cOut) cOut.style.display = show ? "grid" : "none";
+                if (cIn) cIn.style.display = show ? "grid" : "none";
+            }
+        }
+    });
+
+    // when flights selection changes request seat maps
+    form.querySelectorAll("input[name='OutboundId'], input[name='InboundId']").forEach(r => {
+        r.addEventListener("change", () => {
+            updateTotalPrice();
+            requestSeatMapsForSelectedFlights();
         });
     });
 
-});
+    // initial seat maps if preselected flights exist
+    requestSeatMapsForSelectedFlights();
 
-// Add this at the end of your existing createBooking.js (after DOMContentLoaded init or inside it)
-(function () {
-    // apply "selected" styling to the form-check container for each radio group
-    function wireSelectionHighlights() {
-        document.querySelectorAll('input[type="radio"]').forEach(radio => {
-            radio.addEventListener('change', (ev) => {
-                const name = ev.target.name;
-                // remove .selected from all siblings in same radio group
-                document.querySelectorAll(`input[type="radio"][name="${name}"]`).forEach(r => {
-                    const container = r.closest('.form-check');
-                    if (container) container.classList.remove('selected');
-                });
-                const selectedContainer = ev.target.closest('.form-check');
-                if (selectedContainer) selectedContainer.classList.add('selected');
-            });
-            // check initially if it is checked and set class
-            if (radio.checked) {
-                const container = radio.closest('.form-check');
-                if (container) container.classList.add('selected');
+    // ------------------- Pricing (sums data-price plus seat element prices) -------------------
+    function updateTotalPrice() {
+        let total = 0;
+        const out = form.querySelector("input[name='OutboundId']:checked");
+        if (out && out.dataset.price) total += Number(out.dataset.price || 0);
+        const inb = form.querySelector("input[name='InboundId']:checked");
+        if (inb && inb.dataset.price) total += Number(inb.dataset.price || 0);
+
+        // all checked inputs carrying data-price
+        form.querySelectorAll("input[data-price]").forEach(inp => {
+            if ((inp.type === "checkbox" && inp.checked) || (inp.type === "radio" && inp.checked)) {
+                total += Number(inp.dataset.price || 0);
             }
         });
+
+        // add selected seat DOM price badges
+        form.querySelectorAll(".seat.selected").forEach(s => {
+            if (s.dataset.price) total += Number(s.dataset.price || 0);
+        });
+
+        if (!Number.isFinite(total)) total = 0;
+        const text = `€${total.toFixed(2)}`;
+        if (totalPriceEl) totalPriceEl.textContent = text;
+        if (totalPriceInput) totalPriceInput.value = total.toFixed(2);
+        if (summaryTotalShort) summaryTotalShort.textContent = text;
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', wireSelectionHighlights);
-    } else {
-        wireSelectionHighlights();
+    // hook price-carrying inputs
+    form.querySelectorAll("input[data-price]").forEach(inp => inp.addEventListener("change", updateTotalPrice));
+    updateTotalPrice();
+
+    // ------------------- Summary building -------------------
+    function updateSummary() {
+        // top short summary
+        const out = form.querySelector("input[name='OutboundId']:checked");
+        const inb = form.querySelector("input[name='InboundId']:checked");
+        summaryOutboundShort.textContent = out ? (out.closest("label")?.querySelector(".bw-route")?.textContent?.trim() || out.value) : "—";
+        summaryInboundShort.textContent = inb ? (inb.closest("label")?.querySelector(".bw-route")?.textContent?.trim() || inb.value) : (hasInbound ? "—" : "N/A");
+        summaryPassengersShort.textContent = String(passengerCount || 0);
+        summaryTotalShort.textContent = totalPriceEl ? totalPriceEl.textContent : "€0.00";
+
+        // detailed per-passenger summary
+        passengersSummaryList.innerHTML = "";
+        for (let i = 0; i < passengerCount; i++) {
+            const pName = (form.querySelector(`input[name="Passengers[${i}].FirstName"]`)?.value || "—") +
+                " " +
+                (form.querySelector(`input[name="Passengers[${i}].LastName"]`)?.value || "");
+            const checkedIn = !!form.querySelector(`#checkInNow${i}`)?.checked;
+            const seatOut = form.querySelector(`#seatSelectionOutbound-${i}`)?.value || "—";
+            const seatIn = form.querySelector(`#seatSelectionInbound-${i}`)?.value || (hasInbound ? "—" : "N/A");
+            // services
+            const servicesEls = Array.from(form.querySelectorAll(`input[name="Passengers[${i}].ServiceIds"]:checked`));
+            const services = servicesEls.map(s => s.closest("label")?.querySelector(".service-name")?.textContent?.trim() || s.value);
+            // baggage
+            const bag = form.querySelector(`input[name="Passengers[${i}].Baggage"]:checked`);
+            const baggageText = bag ? (bag.closest("label")?.querySelector(".baggage-text")?.textContent?.trim() || bag.value) : "—";
+            // travel doc present?
+            const docNumber = form.querySelector(`input[name="Passengers[${i}].TravelDocument.Number"]`)?.value;
+            const travelDocPresent = docNumber ? "Yes" : (checkedIn ? "No details" : "No");
+
+            // seat type selected
+            const seatTypeRadio = form.querySelector(`input[name="Passengers[${i}].Seats"]:checked`);
+            const seatType = seatTypeRadio ? seatTypeRadio.dataset.seatType : "None";
+
+            const pCard = document.createElement("div");
+            pCard.className = "pass-summary-card";
+            pCard.innerHTML = `
+                <div class="pass-summary-head"><strong>${escapeHtml(pName.trim())}</strong> <span class="small muted">#${i + 1}</span></div>
+                <div class="pass-summary-row"><strong>Seat (Out):</strong> ${escapeHtml(seatOut)}</div>
+                <div class="pass-summary-row"><strong>Seat (In):</strong> ${escapeHtml(seatIn)}</div>
+                <div class="pass-summary-row"><strong>Seat Type:</strong> ${escapeHtml(seatType)}</div>
+                <div class="pass-summary-row"><strong>Services:</strong> ${services.length ? escapeHtml(services.join(", ")) : "—"}</div>
+                <div class="pass-summary-row"><strong>Baggage:</strong> ${escapeHtml(baggageText)}</div>
+                <div class="pass-summary-row"><strong>Checked-in:</strong> ${checkedIn ? "Yes" : "No"}</div>
+                <div class="pass-summary-row"><strong>Travel doc:</strong> ${escapeHtml(travelDocPresent)}</div>
+            `;
+            passengersSummaryList.appendChild(pCard);
+        }
     }
-})();
 
+    // helper to escape HTML when injecting text
+    function escapeHtml(text) {
+        if (!text && text !== 0) return "";
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
 
-const totalPriceEl = document.getElementById("totalPrice");
-const totalPriceInput = document.getElementById("totalPriceInput");
+    // make summary update on input changes
+    form.addEventListener("input", (e) => {
+        // update only when relevant fields change
+        if (!e.target) return;
+        if (e.target.matches("input, select, textarea")) {
+            updateSummary();
+            updateTotalPrice();
+        }
+    });
 
-function updateTotalPrice() {
-    let total = 0;
+    // initial summary build
+    updateSummary();
 
-    // Outbound Flight
-    const selectedOutbound = document.querySelector("input[name='OutboundId']:checked");
-    if (selectedOutbound) total += parseFloat(selectedOutbound.dataset.price);
-
-    // Inbound Flight
-    const selectedInbound = document.querySelector("input[name='InboundId']:checked");
-    if (selectedInbound) total += parseFloat(selectedInbound.dataset.price);
-
-    // Services
-    document.querySelectorAll("input[name^='Passengers'][name$='ServiceIds']:checked")
-        .forEach(s => total += parseFloat(s.dataset.price));
-
-    // Baggage
-    document.querySelectorAll("input[name^='Passengers'][name$='Baggage']:checked")
-        .forEach(b => total += parseFloat(b.dataset.price));
-
-    // Seats
-    document.querySelectorAll("input[name^='Passengers'][name$='Seats']:checked")
-        .forEach(s => total += parseFloat(s.dataset.price));
-
-    totalPriceEl.textContent = `€${total.toFixed(2)}`;
-    totalPriceInput.value = total.toFixed(2);
-}
-
-// Attach listeners
-document.querySelectorAll("input[type='radio'], input[type='checkbox']")
-    .forEach(el => el.addEventListener("change", updateTotalPrice));
-
-updateTotalPrice(); // Run once on page load
+    // expose helpful functions for debugging
+    window.__bookingHelper = {
+        requestSeatMapsForSelectedFlights,
+        renderSeatMap,
+        generateSeatMapDemo,
+        updateTotalPrice,
+        updateSummary
+    };
+});

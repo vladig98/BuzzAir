@@ -1,0 +1,425 @@
+﻿/* Namespaced under .booking-wizard, 75% width layout, desktop-first */
+.booking-wizard {
+    --accent: #0d6efd;
+    --muted: #6b7280;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    color: #0f1724;
+    width: 75vw; /* use more horizontal space */
+    max-width: 1400px;
+    margin: 28px auto;
+    padding: 18px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 34px rgba(12,15,20,0.06);
+    border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* grid: main column + summary column */
+.bw-top-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 18px;
+}
+
+/* MAIN column */
+.bw-main-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* STEP pills at top (compact) */
+.bw-steps {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.bw-step {
+    background: rgba(13,110,253,0.03);
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+    .bw-step.active {
+        background: rgba(13,110,253,0.12);
+        color: var(--accent);
+        box-shadow: 0 8px 20px rgba(13,110,253,0.06);
+    }
+
+/* SECTION container */
+.bw-section {
+    padding: 6px 0 12px 0;
+}
+
+.bw-hidden {
+    display: none !important;
+}
+
+/* ---------------- Flight card - input inside label for clean layout ---------------- */
+.bw-flight-card {
+    margin-bottom: 10px;
+}
+
+.bw-flight-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #eef7ff;
+    background: #fff;
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor: pointer;
+}
+
+    .bw-flight-label:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(13,110,253,0.04);
+    }
+
+    .bw-flight-label input[type="radio"] {
+        flex: 0 0 auto;
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        accent-color: var(--accent);
+    }
+
+.bw-flight-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.bw-route {
+    font-weight: 700;
+    color: #0d3e78;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bw-times {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.bw-price {
+    font-weight: 800;
+    color: var(--accent);
+}
+
+/* selected state */
+.bw-flight-label.selected, .bw-flight-label input:checked + .bw-flight-content {
+    outline: none;
+    box-shadow: 0 12px 28px rgba(13,110,253,0.06);
+}
+
+/* ---------------- Passenger card ---------------- */
+.passenger-card {
+    background: #fbfdff;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #eef7ff;
+    margin-bottom: 12px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #e6eef8;
+    padding: 8px;
+}
+
+/* gender segmented control */
+.gender-toggle {
+    display: inline-flex;
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid #e6eef8;
+    background: #fff;
+}
+
+    .gender-toggle .gender-btn {
+        padding: 6px 10px;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+        color: #333;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .gender-toggle .gender-btn.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+/* ---------------- Services and baggage ---------------- */
+.service-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.service-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid #eef6ff;
+    background: #fff;
+    cursor: pointer;
+    transition: transform .08s ease;
+}
+
+    .service-pill input[type="checkbox"] {
+        margin-right: 6px;
+        accent-color: var(--accent);
+    }
+
+    .service-pill .service-price {
+        font-weight: 700;
+        color: var(--accent);
+        margin-left: 8px;
+    }
+
+    /* when service checkbox is checked visually highlight the pill */
+    .service-pill input[type="checkbox"]:checked + .service-name,
+    .service-pill input[type="checkbox"]:checked ~ .service-price {
+        /* we style via JS by adding .selected class to label to be robust */
+    }
+
+    .service-pill.selected {
+        background: rgba(13,110,253,0.06);
+        border-color: rgba(13,110,253,0.12);
+        color: var(--accent);
+    }
+
+/* baggage layout */
+.baggage-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+    .baggage-item input[type="radio"] {
+        accent-color: var(--accent);
+        transform: scale(1.05);
+    }
+
+/* ---------------- Seat map - 3 + aisle + 3 ---------------- */
+.seat-map {
+    display: grid;
+    grid-template-columns: repeat(3, 48px) 18px repeat(3, 48px);
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.seat {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    user-select: none;
+    position: relative;
+}
+
+    .seat.available {
+        background: #d1fae5;
+        cursor: pointer;
+        color: #064e3b;
+    }
+
+    .seat.taken {
+        background: #fee2e2;
+        color: #7f1d1d;
+        cursor: not-allowed;
+    }
+
+    .seat.locked {
+        background: #f3f4f6;
+        color: #6b7280;
+        cursor: not-allowed;
+        opacity: 0.95;
+    }
+
+    .seat.selected {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(13,110,253,0.08);
+    }
+
+    /* money bag badge (top-right) for priced seats */
+    .seat .seat-price-badge {
+        position: absolute;
+        top: 4px;
+        right: 6px;
+        font-size: 12px;
+    }
+    /* padlock overlay for locked seats (uses ::after) */
+    .seat.locked::after {
+        content: "🔒";
+        position: absolute;
+        left: 6px;
+        bottom: 4px;
+        font-size: 12px;
+    }
+
+    /* empty aisle placeholder */
+    .seat.empty {
+        background: transparent;
+        pointer-events: none;
+    }
+
+/* ---------------- Seat-type radio pills ---------------- */
+.seat-type-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #eef7ff;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+    .seat-type-item input {
+        display: none;
+    }
+
+        .seat-type-item input:checked + span {
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+/* ---------------- Payment area ---------------- */
+.alert {
+    background: #eef5ff;
+    color: #0b365f;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid rgba(13,110,253,0.06);
+}
+
+.wizard-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    box-shadow: 0 10px 30px rgba(13,110,253,0.08);
+}
+
+.btn-outline-secondary {
+    background: #fff;
+    border: 1px solid #e6eefb;
+    color: #0b365f;
+}
+
+/* ---------------- Summary column ---------------- */
+.bw-summary-col {
+    background: #fbfdff;
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #eef7ff;
+    height: calc(100% - 0px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+    top: 28px;
+}
+
+.summary-header .summary-title {
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+
+.summary-content {
+    overflow: auto;
+    max-height: 70vh;
+    padding-right: 6px;
+}
+
+.pass-summary-card {
+    border: 1px solid #eef6ff;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+    background: #fff;
+}
+
+.pass-summary-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+}
+
+.pass-summary-row {
+    font-size: 0.92rem;
+    color: #0b365f;
+    margin-top: 6px;
+}
+
+/* responsive */
+@media (max-width: 1100px) {
+    .bw-top-grid {
+        grid-template-columns: 1fr 320px;
+    }
+
+    .booking-wizard {
+        width: 92vw;
+    }
+
+    .seat-map {
+        grid-template-columns: repeat(3, 40px) 12px repeat(3, 40px);
+        gap: 6px;
+    }
+}
+
+@media (max-width: 800px) {
+    .bw-top-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bw-summary-col {
+        position: relative;
+        top: auto;
+        max-height: none;
+    }
+
+    .booking-wizard {
+        width: 96vw;
+        padding: 12px;
+    }
+}
