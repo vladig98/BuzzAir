@@ -1,6 +1,10 @@
 ﻿namespace BuzzAir.Services;
 
-public class DataSeeder(IServiceProvider serviceProvider) : IDataSeeder
+public class DataSeeder(
+    IServiceProvider serviceProvider,
+    RoleManager<string> roleManager,
+    UserManager<ApplicationUser> userManager,
+    IConfiguration configuration) : IDataSeeder
 {
     private const string _parentFolderPath = @"..\..\..\..";
     private const string _dataProjectName = "Buzzair.Data";
@@ -97,6 +101,37 @@ public class DataSeeder(IServiceProvider serviceProvider) : IDataSeeder
 
         await SeedFlights(dbContext);
         await SeedServices(dbContext);
+
+        if (!await roleManager.Roles.AnyAsync())
+        {
+            _ = await roleManager.CreateAsync("Admin");
+            _ = await roleManager.CreateAsync("User");
+        }
+
+        if (!await userManager.Users.AnyAsync())
+        {
+            SeedingDataSecrets secrets = new();
+            configuration.GetSection("DataSeed:Admin").Bind(secrets);
+
+            ApplicationUser user = new()
+            {
+                CityId = existingCitiesByName[secrets.CityName].Id,
+                DateOfBirth = DateTime.SpecifyKind(DateTime.ParseExact(secrets.DOB, "yyyy-MM-dd", CultureInfo.InvariantCulture), DateTimeKind.Utc),
+                FirstName = secrets.FirstName,
+                LastName = secrets.LastName,
+                Gender = Enum.Parse<Gender>(secrets.Gender),
+                PostalCode = secrets.PostalCode,
+                Street = secrets.Street
+            };
+
+            _ = await userManager.CreateAsync(user);
+            _ = await userManager.AddPasswordAsync(user, secrets.Password);
+            _ = await userManager.AddToRolesAsync(user, ["Admin"]);
+
+            _ = await userManager.SetEmailAsync(user, secrets.Email);
+            _ = await userManager.SetPhoneNumberAsync(user, secrets.PhoneNumber);
+            _ = await userManager.SetUserNameAsync(user, secrets.UserName);
+        }
     }
 
     private static async Task SeedServices(BuzzAirDbContext dbContext)
