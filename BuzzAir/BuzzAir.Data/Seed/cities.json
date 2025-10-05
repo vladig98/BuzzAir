@@ -85,11 +85,6 @@
     "country": "Solomon Islands"
   },
   {
-    "city": "NA",
-    "state": "Choiseul",
-    "country": "Solomon Islands"
-  },
-  {
     "city": "Ballalae",
     "state": "NA",
     "country": "Solomon Islands"
@@ -110,11 +105,6 @@
     "country": "Solomon Islands"
   },
   {
-    "city": "NA",
-    "state": "Guadalcanal",
-    "country": "Solomon Islands"
-  },
-  {
     "city": "Kirakira",
     "state": "NA",
     "country": "Solomon Islands"
@@ -122,11 +112,6 @@
   {
     "city": "Santa Cruz/Graciosa Bay/Luova",
     "state": "Temotu",
-    "country": "Solomon Islands"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
     "country": "Solomon Islands"
   },
   {
@@ -255,11 +240,6 @@
     "country": "Papua New Guinea"
   },
   {
-    "city": "NA",
-    "state": "Enga",
-    "country": "Papua New Guinea"
-  },
-  {
     "city": "Ambunti",
     "state": "East Sepik",
     "country": "Papua New Guinea"
@@ -277,11 +257,6 @@
   {
     "city": "Baimuru",
     "state": "Gulf",
-    "country": "Papua New Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Morobe",
     "country": "Papua New Guinea"
   },
   {
@@ -390,11 +365,6 @@
     "country": "Papua New Guinea"
   },
   {
-    "city": "NA",
-    "state": "Morobe",
-    "country": "Papua New Guinea"
-  },
-  {
     "city": "Kandrian",
     "state": "West New Britain",
     "country": "Papua New Guinea"
@@ -480,16 +450,6 @@
     "country": "Papua New Guinea"
   },
   {
-    "city": "NA",
-    "state": "Southern Highlands",
-    "country": "Papua New Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Manus",
-    "country": "Papua New Guinea"
-  },
-  {
     "city": "Moro",
     "state": "Southern Highlands",
     "country": "Papua New Guinea"
@@ -520,11 +480,6 @@
     "country": "Papua New Guinea"
   },
   {
-    "city": "NA",
-    "state": "Morobe",
-    "country": "Papua New Guinea"
-  },
-  {
     "city": "Omora",
     "state": "Morobe",
     "country": "Papua New Guinea"
@@ -540,23 +495,8 @@
     "country": "Papua New Guinea"
   },
   {
-    "city": "NA",
-    "state": "East Sepik",
-    "country": "Papua New Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Western Province",
-    "country": "Papua New Guinea"
-  },
-  {
     "city": "Karimui",
     "state": "Chimbu",
-    "country": "Papua New Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Western Province",
     "country": "Papua New Guinea"
   },
   {
@@ -600,11 +540,6 @@
     "country": "Papua New Guinea"
   },
   {
-    "city": "Aitape",
-    "state": "Sandaun",
-    "country": "Papua New Guinea"
-  },
-  {
     "city": "Tokua",
     "state": "East New Britain",
     "country": "Papua New Guinea"
@@ -620,23 +555,8 @@
     "country": "Papua New Guinea"
   },
   {
-    "city": "NA",
-    "state": "Sandaun",
-    "country": "Papua New Guinea"
-  },
-  {
     "city": "Wabo",
     "state": "Gulf",
-    "country": "Papua New Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Enga",
-    "country": "Papua New Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Northern Province",
     "country": "Papua New Guinea"
   },
   {
@@ -1082,11 +1002,6 @@
   {
     "city": "La Tabatiere",
     "state": "Quebec",
-    "country": "Canada"
-  },
-  {
-    "city": "NA",
-    "state": "Nunavut",
     "country": "Canada"
   },
   {
@@ -1605,11 +1520,6 @@
     "country": "Canada"
   },
   {
-    "city": "Halifax",
-    "state": "Nova Scotia",
-    "country": "Canada"
-  },
-  {
     "city": "Atikokan",
     "state": "Ontario",
     "country": "Canada"
@@ -1820,11 +1730,6 @@
     "country": "Canada"
   },
   {
-    "city": "Fort McMurray",
-    "state": "Alberta",
-    "country": "Canada"
-  },
-  {
     "city": "Moosonee",
     "state": "Ontario",
     "country": "Canada"
@@ -1841,11 +1746,6 @@
   },
   {
     "city": "Maniwaki",
-    "state": "Quebec",
-    "country": "Canada"
-  },
-  {
-    "city": "Montreal",
     "state": "Quebec",
     "country": "Canada"
   },
@@ -2160,11 +2060,6 @@
     "country": "Canada"
   },
   {
-    "city": "Ottawa",
-    "state": "Ontario",
-    "country": "Canada"
-  },
-  {
     "city": "Carp",
     "state": "Ontario",
     "country": "Canada"
@@ -2300,18 +2195,8 @@
     "country": "Canada"
   },
   {
-    "city": "Toronto",
-    "state": "Ontario",
-    "country": "Canada"
-  },
-  {
     "city": "Tuktoyaktuk",
     "state": "Northwest Territories",
-    "country": "Canada"
-  },
-  {
-    "city": "Montreal",
-    "state": "Quebec",
     "country": "Canada"
   },
   {
@@ -2432,11 +2317,6 @@
   {
     "city": "Cranbrook",
     "state": "British-Columbia",
-    "country": "Canada"
-  },
-  {
-    "city": "Edmonton",
-    "state": "Alberta",
     "country": "Canada"
   },
   {
@@ -2597,16 +2477,6 @@
   {
     "city": "Mont-Joli",
     "state": "Quebec",
-    "country": "Canada"
-  },
-  {
-    "city": "Toronto",
-    "state": "Ontario",
-    "country": "Canada"
-  },
-  {
-    "city": "Toronto",
-    "state": "Ontario",
     "country": "Canada"
   },
   {
@@ -2875,16 +2745,6 @@
     "country": "Canada"
   },
   {
-    "city": "NA",
-    "state": "Blida",
-    "country": "Algeria"
-  },
-  {
-    "city": "NA",
-    "state": "M'Sila",
-    "country": "Algeria"
-  },
-  {
     "city": "Bejaia",
     "state": "Bejaia",
     "country": "Algeria"
@@ -2897,11 +2757,6 @@
   {
     "city": "Djanet",
     "state": "Illizi",
-    "country": "Algeria"
-  },
-  {
-    "city": "NA",
-    "state": "Blida",
     "country": "Algeria"
   },
   {
@@ -2930,11 +2785,6 @@
     "country": "Algeria"
   },
   {
-    "city": "NA",
-    "state": "Relizane",
-    "country": "Algeria"
-  },
-  {
     "city": "Annabah",
     "state": "Annaba",
     "country": "Algeria"
@@ -2955,16 +2805,6 @@
     "country": "Algeria"
   },
   {
-    "city": "NA",
-    "state": "Laghouat",
-    "country": "Algeria"
-  },
-  {
-    "city": "NA",
-    "state": "Djelfa",
-    "country": "Algeria"
-  },
-  {
     "city": "Tiaret",
     "state": "Tiaret",
     "country": "Algeria"
@@ -2972,16 +2812,6 @@
   {
     "city": "Tindouf",
     "state": "Tindouf",
-    "country": "Algeria"
-  },
-  {
-    "city": "NA",
-    "state": "Chlef",
-    "country": "Algeria"
-  },
-  {
-    "city": "NA",
-    "state": "Oran",
     "country": "Algeria"
   },
   {
@@ -3000,16 +2830,6 @@
     "country": "Algeria"
   },
   {
-    "city": "NA",
-    "state": "Sidi-Bel-Abbes",
-    "country": "Algeria"
-  },
-  {
-    "city": "NA",
-    "state": "Mascara",
-    "country": "Algeria"
-  },
-  {
     "city": "El Bayadh",
     "state": "El-Bayadh",
     "country": "Algeria"
@@ -3025,18 +2845,8 @@
     "country": "Algeria"
   },
   {
-    "city": "NA",
-    "state": "Adrar",
-    "country": "Algeria"
-  },
-  {
     "city": "Biskra",
     "state": "Biskra",
-    "country": "Algeria"
-  },
-  {
-    "city": "NA",
-    "state": "Ghardaia",
     "country": "Algeria"
   },
   {
@@ -3290,11 +3100,6 @@
     "country": "Ivory Coast"
   },
   {
-    "city": "NA",
-    "state": "Vallee-du-Bandama",
-    "country": "Ivory Coast"
-  },
-  {
     "city": "Bouna",
     "state": "NA",
     "country": "Ivory Coast"
@@ -3307,11 +3112,6 @@
   {
     "city": "Dimbokro",
     "state": "Lacs",
-    "country": "Ivory Coast"
-  },
-  {
-    "city": "NA",
-    "state": "Sassandra-Marahoue",
     "country": "Ivory Coast"
   },
   {
@@ -3335,16 +3135,6 @@
     "country": "Ivory Coast"
   },
   {
-    "city": "NA",
-    "state": "Savanes",
-    "country": "Ivory Coast"
-  },
-  {
-    "city": "NA",
-    "state": "Montagnes",
-    "country": "Ivory Coast"
-  },
-  {
     "city": "Odienne",
     "state": "Denguele",
     "country": "Ivory Coast"
@@ -3357,11 +3147,6 @@
   {
     "city": "Seguela",
     "state": "Woroba",
-    "country": "Ivory Coast"
-  },
-  {
-    "city": "NA",
-    "state": "Bas-Sassandra",
     "country": "Ivory Coast"
   },
   {
@@ -3665,16 +3450,6 @@
     "country": "Germany"
   },
   {
-    "city": "NA",
-    "state": "Mecklenburg-Vorpommern",
-    "country": "Germany"
-  },
-  {
-    "city": "Magdeburg",
-    "state": "Saxony-Anhalt",
-    "country": "Germany"
-  },
-  {
     "city": "Cottbus",
     "state": "Brandenburg",
     "country": "Germany"
@@ -3760,11 +3535,6 @@
     "country": "Germany"
   },
   {
-    "city": "Berlin",
-    "state": "Berlin",
-    "country": "Germany"
-  },
-  {
     "city": "Hannover",
     "state": "Lower-Saxony",
     "country": "Germany"
@@ -3800,16 +3570,6 @@
     "country": "Germany"
   },
   {
-    "city": "NA",
-    "state": "North-Rhine-Westphalia",
-    "country": "Germany"
-  },
-  {
-    "city": "Hamburg",
-    "state": "Hamburg",
-    "country": "Germany"
-  },
-  {
     "city": "Kiel",
     "state": "Schleswig-Holstein",
     "country": "Germany"
@@ -3836,11 +3596,6 @@
   },
   {
     "city": "Bonn",
-    "state": "North-Rhine-Westphalia",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
     "state": "North-Rhine-Westphalia",
     "country": "Germany"
   },
@@ -3880,11 +3635,6 @@
     "country": "Germany"
   },
   {
-    "city": "NA",
-    "state": "Bavaria",
-    "country": "Germany"
-  },
-  {
     "city": "Straubing",
     "state": "Bavaria",
     "country": "Germany"
@@ -3897,11 +3647,6 @@
   {
     "city": "Oschersleben",
     "state": "Saxony-Anhalt",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Mecklenburg-Vorpommern",
     "country": "Germany"
   },
   {
@@ -3942,16 +3687,6 @@
   {
     "city": "Donaueschingen",
     "state": "Baden-Wuerttemberg",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Baden-Wuerttemberg",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Lower-Saxony",
     "country": "Germany"
   },
   {
@@ -4105,21 +3840,6 @@
     "country": "Finland"
   },
   {
-    "city": "Helsinki",
-    "state": "Uusimaa",
-    "country": "Finland"
-  },
-  {
-    "city": "NA",
-    "state": "Uusimaa",
-    "country": "Finland"
-  },
-  {
-    "city": "NA",
-    "state": "North-Karelia",
-    "country": "Finland"
-  },
-  {
     "city": "Ivalo",
     "state": "Lapland",
     "country": "Finland"
@@ -4150,11 +3870,6 @@
     "country": "Finland"
   },
   {
-    "city": "NA",
-    "state": "Southern-Ostrobothnia",
-    "country": "Finland"
-  },
-  {
     "city": "Kokkola / Kruunupyy",
     "state": "Ostrobothnia",
     "country": "Finland"
@@ -4175,18 +3890,8 @@
     "country": "Finland"
   },
   {
-    "city": "NA",
-    "state": "Paeijaenne-Tavastia",
-    "country": "Finland"
-  },
-  {
     "city": "Lappeenranta",
     "state": "South-Karelia",
-    "country": "Finland"
-  },
-  {
-    "city": "NA",
-    "state": "Mariehamns-stad",
     "country": "Finland"
   },
   {
@@ -4250,11 +3955,6 @@
     "country": "Finland"
   },
   {
-    "city": "NA",
-    "state": "Northern-Ostrobothnia",
-    "country": "Finland"
-  },
-  {
     "city": "Bruntingthorpe",
     "state": "NA",
     "country": "United Kingdom"
@@ -4266,11 +3966,6 @@
   },
   {
     "city": "Enniskillen",
-    "state": "Northern-Ireland",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "Belfast",
     "state": "Northern-Ireland",
     "country": "United Kingdom"
   },
@@ -4500,22 +4195,7 @@
     "country": "United Kingdom"
   },
   {
-    "city": "London",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "London",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
     "city": "Redhill",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "London",
     "state": "England",
     "country": "United Kingdom"
   },
@@ -4526,11 +4206,6 @@
   },
   {
     "city": "Yateley",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "London",
     "state": "England",
     "country": "United Kingdom"
   },
@@ -4600,22 +4275,12 @@
     "country": "United Kingdom"
   },
   {
-    "city": "Nottingham",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
     "city": "Angelsey",
     "state": "Wales",
     "country": "United Kingdom"
   },
   {
     "city": "Orkney Islands",
-    "state": "Scotland",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "Lerwick",
     "state": "Scotland",
     "country": "United Kingdom"
   },
@@ -4646,11 +4311,6 @@
   },
   {
     "city": "Port Ellen",
-    "state": "Scotland",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "Glasgow",
     "state": "Scotland",
     "country": "United Kingdom"
   },
@@ -4690,11 +4350,6 @@
     "country": "United Kingdom"
   },
   {
-    "city": "Shetland Islands",
-    "state": "Scotland",
-    "country": "United Kingdom"
-  },
-  {
     "city": "Ballykelly",
     "state": "Northern-Ireland",
     "country": "United Kingdom"
@@ -4725,11 +4380,6 @@
     "country": "United Kingdom"
   },
   {
-    "city": "London",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
     "city": "Duxford",
     "state": "England",
     "country": "United Kingdom"
@@ -4741,11 +4391,6 @@
   },
   {
     "city": "Exeter",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "Bristol",
     "state": "England",
     "country": "United Kingdom"
   },
@@ -4796,11 +4441,6 @@
   },
   {
     "city": "Wethersfield",
-    "state": "England",
-    "country": "United Kingdom"
-  },
-  {
-    "city": "London",
     "state": "England",
     "country": "United Kingdom"
   },
@@ -4887,11 +4527,6 @@
   {
     "city": "Leeuwarden",
     "state": "Friesland",
-    "country": "Netherlands"
-  },
-  {
-    "city": "NA",
-    "state": "Groningen",
     "country": "Netherlands"
   },
   {
@@ -5008,11 +4643,6 @@
     "city": "Waterford",
     "state": "Munster",
     "country": "Ireland"
-  },
-  {
-    "city": "NA",
-    "state": "Zealand",
-    "country": "Denmark"
   },
   {
     "city": "Aarhus",
@@ -5175,11 +4805,6 @@
     "country": "Norway"
   },
   {
-    "city": "NA",
-    "state": "Oppland",
-    "country": "Norway"
-  },
-  {
     "city": "Floro",
     "state": "Sogn-og-Fjordane",
     "country": "Norway"
@@ -5211,11 +4836,6 @@
   },
   {
     "city": "Honningsvag",
-    "state": "Finnmark",
-    "country": "Norway"
-  },
-  {
-    "city": "NA",
     "state": "Finnmark",
     "country": "Norway"
   },
@@ -5255,11 +4875,6 @@
     "country": "Norway"
   },
   {
-    "city": "NA",
-    "state": "Nordland",
-    "country": "Norway"
-  },
-  {
     "city": "Lakselv",
     "state": "Finnmark",
     "country": "Norway"
@@ -5272,11 +4887,6 @@
   {
     "city": "Namsos",
     "state": "Nord-Trondelag",
-    "country": "Norway"
-  },
-  {
-    "city": "NA",
-    "state": "Telemark",
     "country": "Norway"
   },
   {
@@ -5302,11 +4912,6 @@
   {
     "city": "Roros",
     "state": "Sor-Trondelag",
-    "country": "Norway"
-  },
-  {
-    "city": "NA",
-    "state": "Nordland",
     "country": "Norway"
   },
   {
@@ -5420,18 +5025,8 @@
     "country": "Poland"
   },
   {
-    "city": "NA",
-    "state": "Silesia",
-    "country": "Poland"
-  },
-  {
     "city": "Krakow",
     "state": "Lesser-Poland-Voivodeship",
-    "country": "Poland"
-  },
-  {
-    "city": "NA",
-    "state": "West-Pomerania",
     "country": "Poland"
   },
   {
@@ -5452,11 +5047,6 @@
   {
     "city": "Lodz",
     "state": "Kodz-Voivodeship",
-    "country": "Poland"
-  },
-  {
-    "city": "NA",
-    "state": "Lublin",
     "country": "Poland"
   },
   {
@@ -5490,11 +5080,6 @@
     "country": "Poland"
   },
   {
-    "city": "Czestochowa",
-    "state": "Silesia",
-    "country": "Poland"
-  },
-  {
     "city": "Rzeszow",
     "state": "Subcarpathian-Voivodeship",
     "country": "Poland"
@@ -5515,11 +5100,6 @@
     "country": "Poland"
   },
   {
-    "city": "Warsaw",
-    "state": "Mazovia",
-    "country": "Poland"
-  },
-  {
     "city": "Wroclaw",
     "state": "Lower-Silesia",
     "country": "Poland"
@@ -5528,11 +5108,6 @@
     "city": "Babimost",
     "state": "Lubusz",
     "country": "Poland"
-  },
-  {
-    "city": "NA",
-    "state": "Blekinge",
-    "country": "Sweden"
   },
   {
     "city": "Hassleholm",
@@ -5555,11 +5130,6 @@
     "country": "Sweden"
   },
   {
-    "city": "Gothenburg",
-    "state": "Vaestra-Gotaland",
-    "country": "Sweden"
-  },
-  {
     "city": "Skovde",
     "state": "Vaestra-Gotaland",
     "country": "Sweden"
@@ -5570,16 +5140,6 @@
     "country": "Sweden"
   },
   {
-    "city": "NA",
-    "state": "Oerebro",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Dalarna",
-    "country": "Sweden"
-  },
-  {
     "city": "Stockholm / Nykoping",
     "state": "Sodermanland",
     "country": "Sweden"
@@ -5587,16 +5147,6 @@
   {
     "city": "Kristianstad",
     "state": "Skane",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Kalmar",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Kalmar",
     "country": "Sweden"
   },
   {
@@ -5615,11 +5165,6 @@
     "country": "Sweden"
   },
   {
-    "city": "NA",
-    "state": "Jaemtland",
-    "country": "Sweden"
-  },
-  {
     "city": "Gallivare",
     "state": "Norrbotten",
     "country": "Sweden"
@@ -5627,11 +5172,6 @@
   {
     "city": "Kramfors / Solleftea",
     "state": "Vaesternorrland",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Vaesterbotten",
     "country": "Sweden"
   },
   {
@@ -5645,22 +5185,12 @@
     "country": "Sweden"
   },
   {
-    "city": "NA",
-    "state": "Norrbotten",
-    "country": "Sweden"
-  },
-  {
     "city": "Skelleftea",
     "state": "Vaesterbotten",
     "country": "Sweden"
   },
   {
     "city": "Umea",
-    "state": "Vaesterbotten",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
     "state": "Vaesterbotten",
     "country": "Sweden"
   },
@@ -5685,11 +5215,6 @@
     "country": "Sweden"
   },
   {
-    "city": "NA",
-    "state": "Vaermland",
-    "country": "Sweden"
-  },
-  {
     "city": "Karlstad",
     "state": "Vaermland",
     "country": "Sweden"
@@ -5710,21 +5235,6 @@
     "country": "Sweden"
   },
   {
-    "city": "Stockholm",
-    "state": "Stockholm",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Dalarna",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Kalmar",
-    "country": "Sweden"
-  },
-  {
     "city": "Gavle / Sandviken",
     "state": "Gaevleborg",
     "country": "Sweden"
@@ -5737,11 +5247,6 @@
   {
     "city": "Norrkoping",
     "state": "Oestergotland",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Vaermland",
     "country": "Sweden"
   },
   {
@@ -5765,23 +5270,8 @@
     "country": "Sweden"
   },
   {
-    "city": "NA",
-    "state": "Vaesterbotten",
-    "country": "Sweden"
-  },
-  {
     "city": "Idre",
     "state": "Dalarna",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Norrbotten",
-    "country": "Sweden"
-  },
-  {
-    "city": "NA",
-    "state": "Vaesterbotten",
     "country": "Sweden"
   },
   {
@@ -5800,67 +5290,12 @@
     "country": "Germany"
   },
   {
-    "city": "NA",
-    "state": "Bavaria",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Lower-Saxony",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "North-Rhine-Westphalia",
-    "country": "Germany"
-  },
-  {
     "city": "Fritzlar",
     "state": "Hesse",
     "country": "Germany"
   },
   {
-    "city": "NA",
-    "state": "Hesse",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Bavaria",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Bavaria",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Lower-Saxony",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "North-Rhine-Westphalia",
-    "country": "Germany"
-  },
-  {
     "city": "Rostock",
-    "state": "Mecklenburg-Vorpommern",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "North-Rhine-Westphalia",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
-    "state": "Schleswig-Holstein",
-    "country": "Germany"
-  },
-  {
-    "city": "NA",
     "state": "Mecklenburg-Vorpommern",
     "country": "Germany"
   },
@@ -6075,11 +5510,6 @@
     "country": "South Africa"
   },
   {
-    "city": "Johannesburg",
-    "state": "Gauteng",
-    "country": "South Africa"
-  },
-  {
     "city": "Lime Acres",
     "state": "Northern-Cape",
     "country": "South Africa"
@@ -6177,11 +5607,6 @@
   {
     "city": "Oudtshoorn",
     "state": "Western-Cape",
-    "country": "South Africa"
-  },
-  {
-    "city": "Johannesburg",
-    "state": "Gauteng",
     "country": "South Africa"
   },
   {
@@ -6325,11 +5750,6 @@
     "country": "South Africa"
   },
   {
-    "city": "Durban",
-    "state": "KwaZulu-Natal",
-    "country": "South Africa"
-  },
-  {
     "city": "Vredendal",
     "state": "Western-Cape",
     "country": "South Africa"
@@ -6337,11 +5757,6 @@
   {
     "city": "Vryheid",
     "state": "KwaZulu-Natal",
-    "country": "South Africa"
-  },
-  {
-    "city": "Pretoria",
-    "state": "Gauteng",
     "country": "South Africa"
   },
   {
@@ -6365,11 +5780,6 @@
     "country": "Botswana"
   },
   {
-    "city": "NA",
-    "state": "Ngwaketsi",
-    "country": "Botswana"
-  },
-  {
     "city": "Kasane",
     "state": "North-West",
     "country": "Botswana"
@@ -6385,11 +5795,6 @@
     "country": "Botswana"
   },
   {
-    "city": "NA",
-    "state": "Central",
-    "country": "Botswana"
-  },
-  {
     "city": "Palapye",
     "state": "Central",
     "country": "Botswana"
@@ -6397,16 +5802,6 @@
   {
     "city": "Gaborone",
     "state": "South-East",
-    "country": "Botswana"
-  },
-  {
-    "city": "NA",
-    "state": "Central",
-    "country": "Botswana"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
     "country": "Botswana"
   },
   {
@@ -6432,112 +5827,107 @@
   {
     "city": "Brazzaville",
     "state": "Brazzaville",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Djambala",
     "state": "Plateaux",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Kindamba",
     "state": "Pool",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Lague",
     "state": "Plateaux",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Mouyondzi",
     "state": "Bouenza",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Sibiti",
     "state": "Lekoumou",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Nkayi",
     "state": "Bouenza",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Zanaga",
     "state": "Lekoumou",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Mossendjo",
     "state": "Niari",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Boundji",
     "state": "Cuvette",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Ewo",
     "state": "Cuvette-Ouest",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Gamboma",
     "state": "Plateaux",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Impfondo",
     "state": "Likouala",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Kelle",
     "state": "Cuvette-Ouest",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Makoua",
     "state": "Cuvette",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Owando",
     "state": "Cuvette",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Souanke",
     "state": "Sangha",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Betou",
     "state": "Likouala",
-    "country": "Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Sangha",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Makabana",
     "state": "Niari",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Dolisie",
     "state": "Niari",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Pointe Noire",
     "state": "Kouilou",
-    "country": "Congo"
+    "country": "Republic of the Congo"
   },
   {
     "city": "Manzini",
@@ -6655,11 +6045,6 @@
     "country": "Central African Republic"
   },
   {
-    "city": "NA",
-    "state": "Litoral",
-    "country": "Equatorial Guinea"
-  },
-  {
     "city": "Malabo",
     "state": "NA",
     "country": "Equatorial Guinea"
@@ -6667,7 +6052,7 @@
   {
     "city": "Ascension Island",
     "state": "Ascension",
-    "country": "Saint Helena Ascension and Tristan da Cunha"
+    "country": "Saint Helena, Ascension and Tristan da Cunha"
   },
   {
     "city": "Port Louis",
@@ -6780,11 +6165,6 @@
     "country": "Cameroon"
   },
   {
-    "city": "Yaounde",
-    "state": "Centre",
-    "country": "Cameroon"
-  },
-  {
     "city": "Mbala",
     "state": "Northern",
     "country": "Zambia"
@@ -6840,11 +6220,6 @@
     "country": "Zambia"
   },
   {
-    "city": "Lusaka",
-    "state": "Lusaka",
-    "country": "Zambia"
-  },
-  {
     "city": "Mansa",
     "state": "Luapula",
     "country": "Zambia"
@@ -6893,16 +6268,6 @@
     "city": "Zambezi",
     "state": "North-Western",
     "country": "Zambia"
-  },
-  {
-    "city": "Moroni",
-    "state": "Grande-Comore",
-    "country": "Comoros"
-  },
-  {
-    "city": "NA",
-    "state": "Moheli",
-    "country": "Comoros"
   },
   {
     "city": "Moroni",
@@ -6970,11 +6335,6 @@
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
     "city": "Maintirano",
     "state": "Melaky",
     "country": "Madagascar"
@@ -6990,23 +6350,8 @@
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "Atsinanana",
-    "country": "Madagascar"
-  },
-  {
     "city": "Tambohorano",
     "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "Menabe",
     "country": "Madagascar"
   },
   {
@@ -7025,23 +6370,8 @@
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "Diana",
-    "country": "Madagascar"
-  },
-  {
     "city": "Mananara Nord",
     "state": "Analanjirofo",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
     "country": "Madagascar"
   },
   {
@@ -7055,22 +6385,7 @@
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "Sava",
-    "country": "Madagascar"
-  },
-  {
     "city": "Ambanja",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
     "state": "NA",
     "country": "Madagascar"
   },
@@ -7090,27 +6405,7 @@
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "Melaky",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
     "city": "Tsaratanana",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
     "state": "NA",
     "country": "Madagascar"
   },
@@ -7140,16 +6435,6 @@
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
     "city": "Ihosy",
     "state": "Ihorombe",
     "country": "Madagascar"
@@ -7160,32 +6445,12 @@
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
     "city": "Bekily",
     "state": "NA",
     "country": "Madagascar"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
     "city": "Tanandava",
-    "state": "NA",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
-    "state": "Atsimo-Andrefana",
-    "country": "Madagascar"
-  },
-  {
-    "city": "NA",
     "state": "NA",
     "country": "Madagascar"
   },
@@ -7215,7 +6480,7 @@
     "country": "Angola"
   },
   {
-    "city": "Mbanza Congo",
+    "city": "Mbanza Republic of the Congo",
     "state": "Zaire",
     "country": "Angola"
   },
@@ -7257,11 +6522,6 @@
   {
     "city": "Cazombo",
     "state": "Moxico",
-    "country": "Angola"
-  },
-  {
-    "city": "Chitato",
-    "state": "Luanda-Norte",
     "country": "Angola"
   },
   {
@@ -7505,11 +6765,6 @@
     "country": "Gabon"
   },
   {
-    "city": "NA",
-    "state": "Principe",
-    "country": "Sao Tome and Principe"
-  },
-  {
     "city": "Sao Tome",
     "state": "Sao-Tome-Island",
     "country": "Sao Tome and Principe"
@@ -7650,16 +6905,6 @@
     "country": "Chad"
   },
   {
-    "city": "NA",
-    "state": "Ouadai",
-    "country": "Chad"
-  },
-  {
-    "city": "NA",
-    "state": "Logone-Occidental",
-    "country": "Chad"
-  },
-  {
     "city": "Lai",
     "state": "Tandjile",
     "country": "Chad"
@@ -7710,11 +6955,6 @@
     "country": "Chad"
   },
   {
-    "city": "NA",
-    "state": "Borkou",
-    "country": "Chad"
-  },
-  {
     "city": "Bulawayo",
     "state": "Matabeleland-North",
     "country": "Zimbabwe"
@@ -7745,11 +6985,6 @@
     "country": "Zimbabwe"
   },
   {
-    "city": "NA",
-    "state": "Manicaland",
-    "country": "Zimbabwe"
-  },
-  {
     "city": "Masvingo",
     "state": "Masvingo",
     "country": "Zimbabwe"
@@ -7763,16 +6998,6 @@
     "city": "Hwange",
     "state": "Matabeleland-North",
     "country": "Zimbabwe"
-  },
-  {
-    "city": "Hwange",
-    "state": "Matabeleland-North",
-    "country": "Zimbabwe"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Region",
-    "country": "Malawi"
   },
   {
     "city": "Blantyre",
@@ -7866,7 +7091,7 @@
   },
   {
     "city": "Nkaus",
-    "state": "Mohaleʼs-Hoek",
+    "state": "Mohale's-Hoek",
     "country": "Lesotho"
   },
   {
@@ -7881,7 +7106,7 @@
   },
   {
     "city": "Qacha's Nek",
-    "state": "Qachaʼs-Nek",
+    "state": "Qacha's-Nek",
     "country": "Lesotho"
   },
   {
@@ -7891,7 +7116,7 @@
   },
   {
     "city": "Sekakes",
-    "state": "Mohaleʼs-Hoek",
+    "state": "Mohale's-Hoek",
     "country": "Lesotho"
   },
   {
@@ -7950,11 +7175,6 @@
     "country": "Namibia"
   },
   {
-    "city": "NA",
-    "state": "Otjozondjupa",
-    "country": "Namibia"
-  },
-  {
     "city": "Mokuti Lodge",
     "state": "NA",
     "country": "Namibia"
@@ -8005,11 +7225,6 @@
     "country": "Namibia"
   },
   {
-    "city": "NA",
-    "state": "Hardap",
-    "country": "Namibia"
-  },
-  {
     "city": "Tsumeb",
     "state": "NA",
     "country": "Namibia"
@@ -8025,319 +7240,244 @@
     "country": "Namibia"
   },
   {
-    "city": "Windhoek",
-    "state": "Khomas",
-    "country": "Namibia"
-  },
-  {
     "city": "Kinshasa",
     "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Kinshasa",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Bas-Congo",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Boma",
-    "state": "Bas-Congo",
-    "country": "DR Congo"
+    "state": "Bas-Republic of the Congo",
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Luozi",
-    "state": "Bas-Congo",
-    "country": "DR Congo"
+    "state": "Bas-Republic of the Congo",
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Matadi",
-    "state": "Bas-Congo",
-    "country": "DR Congo"
+    "state": "Bas-Republic of the Congo",
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Nkolo Fuma",
-    "state": "Bas-Congo",
-    "country": "DR Congo"
+    "state": "Bas-Republic of the Congo",
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Inongo",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Nioki",
     "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Kwilu",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kiri",
     "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Kwilu",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Idiofa",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Lusanga",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Masi Manimba",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Mbandaka",
     "state": "Equateur",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Basankusu",
     "state": "Equateur",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Libenge",
     "state": "Equateur",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Equateur",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Gemena",
     "state": "Sud-Ubangi",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Equateur",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Bumbar",
     "state": "Equateur",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Equateur",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Boende",
     "state": "Equateur",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Ikela",
     "state": "Equateur",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kisangani",
     "state": "Tshopo",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Yangambi",
     "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Butembo",
     "state": "Nord-Kivu",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Goma",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Beni",
     "state": "Nord-Kivu",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kindu",
     "state": "Maniema",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kalima",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kasongo",
     "state": "Maniema",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Punia",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Lubumbashi",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Pweto",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kasenga",
     "state": "Haut-Katanga",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Lualaba",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Manono",
     "state": "Tanganika",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Moba",
     "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "Tanganika",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kabalo",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kongolo",
     "state": "NA",
-    "country": "DR Congo"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kamina",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kapanga",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kaniama",
     "state": "Haut-Lomani",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kananga",
     "state": "Kasai-Central",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Luiza",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Tshikapa",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Lodja",
     "state": "Kasai-Oriental",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Lusambo",
     "state": "Sankuru",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Mweka",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Basongo",
     "state": "NA",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Ilebo",
     "state": "Kasai",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Mbuji Mayi",
     "state": "Kasai-Oriental",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Gandajika",
     "state": "Lomami",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Kabinda",
     "state": "Kasai-Oriental",
-    "country": "DR Congo"
+    "country": "Democratic Republic of the Congo"
   },
   {
     "city": "Senou",
@@ -8350,11 +7490,6 @@
     "country": "Mali"
   },
   {
-    "city": "NA",
-    "state": "Gao",
-    "country": "Mali"
-  },
-  {
     "city": "Kenieba",
     "state": "Kayes",
     "country": "Mali"
@@ -8362,16 +7497,6 @@
   {
     "city": "Koutiala",
     "state": "Sikasso",
-    "country": "Mali"
-  },
-  {
-    "city": "NA",
-    "state": "Kayes",
-    "country": "Mali"
-  },
-  {
-    "city": "NA",
-    "state": "Mopti",
     "country": "Mali"
   },
   {
@@ -8440,11 +7565,6 @@
     "country": "Spain"
   },
   {
-    "city": "Tenerife Island",
-    "state": "Canary-Islands",
-    "country": "Spain"
-  },
-  {
     "city": "Melilla Island",
     "state": "Melilla",
     "country": "Spain"
@@ -8492,12 +7612,12 @@
   {
     "city": "Bubaque",
     "state": "Bolama-and-Bijagos",
-    "country": "Guinea Bissau"
+    "country": "Guinea-Bissau"
   },
   {
     "city": "Bissau",
     "state": "NA",
-    "country": "Guinea Bissau"
+    "country": "Guinea-Bissau"
   },
   {
     "city": "Buchanan",
@@ -8600,11 +7720,6 @@
     "country": "Morocco"
   },
   {
-    "city": "NA",
-    "state": "Beni-Mellal-Khenifra",
-    "country": "Morocco"
-  },
-  {
     "city": "Rabat",
     "state": "NA",
     "country": "Morocco"
@@ -8650,11 +7765,6 @@
     "country": "Morocco"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Morocco"
-  },
-  {
     "city": "Ouarzazate",
     "state": "Draa-Tafilalet",
     "country": "Morocco"
@@ -8662,11 +7772,6 @@
   {
     "city": "Al Hoceima",
     "state": "Tanger-Tetouan-Al-Hoceima",
-    "country": "Morocco"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
     "country": "Morocco"
   },
   {
@@ -8840,23 +7945,8 @@
     "country": "Guinea"
   },
   {
-    "city": "NA",
-    "state": "Boke",
-    "country": "Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Faranah",
-    "country": "Guinea"
-  },
-  {
     "city": "Kissidougou",
     "state": "Faranah",
-    "country": "Guinea"
-  },
-  {
-    "city": "NA",
-    "state": "Labe",
     "country": "Guinea"
   },
   {
@@ -8942,16 +8032,6 @@
   {
     "city": "Addis Ababa",
     "state": "Addis-Ababa",
-    "country": "Ethiopia"
-  },
-  {
-    "city": "NA",
-    "state": "SNNPR",
-    "country": "Ethiopia"
-  },
-  {
-    "city": "NA",
-    "state": "Tigray",
     "country": "Ethiopia"
   },
   {
@@ -9075,11 +8155,6 @@
     "country": "Ethiopia"
   },
   {
-    "city": "NA",
-    "state": "Tigray",
-    "country": "Ethiopia"
-  },
-  {
     "city": "Masslo",
     "state": "Oromiya",
     "country": "Ethiopia"
@@ -9170,11 +8245,6 @@
     "country": "Somalia"
   },
   {
-    "city": "NA",
-    "state": "Gedo",
-    "country": "Somalia"
-  },
-  {
     "city": "Eil",
     "state": "Nugaal",
     "country": "Somalia"
@@ -9197,11 +8267,6 @@
   {
     "city": "Berbera",
     "state": "Woqooyi-Galbeed",
-    "country": "Somalia"
-  },
-  {
-    "city": "NA",
-    "state": "Lower-Juba",
     "country": "Somalia"
   },
   {
@@ -9305,23 +8370,8 @@
     "country": "Egypt"
   },
   {
-    "city": "NA",
-    "state": "New-Valley",
-    "country": "Egypt"
-  },
-  {
     "city": "Hurghada",
     "state": "Red-Sea",
-    "country": "Egypt"
-  },
-  {
-    "city": "NA",
-    "state": "North-Sinai",
-    "country": "Egypt"
-  },
-  {
-    "city": "NA",
-    "state": "New-Valley",
     "country": "Egypt"
   },
   {
@@ -9345,18 +8395,8 @@
     "country": "Egypt"
   },
   {
-    "city": "NA",
-    "state": "New-Valley",
-    "country": "Egypt"
-  },
-  {
     "city": "Port Said",
     "state": "Port-Said",
-    "country": "Egypt"
-  },
-  {
-    "city": "NA",
-    "state": "South-Sinai",
     "country": "Egypt"
   },
   {
@@ -9376,11 +8416,6 @@
   },
   {
     "city": "Taba",
-    "state": "South-Sinai",
-    "country": "Egypt"
-  },
-  {
-    "city": "NA",
     "state": "South-Sinai",
     "country": "Egypt"
   },
@@ -9535,11 +8570,6 @@
     "country": "Kenya"
   },
   {
-    "city": "Nairobi",
-    "state": "Nairobi-Area",
-    "country": "Kenya"
-  },
-  {
     "city": "Nanyuki",
     "state": "Nyeri",
     "country": "Kenya"
@@ -9571,7 +8601,7 @@
   },
   {
     "city": "Ghat",
-    "state": "Sha‘biyat-Ghat",
+    "state": "Sha'biyat-Ghat",
     "country": "Libya"
   },
   {
@@ -9605,17 +8635,7 @@
     "country": "Libya"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Libya"
-  },
-  {
     "city": "Nafurah 1",
-    "state": "NA",
-    "country": "Libya"
-  },
-  {
-    "city": "NA",
     "state": "NA",
     "country": "Libya"
   },
@@ -9965,11 +8985,6 @@
     "country": "Uganda"
   },
   {
-    "city": "NA",
-    "state": "Western-Region",
-    "country": "Uganda"
-  },
-  {
     "city": "Soroti",
     "state": "Eastern-Region",
     "country": "Uganda"
@@ -9997,11 +9012,6 @@
   {
     "city": "Peach Springs",
     "state": "Arizona",
-    "country": "United States"
-  },
-  {
-    "city": "Montague",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -10755,11 +9765,6 @@
     "country": "United States"
   },
   {
-    "city": "Denver",
-    "state": "Colorado",
-    "country": "United States"
-  },
-  {
     "city": "Bemidji",
     "state": "Minnesota",
     "country": "United States"
@@ -10787,11 +9792,6 @@
   {
     "city": "Cleveland",
     "state": "Ohio",
-    "country": "United States"
-  },
-  {
-    "city": "Blackwell",
-    "state": "Oklahoma",
     "country": "United States"
   },
   {
@@ -11130,11 +10130,6 @@
     "country": "United States"
   },
   {
-    "city": "Akron",
-    "state": "Ohio",
-    "country": "United States"
-  },
-  {
     "city": "Clayton",
     "state": "New-Mexico",
     "country": "United States"
@@ -11220,11 +10215,6 @@
     "country": "United States"
   },
   {
-    "city": "Wichita",
-    "state": "Kansas",
-    "country": "United States"
-  },
-  {
     "city": "Crescent City",
     "state": "California",
     "country": "United States"
@@ -11282,11 +10272,6 @@
   {
     "city": "Cambridge",
     "state": "Maryland",
-    "country": "United States"
-  },
-  {
-    "city": "Cleveland",
-    "state": "Ohio",
     "country": "United States"
   },
   {
@@ -11380,11 +10365,6 @@
     "country": "United States"
   },
   {
-    "city": "Cleveland",
-    "state": "Ohio",
-    "country": "United States"
-  },
-  {
     "city": "Clintonville",
     "state": "Wisconsin",
     "country": "United States"
@@ -11470,11 +10450,6 @@
     "country": "United States"
   },
   {
-    "city": "Waco",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Moab",
     "state": "Utah",
     "country": "United States"
@@ -11507,11 +10482,6 @@
   {
     "city": "Concord",
     "state": "New-Hampshire",
-    "country": "United States"
-  },
-  {
-    "city": "Colorado Springs",
-    "state": "Colorado",
     "country": "United States"
   },
   {
@@ -11595,11 +10565,6 @@
     "country": "United States"
   },
   {
-    "city": "Clinton",
-    "state": "Oklahoma",
-    "country": "United States"
-  },
-  {
     "city": "Creston",
     "state": "Iowa",
     "country": "United States"
@@ -11622,11 +10587,6 @@
   {
     "city": "Clinton",
     "state": "North-Carolina",
-    "country": "United States"
-  },
-  {
-    "city": "Columbia",
-    "state": "South-Carolina",
     "country": "United States"
   },
   {
@@ -11657,11 +10617,6 @@
   {
     "city": "Corvallis",
     "state": "Oregon",
-    "country": "United States"
-  },
-  {
-    "city": "Clovis",
-    "state": "New-Mexico",
     "country": "United States"
   },
   {
@@ -11730,11 +10685,6 @@
     "country": "United States"
   },
   {
-    "city": "Dallas",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Danville",
     "state": "Virginia",
     "country": "United States"
@@ -11777,11 +10727,6 @@
   {
     "city": "Decorah",
     "state": "Iowa",
-    "country": "United States"
-  },
-  {
-    "city": "Denver",
-    "state": "Colorado",
     "country": "United States"
   },
   {
@@ -11855,11 +10800,6 @@
     "country": "United States"
   },
   {
-    "city": "Tucson",
-    "state": "Arizona",
-    "country": "United States"
-  },
-  {
     "city": "Deming",
     "state": "New-Mexico",
     "country": "United States"
@@ -11867,11 +10807,6 @@
   {
     "city": "Sedalia",
     "state": "Missouri",
-    "country": "United States"
-  },
-  {
-    "city": "Augusta",
-    "state": "Georgia",
     "country": "United States"
   },
   {
@@ -11920,16 +10855,6 @@
     "country": "United States"
   },
   {
-    "city": "Durango",
-    "state": "Colorado",
-    "country": "United States"
-  },
-  {
-    "city": "Del Rio",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Des Moines",
     "state": "Iowa",
     "country": "United States"
@@ -11957,11 +10882,6 @@
   {
     "city": "Destin",
     "state": "Florida",
-    "country": "United States"
-  },
-  {
-    "city": "Detroit",
-    "state": "Michigan",
     "country": "United States"
   },
   {
@@ -12010,11 +10930,6 @@
     "country": "United States"
   },
   {
-    "city": "Houston",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Danbury",
     "state": "Connecticut",
     "country": "United States"
@@ -12022,11 +10937,6 @@
   {
     "city": "Doylestown",
     "state": "Pennsylvania",
-    "country": "United States"
-  },
-  {
-    "city": "Abilene",
-    "state": "Texas",
     "country": "United States"
   },
   {
@@ -12127,11 +11037,6 @@
   {
     "city": "Eagle",
     "state": "Colorado",
-    "country": "United States"
-  },
-  {
-    "city": "Crestview",
-    "state": "Florida",
     "country": "United States"
   },
   {
@@ -12285,11 +11190,6 @@
     "country": "United States"
   },
   {
-    "city": "Alexandria",
-    "state": "Louisiana",
-    "country": "United States"
-  },
-  {
     "city": "Easton",
     "state": "Maryland",
     "country": "United States"
@@ -12410,11 +11310,6 @@
     "country": "United States"
   },
   {
-    "city": "Fresno",
-    "state": "California",
-    "country": "United States"
-  },
-  {
     "city": "Minneapolis",
     "state": "Minnesota",
     "country": "United States"
@@ -12467,11 +11362,6 @@
   {
     "city": "Fergus Falls",
     "state": "Minnesota",
-    "country": "United States"
-  },
-  {
-    "city": "Dayton",
-    "state": "Ohio",
     "country": "United States"
   },
   {
@@ -12665,16 +11555,6 @@
     "country": "United States"
   },
   {
-    "city": "Fort Worth",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
-    "city": "Atlanta",
-    "state": "Georgia",
-    "country": "United States"
-  },
-  {
     "city": "Fullerton",
     "state": "California",
     "country": "United States"
@@ -12687,11 +11567,6 @@
   {
     "city": "Fort Wayne",
     "state": "Indiana",
-    "country": "United States"
-  },
-  {
-    "city": "Fort Lauderdale",
-    "state": "Florida",
     "country": "United States"
   },
   {
@@ -12995,11 +11870,6 @@
     "country": "United States"
   },
   {
-    "city": "Greenville",
-    "state": "South-Carolina",
-    "country": "United States"
-  },
-  {
     "city": "Fort Drum",
     "state": "New-York",
     "country": "United States"
@@ -13062,11 +11932,6 @@
   {
     "city": "Greeley",
     "state": "Colorado",
-    "country": "United States"
-  },
-  {
-    "city": "Greenville",
-    "state": "South-Carolina",
     "country": "United States"
   },
   {
@@ -13140,11 +12005,6 @@
     "country": "United States"
   },
   {
-    "city": "Hartford",
-    "state": "Connecticut",
-    "country": "United States"
-  },
-  {
     "city": "Camp Mackall",
     "state": "North-Carolina",
     "country": "United States"
@@ -13190,11 +12050,6 @@
     "country": "United States"
   },
   {
-    "city": "Blytheville",
-    "state": "Arkansas",
-    "country": "United States"
-  },
-  {
     "city": "Jackson",
     "state": "Mississippi",
     "country": "United States"
@@ -13235,11 +12090,6 @@
     "country": "United States"
   },
   {
-    "city": "Alamogordo",
-    "state": "New-Mexico",
-    "country": "United States"
-  },
-  {
     "city": "Hemet",
     "state": "California",
     "country": "United States"
@@ -13272,11 +12122,6 @@
   {
     "city": "Hot Springs",
     "state": "Iowa",
-    "country": "United States"
-  },
-  {
-    "city": "Houston",
-    "state": "Texas",
     "country": "United States"
   },
   {
@@ -13460,11 +12305,6 @@
     "country": "United States"
   },
   {
-    "city": "Wichita",
-    "state": "Kansas",
-    "country": "United States"
-  },
-  {
     "city": "Dulles",
     "state": "Virginia",
     "country": "United States"
@@ -13475,18 +12315,8 @@
     "country": "United States"
   },
   {
-    "city": "Houston",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Clarinda",
     "state": "Iowa",
-    "country": "United States"
-  },
-  {
-    "city": "Wichita",
-    "state": "Kansas",
     "country": "United States"
   },
   {
@@ -13670,11 +12500,6 @@
     "country": "United States"
   },
   {
-    "city": "Phoenix",
-    "state": "Arizona",
-    "country": "United States"
-  },
-  {
     "city": "Ironwood",
     "state": "Michigan",
     "country": "United States"
@@ -13682,11 +12507,6 @@
   {
     "city": "Wiscasset",
     "state": "Maine",
-    "country": "United States"
-  },
-  {
-    "city": "Houston",
-    "state": "Texas",
     "country": "United States"
   },
   {
@@ -13715,18 +12535,8 @@
     "country": "United States"
   },
   {
-    "city": "Jackson",
-    "state": "Mississippi",
-    "country": "United States"
-  },
-  {
     "city": "Jasper",
     "state": "Texas",
-    "country": "United States"
-  },
-  {
-    "city": "Jacksonville",
-    "state": "Florida",
     "country": "United States"
   },
   {
@@ -13855,11 +12665,6 @@
     "country": "United States"
   },
   {
-    "city": "Las Vegas",
-    "state": "Nevada",
-    "country": "United States"
-  },
-  {
     "city": "Lawton",
     "state": "Oklahoma",
     "country": "United States"
@@ -13900,18 +12705,8 @@
     "country": "United States"
   },
   {
-    "city": "Lake Charles",
-    "state": "Louisiana",
-    "country": "United States"
-  },
-  {
     "city": "Laconia",
     "state": "New-Hampshire",
-    "country": "United States"
-  },
-  {
-    "city": "Columbus",
-    "state": "Ohio",
     "country": "United States"
   },
   {
@@ -13967,11 +12762,6 @@
   {
     "city": "Lafayette",
     "state": "Louisiana",
-    "country": "United States"
-  },
-  {
-    "city": "New York",
-    "state": "New-York",
     "country": "United States"
   },
   {
@@ -14170,16 +12960,6 @@
     "country": "United States"
   },
   {
-    "city": "Las Vegas",
-    "state": "Nevada",
-    "country": "United States"
-  },
-  {
-    "city": "Altus",
-    "state": "Oklahoma",
-    "country": "United States"
-  },
-  {
     "city": "Glendale",
     "state": "Arizona",
     "country": "United States"
@@ -14355,23 +13135,8 @@
     "country": "United States"
   },
   {
-    "city": "Macon",
-    "state": "Georgia",
-    "country": "United States"
-  },
-  {
-    "city": "Orlando",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "Mason City",
     "state": "Iowa",
-    "country": "United States"
-  },
-  {
-    "city": "Midland",
-    "state": "Texas",
     "country": "United States"
   },
   {
@@ -14382,11 +13147,6 @@
   {
     "city": "Madison",
     "state": "South-Dakota",
-    "country": "United States"
-  },
-  {
-    "city": "Harrisburg",
-    "state": "Pennsylvania",
     "country": "United States"
   },
   {
@@ -14412,11 +13172,6 @@
   {
     "city": "Memphis",
     "state": "Tennessee",
-    "country": "United States"
-  },
-  {
-    "city": "Merced",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -14480,11 +13235,6 @@
     "country": "United States"
   },
   {
-    "city": "Dayton",
-    "state": "Ohio",
-    "country": "United States"
-  },
-  {
     "city": "Mitchell",
     "state": "South-Dakota",
     "country": "United States"
@@ -14497,11 +13247,6 @@
   {
     "city": "Marshall",
     "state": "Missouri",
-    "country": "United States"
-  },
-  {
-    "city": "Sacramento",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -14522,11 +13267,6 @@
   {
     "city": "Minot",
     "state": "North-Dakota",
-    "country": "United States"
-  },
-  {
-    "city": "Minneapolis",
-    "state": "Minnesota",
     "country": "United States"
   },
   {
@@ -14562,11 +13302,6 @@
   {
     "city": "Toms River",
     "state": "New-Jersey",
-    "country": "United States"
-  },
-  {
-    "city": "Kansas City",
-    "state": "Missouri",
     "country": "United States"
   },
   {
@@ -14690,11 +13425,6 @@
     "country": "United States"
   },
   {
-    "city": "Mobile",
-    "state": "Alabama",
-    "country": "United States"
-  },
-  {
     "city": "Modesto",
     "state": "California",
     "country": "United States"
@@ -14707,11 +13437,6 @@
   {
     "city": "Morristown",
     "state": "Tennessee",
-    "country": "United States"
-  },
-  {
-    "city": "Minot",
-    "state": "North-Dakota",
     "country": "United States"
   },
   {
@@ -14815,11 +13540,6 @@
     "country": "United States"
   },
   {
-    "city": "Minneapolis",
-    "state": "Minnesota",
-    "country": "United States"
-  },
-  {
     "city": "Massena",
     "state": "New-York",
     "country": "United States"
@@ -14827,11 +13547,6 @@
   {
     "city": "Monticello",
     "state": "New-York",
-    "country": "United States"
-  },
-  {
-    "city": "New Orleans",
-    "state": "Louisiana",
     "country": "United States"
   },
   {
@@ -14847,11 +13562,6 @@
   {
     "city": "Montrose",
     "state": "Colorado",
-    "country": "United States"
-  },
-  {
-    "city": "Baltimore",
-    "state": "Maryland",
     "country": "United States"
   },
   {
@@ -14872,11 +13582,6 @@
   {
     "city": "Fort Indiantown Gap(Annville)",
     "state": "Pennsylvania",
-    "country": "United States"
-  },
-  {
-    "city": "Moultrie",
-    "state": "Georgia",
     "country": "United States"
   },
   {
@@ -14920,11 +13625,6 @@
     "country": "United States"
   },
   {
-    "city": "Milwaukee",
-    "state": "Wisconsin",
-    "country": "United States"
-  },
-  {
     "city": "Moses Lake",
     "state": "Washington",
     "country": "United States"
@@ -14950,11 +13650,6 @@
     "country": "United States"
   },
   {
-    "city": "Montgomery",
-    "state": "Alabama",
-    "country": "United States"
-  },
-  {
     "city": "Monticello",
     "state": "Iowa",
     "country": "United States"
@@ -14972,11 +13667,6 @@
   {
     "city": "Myrtle Beach",
     "state": "South-Carolina",
-    "country": "United States"
-  },
-  {
-    "city": "Marysville",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -15010,38 +13700,8 @@
     "country": "United States"
   },
   {
-    "city": "Jacksonville",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
-    "city": "New Orleans",
-    "state": "Louisiana",
-    "country": "United States"
-  },
-  {
-    "city": "Fallon",
-    "state": "Nevada",
-    "country": "United States"
-  },
-  {
-    "city": "Fort Worth",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
-    "city": "Corpus Christi",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Norfolk",
     "state": "Virginia",
-    "country": "United States"
-  },
-  {
-    "city": "Corpus Christi",
-    "state": "Texas",
     "country": "United States"
   },
   {
@@ -15050,17 +13710,7 @@
     "country": "United States"
   },
   {
-    "city": "Jacksonville",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "El Centro",
-    "state": "California",
-    "country": "United States"
-  },
-  {
-    "city": "San Diego",
     "state": "California",
     "country": "United States"
   },
@@ -15082,11 +13732,6 @@
   {
     "city": "Kingsville",
     "state": "Texas",
-    "country": "United States"
-  },
-  {
-    "city": "Key West",
-    "state": "Florida",
     "country": "United States"
   },
   {
@@ -15115,11 +13760,6 @@
     "country": "United States"
   },
   {
-    "city": "Pensacola",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "Mountain View",
     "state": "California",
     "country": "United States"
@@ -15142,11 +13782,6 @@
   {
     "city": "Yuma",
     "state": "Arizona",
-    "country": "United States"
-  },
-  {
-    "city": "San Diego",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -15205,11 +13840,6 @@
     "country": "United States"
   },
   {
-    "city": "Omaha",
-    "state": "Nebraska",
-    "country": "United States"
-  },
-  {
     "city": "Norfolk",
     "state": "Nebraska",
     "country": "United States"
@@ -15225,11 +13855,6 @@
     "country": "United States"
   },
   {
-    "city": "Ogden",
-    "state": "Utah",
-    "country": "United States"
-  },
-  {
     "city": "Ogdensburg",
     "state": "New-York",
     "country": "United States"
@@ -15240,11 +13865,6 @@
     "country": "United States"
   },
   {
-    "city": "Olathe",
-    "state": "Kansas",
-    "country": "United States"
-  },
-  {
     "city": "Oceanside",
     "state": "California",
     "country": "United States"
@@ -15252,11 +13872,6 @@
   {
     "city": "Oklahoma City",
     "state": "Oklahoma",
-    "country": "United States"
-  },
-  {
-    "city": "Oak Harbor",
-    "state": "Washington",
     "country": "United States"
   },
   {
@@ -15320,11 +13935,6 @@
     "country": "United States"
   },
   {
-    "city": "Omaha",
-    "state": "Nebraska",
-    "country": "United States"
-  },
-  {
     "city": "Omak",
     "state": "Washington",
     "country": "United States"
@@ -15370,11 +13980,6 @@
     "country": "United States"
   },
   {
-    "city": "Miami",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "Opelousas",
     "state": "Louisiana",
     "country": "United States"
@@ -15385,23 +13990,8 @@
     "country": "United States"
   },
   {
-    "city": "Chicago",
-    "state": "Illinois",
-    "country": "United States"
-  },
-  {
-    "city": "Norfolk",
-    "state": "Virginia",
-    "country": "United States"
-  },
-  {
     "city": "Worcester",
     "state": "Massachusetts",
-    "country": "United States"
-  },
-  {
-    "city": "Orlando",
-    "state": "Florida",
     "country": "United States"
   },
   {
@@ -15422,11 +14012,6 @@
   {
     "city": "Oshkosh",
     "state": "Wisconsin",
-    "country": "United States"
-  },
-  {
-    "city": "Columbus",
-    "state": "Ohio",
     "country": "United States"
   },
   {
@@ -15565,11 +14150,6 @@
     "country": "United States"
   },
   {
-    "city": "West Palm Beach",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "Pikeville",
     "state": "Kentucky",
     "country": "United States"
@@ -15580,17 +14160,7 @@
     "country": "United States"
   },
   {
-    "city": "Atlanta",
-    "state": "Georgia",
-    "country": "United States"
-  },
-  {
     "city": "Pendleton",
-    "state": "Oregon",
-    "country": "United States"
-  },
-  {
-    "city": "Portland",
     "state": "Oregon",
     "country": "United States"
   },
@@ -15602,11 +14172,6 @@
   {
     "city": "Pacific City",
     "state": "Oregon",
-    "country": "United States"
-  },
-  {
-    "city": "Panama City",
-    "state": "Florida",
     "country": "United States"
   },
   {
@@ -15670,11 +14235,6 @@
     "country": "United States"
   },
   {
-    "city": "Phoenix",
-    "state": "Arizona",
-    "country": "United States"
-  },
-  {
     "city": "Peoria",
     "state": "Illinois",
     "country": "United States"
@@ -15702,11 +14262,6 @@
   {
     "city": "Pierre",
     "state": "South-Dakota",
-    "country": "United States"
-  },
-  {
-    "city": "Pittsburgh",
-    "state": "Pennsylvania",
     "country": "United States"
   },
   {
@@ -15770,23 +14325,8 @@
     "country": "United States"
   },
   {
-    "city": "Philadelphia",
-    "state": "Pennsylvania",
-    "country": "United States"
-  },
-  {
     "city": "Princeton",
     "state": "Maine",
-    "country": "United States"
-  },
-  {
-    "city": "Pensacola",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
-    "city": "Fayetteville",
-    "state": "North-Carolina",
     "country": "United States"
   },
   {
@@ -15985,11 +14525,6 @@
     "country": "United States"
   },
   {
-    "city": "Oklahoma City",
-    "state": "Oklahoma",
-    "country": "United States"
-  },
-  {
     "city": "Plentywood",
     "state": "Montana",
     "country": "United States"
@@ -16025,11 +14560,6 @@
     "country": "United States"
   },
   {
-    "city": "Dallas",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Roseburg",
     "state": "Oregon",
     "country": "United States"
@@ -16042,11 +14572,6 @@
   {
     "city": "Walterboro",
     "state": "South-Carolina",
-    "country": "United States"
-  },
-  {
-    "city": "Rapid City",
-    "state": "South-Dakota",
     "country": "United States"
   },
   {
@@ -16077,11 +14602,6 @@
   {
     "city": "Redmond",
     "state": "Oregon",
-    "country": "United States"
-  },
-  {
-    "city": "Grand Forks",
-    "state": "North-Dakota",
     "country": "United States"
   },
   {
@@ -16136,11 +14656,6 @@
   },
   {
     "city": "Riverside/Rubidoux/",
-    "state": "California",
-    "country": "United States"
-  },
-  {
-    "city": "Riverside",
     "state": "California",
     "country": "United States"
   },
@@ -16285,11 +14800,6 @@
     "country": "United States"
   },
   {
-    "city": "Fort Myers",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "Raton",
     "state": "New-Mexico",
     "country": "United States"
@@ -16370,11 +14880,6 @@
     "country": "United States"
   },
   {
-    "city": "Sacramento",
-    "state": "California",
-    "country": "United States"
-  },
-  {
     "city": "Safford",
     "state": "Arizona",
     "country": "United States"
@@ -16382,11 +14887,6 @@
   {
     "city": "Santa Fe",
     "state": "New-Mexico",
-    "country": "United States"
-  },
-  {
-    "city": "San Diego",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -16470,28 +14970,13 @@
     "country": "United States"
   },
   {
-    "city": "Louisville",
-    "state": "Kentucky",
-    "country": "United States"
-  },
-  {
     "city": "Scottsdale",
     "state": "Arizona",
     "country": "United States"
   },
   {
-    "city": "San Diego",
-    "state": "California",
-    "country": "United States"
-  },
-  {
     "city": "Sidney",
     "state": "Montana",
-    "country": "United States"
-  },
-  {
-    "city": "Seattle",
-    "state": "Washington",
     "country": "United States"
   },
   {
@@ -16530,11 +15015,6 @@
     "country": "United States"
   },
   {
-    "city": "Orlando",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "Spokane",
     "state": "Oregon",
     "country": "United States"
@@ -16570,11 +15050,6 @@
     "country": "United States"
   },
   {
-    "city": "Houston",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Stuttgart",
     "state": "Arkansas",
     "country": "United States"
@@ -16600,11 +15075,6 @@
     "country": "United States"
   },
   {
-    "city": "Shreveport",
-    "state": "Louisiana",
-    "country": "United States"
-  },
-  {
     "city": "Sikeston",
     "state": "Missouri",
     "country": "United States"
@@ -16620,27 +15090,12 @@
     "country": "United States"
   },
   {
-    "city": "San Jose",
-    "state": "California",
-    "country": "United States"
-  },
-  {
     "city": "St Johns",
     "state": "Arizona",
     "country": "United States"
   },
   {
     "city": "San Angelo",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
-    "city": "Spokane",
-    "state": "Washington",
-    "country": "United States"
-  },
-  {
-    "city": "San Antonio",
     "state": "Texas",
     "country": "United States"
   },
@@ -16697,11 +15152,6 @@
   {
     "city": "Somerset",
     "state": "Kentucky",
-    "country": "United States"
-  },
-  {
-    "city": "Sacramento",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -16780,11 +15230,6 @@
     "country": "United States"
   },
   {
-    "city": "Wichita Falls",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Spencer",
     "state": "Iowa",
     "country": "United States"
@@ -16812,21 +15257,6 @@
   {
     "city": "Ruidoso",
     "state": "New-Mexico",
-    "country": "United States"
-  },
-  {
-    "city": "Sumter",
-    "state": "South-Carolina",
-    "country": "United States"
-  },
-  {
-    "city": "San Antonio",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
-    "city": "Brunswick",
-    "state": "Georgia",
     "country": "United States"
   },
   {
@@ -16885,11 +15315,6 @@
     "country": "United States"
   },
   {
-    "city": "St Louis",
-    "state": "Missouri",
-    "country": "United States"
-  },
-  {
     "city": "Fairfield",
     "state": "California",
     "country": "United States"
@@ -16917,11 +15342,6 @@
   {
     "city": "Statesville",
     "state": "North-Carolina",
-    "country": "United States"
-  },
-  {
-    "city": "Savannah",
-    "state": "Georgia",
     "country": "United States"
   },
   {
@@ -16962,11 +15382,6 @@
   {
     "city": "Knob Noster",
     "state": "Missouri",
-    "country": "United States"
-  },
-  {
-    "city": "Santa Barbara",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -17015,11 +15430,6 @@
     "country": "United States"
   },
   {
-    "city": "Amarillo",
-    "state": "Texas",
-    "country": "United States"
-  },
-  {
     "city": "Toledo",
     "state": "Ohio",
     "country": "United States"
@@ -17052,16 +15462,6 @@
   {
     "city": "York",
     "state": "Pennsylvania",
-    "country": "United States"
-  },
-  {
-    "city": "Oklahoma City",
-    "state": "Oklahoma",
-    "country": "United States"
-  },
-  {
-    "city": "Tacoma",
-    "state": "Washington",
     "country": "United States"
   },
   {
@@ -17110,11 +15510,6 @@
     "country": "United States"
   },
   {
-    "city": "Miami",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
     "city": "Newton",
     "state": "Iowa",
     "country": "United States"
@@ -17140,33 +15535,8 @@
     "country": "United States"
   },
   {
-    "city": "Toledo",
-    "state": "Ohio",
-    "country": "United States"
-  },
-  {
-    "city": "Topeka",
-    "state": "Kansas",
-    "country": "United States"
-  },
-  {
     "city": "Torrington",
     "state": "Wyoming",
-    "country": "United States"
-  },
-  {
-    "city": "Tampa",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
-    "city": "Tampa",
-    "state": "Florida",
-    "country": "United States"
-  },
-  {
-    "city": "Tonopah",
-    "state": "Nevada",
     "country": "United States"
   },
   {
@@ -17190,11 +15560,6 @@
     "country": "United States"
   },
   {
-    "city": "Palm Springs",
-    "state": "California",
-    "country": "United States"
-  },
-  {
     "city": "Trenton",
     "state": "Missouri",
     "country": "United States"
@@ -17205,28 +15570,13 @@
     "country": "United States"
   },
   {
-    "city": "Portland",
-    "state": "Oregon",
-    "country": "United States"
-  },
-  {
     "city": "Trenton",
     "state": "New-Jersey",
     "country": "United States"
   },
   {
-    "city": "Tulsa",
-    "state": "Oklahoma",
-    "country": "United States"
-  },
-  {
     "city": "Tupelo",
     "state": "Mississippi",
-    "country": "United States"
-  },
-  {
-    "city": "Tucson",
-    "state": "Arizona",
     "country": "United States"
   },
   {
@@ -17290,18 +15640,8 @@
     "country": "United States"
   },
   {
-    "city": "Columbus",
-    "state": "Mississippi",
-    "country": "United States"
-  },
-  {
     "city": "Union City",
     "state": "Tennessee",
-    "country": "United States"
-  },
-  {
-    "city": "Palm Springs",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -17405,11 +15745,6 @@
     "country": "United States"
   },
   {
-    "city": "Lompoc",
-    "state": "California",
-    "country": "United States"
-  },
-  {
     "city": "Victoria",
     "state": "Texas",
     "country": "United States"
@@ -17427,11 +15762,6 @@
   {
     "city": "Vernal",
     "state": "Utah",
-    "country": "United States"
-  },
-  {
-    "city": "Las Vegas",
-    "state": "Nevada",
     "country": "United States"
   },
   {
@@ -17470,11 +15800,6 @@
     "country": "United States"
   },
   {
-    "city": "Valdosta",
-    "state": "Georgia",
-    "country": "United States"
-  },
-  {
     "city": "Venice",
     "state": "Florida",
     "country": "United States"
@@ -17497,11 +15822,6 @@
   {
     "city": "Valparaiso",
     "state": "Indiana",
-    "country": "United States"
-  },
-  {
-    "city": "Jacksonville",
-    "state": "Florida",
     "country": "United States"
   },
   {
@@ -17540,18 +15860,8 @@
     "country": "United States"
   },
   {
-    "city": "Enid",
-    "state": "Oklahoma",
-    "country": "United States"
-  },
-  {
     "city": "Winder",
     "state": "Georgia",
-    "country": "United States"
-  },
-  {
-    "city": "Los Angeles",
-    "state": "California",
     "country": "United States"
   },
   {
@@ -17627,11 +15937,6 @@
   {
     "city": "Fayetteville/Springdale/",
     "state": "Arkansas",
-    "country": "United States"
-  },
-  {
-    "city": "Detroit",
-    "state": "Michigan",
     "country": "United States"
   },
   {
@@ -17737,11 +16042,6 @@
   {
     "city": "Paphos",
     "state": "Pafos",
-    "country": "Cyprus"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
     "country": "Cyprus"
   },
   {
@@ -17905,11 +16205,6 @@
     "country": "Spain"
   },
   {
-    "city": "Madrid",
-    "state": "Madrid",
-    "country": "Spain"
-  },
-  {
     "city": "Gibraleon",
     "state": "Andalusia",
     "country": "Spain"
@@ -17972,11 +16267,6 @@
   {
     "city": "Montferrer / Castellbo",
     "state": "Catalonia",
-    "country": "Spain"
-  },
-  {
-    "city": "Madrid",
-    "state": "Madrid",
     "country": "Spain"
   },
   {
@@ -18465,11 +16755,6 @@
     "country": "France"
   },
   {
-    "city": "Le Castellet",
-    "state": "Provence-Alpes-Cote-d'Azur",
-    "country": "France"
-  },
-  {
     "city": "Ales/Deaux",
     "state": "Occitanie",
     "country": "France"
@@ -18595,17 +16880,7 @@
     "country": "France"
   },
   {
-    "city": "Paris",
-    "state": "Ile-de-France",
-    "country": "France"
-  },
-  {
     "city": "Toussus-le-Noble",
-    "state": "Ile-de-France",
-    "country": "France"
-  },
-  {
-    "city": "Paris",
     "state": "Ile-de-France",
     "country": "France"
   },
@@ -18852,11 +17127,6 @@
   {
     "city": "Alexandroupolis",
     "state": "East-Macedonia-and-Thrace",
-    "country": "Greece"
-  },
-  {
-    "city": "Athens",
-    "state": "Attica",
     "country": "Greece"
   },
   {
@@ -19130,11 +17400,6 @@
     "country": "Italy"
   },
   {
-    "city": "NA",
-    "state": "Apulia",
-    "country": "Italy"
-  },
-  {
     "city": "Pescara",
     "state": "Abruzzo",
     "country": "Italy"
@@ -19181,11 +17446,6 @@
   },
   {
     "city": "Trapani",
-    "state": "Sicily",
-    "country": "Italy"
-  },
-  {
-    "city": "NA",
     "state": "Sicily",
     "country": "Italy"
   },
@@ -19272,11 +17532,6 @@
   {
     "city": "Genova",
     "state": "Liguria",
-    "country": "Italy"
-  },
-  {
-    "city": "Milan",
-    "state": "Lombardy",
     "country": "Italy"
   },
   {
@@ -19450,11 +17705,6 @@
     "country": "Slovenia"
   },
   {
-    "city": "NA",
-    "state": "Hoce-Slivnica",
-    "country": "Slovenia"
-  },
-  {
     "city": "Portoroz",
     "state": "Piran-Pirano",
     "country": "Slovenia"
@@ -19535,11 +17785,6 @@
     "country": "Israel"
   },
   {
-    "city": "Eilat",
-    "state": "Southern-District",
-    "country": "Israel"
-  },
-  {
     "city": "Sapir",
     "state": "Southern-District",
     "country": "Israel"
@@ -19566,16 +17811,6 @@
   },
   {
     "city": "Masada",
-    "state": "Southern-District",
-    "country": "Israel"
-  },
-  {
-    "city": "Beersheba",
-    "state": "Southern-District",
-    "country": "Israel"
-  },
-  {
-    "city": "Eilat",
     "state": "Southern-District",
     "country": "Israel"
   },
@@ -19640,11 +17875,6 @@
     "country": "Portugal"
   },
   {
-    "city": "NA",
-    "state": "Braganca",
-    "country": "Portugal"
-  },
-  {
     "city": "Beja",
     "state": "Beja",
     "country": "Portugal"
@@ -19660,23 +17890,8 @@
     "country": "Portugal"
   },
   {
-    "city": "NA",
-    "state": "Coimbra",
-    "country": "Portugal"
-  },
-  {
     "city": "Corvo",
     "state": "Azores",
-    "country": "Portugal"
-  },
-  {
-    "city": "NA",
-    "state": "Lisbon",
-    "country": "Portugal"
-  },
-  {
-    "city": "NA",
-    "state": "Castelo-Branco",
     "country": "Portugal"
   },
   {
@@ -19720,11 +17935,6 @@
     "country": "Portugal"
   },
   {
-    "city": "NA",
-    "state": "Faro",
-    "country": "Portugal"
-  },
-  {
     "city": "Porto",
     "state": "Porto",
     "country": "Portugal"
@@ -19740,23 +17950,8 @@
     "country": "Portugal"
   },
   {
-    "city": "NA",
-    "state": "Setubal",
-    "country": "Portugal"
-  },
-  {
     "city": "Velas",
     "state": "Azores",
-    "country": "Portugal"
-  },
-  {
-    "city": "NA",
-    "state": "Vila-Real",
-    "country": "Portugal"
-  },
-  {
-    "city": "NA",
-    "state": "Viseu",
     "country": "Portugal"
   },
   {
@@ -19791,17 +17986,17 @@
   },
   {
     "city": "Baia Mare",
-    "state": "Maramureş",
+    "state": "Maramures",
     "country": "Romania"
   },
   {
     "city": "Bucharest",
-    "state": "Bucureşti",
+    "state": "Bucuresti",
     "country": "Romania"
   },
   {
     "city": "Constanta",
-    "state": "Constanța",
+    "state": "Constanta",
     "country": "Romania"
   },
   {
@@ -19811,7 +18006,7 @@
   },
   {
     "city": "Caransebes",
-    "state": "Caraş-Severin",
+    "state": "Caras-Severin",
     "country": "Romania"
   },
   {
@@ -19821,7 +18016,7 @@
   },
   {
     "city": "Iasi",
-    "state": "Iaşi",
+    "state": "Iasi",
     "country": "Romania"
   },
   {
@@ -19856,12 +18051,12 @@
   },
   {
     "city": "Targu Mures",
-    "state": "Mureş",
+    "state": "Mures",
     "country": "Romania"
   },
   {
     "city": "Timisoara",
-    "state": "Timiş",
+    "state": "Timis",
     "country": "Romania"
   },
   {
@@ -19875,23 +18070,8 @@
     "country": "Switzerland"
   },
   {
-    "city": "NA",
-    "state": "Neuchatel",
-    "country": "Switzerland"
-  },
-  {
     "city": "Sion",
     "state": "Valais",
-    "country": "Switzerland"
-  },
-  {
-    "city": "NA",
-    "state": "Lucerne",
-    "country": "Switzerland"
-  },
-  {
-    "city": "NA",
-    "state": "Bern",
     "country": "Switzerland"
   },
   {
@@ -19910,18 +18090,8 @@
     "country": "Switzerland"
   },
   {
-    "city": "NA",
-    "state": "Solothurn",
-    "country": "Switzerland"
-  },
-  {
     "city": "Zurich",
     "state": "Zurich",
-    "country": "Switzerland"
-  },
-  {
-    "city": "NA",
-    "state": "Ticino",
     "country": "Switzerland"
   },
   {
@@ -19935,23 +18105,8 @@
     "country": "Switzerland"
   },
   {
-    "city": "NA",
-    "state": "Grisons",
-    "country": "Switzerland"
-  },
-  {
     "city": "Ankara",
     "state": "Ankara",
-    "country": "Turkey"
-  },
-  {
-    "city": "Ankara",
-    "state": "Ankara",
-    "country": "Turkey"
-  },
-  {
-    "city": "Adana",
-    "state": "Adana",
     "country": "Turkey"
   },
   {
@@ -20026,7 +18181,7 @@
   },
   {
     "city": "Nevsehir",
-    "state": "Nevşehir",
+    "state": "Nevsehir",
     "country": "Turkey"
   },
   {
@@ -20066,12 +18221,7 @@
   },
   {
     "city": "Eskisehir",
-    "state": "Eskişehir",
-    "country": "Turkey"
-  },
-  {
-    "city": "Izmir",
-    "state": "Izmir",
+    "state": "Eskisehir",
     "country": "Turkey"
   },
   {
@@ -20081,17 +18231,7 @@
   },
   {
     "city": "Usak",
-    "state": "Uşak",
-    "country": "Turkey"
-  },
-  {
-    "city": "NA",
-    "state": "Kocaeli",
-    "country": "Turkey"
-  },
-  {
-    "city": "Bursa",
-    "state": "Bursa",
+    "state": "Usak",
     "country": "Turkey"
   },
   {
@@ -20107,11 +18247,6 @@
   {
     "city": "Bodrum",
     "state": "Mugla",
-    "country": "Turkey"
-  },
-  {
-    "city": "Eskisehir",
-    "state": "Eskişehir",
     "country": "Turkey"
   },
   {
@@ -20171,7 +18306,7 @@
   },
   {
     "city": "Mus",
-    "state": "Muş",
+    "state": "Mus",
     "country": "Turkey"
   },
   {
@@ -20186,7 +18321,7 @@
   },
   {
     "city": "Kahramanmaras",
-    "state": "Kahramanmaraş",
+    "state": "Kahramanmaras",
     "country": "Turkey"
   },
   {
@@ -20202,11 +18337,6 @@
   {
     "city": "Mardin",
     "state": "Mardin",
-    "country": "Turkey"
-  },
-  {
-    "city": "Sanliurfa",
-    "state": "Sanliurfa",
     "country": "Turkey"
   },
   {
@@ -20235,23 +18365,8 @@
     "country": "Turkey"
   },
   {
-    "city": "Bodrum",
-    "state": "Mugla",
-    "country": "Turkey"
-  },
-  {
     "city": "Gazipasa",
     "state": "Antalya",
-    "country": "Turkey"
-  },
-  {
-    "city": "Samsun",
-    "state": "Samsun",
-    "country": "Turkey"
-  },
-  {
-    "city": "Istanbul",
-    "state": "Istanbul",
     "country": "Turkey"
   },
   {
@@ -20261,12 +18376,12 @@
   },
   {
     "city": "Strymba",
-    "state": "Balţi",
+    "state": "Balti",
     "country": "Moldova"
   },
   {
     "city": "Chisinau",
-    "state": "Chișinau-Municipality",
+    "state": "Chisinau-Municipality",
     "country": "Moldova"
   },
   {
@@ -20385,22 +18500,12 @@
     "country": "Turks and Caicos Islands"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Turks and Caicos Islands"
-  },
-  {
     "city": "Pine Cay",
     "state": "NA",
     "country": "Turks and Caicos Islands"
   },
   {
     "city": "Providenciales Island",
-    "state": "NA",
-    "country": "Turks and Caicos Islands"
-  },
-  {
-    "city": "NA",
     "state": "NA",
     "country": "Turks and Caicos Islands"
   },
@@ -20735,11 +18840,6 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Nuevo-Leon",
-    "country": "Mexico"
-  },
-  {
     "city": "Aguascalientes",
     "state": "Aguascalientes",
     "country": "Mexico"
@@ -20750,16 +18850,6 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Sonora",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Morelos",
-    "country": "Mexico"
-  },
-  {
     "city": "Ciudad Acuna",
     "state": "Coahuila",
     "country": "Mexico"
@@ -20767,11 +18857,6 @@
   {
     "city": "Ciudad del Carmen",
     "state": "Campeche",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Chihuahua",
     "country": "Mexico"
   },
   {
@@ -20790,11 +18875,6 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Chiapas",
-    "country": "Mexico"
-  },
-  {
     "city": "Campeche",
     "state": "Campeche",
     "country": "Mexico"
@@ -20802,11 +18882,6 @@
   {
     "city": "Ciudad Juarez",
     "state": "Chihuahua",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Yucatan",
     "country": "Mexico"
   },
   {
@@ -20850,11 +18925,6 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Baja-California",
-    "country": "Mexico"
-  },
-  {
     "city": "Guadalajara",
     "state": "Jalisco",
     "country": "Mexico"
@@ -20870,11 +18940,6 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Puebla",
-    "country": "Mexico"
-  },
-  {
     "city": "Hermosillo",
     "state": "Sonora",
     "country": "Mexico"
@@ -20885,28 +18950,13 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Quintana-Roo",
-    "country": "Mexico"
-  },
-  {
     "city": "Saltillo",
     "state": "Coahuila",
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Oaxaca",
-    "country": "Mexico"
-  },
-  {
     "city": "Xalapa",
     "state": "Veracruz",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Mexico",
     "country": "Mexico"
   },
   {
@@ -20965,11 +19015,6 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Coahuila",
-    "country": "Mexico"
-  },
-  {
     "city": "Mexico City",
     "state": "Mexico-City",
     "country": "Mexico"
@@ -20982,11 +19027,6 @@
   {
     "city": "Mazatlan",
     "state": "Sinaloa",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Sonora",
     "country": "Mexico"
   },
   {
@@ -21015,23 +19055,8 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Coahuila",
-    "country": "Mexico"
-  },
-  {
     "city": "La Ribera",
     "state": "Baja-California-Sur",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Michoacan",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Chiapas",
     "country": "Mexico"
   },
   {
@@ -21055,18 +19080,8 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "Chiapas",
-    "country": "Mexico"
-  },
-  {
     "city": "San Jose del Cabo",
     "state": "Baja-California-Sur",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Baja-California",
     "country": "Mexico"
   },
   {
@@ -21100,11 +19115,6 @@
     "country": "Mexico"
   },
   {
-    "city": "NA",
-    "state": "San-Luis-Potosi",
-    "country": "Mexico"
-  },
-  {
     "city": "Toluca",
     "state": "Mexico",
     "country": "Mexico"
@@ -21112,11 +19122,6 @@
   {
     "city": "Tapachula",
     "state": "Chiapas",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Jalisco",
     "country": "Mexico"
   },
   {
@@ -21142,11 +19147,6 @@
   {
     "city": "Ixtapa",
     "state": "Guerrero",
-    "country": "Mexico"
-  },
-  {
-    "city": "NA",
-    "state": "Michoacan",
     "country": "Mexico"
   },
   {
@@ -21255,11 +19255,6 @@
     "country": "Panama"
   },
   {
-    "city": "Panama City",
-    "state": "Panama",
-    "country": "Panama"
-  },
-  {
     "city": "Rio Hato",
     "state": "Cocle",
     "country": "Panama"
@@ -21325,11 +19320,6 @@
     "country": "Costa Rica"
   },
   {
-    "city": "Puntarenas",
-    "state": "Puntarenas",
-    "country": "Costa Rica"
-  },
-  {
     "city": "Brasilito",
     "state": "Guanacaste",
     "country": "Costa Rica"
@@ -21337,11 +19327,6 @@
   {
     "city": "Golfito",
     "state": "Puntarenas",
-    "country": "Costa Rica"
-  },
-  {
-    "city": "Pococi",
-    "state": "Limon",
     "country": "Costa Rica"
   },
   {
@@ -21371,11 +19356,6 @@
   },
   {
     "city": "Nicoya/Guanacate",
-    "state": "Guanacaste",
-    "country": "Costa Rica"
-  },
-  {
-    "city": "Nicoya",
     "state": "Guanacaste",
     "country": "Costa Rica"
   },
@@ -21466,7 +19446,7 @@
   },
   {
     "city": "Jeremie",
-    "state": "GrandʼAnse",
+    "state": "Grand'Anse",
     "country": "Haiti"
   },
   {
@@ -21600,18 +19580,8 @@
     "country": "Cuba"
   },
   {
-    "city": "Pinar del Rio",
-    "state": "Pinar-del-Rio",
-    "country": "Cuba"
-  },
-  {
     "city": "Santa Clara",
     "state": "Villa-Clara",
-    "country": "Cuba"
-  },
-  {
-    "city": "Pinar Del Rio",
-    "state": "Pinar-del-Rio",
     "country": "Cuba"
   },
   {
@@ -21660,11 +19630,6 @@
     "country": "Bahamas"
   },
   {
-    "city": "NA",
-    "state": "North-Andros",
-    "country": "Bahamas"
-  },
-  {
     "city": "Andros",
     "state": "South-Andros",
     "country": "Bahamas"
@@ -21687,21 +19652,6 @@
   {
     "city": "Treasure Cay",
     "state": "NA",
-    "country": "Bahamas"
-  },
-  {
-    "city": "NA",
-    "state": "Grand-Cay",
-    "country": "Bahamas"
-  },
-  {
-    "city": "NA",
-    "state": "Berry-Islands",
-    "country": "Bahamas"
-  },
-  {
-    "city": "NA",
-    "state": "Berry-Islands",
     "country": "Bahamas"
   },
   {
@@ -21750,18 +19700,8 @@
     "country": "Bahamas"
   },
   {
-    "city": "NA",
-    "state": "Black-Point",
-    "country": "Bahamas"
-  },
-  {
     "city": "Rock Sound",
     "state": "South-Eleuthera",
-    "country": "Bahamas"
-  },
-  {
-    "city": "NA",
-    "state": "Black-Point",
     "country": "Bahamas"
   },
   {
@@ -21802,21 +19742,6 @@
   {
     "city": "Nassau",
     "state": "New-Providence",
-    "country": "Bahamas"
-  },
-  {
-    "city": "Nassau",
-    "state": "New-Providence",
-    "country": "Bahamas"
-  },
-  {
-    "city": "NA",
-    "state": "Ragged-Island",
-    "country": "Bahamas"
-  },
-  {
-    "city": "NA",
-    "state": "Rum-Cay",
     "country": "Bahamas"
   },
   {
@@ -21875,11 +19800,6 @@
     "country": "Fiji"
   },
   {
-    "city": "NA",
-    "state": "Western",
-    "country": "Fiji"
-  },
-  {
     "city": "Nadi",
     "state": "Western",
     "country": "Fiji"
@@ -21930,11 +19850,6 @@
     "country": "Fiji"
   },
   {
-    "city": "NA",
-    "state": "Northern",
-    "country": "Fiji"
-  },
-  {
     "city": "Matei",
     "state": "Northern",
     "country": "Fiji"
@@ -21976,7 +19891,7 @@
   },
   {
     "city": "Eua Island",
-    "state": "ʻEua",
+    "state": "'Eua",
     "country": "Tonga"
   },
   {
@@ -21986,12 +19901,12 @@
   },
   {
     "city": "Lifuka",
-    "state": "Ha‘apai",
+    "state": "Ha'apai",
     "country": "Tonga"
   },
   {
     "city": "Angaha",
-    "state": "Vava‘u",
+    "state": "Vava'u",
     "country": "Tonga"
   },
   {
@@ -22001,7 +19916,7 @@
   },
   {
     "city": "Vava'u Island",
-    "state": "Vava‘u",
+    "state": "Vava'u",
     "country": "Tonga"
   },
   {
@@ -22066,11 +19981,6 @@
   },
   {
     "city": "Abemama Atoll",
-    "state": "Gilbert-Islands",
-    "country": "Kiribati"
-  },
-  {
-    "city": "NA",
     "state": "Gilbert-Islands",
     "country": "Kiribati"
   },
@@ -22160,72 +20070,12 @@
     "country": "French Polynesia"
   },
   {
-    "city": "NA",
-    "state": "Iles-Australes",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Australes",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Australes",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "French Polynesia"
-  },
-  {
     "city": "Apataki",
     "state": "Iles-Tuamotu-Gambier",
     "country": "French Polynesia"
   },
   {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
     "city": "Hikueru Atoll",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
     "state": "Iles-Tuamotu-Gambier",
     "country": "French Polynesia"
   },
@@ -22240,38 +20090,13 @@
     "country": "French Polynesia"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "French Polynesia"
-  },
-  {
     "city": "Pukarua",
     "state": "Iles-Tuamotu-Gambier",
     "country": "French Polynesia"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "French Polynesia"
-  },
-  {
     "city": "Nukutavake",
     "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
     "country": "French Polynesia"
   },
   {
@@ -22285,17 +20110,7 @@
     "country": "French Polynesia"
   },
   {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
     "city": "Fakahina",
-    "state": "NA",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
     "state": "NA",
     "country": "French Polynesia"
   },
@@ -22305,28 +20120,8 @@
     "country": "French Polynesia"
   },
   {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
     "city": "Katiu",
     "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Marquises",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Marquises",
     "country": "French Polynesia"
   },
   {
@@ -22350,27 +20145,7 @@
     "country": "French Polynesia"
   },
   {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
     "city": "Fare",
-    "state": "Leeward-Islands",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-du-Vent",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
-    "state": "Iles-Tuamotu-Gambier",
-    "country": "French Polynesia"
-  },
-  {
-    "city": "NA",
     "state": "Leeward-Islands",
     "country": "French Polynesia"
   },
@@ -22535,11 +20310,6 @@
     "country": "Vanuatu"
   },
   {
-    "city": "NA",
-    "state": "Tafea",
-    "country": "Vanuatu"
-  },
-  {
     "city": "Tiga",
     "state": "NA",
     "country": "New Caledonia"
@@ -22610,11 +20380,6 @@
     "country": "New Caledonia"
   },
   {
-    "city": "Noumea",
-    "state": "South-Province",
-    "country": "New Caledonia"
-  },
-  {
     "city": "Auckland",
     "state": "Auckland",
     "country": "New Zealand"
@@ -22630,11 +20395,6 @@
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Canterbury",
-    "country": "New Zealand"
-  },
-  {
     "city": "Christchurch",
     "state": "Canterbury",
     "country": "New Zealand"
@@ -22645,33 +20405,13 @@
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Waikato",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Northland",
-    "country": "New Zealand"
-  },
-  {
     "city": "Dunedin",
     "state": "Otago",
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "West-Coast",
-    "country": "New Zealand"
-  },
-  {
     "city": "Claris",
     "state": "Auckland",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "West-Coast",
     "country": "New Zealand"
   },
   {
@@ -22685,33 +20425,13 @@
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "West-Coast",
-    "country": "New Zealand"
-  },
-  {
     "city": "Hamilton",
     "state": "Waikato",
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Auckland",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Marlborough",
-    "country": "New Zealand"
-  },
-  {
     "city": "Kerikeri",
     "state": "Northland",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Auckland",
     "country": "New Zealand"
   },
   {
@@ -22725,31 +20445,6 @@
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Auckland",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Canterbury",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Southland",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Nelson",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Southland",
-    "country": "New Zealand"
-  },
-  {
     "city": "Masterton",
     "state": "Wellington",
     "country": "New Zealand"
@@ -22757,11 +20452,6 @@
   {
     "city": "New Plymouth",
     "state": "Taranaki",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Hawke's-Bay",
     "country": "New Zealand"
   },
   {
@@ -22775,38 +20465,13 @@
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Wellington",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Otago",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Wellington",
-    "country": "New Zealand"
-  },
-  {
     "city": "Picton",
     "state": "Marlborough",
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Wellington",
-    "country": "New Zealand"
-  },
-  {
     "city": "Queenstown",
     "state": "Otago",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Waikato",
     "country": "New Zealand"
   },
   {
@@ -22825,16 +20490,6 @@
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Waikato",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Tasman",
-    "country": "New Zealand"
-  },
-  {
     "city": "Tokoroa",
     "state": "Waikato",
     "country": "New Zealand"
@@ -22842,11 +20497,6 @@
   {
     "city": "Taharoa",
     "state": "Waikato",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Canterbury",
     "country": "New Zealand"
   },
   {
@@ -22860,16 +20510,6 @@
     "country": "New Zealand"
   },
   {
-    "city": "NA",
-    "state": "Otago",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Auckland",
-    "country": "New Zealand"
-  },
-  {
     "city": "Wellington",
     "state": "Wellington",
     "country": "New Zealand"
@@ -22877,21 +20517,6 @@
   {
     "city": "Wairoa",
     "state": "Hawke's-Bay",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Northland",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "West-Coast",
-    "country": "New Zealand"
-  },
-  {
-    "city": "NA",
-    "state": "Auckland",
     "country": "New Zealand"
   },
   {
@@ -22935,18 +20560,8 @@
     "country": "Afghanistan"
   },
   {
-    "city": "NA",
-    "state": "Herat",
-    "country": "Afghanistan"
-  },
-  {
     "city": "Bagram",
     "state": "Parwan",
-    "country": "Afghanistan"
-  },
-  {
-    "city": "NA",
-    "state": "Nangarhar",
     "country": "Afghanistan"
   },
   {
@@ -22955,23 +20570,8 @@
     "country": "Afghanistan"
   },
   {
-    "city": "NA",
-    "state": "Kandahar",
-    "country": "Afghanistan"
-  },
-  {
     "city": "Khost",
     "state": "Khowst",
-    "country": "Afghanistan"
-  },
-  {
-    "city": "NA",
-    "state": "Faryab",
-    "country": "Afghanistan"
-  },
-  {
-    "city": "NA",
-    "state": "Balkh",
     "country": "Afghanistan"
   },
   {
@@ -22982,11 +20582,6 @@
   {
     "city": "Sharana",
     "state": "Paktika",
-    "country": "Afghanistan"
-  },
-  {
-    "city": "NA",
-    "state": "Herat",
     "country": "Afghanistan"
   },
   {
@@ -23005,16 +20600,6 @@
     "country": "Afghanistan"
   },
   {
-    "city": "NA",
-    "state": "Kunduz",
-    "country": "Afghanistan"
-  },
-  {
-    "city": "NA",
-    "state": "Helmand",
-    "country": "Afghanistan"
-  },
-  {
     "city": "Zaranj",
     "state": "NA",
     "country": "Afghanistan"
@@ -23030,23 +20615,8 @@
     "country": "Saudi Arabia"
   },
   {
-    "city": "NA",
-    "state": "Eastern-Province",
-    "country": "Saudi Arabia"
-  },
-  {
     "city": "Al-'Ula",
     "state": "Al Madinah",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
     "country": "Saudi Arabia"
   },
   {
@@ -23055,33 +20625,13 @@
     "country": "Saudi Arabia"
   },
   {
-    "city": "NA",
-    "state": "Eastern-Province",
-    "country": "Saudi Arabia"
-  },
-  {
     "city": "Dawadmi",
-    "state": "Ar-Riyaḑ",
+    "state": "Ar-Riyad",
     "country": "Saudi Arabia"
   },
   {
     "city": "Jizan",
     "state": "Jizan",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "Al-Jawf",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "Ḩaʼil",
     "country": "Saudi Arabia"
   },
   {
@@ -23100,28 +20650,13 @@
     "country": "Saudi Arabia"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Saudi Arabia"
-  },
-  {
     "city": "Medina",
     "state": "Al-Madinah-al-Munawwarah",
     "country": "Saudi Arabia"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Saudi Arabia"
-  },
-  {
     "city": "Qaisumah",
     "state": "Eastern-Province",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "Ar-Riyaḑ",
     "country": "Saudi Arabia"
   },
   {
@@ -23141,12 +20676,7 @@
   },
   {
     "city": "Riyadh",
-    "state": "Ar-Riyaḑ",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
+    "state": "Ar-Riyad",
     "country": "Saudi Arabia"
   },
   {
@@ -23155,43 +20685,13 @@
     "country": "Saudi Arabia"
   },
   {
-    "city": "NA",
-    "state": "Ar-Riyaḑ",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "Tabuk",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "Makkah",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Borders",
-    "country": "Saudi Arabia"
-  },
-  {
-    "city": "NA",
-    "state": "Ar-Riyaḑ",
-    "country": "Saudi Arabia"
-  },
-  {
     "city": "Al Wajh",
     "state": "Tabuk",
     "country": "Saudi Arabia"
   },
   {
-    "city": "NA",
-    "state": "Al-Madinah-al-Munawwarah",
-    "country": "Saudi Arabia"
-  },
-  {
     "city": "Zilfi",
-    "state": "Ar-Riyaḑ",
+    "state": "Ar-Riyad",
     "country": "Saudi Arabia"
   },
   {
@@ -23200,27 +20700,7 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Khuzestan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Khuzestan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Kohgiluyeh-va-Buyer-Aḩmad",
-    "country": "Iran"
-  },
-  {
     "city": "Omidiyeh",
-    "state": "Khuzestan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
     "state": "Khuzestan",
     "country": "Iran"
   },
@@ -23230,18 +20710,8 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Hormozgan",
-    "country": "Iran"
-  },
-  {
     "city": "Bushehr",
     "state": "Bushehr",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Hormozgan",
     "country": "Iran"
   },
   {
@@ -23270,21 +20740,6 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Bushehr",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Hormozgan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Hormozgan",
-    "country": "Iran"
-  },
-  {
     "city": "Kermanshah",
     "state": "Kermanshah",
     "country": "Iran"
@@ -23295,22 +20750,7 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Lorestan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Kordestan",
-    "country": "Iran"
-  },
-  {
     "city": "Hesa",
-    "state": "Isfahan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
     "state": "Isfahan",
     "country": "Iran"
   },
@@ -23340,16 +20780,6 @@
     "country": "Iran"
   },
   {
-    "city": "Hamadan",
-    "state": "Hamadan",
-    "country": "Iran"
-  },
-  {
-    "city": "Tehran",
-    "state": "Tehran",
-    "country": "Iran"
-  },
-  {
     "city": "Tehran",
     "state": "Tehran",
     "country": "Iran"
@@ -23357,11 +20787,6 @@
   {
     "city": "Qazvin",
     "state": "Qazvin",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Alborz",
     "country": "Iran"
   },
   {
@@ -23375,38 +20800,13 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Kerman",
-    "country": "Iran"
-  },
-  {
     "city": "Kerman",
-    "state": "Kerman",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
     "state": "Kerman",
     "country": "Iran"
   },
   {
     "city": "Havadarya",
     "state": "Hormozgan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Hormozgan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Kerman",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Kerman",
     "country": "Iran"
   },
   {
@@ -23417,11 +20817,6 @@
   {
     "city": "Sarakhs",
     "state": "Razavi-Khorasan",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Semnan",
     "country": "Iran"
   },
   {
@@ -23450,11 +20845,6 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Mazandaran",
-    "country": "Iran"
-  },
-  {
     "city": "Gorgan",
     "state": "Mazandaran",
     "country": "Iran"
@@ -23465,27 +20855,12 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Mazandaran",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Mazandaran",
-    "country": "Iran"
-  },
-  {
     "city": "Sari",
     "state": "Mazandaran",
     "country": "Iran"
   },
   {
     "city": "Fasa",
-    "state": "Fars",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
     "state": "Fars",
     "country": "Iran"
   },
@@ -23505,13 +20880,8 @@
     "country": "Iran"
   },
   {
-    "city": "NA",
-    "state": "Kohgiluyeh-va-Buyer-Aḩmad",
-    "country": "Iran"
-  },
-  {
     "city": "Khoy",
-    "state": "Az̄arbayjan-e-Gharbi",
+    "state": "Azarbayjan-e-Gharbi",
     "country": "Iran"
   },
   {
@@ -23531,7 +20901,7 @@
   },
   {
     "city": "Urmia",
-    "state": "Az̄arbayjan-e-Gharbi",
+    "state": "Azarbayjan-e-Gharbi",
     "country": "Iran"
   },
   {
@@ -23541,22 +20911,12 @@
   },
   {
     "city": "Makou",
-    "state": "Az̄arbayjan-e-Gharbi",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Zanjan",
+    "state": "Azarbayjan-e-Gharbi",
     "country": "Iran"
   },
   {
     "city": "Yazd",
     "state": "Yazd",
-    "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Sistan-and-Baluchestan",
     "country": "Iran"
   },
   {
@@ -23568,16 +20928,6 @@
     "city": "Zahedan",
     "state": "Sistan-and-Baluchestan",
     "country": "Iran"
-  },
-  {
-    "city": "NA",
-    "state": "Sistan-and-Baluchestan",
-    "country": "Iran"
-  },
-  {
-    "city": "Amman",
-    "state": "Amman",
-    "country": "Jordan"
   },
   {
     "city": "Amman",
@@ -23593,11 +20943,6 @@
     "city": "Mafraq",
     "state": "Mafraq",
     "country": "Jordan"
-  },
-  {
-    "city": "Oklahoma City",
-    "state": "Oklahoma",
-    "country": "United States"
   },
   {
     "city": "Ahmed Al Jaber AB",
@@ -23625,23 +20970,8 @@
     "country": "United Arab Emirates"
   },
   {
-    "city": "NA",
-    "state": "Abu-Dhabi",
-    "country": "United Arab Emirates"
-  },
-  {
     "city": "Al Ain",
     "state": "Abu-Dhabi",
-    "country": "United Arab Emirates"
-  },
-  {
-    "city": "NA",
-    "state": "Abu-Dhabi",
-    "country": "United Arab Emirates"
-  },
-  {
-    "city": "Dubai",
-    "state": "Dubai",
     "country": "United Arab Emirates"
   },
   {
@@ -23655,13 +20985,8 @@
     "country": "United Arab Emirates"
   },
   {
-    "city": "NA",
-    "state": "Al-Fujayrah",
-    "country": "United Arab Emirates"
-  },
-  {
     "city": "Ras Al Khaimah",
-    "state": "Raʼs-al-Khaymah",
+    "state": "Ra's-al-Khaymah",
     "country": "United Arab Emirates"
   },
   {
@@ -23681,22 +21006,17 @@
   },
   {
     "city": "Fahud",
-    "state": "Az̧-Z̧ahirah",
+    "state": "Az-zahirah",
     "country": "Oman"
   },
   {
     "city": "Ghaba",
-    "state": "Al-Wusţa",
+    "state": "Al-Wusta",
     "country": "Oman"
   },
   {
     "city": "Khasab",
     "state": "Musandam",
-    "country": "Oman"
-  },
-  {
-    "city": "NA",
-    "state": "Az̧-Z̧ahirah",
     "country": "Oman"
   },
   {
@@ -23935,11 +21255,6 @@
     "country": "Pakistan"
   },
   {
-    "city": "Islamabad",
-    "state": "Punjab",
-    "country": "Pakistan"
-  },
-  {
     "city": "Rawalakot",
     "state": "Azad-Kashmir",
     "country": "Pakistan"
@@ -24100,13 +21415,8 @@
     "country": "Syria"
   },
   {
-    "city": "NA",
-    "state": "Homs",
-    "country": "Syria"
-  },
-  {
     "city": "Doha",
-    "state": "Baladiyat-ad-Dawḩah",
+    "state": "Baladiyat-ad-DawHah",
     "country": "Qatar"
   },
   {
@@ -24115,33 +21425,13 @@
     "country": "Qatar"
   },
   {
-    "city": "Doha",
-    "state": "Baladiyat-ad-Dawḩah",
-    "country": "Qatar"
-  },
-  {
     "city": "Aden",
     "state": "Aden",
     "country": "Yemen"
   },
   {
-    "city": "NA",
-    "state": "Shabwah",
-    "country": "Yemen"
-  },
-  {
     "city": "Al-Bayda",
     "state": "Al-Bayda-Governorate",
-    "country": "Yemen"
-  },
-  {
-    "city": "NA",
-    "state": "Shabwah",
-    "country": "Yemen"
-  },
-  {
-    "city": "NA",
-    "state": "Al-Mahrah",
     "country": "Yemen"
   },
   {
@@ -24151,7 +21441,7 @@
   },
   {
     "city": "Mareb",
-    "state": "Ma’rib",
+    "state": "Ma'rib",
     "country": "Yemen"
   },
   {
@@ -24161,12 +21451,12 @@
   },
   {
     "city": "Riyan",
-    "state": "Muḩafaz̧at-Ḩaḑramawt",
+    "state": "MuHafazat-Hadramawt",
     "country": "Yemen"
   },
   {
     "city": "Sadah",
-    "state": "Sa‘dah",
+    "state": "Sa'dah",
     "country": "Yemen"
   },
   {
@@ -24181,12 +21471,12 @@
   },
   {
     "city": "Sayun",
-    "state": "Muḩafaz̧at-Ḩaḑramawt",
+    "state": "MuHafazat-Hadramawt",
     "country": "Yemen"
   },
   {
     "city": "Ta'izz",
-    "state": "Ta‘izz",
+    "state": "Ta'izz",
     "country": "Yemen"
   },
   {
@@ -24241,11 +21531,6 @@
   },
   {
     "city": "Bettles",
-    "state": "Alaska",
-    "country": "United States"
-  },
-  {
-    "city": "Cold Bay",
     "state": "Alaska",
     "country": "United States"
   },
@@ -24385,11 +21670,6 @@
     "country": "United States"
   },
   {
-    "city": "Fairbanks",
-    "state": "Alaska",
-    "country": "United States"
-  },
-  {
     "city": "Fairbanks/Ft Wainwright",
     "state": "Alaska",
     "country": "United States"
@@ -24520,11 +21800,6 @@
     "country": "United States"
   },
   {
-    "city": "Egegik",
-    "state": "Alaska",
-    "country": "United States"
-  },
-  {
     "city": "Kiana",
     "state": "Alaska",
     "country": "United States"
@@ -24556,11 +21831,6 @@
   },
   {
     "city": "Koliganek",
-    "state": "Alaska",
-    "country": "United States"
-  },
-  {
-    "city": "Kodiak",
     "state": "Alaska",
     "country": "United States"
   },
@@ -24720,11 +21990,6 @@
     "country": "United States"
   },
   {
-    "city": "Anchorage",
-    "state": "Alaska",
-    "country": "United States"
-  },
-  {
     "city": "Aniak",
     "state": "Alaska",
     "country": "United States"
@@ -24876,11 +22141,6 @@
   },
   {
     "city": "Savoonga",
-    "state": "Alaska",
-    "country": "United States"
-  },
-  {
-    "city": "Deadhorse",
     "state": "Alaska",
     "country": "United States"
   },
@@ -25150,11 +22410,6 @@
     "country": "United States"
   },
   {
-    "city": "Tok",
-    "state": "Alaska",
-    "country": "United States"
-  },
-  {
     "city": "South Naknek",
     "state": "Alaska",
     "country": "United States"
@@ -25317,7 +22572,7 @@
   {
     "city": "Sand Island",
     "state": "Midway-Islands",
-    "country": "US Minor Outlying Islands"
+    "country": "United States Minor Outlying Islands"
   },
   {
     "city": "Point Lay",
@@ -25352,7 +22607,7 @@
   {
     "city": "Wake Island",
     "state": "Wake-Island",
-    "country": "US Minor Outlying Islands"
+    "country": "United States Minor Outlying Islands"
   },
   {
     "city": "Shang-I",
@@ -25405,11 +22660,6 @@
     "country": "Taiwan"
   },
   {
-    "city": "Taichung City",
-    "state": "Taiwan",
-    "country": "Taiwan"
-  },
-  {
     "city": "Beigan Island",
     "state": "Fukien",
     "country": "Taiwan"
@@ -25426,11 +22676,6 @@
   },
   {
     "city": "Makung City",
-    "state": "Taiwan",
-    "country": "Taiwan"
-  },
-  {
-    "city": "Pingtung",
     "state": "Taiwan",
     "country": "Taiwan"
   },
@@ -25470,16 +22715,6 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Tokyo",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Tokyo",
-    "country": "Japan"
-  },
-  {
     "city": "Osaka",
     "state": "Osaka",
     "country": "Japan"
@@ -25492,11 +22727,6 @@
   {
     "city": "Kobe",
     "state": "Hyogo",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Hiroshima",
     "country": "Japan"
   },
   {
@@ -25540,18 +22770,8 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Hokkaido",
-    "country": "Japan"
-  },
-  {
     "city": "Wakkanai",
     "state": "Hokkaido",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Kumamoto",
     "country": "Japan"
   },
   {
@@ -25580,18 +22800,8 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Hokkaido",
-    "country": "Japan"
-  },
-  {
     "city": "Rishiri",
     "state": "Hokkaido",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Kagoshima",
     "country": "Japan"
   },
   {
@@ -25602,11 +22812,6 @@
   {
     "city": "Fukuoka",
     "state": "Fukuoka",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Kagoshima",
     "country": "Japan"
   },
   {
@@ -25655,16 +22860,6 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Kagoshima",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Kagoshima",
-    "country": "Japan"
-  },
-  {
     "city": "Tokunoshima",
     "state": "Kagoshima",
     "country": "Japan"
@@ -25672,11 +22867,6 @@
   {
     "city": "Nagoya",
     "state": "Aichi",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Fukui",
     "country": "Japan"
   },
   {
@@ -25692,11 +22882,6 @@
   {
     "city": "Okinoshima",
     "state": "Shimane",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Shizuoka",
     "country": "Japan"
   },
   {
@@ -25780,23 +22965,8 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Niigata",
-    "country": "Japan"
-  },
-  {
     "city": "Sukagawa",
     "state": "Fukushima",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Aomori",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Iwate",
     "country": "Japan"
   },
   {
@@ -25830,11 +23000,6 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Kanagawa",
-    "country": "Japan"
-  },
-  {
     "city": "Hachijojima",
     "state": "Tokyo",
     "country": "Japan"
@@ -25855,19 +23020,9 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Tochigi",
-    "country": "Japan"
-  },
-  {
     "city": "Fussa",
     "state": "Tokyo",
     "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Jeollanam-do",
-    "country": "South Korea"
   },
   {
     "city": "Gwangju",
@@ -25895,16 +23050,6 @@
     "country": "South Korea"
   },
   {
-    "city": "NA",
-    "state": "Gangwon-do",
-    "country": "South Korea"
-  },
-  {
-    "city": "NA",
-    "state": "Gangwon-do",
-    "country": "South Korea"
-  },
-  {
     "city": "Wonju",
     "state": "Gangwon-do",
     "country": "South Korea"
@@ -25916,11 +23061,6 @@
   },
   {
     "city": "Jeju City",
-    "state": "Jeju-do",
-    "country": "South Korea"
-  },
-  {
-    "city": "NA",
     "state": "Jeju-do",
     "country": "South Korea"
   },
@@ -25950,33 +23090,13 @@
     "country": "South Korea"
   },
   {
-    "city": "NA",
-    "state": "Gyeonggi-do",
-    "country": "South Korea"
-  },
-  {
-    "city": "NA",
-    "state": "Gyeonggi-do",
-    "country": "South Korea"
-  },
-  {
     "city": "Seoul",
     "state": "Seoul",
     "country": "South Korea"
   },
   {
-    "city": "NA",
-    "state": "Gyeonggi-do",
-    "country": "South Korea"
-  },
-  {
     "city": "Pohang",
     "state": "Gyeongsangbuk-do",
-    "country": "South Korea"
-  },
-  {
-    "city": "NA",
-    "state": "North-Chungcheong",
     "country": "South Korea"
   },
   {
@@ -25995,17 +23115,7 @@
     "country": "South Korea"
   },
   {
-    "city": "NA",
-    "state": "Gyeongsangbuk-do",
-    "country": "South Korea"
-  },
-  {
     "city": "Naha",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
     "state": "Okinawa",
     "country": "Japan"
   },
@@ -26015,17 +23125,7 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
     "city": "Kerama",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
     "state": "Okinawa",
     "country": "Japan"
   },
@@ -26040,37 +23140,7 @@
     "country": "Japan"
   },
   {
-    "city": "NA",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
     "city": "Hateruma",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Okinawa",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
-    "state": "Kagoshima",
-    "country": "Japan"
-  },
-  {
-    "city": "NA",
     "state": "Okinawa",
     "country": "Japan"
   },
@@ -26110,11 +23180,6 @@
     "country": "Philippines"
   },
   {
-    "city": "NA",
-    "state": "Mimaropa",
-    "country": "Philippines"
-  },
-  {
     "city": "Surallah",
     "state": "Soccsksargen",
     "country": "Philippines"
@@ -26140,28 +23205,8 @@
     "country": "Philippines"
   },
   {
-    "city": "NA",
-    "state": "Caraga",
-    "country": "Philippines"
-  },
-  {
     "city": "Dipolog City",
     "state": "Zamboanga-Peninsula",
-    "country": "Philippines"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Mindanao",
-    "country": "Philippines"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Philippines"
-  },
-  {
-    "city": "NA",
-    "state": "ARMM",
     "country": "Philippines"
   },
   {
@@ -26175,11 +23220,6 @@
     "country": "Philippines"
   },
   {
-    "city": "NA",
-    "state": "ARMM",
-    "country": "Philippines"
-  },
-  {
     "city": "Ozamiz City",
     "state": "Northern-Mindanao",
     "country": "Philippines"
@@ -26187,16 +23227,6 @@
   {
     "city": "Pagadian City",
     "state": "Zamboanga-Peninsula",
-    "country": "Philippines"
-  },
-  {
-    "city": "NA",
-    "state": "Davao",
-    "country": "Philippines"
-  },
-  {
-    "city": "NA",
-    "state": "Soccsksargen",
     "country": "Philippines"
   },
   {
@@ -26212,11 +23242,6 @@
   {
     "city": "Ipil",
     "state": "Zamboanga-Peninsula",
-    "country": "Philippines"
-  },
-  {
-    "city": "NA",
-    "state": "Caraga",
     "country": "Philippines"
   },
   {
@@ -26255,11 +23280,6 @@
     "country": "Philippines"
   },
   {
-    "city": "NA",
-    "state": "Mimaropa",
-    "country": "Philippines"
-  },
-  {
     "city": "Naga",
     "state": "Bicol",
     "country": "Philippines"
@@ -26272,11 +23292,6 @@
   {
     "city": "Baler",
     "state": "Central-Luzon",
-    "country": "Philippines"
-  },
-  {
-    "city": "NA",
-    "state": "Ilocos",
     "country": "Philippines"
   },
   {
@@ -26750,11 +23765,6 @@
     "country": "Argentina"
   },
   {
-    "city": "El Calafate",
-    "state": "Santa-Cruz",
-    "country": "Argentina"
-  },
-  {
     "city": "Puerto Deseado",
     "state": "Santa-Cruz",
     "country": "Argentina"
@@ -26980,11 +23990,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Bauru",
-    "state": "Sao-Paulo",
-    "country": "Brazil"
-  },
-  {
     "city": "Boa Vista",
     "state": "Roraima",
     "country": "Brazil"
@@ -27005,18 +24010,8 @@
     "country": "Brazil"
   },
   {
-    "city": "Cabo Frio",
-    "state": "Rio-de-Janeiro",
-    "country": "Brazil"
-  },
-  {
     "city": "Cacador",
     "state": "Santa-Catarina",
-    "country": "Brazil"
-  },
-  {
-    "city": "Belo Horizonte",
-    "state": "Minas-Gerais",
     "country": "Brazil"
   },
   {
@@ -27062,11 +24057,6 @@
   {
     "city": "Corumba",
     "state": "Mato-Grosso-do-Sul",
-    "country": "Brazil"
-  },
-  {
-    "city": "Curitiba",
-    "state": "Parana",
     "country": "Brazil"
   },
   {
@@ -27145,11 +24135,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Rio De Janeiro",
-    "state": "Rio-de-Janeiro",
-    "country": "Brazil"
-  },
-  {
     "city": "Guajara-Mirim",
     "state": "Rondonia",
     "country": "Brazil"
@@ -27217,11 +24202,6 @@
   {
     "city": "Imperatriz",
     "state": "Maranhao",
-    "country": "Brazil"
-  },
-  {
-    "city": "Belem",
-    "state": "Para",
     "country": "Brazil"
   },
   {
@@ -27325,11 +24305,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Manaus",
-    "state": "Amazonas",
-    "country": "Brazil"
-  },
-  {
     "city": "Maceio",
     "state": "Alagoas",
     "country": "Brazil"
@@ -27342,11 +24317,6 @@
   {
     "city": "Mossoro",
     "state": "Rio-Grande-do-Norte",
-    "country": "Brazil"
-  },
-  {
-    "city": "Sao Paulo",
-    "state": "Sao-Paulo",
     "country": "Brazil"
   },
   {
@@ -27372,11 +24342,6 @@
   {
     "city": "Oiapoque",
     "state": "NA",
-    "country": "Brazil"
-  },
-  {
-    "city": "Porto Alegre",
-    "state": "Rio-Grande-do-Sul",
     "country": "Brazil"
   },
   {
@@ -27420,11 +24385,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Belo Horizonte",
-    "state": "Minas-Gerais",
-    "country": "Brazil"
-  },
-  {
     "city": "Porto Seguro",
     "state": "Bahia",
     "country": "Brazil"
@@ -27450,23 +24410,8 @@
     "country": "Brazil"
   },
   {
-    "city": "Rio De Janeiro",
-    "state": "Rio-de-Janeiro",
-    "country": "Brazil"
-  },
-  {
     "city": "Ribeirao Preto",
     "state": "Sao-Paulo",
-    "country": "Brazil"
-  },
-  {
-    "city": "NA",
-    "state": "Maranhao",
-    "country": "Brazil"
-  },
-  {
-    "city": "Rio De Janeiro",
-    "state": "Rio-de-Janeiro",
     "country": "Brazil"
   },
   {
@@ -27487,11 +24432,6 @@
   {
     "city": "Santarem",
     "state": "Para",
-    "country": "Brazil"
-  },
-  {
-    "city": "Sao Paulo",
-    "state": "Sao-Paulo",
     "country": "Brazil"
   },
   {
@@ -27610,18 +24550,8 @@
     "country": "Brazil"
   },
   {
-    "city": "Sao Gabriel Da Cachoeira",
-    "state": "Amazonas",
-    "country": "Brazil"
-  },
-  {
     "city": "Pirassununga",
     "state": "Sao-Paulo",
-    "country": "Brazil"
-  },
-  {
-    "city": "Juiz De Fora",
-    "state": "Minas-Gerais",
     "country": "Brazil"
   },
   {
@@ -27717,11 +24647,6 @@
   {
     "city": "Antofagasta",
     "state": "Antofagasta",
-    "country": "Chile"
-  },
-  {
-    "city": "Frutillar",
-    "state": "Los-Lagos",
     "country": "Chile"
   },
   {
@@ -27880,16 +24805,6 @@
     "country": "Chile"
   },
   {
-    "city": "Vina Del Mar",
-    "state": "Valparaiso",
-    "country": "Chile"
-  },
-  {
-    "city": "Campinas",
-    "state": "Sao-Paulo",
-    "country": "Brazil"
-  },
-  {
     "city": "Santa Ernestina",
     "state": "Sao-Paulo",
     "country": "Brazil"
@@ -27926,11 +24841,6 @@
   },
   {
     "city": "Palmares Paulista",
-    "state": "Sao-Paulo",
-    "country": "Brazil"
-  },
-  {
-    "city": "Barretos",
     "state": "Sao-Paulo",
     "country": "Brazil"
   },
@@ -28300,11 +25210,6 @@
     "country": "Paraguay"
   },
   {
-    "city": "Morro Agudo",
-    "state": "Sao-Paulo",
-    "country": "Brazil"
-  },
-  {
     "city": "Guaira",
     "state": "Sao-Paulo",
     "country": "Brazil"
@@ -28460,11 +25365,6 @@
     "country": "Colombia"
   },
   {
-    "city": "Bahia Solano",
-    "state": "Choco",
-    "country": "Colombia"
-  },
-  {
     "city": "Caruru",
     "state": "Vaupes",
     "country": "Colombia"
@@ -28502,11 +25402,6 @@
   {
     "city": "Fundacion",
     "state": "Magdalena",
-    "country": "Colombia"
-  },
-  {
-    "city": "NA",
-    "state": "Vichada",
     "country": "Colombia"
   },
   {
@@ -28840,11 +25735,6 @@
     "country": "Colombia"
   },
   {
-    "city": "San Vicente Del Caguan",
-    "state": "Caqueta",
-    "country": "Colombia"
-  },
-  {
     "city": "El Yopal",
     "state": "Casanare",
     "country": "Colombia"
@@ -29010,11 +25900,6 @@
     "country": "Bolivia"
   },
   {
-    "city": "Sucre",
-    "state": "Chuquisaca",
-    "country": "Bolivia"
-  },
-  {
     "city": "San Matias",
     "state": "Santa-Cruz",
     "country": "Bolivia"
@@ -29042,11 +25927,6 @@
   {
     "city": "Villamontes",
     "state": "Tarija",
-    "country": "Bolivia"
-  },
-  {
-    "city": "Santa Cruz",
-    "state": "Santa-Cruz",
     "country": "Bolivia"
   },
   {
@@ -29150,11 +26030,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Aracaju",
-    "state": "Sergipe",
-    "country": "Brazil"
-  },
-  {
     "city": "Barra Do Corda",
     "state": "Maranhao",
     "country": "Brazil"
@@ -29240,11 +26115,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Recife",
-    "state": "Pernambuco",
-    "country": "Brazil"
-  },
-  {
     "city": "Formiga",
     "state": "Minas-Gerais",
     "country": "Brazil"
@@ -29272,11 +26142,6 @@
   {
     "city": "Grajau",
     "state": "Maranhao",
-    "country": "Brazil"
-  },
-  {
-    "city": "Uberlandia",
-    "state": "Minas-Gerais",
     "country": "Brazil"
   },
   {
@@ -29435,11 +26300,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Oriximina",
-    "state": "Para",
-    "country": "Brazil"
-  },
-  {
     "city": "Pastos Bons",
     "state": "Maranhao",
     "country": "Brazil"
@@ -29515,11 +26375,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Santarem",
-    "state": "Para",
-    "country": "Brazil"
-  },
-  {
     "city": "Soure",
     "state": "Para",
     "country": "Brazil"
@@ -29587,11 +26442,6 @@
   {
     "city": "Barra De Santo Antonio",
     "state": "Alagoas",
-    "country": "Brazil"
-  },
-  {
-    "city": "Almeirim",
-    "state": "Para",
     "country": "Brazil"
   },
   {
@@ -29875,16 +26725,6 @@
     "country": "Peru"
   },
   {
-    "city": "NA",
-    "state": "Piura",
-    "country": "Peru"
-  },
-  {
-    "city": "NA",
-    "state": "Ica",
-    "country": "Peru"
-  },
-  {
     "city": "Cusco",
     "state": "Cusco",
     "country": "Peru"
@@ -29892,11 +26732,6 @@
   {
     "city": "Apucarana",
     "state": "Parana",
-    "country": "Brazil"
-  },
-  {
-    "city": "Passo Fundo",
-    "state": "Rio-Grande-do-Sul",
     "country": "Brazil"
   },
   {
@@ -30160,11 +26995,6 @@
     "country": "Brazil"
   },
   {
-    "city": "Guaira",
-    "state": "Sao-Paulo",
-    "country": "Brazil"
-  },
-  {
     "city": "Videira",
     "state": "Santa-Catarina",
     "country": "Brazil"
@@ -30335,16 +27165,6 @@
     "country": "Venezuela"
   },
   {
-    "city": "NA",
-    "state": "Bolivar",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Bolivar",
-    "country": "Venezuela"
-  },
-  {
     "city": "Casigua El Cubo",
     "state": "Zulia",
     "country": "Venezuela"
@@ -30375,11 +27195,6 @@
     "country": "Venezuela"
   },
   {
-    "city": "NA",
-    "state": "Sucre",
-    "country": "Venezuela"
-  },
-  {
     "city": "Isla La Tortuga",
     "state": "Dependencias-Federales",
     "country": "Venezuela"
@@ -30390,33 +27205,8 @@
     "country": "Venezuela"
   },
   {
-    "city": "NA",
-    "state": "Apure",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Apure",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Venezuela"
-  },
-  {
     "city": "Guanare",
     "state": "Portuguesa",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Miranda",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Bolivar",
     "country": "Venezuela"
   },
   {
@@ -30427,16 +27217,6 @@
   {
     "city": "Paraguana",
     "state": "Falcon",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Bolivar",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Tachira",
     "country": "Venezuela"
   },
   {
@@ -30460,38 +27240,8 @@
     "country": "Venezuela"
   },
   {
-    "city": "NA",
-    "state": "Anzoategui",
-    "country": "Venezuela"
-  },
-  {
     "city": "Cabimas",
     "state": "Zulia",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Amazonas",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Carabobo",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Delta-Amacuro",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Bolivar",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Tachira",
     "country": "Venezuela"
   },
   {
@@ -30510,18 +27260,8 @@
     "country": "Venezuela"
   },
   {
-    "city": "NA",
-    "state": "Tachira",
-    "country": "Venezuela"
-  },
-  {
     "city": "Santa Barbara",
     "state": "Barinas",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Bolivar",
     "country": "Venezuela"
   },
   {
@@ -30540,28 +27280,8 @@
     "country": "Venezuela"
   },
   {
-    "city": "NA",
-    "state": "Anzoategui",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Zulia",
-    "country": "Venezuela"
-  },
-  {
     "city": "Tucupita",
     "state": "Delta-Amacuro",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Bolivar",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Bolivar",
     "country": "Venezuela"
   },
   {
@@ -30577,11 +27297,6 @@
   {
     "city": "Valera",
     "state": "Trujillo",
-    "country": "Venezuela"
-  },
-  {
-    "city": "NA",
-    "state": "Guarico",
     "country": "Venezuela"
   },
   {
@@ -31062,12 +27777,12 @@
   {
     "city": "Charlotte Amalie",
     "state": "Saint-Thomas-Island",
-    "country": "US Virgin Islands"
+    "country": "U.S. Virgin Islands"
   },
   {
     "city": "Christiansted",
     "state": "Saint-Croix-Island",
-    "country": "US Virgin Islands"
+    "country": "U.S. Virgin Islands"
   },
   {
     "city": "Arecibo",
@@ -31147,7 +27862,7 @@
   {
     "city": "Kralendijk",
     "state": "Bonaire",
-    "country": "Sint Eustatius"
+    "country": "Bonaire, Sint Eustatius and Saba"
   },
   {
     "city": "Willemstad",
@@ -31155,9 +27870,9 @@
     "country": "Curacao"
   },
   {
-    "city": "Sint Eustatius",
+    "city": "Bonaire, Sint Eustatius and Saba",
     "state": "Sint-Eustatius",
-    "country": "Sint Eustatius"
+    "country": "Bonaire, Sint Eustatius and Saba"
   },
   {
     "city": "Saint Martin",
@@ -31167,7 +27882,7 @@
   {
     "city": "Saba",
     "state": "Saba",
-    "country": "Sint Eustatius"
+    "country": "Bonaire, Sint Eustatius and Saba"
   },
   {
     "city": "The Valley",
@@ -31231,7 +27946,7 @@
   },
   {
     "city": "Hamilton",
-    "state": "Saint-Georgeʼs",
+    "state": "Saint-George's",
     "country": "Bermuda"
   },
   {
@@ -31371,7 +28086,7 @@
   },
   {
     "city": "Lankaran",
-    "state": "Lənkəran",
+    "state": "Lankaran",
     "country": "Azerbaijan"
   },
   {
@@ -31381,7 +28096,7 @@
   },
   {
     "city": "Gabala",
-    "state": "Qǝbǝlǝ",
+    "state": "Qabala",
     "country": "Azerbaijan"
   },
   {
@@ -31421,11 +28136,6 @@
   },
   {
     "city": "Ust-Kuyga",
-    "state": "Chukot",
-    "country": "Russia"
-  },
-  {
-    "city": "NA",
     "state": "Chukot",
     "country": "Russia"
   },
@@ -31835,16 +28545,6 @@
     "country": "Ukraine"
   },
   {
-    "city": "Kiev",
-    "state": "Kyiv",
-    "country": "Ukraine"
-  },
-  {
-    "city": "NA",
-    "state": "Zhytomyr",
-    "country": "Ukraine"
-  },
-  {
     "city": "Lutsk",
     "state": "Volyn",
     "country": "Ukraine"
@@ -31931,11 +28631,6 @@
   },
   {
     "city": "Amderma",
-    "state": "Nenets",
-    "country": "Russia"
-  },
-  {
-    "city": "NA",
     "state": "Nenets",
     "country": "Russia"
   },
@@ -32195,17 +28890,7 @@
     "country": "Russia"
   },
   {
-    "city": "Rostov-on-Don",
-    "state": "Rostov",
-    "country": "Russia"
-  },
-  {
     "city": "Taganrog",
-    "state": "Rostov",
-    "country": "Russia"
-  },
-  {
-    "city": "NA",
     "state": "Rostov",
     "country": "Russia"
   },
@@ -32275,17 +28960,7 @@
     "country": "Russia"
   },
   {
-    "city": "NA",
-    "state": "Khanty-Mansia",
-    "country": "Russia"
-  },
-  {
     "city": "Khanty-Mansiysk",
-    "state": "Khanty-Mansia",
-    "country": "Russia"
-  },
-  {
-    "city": "NA",
     "state": "Khanty-Mansia",
     "country": "Russia"
   },
@@ -32396,7 +29071,7 @@
   },
   {
     "city": "Dashoguz",
-    "state": "Daşoguz",
+    "state": "Dasoguz",
     "country": "Turkmenistan"
   },
   {
@@ -32530,33 +29205,8 @@
     "country": "Russia"
   },
   {
-    "city": "Moscow",
-    "state": "Moscow-Oblast",
-    "country": "Russia"
-  },
-  {
-    "city": "NA",
-    "state": "Jaroslavl",
-    "country": "Russia"
-  },
-  {
-    "city": "Moscow",
-    "state": "Moscow-Oblast",
-    "country": "Russia"
-  },
-  {
     "city": "Tver",
     "state": "Tverskaya",
-    "country": "Russia"
-  },
-  {
-    "city": "Moscow",
-    "state": "Moscow-Oblast",
-    "country": "Russia"
-  },
-  {
-    "city": "Moscow",
-    "state": "Moscow-Oblast",
     "country": "Russia"
   },
   {
@@ -32670,11 +29320,6 @@
     "country": "Russia"
   },
   {
-    "city": "Ulyanovsk",
-    "state": "Ulyanovsk",
-    "country": "Russia"
-  },
-  {
     "city": "Orenburg",
     "state": "Orenburg",
     "country": "Russia"
@@ -32696,11 +29341,6 @@
   },
   {
     "city": "Balakovo",
-    "state": "Saratov",
-    "country": "Russia"
-  },
-  {
-    "city": "Saratov",
     "state": "Saratov",
     "country": "Russia"
   },
@@ -32745,11 +29385,6 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Maharashtra",
-    "country": "India"
-  },
-  {
     "city": "Aurangabad",
     "state": "Maharashtra",
     "country": "India"
@@ -32760,18 +29395,8 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Chhattisgarh",
-    "country": "India"
-  },
-  {
     "city": "Bhuj",
     "state": "Gujarat",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Karnataka",
     "country": "India"
   },
   {
@@ -32790,27 +29415,12 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Daman-and-Diu",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Madhya-Pradesh",
-    "country": "India"
-  },
-  {
     "city": "Hubli",
     "state": "Karnataka",
     "country": "India"
   },
   {
     "city": "Indore",
-    "state": "Madhya-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
     "state": "Madhya-Pradesh",
     "country": "India"
   },
@@ -32827,16 +29437,6 @@
   {
     "city": "Khajuraho",
     "state": "Madhya-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Maharashtra",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Gujarat",
     "country": "India"
   },
   {
@@ -32875,11 +29475,6 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Maharashtra",
-    "country": "India"
-  },
-  {
     "city": "Rajkot",
     "state": "Gujarat",
     "country": "India"
@@ -32900,11 +29495,6 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Gujarat",
-    "country": "India"
-  },
-  {
     "city": "Udaipur",
     "state": "Rajasthan",
     "country": "India"
@@ -32922,11 +29512,6 @@
   {
     "city": "Batticaloa",
     "state": "Eastern-Province",
-    "country": "Sri Lanka"
-  },
-  {
-    "city": "Colombo",
-    "state": "Western",
     "country": "Sri Lanka"
   },
   {
@@ -32980,11 +29565,6 @@
     "country": "Cambodia"
   },
   {
-    "city": "NA",
-    "state": "Kampong-Chhnang",
-    "country": "Cambodia"
-  },
-  {
     "city": "Kaoh Kong",
     "state": "Koh-Kong",
     "country": "Cambodia"
@@ -33030,11 +29610,6 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Arunachal-Pradesh",
-    "country": "India"
-  },
-  {
     "city": "Agartala",
     "state": "Tripura",
     "country": "India"
@@ -33070,23 +29645,8 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "West-Bengal",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Bihar",
-    "country": "India"
-  },
-  {
     "city": "Deoghar",
     "state": "Jharkhand",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Arunachal-Pradesh",
     "country": "India"
   },
   {
@@ -33097,11 +29657,6 @@
   {
     "city": "Guwahati",
     "state": "Assam",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Bihar",
     "country": "India"
   },
   {
@@ -33120,23 +29675,8 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Jharkhand",
-    "country": "India"
-  },
-  {
     "city": "Jorhat",
     "state": "Assam",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Tripura",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Tripura",
     "country": "India"
   },
   {
@@ -33175,11 +29715,6 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Bihar",
-    "country": "India"
-  },
-  {
     "city": "Pasighat",
     "state": "Arunachal-Pradesh",
     "country": "India"
@@ -33195,33 +29730,13 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Odisha",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Assam",
-    "country": "India"
-  },
-  {
     "city": "Tezu",
     "state": "Arunachal-Pradesh",
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Assam",
-    "country": "India"
-  },
-  {
     "city": "Visakhapatnam",
     "state": "Andhra-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Arunachal-Pradesh",
     "country": "India"
   },
   {
@@ -33295,11 +29810,6 @@
     "country": "Hong Kong"
   },
   {
-    "city": "NA",
-    "state": "Uttar-Pradesh",
-    "country": "India"
-  },
-  {
     "city": "Allahabad",
     "state": "Uttar-Pradesh",
     "country": "India"
@@ -33310,32 +29820,12 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Punjab",
-    "country": "India"
-  },
-  {
     "city": "Bikaner",
     "state": "Rajasthan",
     "country": "India"
   },
   {
     "city": "Varanasi",
-    "state": "Uttar-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Himachal-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Punjab",
-    "country": "India"
-  },
-  {
-    "city": "NA",
     "state": "Uttar-Pradesh",
     "country": "India"
   },
@@ -33355,18 +29845,8 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Himachal-Pradesh",
-    "country": "India"
-  },
-  {
     "city": "Gwalior",
     "state": "Madhya-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Haryana",
     "country": "India"
   },
   {
@@ -33380,33 +29860,13 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Rajasthan",
-    "country": "India"
-  },
-  {
     "city": "Jammu",
     "state": "Jammu-and-Kashmir",
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Uttar-Pradesh",
-    "country": "India"
-  },
-  {
     "city": "Kishangarh",
     "state": "Rajasthan",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Rajasthan",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Punjab",
     "country": "India"
   },
   {
@@ -33420,18 +29880,8 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Punjab",
-    "country": "India"
-  },
-  {
     "city": "Pantnagar",
     "state": "Uttar-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Himachal-Pradesh",
     "country": "India"
   },
   {
@@ -33440,18 +29890,8 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Madhya-Pradesh",
-    "country": "India"
-  },
-  {
     "city": "Attopeu",
     "state": "Attapu",
-    "country": "Laos"
-  },
-  {
-    "city": "NA",
-    "state": "Bokeo",
     "country": "Laos"
   },
   {
@@ -33477,16 +29917,6 @@
   {
     "city": "Sayaboury",
     "state": "Xiagnabouli",
-    "country": "Laos"
-  },
-  {
-    "city": "NA",
-    "state": "Savannahkhet",
-    "country": "Laos"
-  },
-  {
-    "city": "NA",
-    "state": "Houaphan",
     "country": "Laos"
   },
   {
@@ -33725,11 +30155,6 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Laccadives",
-    "country": "India"
-  },
-  {
     "city": "Bellary",
     "state": "Karnataka",
     "country": "India"
@@ -33737,11 +30162,6 @@
   {
     "city": "Bangalore",
     "state": "Karnataka",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Andhra-Pradesh",
     "country": "India"
   },
   {
@@ -33760,16 +30180,6 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Andhra-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Andaman-and-Nicobar",
-    "country": "India"
-  },
-  {
     "city": "Dabolim",
     "state": "Dabolim",
     "country": "India"
@@ -33777,16 +30187,6 @@
   {
     "city": "Hyderabad",
     "state": "Telangana",
-    "country": "India"
-  },
-  {
-    "city": "Hyderabad",
-    "state": "Telangana",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Karnataka",
     "country": "India"
   },
   {
@@ -33820,18 +30220,8 @@
     "country": "India"
   },
   {
-    "city": "NA",
-    "state": "Tamil-Nadu",
-    "country": "India"
-  },
-  {
     "city": "Rajahmundry",
     "state": "Andhra-Pradesh",
-    "country": "India"
-  },
-  {
-    "city": "NA",
-    "state": "Tamil-Nadu",
     "country": "India"
   },
   {
@@ -33915,23 +30305,8 @@
     "country": "Thailand"
   },
   {
-    "city": "NA",
-    "state": "Lop-Buri",
-    "country": "Thailand"
-  },
-  {
     "city": "Nakhon Pathom",
     "state": "Nakhon-Pathom",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Lop-Buri",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Trat",
     "country": "Thailand"
   },
   {
@@ -33950,28 +30325,8 @@
     "country": "Thailand"
   },
   {
-    "city": "NA",
-    "state": "Mae-Hong-Son",
-    "country": "Thailand"
-  },
-  {
     "city": "Mae Hong Son",
     "state": "Mae-Hong-Son",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Lampang",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Nan",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Phrae",
     "country": "Thailand"
   },
   {
@@ -33985,38 +30340,8 @@
     "country": "Thailand"
   },
   {
-    "city": "NA",
-    "state": "Phetchabun",
-    "country": "Thailand"
-  },
-  {
     "city": "Hua Hin",
     "state": "Phetchaburi",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Nakhon-Sawan",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Tak",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Sukhothai",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Phitsanulok",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Tak",
     "country": "Thailand"
   },
   {
@@ -34030,16 +30355,6 @@
     "country": "Thailand"
   },
   {
-    "city": "NA",
-    "state": "Narathiwat",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Chumphon",
-    "country": "Thailand"
-  },
-  {
     "city": "Nakhon Si Thammarat",
     "state": "Nakhon-Si-Thammarat",
     "country": "Thailand"
@@ -34047,16 +30362,6 @@
   {
     "city": "Krabi",
     "state": "Krabi",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Songkhla",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Pattani",
     "country": "Thailand"
   },
   {
@@ -34070,18 +30375,8 @@
     "country": "Thailand"
   },
   {
-    "city": "NA",
-    "state": "Ranong",
-    "country": "Thailand"
-  },
-  {
     "city": "Hat Yai",
     "state": "Songkhla",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Trang",
     "country": "Thailand"
   },
   {
@@ -34090,33 +30385,8 @@
     "country": "Thailand"
   },
   {
-    "city": "NA",
-    "state": "Sakon-Nakhon",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Surin",
-    "country": "Thailand"
-  },
-  {
     "city": "Khon Kaen",
     "state": "Khon-Kaen",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Loei",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Buriram",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Nakhon-Ratchasima",
     "country": "Thailand"
   },
   {
@@ -34125,18 +30395,8 @@
     "country": "Thailand"
   },
   {
-    "city": "NA",
-    "state": "Roi-Et",
-    "country": "Thailand"
-  },
-  {
-    "city": "NA",
-    "state": "Nakhon-Phanom",
-    "country": "Thailand"
-  },
-  {
     "city": "Buon Ma Thuot",
-    "state": "Ha-Nội",
+    "state": "Ha-Noi",
     "country": "Vietnam"
   },
   {
@@ -34146,12 +30406,12 @@
   },
   {
     "city": "Haiphong",
-    "state": "Hải-Phong",
+    "state": "Hai-Phong",
     "country": "Vietnam"
   },
   {
     "city": "Ca Mau City",
-    "state": "Cần-Thơ",
+    "state": "Can-Tho",
     "country": "Vietnam"
   },
   {
@@ -34161,7 +30421,7 @@
   },
   {
     "city": "Con Ong",
-    "state": "Ba-Rịa-Vung-Tau",
+    "state": "Ba-Ria-Vung-Tau",
     "country": "Vietnam"
   },
   {
@@ -34181,32 +30441,27 @@
   },
   {
     "city": "Dalat",
-    "state": "Lam-Dồng",
+    "state": "Lam-Dong",
     "country": "Vietnam"
   },
   {
     "city": "Da Nang",
-    "state": "Da-Nẵng",
+    "state": "Da-Nang",
     "country": "Vietnam"
   },
   {
     "city": "Hanoi",
-    "state": "Ha-Nội",
+    "state": "Ha-Noi",
     "country": "Vietnam"
   },
   {
     "city": "Son-La",
-    "state": "Sơn-La",
-    "country": "Vietnam"
-  },
-  {
-    "city": "Nha Trang",
-    "state": "Khanh-Hoa",
+    "state": "Son-La",
     "country": "Vietnam"
   },
   {
     "city": "Hue",
-    "state": "Bắc-Ninh",
+    "state": "Bac-Ninh",
     "country": "Vietnam"
   },
   {
@@ -34221,7 +30476,7 @@
   },
   {
     "city": "Duong Dong",
-    "state": "Binh-Thuận",
+    "state": "Binh-Thuan",
     "country": "Vietnam"
   },
   {
@@ -34231,12 +30486,12 @@
   },
   {
     "city": "Phan Thiet",
-    "state": "Binh-Thuận",
+    "state": "Binh-Thuan",
     "country": "Vietnam"
   },
   {
     "city": "Rach Gia",
-    "state": "Binh-Thuận",
+    "state": "Binh-Thuan",
     "country": "Vietnam"
   },
   {
@@ -34250,18 +30505,18 @@
     "country": "Vietnam"
   },
   {
-    "city": "Thanh Hóa",
+    "city": "Thanh Hoa",
     "state": "NA",
     "country": "Vietnam"
   },
   {
     "city": "Vinh",
-    "state": "Nghệ-An",
+    "state": "Nghe-An",
     "country": "Vietnam"
   },
   {
     "city": "Vung Tau",
-    "state": "Ba-Rịa-Vung-Tau",
+    "state": "Ba-Ria-Vung-Tau",
     "country": "Vietnam"
   },
   {
@@ -34365,11 +30620,6 @@
     "country": "Myanmar"
   },
   {
-    "city": "Mandalay",
-    "state": "Mandalay",
-    "country": "Myanmar"
-  },
-  {
     "city": "Mkeik",
     "state": "Tanintharyi",
     "country": "Myanmar"
@@ -34387,11 +30637,6 @@
   {
     "city": "Manaung",
     "state": "Rakhine",
-    "country": "Myanmar"
-  },
-  {
-    "city": "NA",
-    "state": "Shan",
     "country": "Myanmar"
   },
   {
@@ -35335,11 +31580,6 @@
     "country": "Indonesia"
   },
   {
-    "city": "Jakarta",
-    "state": "NA",
-    "country": "Indonesia"
-  },
-  {
     "city": "Gunung Sitoli-Nias Island",
     "state": "North-Sumatra",
     "country": "Indonesia"
@@ -35376,7 +31616,7 @@
   },
   {
     "city": "Tanjung Pandan-Belitung Island",
-    "state": "Bangka–Belitung-Islands",
+    "state": "Bangka-Belitung-Islands",
     "country": "Indonesia"
   },
   {
@@ -35597,37 +31837,37 @@
   {
     "city": "Atauro",
     "state": "Dili",
-    "country": "East Timor"
+    "country": "Timor-Leste"
   },
   {
     "city": "Suai",
     "state": "Cova-Lima",
-    "country": "East Timor"
+    "country": "Timor-Leste"
   },
   {
     "city": "Dili",
     "state": "Dili",
-    "country": "East Timor"
+    "country": "Timor-Leste"
   },
   {
     "city": "Baucau",
     "state": "Baucau",
-    "country": "East Timor"
+    "country": "Timor-Leste"
   },
   {
     "city": "Maliana",
     "state": "Bobonaro",
-    "country": "East Timor"
+    "country": "Timor-Leste"
   },
   {
     "city": "Oecussi-Ambeno",
     "state": "Oecusse",
-    "country": "East Timor"
+    "country": "Timor-Leste"
   },
   {
     "city": "Viqueque",
     "state": "Viqueque",
-    "country": "East Timor"
+    "country": "Timor-Leste"
   },
   {
     "city": "Atambua-Timor Island",
@@ -35680,16 +31920,6 @@
     "country": "Indonesia"
   },
   {
-    "city": "NA",
-    "state": "NA",
-    "country": "Singapore"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Singapore"
-  },
-  {
     "city": "Seletar",
     "state": "NA",
     "country": "Singapore"
@@ -35710,98 +31940,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "NA",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Armidale",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
     "country": "Australia"
   },
   {
@@ -35810,17 +31950,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Brisbane",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Queensland",
     "country": "Australia"
   },
@@ -35835,23 +31965,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Big Bell",
     "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "Brisbane",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -35875,37 +31990,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Bellburn",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Western-Australia",
     "country": "Australia"
   },
@@ -35920,42 +32005,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Lakefield National Park",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Queensland",
     "country": "Australia"
   },
@@ -35985,31 +32035,6 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Proserpine",
     "state": "Queensland",
     "country": "Australia"
@@ -36020,32 +32045,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
     "city": "Broome",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Western-Australia",
     "country": "Australia"
   },
@@ -36055,37 +32055,12 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
     "city": "Townsville",
     "state": "Queensland",
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Bundaberg",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Queensland",
     "country": "Australia"
   },
@@ -36100,72 +32075,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Canobie",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Queensland",
     "country": "Australia"
   },
@@ -36175,88 +32085,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Christmas Creek mine",
     "state": "Western Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
     "country": "Australia"
   },
   {
@@ -36265,113 +32095,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Cooma",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -36380,17 +32105,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "New Dixie",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Queensland",
     "country": "Australia"
   },
@@ -36400,32 +32115,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
     "city": "Daly Waters",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Northern-Territory",
     "country": "Australia"
   },
@@ -36435,58 +32125,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Devonport",
     "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -36515,28 +32155,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Eva Downs",
     "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -36550,63 +32170,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Finke",
     "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -36615,83 +32180,13 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Ginbata",
     "state": "Western-Australia",
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Gladstone",
     "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -36705,52 +32200,12 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Hawker",
     "state": "South-Australia",
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Hervey Bay",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Queensland",
     "country": "Australia"
   },
@@ -36760,88 +32215,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
     "city": "Mount Hotham",
     "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
     "country": "Australia"
   },
   {
@@ -36850,93 +32225,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
     "city": "Kirkimbie",
     "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -36945,58 +32235,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Kowanyama",
     "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
     "country": "Australia"
   },
   {
@@ -37005,23 +32245,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Lord Howe Island",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -37040,28 +32265,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Lock",
     "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -37070,42 +32275,7 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Longreach",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
     "state": "Queensland",
     "country": "Australia"
   },
@@ -37125,31 +32295,6 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Mudgee",
     "state": "New-South-Wales",
     "country": "Australia"
@@ -37160,33 +32305,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
     "city": "Merimbula",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -37205,28 +32325,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Hobart",
     "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -37240,93 +32340,13 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Mitchell Plateau",
     "state": "Western-Australia",
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Launceston",
     "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "Melbourne",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "Melbourne",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -37340,11 +32360,6 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Marqua",
     "state": "Northern-Territory",
     "country": "Australia"
@@ -37355,43 +32370,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Moruya",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -37415,51 +32395,6 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Narrandera",
     "state": "New-South-Wales",
     "country": "Australia"
@@ -37470,68 +32405,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
     "city": "Nambucca Heads",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
     "country": "Australia"
   },
   {
@@ -37540,43 +32415,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
     "city": "Olympic Dam",
     "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
     "country": "Australia"
   },
   {
@@ -37590,28 +32430,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
     "city": "Adelaide",
     "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -37622,12 +32442,7 @@
   {
     "city": "Cocos (Keeling) Islands",
     "state": "NA",
-    "country": "Cocos"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
+    "country": "Cocos (Keeling) Islands"
   },
   {
     "city": "Darwin",
@@ -37640,18 +32455,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Nhulunbuy",
     "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
     "country": "Australia"
   },
   {
@@ -37675,11 +32480,6 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
     "city": "Kununurra",
     "state": "Western-Australia",
     "country": "Australia"
@@ -37695,23 +32495,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Port Macquarie",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
     "country": "Australia"
   },
   {
@@ -37720,18 +32505,8 @@
     "country": "Australia"
   },
   {
-    "city": "Perth",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Ironstone",
     "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
     "country": "Australia"
   },
   {
@@ -37745,78 +32520,13 @@
     "country": "Christmas Island"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Roebourne",
     "state": "Western-Australia",
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
     "city": "Roma",
     "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -37840,38 +32550,13 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Dubbo",
     "state": "New-South-Wales",
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Singleton",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -37885,38 +32570,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
     "city": "Saibai Island",
     "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
     "country": "Australia"
   },
   {
@@ -37925,53 +32580,13 @@
     "country": "Norfolk Island"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Karijini National Park",
     "state": "Westrn-Australia",
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Richmond",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
-    "country": "Australia"
-  },
-  {
-    "city": "Sydney",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Tasmania",
     "country": "Australia"
   },
   {
@@ -37985,88 +32600,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Tarcoola",
     "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
     "country": "Australia"
   },
   {
@@ -38075,18 +32610,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
     "city": "Tom Price",
     "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
     "country": "Australia"
   },
   {
@@ -38105,48 +32630,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Taree",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
     "country": "Australia"
   },
   {
@@ -38155,53 +32640,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
     "city": "Sue Islet",
     "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
     "country": "Australia"
   },
   {
@@ -38210,83 +32650,8 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
     "city": "Williamtown",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Victoria",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -38297,11 +32662,6 @@
   {
     "city": "West Wyalong",
     "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Western-Australia",
     "country": "Australia"
   },
   {
@@ -38320,39 +32680,14 @@
     "country": "Australia"
   },
   {
-    "city": "NA",
-    "state": "Western-Australia",
-    "country": "Australia"
-  },
-  {
     "city": "Yam Island",
     "state": "Queensland",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "Northern-Territory",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "New-South-Wales",
-    "country": "Australia"
-  },
-  {
-    "city": "NA",
-    "state": "South-Australia",
     "country": "Australia"
   },
   {
     "city": "Yalata Mission",
     "state": "South-Australia",
     "country": "Australia"
-  },
-  {
-    "city": "Beijing",
-    "state": "Beijing",
-    "country": "China"
   },
   {
     "city": "Beijing",
@@ -38402,11 +32737,6 @@
   {
     "city": "Hailar",
     "state": "Inner-Mongolia",
-    "country": "China"
-  },
-  {
-    "city": "Beijing",
-    "state": "Beijing",
     "country": "China"
   },
   {
@@ -38615,18 +32945,8 @@
     "country": "China"
   },
   {
-    "city": "NA",
-    "state": "Hamgyong-bukto",
-    "country": "North Korea"
-  },
-  {
     "city": "Pyongyang",
     "state": "South-Pyongan",
-    "country": "North Korea"
-  },
-  {
-    "city": "NA",
-    "state": "Hamgyong-namdo",
     "country": "North Korea"
   },
   {
@@ -38750,21 +33070,6 @@
     "country": "Mongolia"
   },
   {
-    "city": "NA",
-    "state": "Hovd",
-    "country": "Mongolia"
-  },
-  {
-    "city": "NA",
-    "state": "Suehbaatar",
-    "country": "Mongolia"
-  },
-  {
-    "city": "NA",
-    "state": "East-Aimak",
-    "country": "Mongolia"
-  },
-  {
     "city": "Ulaanbaatar",
     "state": "Ulaanbaatar",
     "country": "Mongolia"
@@ -38772,16 +33077,6 @@
   {
     "city": "Dalanzadgad",
     "state": "Oemnogovi",
-    "country": "Mongolia"
-  },
-  {
-    "city": "NA",
-    "state": "Oevorhangay",
-    "country": "Mongolia"
-  },
-  {
-    "city": "NA",
-    "state": "Oevorhangay",
     "country": "Mongolia"
   },
   {
@@ -38798,21 +33093,6 @@
     "city": "Ulan Bator",
     "state": "Ulaanbaatar",
     "country": "Mongolia"
-  },
-  {
-    "city": "NA",
-    "state": "Uvs",
-    "country": "Mongolia"
-  },
-  {
-    "city": "NA",
-    "state": "Bayan-Oelgiy",
-    "country": "Mongolia"
-  },
-  {
-    "city": "NA",
-    "state": "Yunnan",
-    "country": "China"
   },
   {
     "city": "Xiaguan",
@@ -39005,11 +33285,6 @@
     "country": "China"
   },
   {
-    "city": "Shanghai",
-    "state": "Shanghai",
-    "country": "China"
-  },
-  {
     "city": "Suzhou",
     "state": "Jiangsu",
     "country": "China"
@@ -39145,23 +33420,8 @@
     "country": "China"
   },
   {
-    "city": "Chongqing",
-    "state": "Chongqing",
-    "country": "China"
-  },
-  {
     "city": "Tengchong",
     "state": "Yunnan",
-    "country": "China"
-  },
-  {
-    "city": "Chengdu",
-    "state": "Sichuan",
-    "country": "China"
-  },
-  {
-    "city": "NA",
-    "state": "Hunan",
     "country": "China"
   },
   {
@@ -39356,11 +33616,6 @@
   },
   {
     "city": "Shenyang",
-    "state": "Liaoning",
-    "country": "China"
-  },
-  {
-    "city": "NA",
     "state": "Liaoning",
     "country": "China"
   },

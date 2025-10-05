@@ -9,7 +9,7 @@ internal sealed class AirportConfiguration : IEntityTypeConfiguration<Airport>
                    .IsRequired()
                    .HasMaxLength(4);
         _ = builder.Property(a => a.IATA)
-                   .IsRequired()
+                   .IsRequired(false)
                    .HasMaxLength(3);
         _ = builder.Property(a => a.Name)
                    .IsRequired()

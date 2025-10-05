@@ -8,9 +8,12 @@ internal sealed class CountryConfiguration : IEntityTypeConfiguration<Country>
         _ = builder.Property(c => c.Name)
                    .IsRequired()
                    .HasMaxLength(100);
-        _ = builder.Property(c => c.ISO)
+        _ = builder.Property(c => c.ISOA2)
                    .IsRequired()
                    .HasMaxLength(2);
+        _ = builder.Property(c => c.ISOA3)
+                   .IsRequired()
+                   .HasMaxLength(3);
         _ = builder.Property(c => c.IsOfficiallyRecognizedCountry).IsRequired();
         _ = builder.Property(c => c.IsDeleted).IsRequired();
         _ = builder.HasMany(c => c.Cities)

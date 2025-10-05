@@ -2,1447 +2,1477 @@
   {
     "Name": "India",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "IN",
-    "ISO_A3": "IND"
+    "ISOA2": "IN",
+    "ISOA3": "IND"
   },
   {
     "Name": "China",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CN",
-    "ISO_A3": "CHN"
+    "ISOA2": "CN",
+    "ISOA3": "CHN"
   },
   {
     "Name": "United States",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "US",
-    "ISO_A3": "USA"
+    "ISOA2": "US",
+    "ISOA3": "USA"
   },
   {
     "Name": "Indonesia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ID",
-    "ISO_A3": "IDN"
+    "ISOA2": "ID",
+    "ISOA3": "IDN"
   },
   {
     "Name": "Pakistan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PK",
-    "ISO_A3": "PAK"
+    "ISOA2": "PK",
+    "ISOA3": "PAK"
   },
   {
     "Name": "Nigeria",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NG",
-    "ISO_A3": "NGA"
+    "ISOA2": "NG",
+    "ISOA3": "NGA"
   },
   {
     "Name": "Brazil",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BR",
-    "ISO_A3": "BRA"
+    "ISOA2": "BR",
+    "ISOA3": "BRA"
   },
   {
     "Name": "Bangladesh",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BD",
-    "ISO_A3": "BGD"
+    "ISOA2": "BD",
+    "ISOA3": "BGD"
   },
   {
     "Name": "Russia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "RU",
-    "ISO_A3": "RUS"
+    "ISOA2": "RU",
+    "ISOA3": "RUS"
   },
   {
     "Name": "Mexico",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MX",
-    "ISO_A3": "MEX"
+    "ISOA2": "MX",
+    "ISOA3": "MEX"
   },
   {
     "Name": "Japan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "JP",
-    "ISO_A3": "JPN"
+    "ISOA2": "JP",
+    "ISOA3": "JPN"
   },
   {
     "Name": "Philippines",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PH",
-    "ISO_A3": "PHL"
+    "ISOA2": "PH",
+    "ISOA3": "PHL"
   },
   {
     "Name": "Democratic Republic of the Congo",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CD",
-    "ISO_A3": "COD"
+    "ISOA2": "CD",
+    "ISOA3": "COD"
   },
   {
     "Name": "Ethiopia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ET",
-    "ISO_A3": "ETH"
+    "ISOA2": "ET",
+    "ISOA3": "ETH"
   },
   {
     "Name": "Egypt",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "EG",
-    "ISO_A3": "EGY"
+    "ISOA2": "EG",
+    "ISOA3": "EGY"
   },
   {
     "Name": "Vietnam",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "VN",
-    "ISO_A3": "VNM"
+    "ISOA2": "VN",
+    "ISOA3": "VNM"
   },
   {
     "Name": "Iran",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "IR",
-    "ISO_A3": "IRN"
+    "ISOA2": "IR",
+    "ISOA3": "IRN"
   },
   {
     "Name": "Turkey",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TR",
-    "ISO_A3": "TUR"
+    "ISOA2": "TR",
+    "ISOA3": "TUR"
   },
   {
     "Name": "Germany",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "DE",
-    "ISO_A3": "DEU"
+    "ISOA2": "DE",
+    "ISOA3": "DEU"
   },
   {
     "Name": "United Kingdom",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GB",
-    "ISO_A3": "GBR"
+    "ISOA2": "GB",
+    "ISOA3": "GBR"
   },
   {
     "Name": "France",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "FR",
-    "ISO_A3": "FRA"
+    "ISOA2": "FR",
+    "ISOA3": "FRA"
   },
   {
     "Name": "Tanzania",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TZ",
-    "ISO_A3": "TZA"
+    "ISOA2": "TZ",
+    "ISOA3": "TZA"
   },
   {
     "Name": "Thailand",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TH",
-    "ISO_A3": "THA"
+    "ISOA2": "TH",
+    "ISOA3": "THA"
   },
   {
     "Name": "South Africa",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ZA",
-    "ISO_A3": "ZAF"
+    "ISOA2": "ZA",
+    "ISOA3": "ZAF"
   },
   {
     "Name": "Italy",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "IT",
-    "ISO_A3": "ITA"
+    "ISOA2": "IT",
+    "ISOA3": "ITA"
   },
   {
     "Name": "Kenya",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KE",
-    "ISO_A3": "KEN"
+    "ISOA2": "KE",
+    "ISOA3": "KEN"
   },
   {
     "Name": "Colombia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CO",
-    "ISO_A3": "COL"
+    "ISOA2": "CO",
+    "ISOA3": "COL"
   },
   {
     "Name": "Sudan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SD",
-    "ISO_A3": "SDN"
+    "ISOA2": "SD",
+    "ISOA3": "SDN"
   },
   {
     "Name": "Myanmar",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MM",
-    "ISO_A3": "MMR"
+    "ISOA2": "MM",
+    "ISOA3": "MMR"
   },
   {
     "Name": "South Korea",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KR",
-    "ISO_A3": "KOR"
+    "ISOA2": "KR",
+    "ISOA3": "KOR"
   },
   {
     "Name": "Spain",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ES",
-    "ISO_A3": "ESP"
+    "ISOA2": "ES",
+    "ISOA3": "ESP"
   },
   {
     "Name": "Algeria",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "DZ",
-    "ISO_A3": "DZA"
+    "ISOA2": "DZ",
+    "ISOA3": "DZA"
   },
   {
     "Name": "Argentina",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AR",
-    "ISO_A3": "ARG"
+    "ISOA2": "AR",
+    "ISOA3": "ARG"
   },
   {
     "Name": "Iraq",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "IQ",
-    "ISO_A3": "IRQ"
+    "ISOA2": "IQ",
+    "ISOA3": "IRQ"
   },
   {
     "Name": "Uganda",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "UG",
-    "ISO_A3": "UGA"
+    "ISOA2": "UG",
+    "ISOA3": "UGA"
   },
   {
     "Name": "Afghanistan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AF",
-    "ISO_A3": "AFG"
+    "ISOA2": "AF",
+    "ISOA3": "AFG"
   },
   {
     "Name": "Canada",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CA",
-    "ISO_A3": "CAN"
+    "ISOA2": "CA",
+    "ISOA3": "CAN"
   },
   {
     "Name": "Uzbekistan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "UZ",
-    "ISO_A3": "UZB"
+    "ISOA2": "UZ",
+    "ISOA3": "UZB"
   },
   {
     "Name": "Poland",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PL",
-    "ISO_A3": "POL"
+    "ISOA2": "PL",
+    "ISOA3": "POL"
   },
   {
     "Name": "Morocco",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MA",
-    "ISO_A3": "MAR"
+    "ISOA2": "MA",
+    "ISOA3": "MAR"
   },
   {
     "Name": "Angola",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AO",
-    "ISO_A3": "AGO"
+    "ISOA2": "AO",
+    "ISOA3": "AGO"
   },
   {
     "Name": "Saudi Arabia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SA",
-    "ISO_A3": "SAU"
+    "ISOA2": "SA",
+    "ISOA3": "SAU"
   },
   {
     "Name": "Peru",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PE",
-    "ISO_A3": "PER"
+    "ISOA2": "PE",
+    "ISOA3": "PER"
   },
   {
     "Name": "Malaysia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MY",
-    "ISO_A3": "MYS"
+    "ISOA2": "MY",
+    "ISOA3": "MYS"
   },
   {
     "Name": "Mozambique",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MZ",
-    "ISO_A3": "MOZ"
+    "ISOA2": "MZ",
+    "ISOA3": "MOZ"
   },
   {
     "Name": "Ghana",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GH",
-    "ISO_A3": "GHA"
+    "ISOA2": "GH",
+    "ISOA3": "GHA"
   },
   {
     "Name": "Ukraine",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "UA",
-    "ISO_A3": "UKR"
+    "ISOA2": "UA",
+    "ISOA3": "UKR"
   },
   {
     "Name": "Yemen",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "YE",
-    "ISO_A3": "YEM"
+    "ISOA2": "YE",
+    "ISOA3": "YEM"
   },
   {
     "Name": "Madagascar",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MG",
-    "ISO_A3": "MDG"
+    "ISOA2": "MG",
+    "ISOA3": "MDG"
   },
   {
     "Name": "Nepal",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NP",
-    "ISO_A3": "NPL"
+    "ISOA2": "NP",
+    "ISOA3": "NPL"
   },
   {
     "Name": "Cameroon",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CM",
-    "ISO_A3": "CMR"
+    "ISOA2": "CM",
+    "ISOA3": "CMR"
   },
   {
     "Name": "Ivory Coast",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CI",
-    "ISO_A3": "CIV"
+    "ISOA2": "CI",
+    "ISOA3": "CIV"
   },
   {
     "Name": "Venezuela",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "VE",
-    "ISO_A3": "VEN"
+    "ISOA2": "VE",
+    "ISOA3": "VEN"
   },
   {
     "Name": "Australia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AU",
-    "ISO_A3": "AUS"
+    "ISOA2": "AU",
+    "ISOA3": "AUS"
   },
   {
     "Name": "Niger",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NE",
-    "ISO_A3": "NER"
+    "ISOA2": "NE",
+    "ISOA3": "NER"
   },
   {
     "Name": "North Korea",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KP",
-    "ISO_A3": "PRK"
+    "ISOA2": "KP",
+    "ISOA3": "PRK"
   },
   {
     "Name": "Syria",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SY",
-    "ISO_A3": "SYR"
+    "ISOA2": "SY",
+    "ISOA3": "SYR"
   },
   {
     "Name": "Burkina Faso",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BF",
-    "ISO_A3": "BFA"
+    "ISOA2": "BF",
+    "ISOA3": "BFA"
   },
   {
     "Name": "Taiwan",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "TW",
-    "ISO_A3": "TWN"
+    "ISOA2": "TW",
+    "ISOA3": "TWN"
   },
   {
     "Name": "Mali",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ML",
-    "ISO_A3": "MLI"
+    "ISOA2": "ML",
+    "ISOA3": "MLI"
   },
   {
     "Name": "Sri Lanka",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LK",
-    "ISO_A3": "LKA"
+    "ISOA2": "LK",
+    "ISOA3": "LKA"
   },
   {
     "Name": "Malawi",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MW",
-    "ISO_A3": "MWI"
+    "ISOA2": "MW",
+    "ISOA3": "MWI"
   },
   {
     "Name": "Kazakhstan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KZ",
-    "ISO_A3": "KAZ"
+    "ISOA2": "KZ",
+    "ISOA3": "KAZ"
   },
   {
     "Name": "Chile",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CL",
-    "ISO_A3": "CHL"
+    "ISOA2": "CL",
+    "ISOA3": "CHL"
   },
   {
     "Name": "Zambia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ZM",
-    "ISO_A3": "ZMB"
+    "ISOA2": "ZM",
+    "ISOA3": "ZMB"
   },
   {
     "Name": "Somalia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SO",
-    "ISO_A3": "SOM"
+    "ISOA2": "SO",
+    "ISOA3": "SOM"
   },
   {
     "Name": "Chad",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TD",
-    "ISO_A3": "TCD"
+    "ISOA2": "TD",
+    "ISOA3": "TCD"
   },
   {
     "Name": "Romania",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "RO",
-    "ISO_A3": "ROU"
+    "ISOA2": "RO",
+    "ISOA3": "ROU"
   },
   {
     "Name": "Senegal",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SN",
-    "ISO_A3": "SEN"
+    "ISOA2": "SN",
+    "ISOA3": "SEN"
   },
   {
     "Name": "Ecuador",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "EC",
-    "ISO_A3": "ECU"
+    "ISOA2": "EC",
+    "ISOA3": "ECU"
   },
   {
     "Name": "Netherlands",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NL",
-    "ISO_A3": "NLD"
+    "ISOA2": "NL",
+    "ISOA3": "NLD"
   },
   {
     "Name": "Guatemala",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GT",
-    "ISO_A3": "GTM"
+    "ISOA2": "GT",
+    "ISOA3": "GTM"
   },
   {
     "Name": "Cambodia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KH",
-    "ISO_A3": "KHM"
+    "ISOA2": "KH",
+    "ISOA3": "KHM"
   },
   {
     "Name": "Zimbabwe",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ZW",
-    "ISO_A3": "ZWE"
+    "ISOA2": "ZW",
+    "ISOA3": "ZWE"
   },
   {
     "Name": "South Sudan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SS",
-    "ISO_A3": "SSD"
+    "ISOA2": "SS",
+    "ISOA3": "SSD"
   },
   {
     "Name": "Guinea",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GN",
-    "ISO_A3": "GIN"
+    "ISOA2": "GN",
+    "ISOA3": "GIN"
   },
   {
     "Name": "Rwanda",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "RW",
-    "ISO_A3": "RWA"
+    "ISOA2": "RW",
+    "ISOA3": "RWA"
   },
   {
     "Name": "Benin",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BJ",
-    "ISO_A3": "BEN"
+    "ISOA2": "BJ",
+    "ISOA3": "BEN"
   },
   {
     "Name": "Burundi",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BI",
-    "ISO_A3": "BDI"
+    "ISOA2": "BI",
+    "ISOA3": "BDI"
   },
   {
     "Name": "Tunisia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TN",
-    "ISO_A3": "TUN"
+    "ISOA2": "TN",
+    "ISOA3": "TUN"
   },
   {
     "Name": "Haiti",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "HT",
-    "ISO_A3": "HTI"
+    "ISOA2": "HT",
+    "ISOA3": "HTI"
   },
   {
     "Name": "Belgium",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BE",
-    "ISO_A3": "BEL"
+    "ISOA2": "BE",
+    "ISOA3": "BEL"
   },
   {
     "Name": "Papua New Guinea",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PG",
-    "ISO_A3": "PNG"
+    "ISOA2": "PG",
+    "ISOA3": "PNG"
   },
   {
     "Name": "Jordan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "JO",
-    "ISO_A3": "JOR"
+    "ISOA2": "JO",
+    "ISOA3": "JOR"
   },
   {
     "Name": "Bolivia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BO",
-    "ISO_A3": "BOL"
+    "ISOA2": "BO",
+    "ISOA3": "BOL"
   },
   {
     "Name": "Czech Republic",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CZ",
-    "ISO_A3": "CZE"
+    "ISOA2": "CZ",
+    "ISOA3": "CZE"
   },
   {
     "Name": "Dominican Republic",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "DO",
-    "ISO_A3": "DOM"
+    "ISOA2": "DO",
+    "ISOA3": "DOM"
   },
   {
     "Name": "Portugal",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PT",
-    "ISO_A3": "PRT"
+    "ISOA2": "PT",
+    "ISOA3": "PRT"
   },
   {
     "Name": "United Arab Emirates",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AE",
-    "ISO_A3": "ARE"
+    "ISOA2": "AE",
+    "ISOA3": "ARE"
   },
   {
     "Name": "Sweden",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SE",
-    "ISO_A3": "SWE"
+    "ISOA2": "SE",
+    "ISOA3": "SWE"
   },
   {
     "Name": "Tajikistan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TJ",
-    "ISO_A3": "TJK"
+    "ISOA2": "TJ",
+    "ISOA3": "TJK"
   },
   {
     "Name": "Greece",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GR",
-    "ISO_A3": "GRC"
+    "ISOA2": "GR",
+    "ISOA3": "GRC"
   },
   {
     "Name": "Azerbaijan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AZ",
-    "ISO_A3": "AZE"
+    "ISOA2": "AZ",
+    "ISOA3": "AZE"
   },
   {
     "Name": "Israel",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "IL",
-    "ISO_A3": "ISR"
+    "ISOA2": "IL",
+    "ISOA3": "ISR"
   },
   {
     "Name": "Honduras",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "HN",
-    "ISO_A3": "HND"
+    "ISOA2": "HN",
+    "ISOA3": "HND"
   },
   {
     "Name": "Cuba",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CU",
-    "ISO_A3": "CUB"
+    "ISOA2": "CU",
+    "ISOA3": "CUB"
   },
   {
     "Name": "Hungary",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "HU",
-    "ISO_A3": "HUN"
+    "ISOA2": "HU",
+    "ISOA3": "HUN"
   },
   {
     "Name": "Austria",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AT",
-    "ISO_A3": "AUT"
+    "ISOA2": "AT",
+    "ISOA3": "AUT"
   },
   {
     "Name": "Belarus",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BY",
-    "ISO_A3": "BLR"
+    "ISOA2": "BY",
+    "ISOA3": "BLR"
   },
   {
     "Name": "Switzerland",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CH",
-    "ISO_A3": "CHE"
+    "ISOA2": "CH",
+    "ISOA3": "CHE"
   },
   {
     "Name": "Sierra Leone",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SL",
-    "ISO_A3": "SLE"
+    "ISOA2": "SL",
+    "ISOA3": "SLE"
   },
   {
     "Name": "Togo",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TG",
-    "ISO_A3": "TGO"
+    "ISOA2": "TG",
+    "ISOA3": "TGO"
   },
   {
     "Name": "Laos",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LA",
-    "ISO_A3": "LAO"
+    "ISOA2": "LA",
+    "ISOA3": "LAO"
   },
   {
     "Name": "Hong Kong",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "HK",
-    "ISO_A3": "HKG"
+    "ISOA2": "HK",
+    "ISOA3": "HKG"
   },
   {
     "Name": "Libya",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LY",
-    "ISO_A3": "LBY"
+    "ISOA2": "LY",
+    "ISOA3": "LBY"
   },
   {
     "Name": "Kyrgyzstan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KG",
-    "ISO_A3": "KGZ"
+    "ISOA2": "KG",
+    "ISOA3": "KGZ"
   },
   {
     "Name": "Turkmenistan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TM",
-    "ISO_A3": "TKM"
+    "ISOA2": "TM",
+    "ISOA3": "TKM"
   },
   {
     "Name": "Nicaragua",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NI",
-    "ISO_A3": "NIC"
+    "ISOA2": "NI",
+    "ISOA3": "NIC"
   },
   {
     "Name": "Serbia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "RS",
-    "ISO_A3": "SRB"
+    "ISOA2": "RS",
+    "ISOA3": "SRB"
   },
   {
     "Name": "Central African Republic",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CF",
-    "ISO_A3": "CAF"
+    "ISOA2": "CF",
+    "ISOA3": "CAF"
   },
   {
     "Name": "Bulgaria",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BG",
-    "ISO_A3": "BGR"
+    "ISOA2": "BG",
+    "ISOA3": "BGR"
   },
   {
     "Name": "Republic of the Congo",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CG",
-    "ISO_A3": "COG"
+    "ISOA2": "CG",
+    "ISOA3": "COG"
   },
   {
     "Name": "Singapore",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SG",
-    "ISO_A3": "SGP"
+    "ISOA2": "SG",
+    "ISOA3": "SGP"
   },
   {
     "Name": "Paraguay",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PY",
-    "ISO_A3": "PRY"
+    "ISOA2": "PY",
+    "ISOA3": "PRY"
   },
   {
     "Name": "El Salvador",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SV",
-    "ISO_A3": "SLV"
+    "ISOA2": "SV",
+    "ISOA3": "SLV"
   },
   {
     "Name": "Denmark",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "DK",
-    "ISO_A3": "DNK"
+    "ISOA2": "DK",
+    "ISOA3": "DNK"
   },
   {
     "Name": "Finland",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "FI",
-    "ISO_A3": "FIN"
+    "ISOA2": "FI",
+    "ISOA3": "FIN"
   },
   {
     "Name": "Norway",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NO",
-    "ISO_A3": "NOR"
+    "ISOA2": "NO",
+    "ISOA3": "NOR"
   },
   {
     "Name": "Lebanon",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LB",
-    "ISO_A3": "LBN"
+    "ISOA2": "LB",
+    "ISOA3": "LBN"
   },
   {
     "Name": "Palestine",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "PS",
-    "ISO_A3": "PSE"
+    "ISOA2": "PS",
+    "ISOA3": "PSE"
   },
   {
     "Name": "Ireland",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "IE",
-    "ISO_A3": "IRL"
+    "ISOA2": "IE",
+    "ISOA3": "IRL"
   },
   {
     "Name": "Slovakia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SK",
-    "ISO_A3": "SVK"
+    "ISOA2": "SK",
+    "ISOA3": "SVK"
   },
   {
     "Name": "New Zealand",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NZ",
-    "ISO_A3": "NZL"
+    "ISOA2": "NZ",
+    "ISOA3": "NZL"
   },
   {
     "Name": "Costa Rica",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CR",
-    "ISO_A3": "CRI"
+    "ISOA2": "CR",
+    "ISOA3": "CRI"
   },
   {
     "Name": "Oman",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "OM",
-    "ISO_A3": "OMN"
+    "ISOA2": "OM",
+    "ISOA3": "OMN"
   },
   {
     "Name": "Liberia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LR",
-    "ISO_A3": "LBR"
+    "ISOA2": "LR",
+    "ISOA3": "LBR"
   },
   {
     "Name": "Mauritania",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MR",
-    "ISO_A3": "MRT"
+    "ISOA2": "MR",
+    "ISOA3": "MRT"
   },
   {
     "Name": "Kuwait",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KW",
-    "ISO_A3": "KWT"
+    "ISOA2": "KW",
+    "ISOA3": "KWT"
   },
   {
     "Name": "Panama",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PA",
-    "ISO_A3": "PAN"
+    "ISOA2": "PA",
+    "ISOA3": "PAN"
   },
   {
     "Name": "Croatia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "HR",
-    "ISO_A3": "HRV"
+    "ISOA2": "HR",
+    "ISOA3": "HRV"
   },
   {
     "Name": "Georgia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GE",
-    "ISO_A3": "GEO"
+    "ISOA2": "GE",
+    "ISOA3": "GEO"
   },
   {
     "Name": "Eritrea",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ER",
-    "ISO_A3": "ERI"
+    "ISOA2": "ER",
+    "ISOA3": "ERI"
   },
   {
     "Name": "Mongolia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MN",
-    "ISO_A3": "MNG"
+    "ISOA2": "MN",
+    "ISOA3": "MNG"
   },
   {
     "Name": "Uruguay",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "UY",
-    "ISO_A3": "URY"
+    "ISOA2": "UY",
+    "ISOA3": "URY"
   },
   {
     "Name": "Bosnia and Herzegovina",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BA",
-    "ISO_A3": "BIH"
+    "ISOA2": "BA",
+    "ISOA3": "BIH"
   },
   {
     "Name": "Puerto Rico",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "PR",
-    "ISO_A3": "PRI"
+    "ISOA2": "PR",
+    "ISOA3": "PRI"
   },
   {
     "Name": "Qatar",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "QA",
-    "ISO_A3": "QAT"
+    "ISOA2": "QA",
+    "ISOA3": "QAT"
   },
   {
     "Name": "Armenia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AM",
-    "ISO_A3": "ARM"
+    "ISOA2": "AM",
+    "ISOA3": "ARM"
   },
   {
     "Name": "Namibia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NA",
-    "ISO_A3": "NAM"
+    "ISOA2": "NA",
+    "ISOA3": "NAM"
   },
   {
     "Name": "Lithuania",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LT",
-    "ISO_A3": "LTU"
+    "ISOA2": "LT",
+    "ISOA3": "LTU"
   },
   {
     "Name": "Jamaica",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "JM",
-    "ISO_A3": "JAM"
+    "ISOA2": "JM",
+    "ISOA3": "JAM"
   },
   {
     "Name": "Gabon",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GA",
-    "ISO_A3": "GAB"
+    "ISOA2": "GA",
+    "ISOA3": "GAB"
   },
   {
     "Name": "Gambia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GM",
-    "ISO_A3": "GMB"
+    "ISOA2": "GM",
+    "ISOA3": "GMB"
   },
   {
     "Name": "Moldova",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MD",
-    "ISO_A3": "MDA"
+    "ISOA2": "MD",
+    "ISOA3": "MDA"
   },
   {
     "Name": "Albania",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AL",
-    "ISO_A3": "ALB"
+    "ISOA2": "AL",
+    "ISOA3": "ALB"
   },
   {
     "Name": "Botswana",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BW",
-    "ISO_A3": "BWA"
+    "ISOA2": "BW",
+    "ISOA3": "BWA"
   },
   {
     "Name": "Slovenia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SI",
-    "ISO_A3": "SVN"
+    "ISOA2": "SI",
+    "ISOA3": "SVN"
   },
   {
     "Name": "Lesotho",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LS",
-    "ISO_A3": "LSO"
+    "ISOA2": "LS",
+    "ISOA3": "LSO"
   },
   {
     "Name": "Latvia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LV",
-    "ISO_A3": "LVA"
+    "ISOA2": "LV",
+    "ISOA3": "LVA"
   },
   {
     "Name": "North Macedonia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MK",
-    "ISO_A3": "MKD"
+    "ISOA2": "MK",
+    "ISOA3": "MKD"
   },
   {
     "Name": "Guinea-Bissau",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GW",
-    "ISO_A3": "GNB"
+    "ISOA2": "GW",
+    "ISOA3": "GNB"
   },
   {
     "Name": "Equatorial Guinea",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GQ",
-    "ISO_A3": "GNQ"
+    "ISOA2": "GQ",
+    "ISOA3": "GNQ"
   },
   {
     "Name": "Bahrain",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BH",
-    "ISO_A3": "BHR"
+    "ISOA2": "BH",
+    "ISOA3": "BHR"
   },
   {
     "Name": "Kosovo",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "XK",
-    "ISO_A3": "XKX"
+    "ISOA2": "XK",
+    "ISOA3": "XKX"
   },
   {
     "Name": "Timor-Leste",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TL",
-    "ISO_A3": "TLS"
+    "ISOA2": "TL",
+    "ISOA3": "TLS"
   },
   {
     "Name": "Estonia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "EE",
-    "ISO_A3": "EST"
+    "ISOA2": "EE",
+    "ISOA3": "EST"
   },
   {
     "Name": "Trinidad and Tobago",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TT",
-    "ISO_A3": "TTO"
+    "ISOA2": "TT",
+    "ISOA3": "TTO"
   },
   {
     "Name": "Mauritius",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MU",
-    "ISO_A3": "MUS"
+    "ISOA2": "MU",
+    "ISOA3": "MUS"
   },
   {
     "Name": "Eswatini",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SZ",
-    "ISO_A3": "SWZ"
+    "ISOA2": "SZ",
+    "ISOA3": "SWZ"
   },
   {
     "Name": "Djibouti",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "DJ",
-    "ISO_A3": "DJI"
+    "ISOA2": "DJ",
+    "ISOA3": "DJI"
   },
   {
     "Name": "Cyprus",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CY",
-    "ISO_A3": "CYP"
+    "ISOA2": "CY",
+    "ISOA3": "CYP"
   },
   {
     "Name": "Fiji",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "FJ",
-    "ISO_A3": "FJI"
+    "ISOA2": "FJ",
+    "ISOA3": "FJI"
   },
   {
     "Name": "Comoros",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KM",
-    "ISO_A3": "COM"
+    "ISOA2": "KM",
+    "ISOA3": "COM"
   },
   {
     "Name": "Bhutan",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BT",
-    "ISO_A3": "BTN"
+    "ISOA2": "BT",
+    "ISOA3": "BTN"
   },
   {
     "Name": "Guyana",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GY",
-    "ISO_A3": "GUY"
+    "ISOA2": "GY",
+    "ISOA3": "GUY"
   },
   {
     "Name": "Solomon Islands",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SB",
-    "ISO_A3": "SLB"
+    "ISOA2": "SB",
+    "ISOA3": "SLB"
   },
   {
     "Name": "Macao",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "MO",
-    "ISO_A3": "MAC"
+    "ISOA2": "MO",
+    "ISOA3": "MAC"
   },
   {
     "Name": "Luxembourg",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LU",
-    "ISO_A3": "LUX"
+    "ISOA2": "LU",
+    "ISOA3": "LUX"
   },
   {
     "Name": "Montenegro",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ME",
-    "ISO_A3": "MNE"
+    "ISOA2": "ME",
+    "ISOA3": "MNE"
   },
   {
     "Name": "Suriname",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SR",
-    "ISO_A3": "SUR"
+    "ISOA2": "SR",
+    "ISOA3": "SUR"
   },
   {
     "Name": "Western Sahara",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "EH",
-    "ISO_A3": "ESH"
+    "ISOA2": "EH",
+    "ISOA3": "ESH"
   },
   {
     "Name": "Malta",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MT",
-    "ISO_A3": "MLT"
+    "ISOA2": "MT",
+    "ISOA3": "MLT"
   },
   {
     "Name": "Maldives",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MV",
-    "ISO_A3": "MDV"
+    "ISOA2": "MV",
+    "ISOA3": "MDV"
   },
   {
     "Name": "Cape Verde",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "CV",
-    "ISO_A3": "CPV"
-  },
-  {
-    "Name": "Northern Cyprus",
-    "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "",
-    "ISO_A3": ""
+    "ISOA2": "CV",
+    "ISOA3": "CPV"
   },
   {
     "Name": "Brunei",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BN",
-    "ISO_A3": "BRN"
+    "ISOA2": "BN",
+    "ISOA3": "BRN"
   },
   {
     "Name": "Belize",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BZ",
-    "ISO_A3": "BLZ"
+    "ISOA2": "BZ",
+    "ISOA3": "BLZ"
   },
   {
     "Name": "Bahamas",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BS",
-    "ISO_A3": "BHS"
+    "ISOA2": "BS",
+    "ISOA3": "BHS"
   },
   {
     "Name": "Iceland",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "IS",
-    "ISO_A3": "ISL"
-  },
-  {
-    "Name": "Transnistria",
-    "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "",
-    "ISO_A3": ""
+    "ISOA2": "IS",
+    "ISOA3": "ISL"
   },
   {
     "Name": "Vanuatu",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "VU",
-    "ISO_A3": "VUT"
+    "ISOA2": "VU",
+    "ISOA3": "VUT"
   },
   {
     "Name": "French Polynesia",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "PF",
-    "ISO_A3": "PYF"
+    "ISOA2": "PF",
+    "ISOA3": "PYF"
   },
   {
     "Name": "Barbados",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "BB",
-    "ISO_A3": "BRB"
+    "ISOA2": "BB",
+    "ISOA3": "BRB"
   },
   {
     "Name": "New Caledonia",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "NC",
-    "ISO_A3": "NCL"
+    "ISOA2": "NC",
+    "ISOA3": "NCL"
   },
   {
     "Name": "Abkhazia",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "GE-AB",
-    "ISO_A3": ""
+    "ISOA2": "AB",
+    "ISOA3": ""
   },
   {
-    "Name": "São Tomé and Príncipe",
+    "Name": "Sao Tome and Principe",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "ST",
-    "ISO_A3": "STP"
+    "ISOA2": "ST",
+    "ISOA3": "STP"
   },
   {
     "Name": "Samoa",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "WS",
-    "ISO_A3": "WSM"
+    "ISOA2": "WS",
+    "ISOA3": "WSM"
   },
   {
     "Name": "Saint Lucia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LC",
-    "ISO_A3": "LCA"
+    "ISOA2": "LC",
+    "ISOA3": "LCA"
   },
   {
-    "Name": "Curaçao",
+    "Name": "Curacao",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "CW",
-    "ISO_A3": "CUW"
+    "ISOA2": "CW",
+    "ISOA3": "CUW"
   },
   {
     "Name": "Guam",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "GU",
-    "ISO_A3": "GUM"
+    "ISOA2": "GU",
+    "ISOA3": "GUM"
   },
   {
     "Name": "Seychelles",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SC",
-    "ISO_A3": "SYC"
+    "ISOA2": "SC",
+    "ISOA3": "SYC"
   },
   {
     "Name": "Kiribati",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KI",
-    "ISO_A3": "KIR"
+    "ISOA2": "KI",
+    "ISOA3": "KIR"
   },
   {
     "Name": "Saint Vincent and the Grenadines",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "VC",
-    "ISO_A3": "VCT"
+    "ISOA2": "VC",
+    "ISOA3": "VCT"
   },
   {
     "Name": "Grenada",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "GD",
-    "ISO_A3": "GRD"
+    "ISOA2": "GD",
+    "ISOA3": "GRD"
   },
   {
     "Name": "Aruba",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "AW",
-    "ISO_A3": "ABW"
+    "ISOA2": "AW",
+    "ISOA3": "ABW"
   },
   {
     "Name": "Micronesia",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "FM",
-    "ISO_A3": "FSM"
+    "ISOA2": "FM",
+    "ISOA3": "FSM"
   },
   {
     "Name": "Antigua and Barbuda",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AG",
-    "ISO_A3": "ATG"
+    "ISOA2": "AG",
+    "ISOA3": "ATG"
   },
   {
     "Name": "Jersey",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "JE",
-    "ISO_A3": "JEY"
+    "ISOA2": "JE",
+    "ISOA3": "JEY"
   },
   {
     "Name": "Tonga",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TO",
-    "ISO_A3": "TON"
+    "ISOA2": "TO",
+    "ISOA3": "TON"
   },
   {
     "Name": "Andorra",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "AD",
-    "ISO_A3": "AND"
+    "ISOA2": "AD",
+    "ISOA3": "AND"
   },
   {
     "Name": "U.S. Virgin Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "VI",
-    "ISO_A3": "VIR"
+    "ISOA2": "VI",
+    "ISOA3": "VIR"
   },
   {
     "Name": "Cayman Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "KY",
-    "ISO_A3": "CYM"
+    "ISOA2": "KY",
+    "ISOA3": "CYM"
   },
   {
     "Name": "Isle of Man",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "IM",
-    "ISO_A3": "IMN"
+    "ISOA2": "IM",
+    "ISOA3": "IMN"
   },
   {
     "Name": "Dominica",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "DM",
-    "ISO_A3": "DMA"
+    "ISOA2": "DM",
+    "ISOA3": "DMA"
   },
   {
     "Name": "Guernsey",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "GG",
-    "ISO_A3": "GGY"
+    "ISOA2": "GG",
+    "ISOA3": "GGY"
   },
   {
     "Name": "Bermuda",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "BM",
-    "ISO_A3": "BMU"
+    "ISOA2": "BM",
+    "ISOA3": "BMU"
   },
   {
     "Name": "Greenland",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "GL",
-    "ISO_A3": "GRL"
+    "ISOA2": "GL",
+    "ISOA3": "GRL"
   },
   {
     "Name": "South Ossetia",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "",
-    "ISO_A3": ""
+    "ISOA2": "OS",
+    "ISOA3": "OST"
   },
   {
     "Name": "Faroe Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "FO",
-    "ISO_A3": "FRO"
+    "ISOA2": "FO",
+    "ISOA3": "FRO"
   },
   {
     "Name": "Saint Kitts and Nevis",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "KN",
-    "ISO_A3": "KNA"
+    "ISOA2": "KN",
+    "ISOA3": "KNA"
   },
   {
     "Name": "Turks and Caicos Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "TC",
-    "ISO_A3": "TCA"
+    "ISOA2": "TC",
+    "ISOA3": "TCA"
   },
   {
     "Name": "American Samoa",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "AS",
-    "ISO_A3": "ASM"
+    "ISOA2": "AS",
+    "ISOA3": "ASM"
   },
   {
     "Name": "Northern Mariana Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "MP",
-    "ISO_A3": "MNP"
+    "ISOA2": "MP",
+    "ISOA3": "MNP"
   },
   {
     "Name": "Marshall Islands",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MH",
-    "ISO_A3": "MHL"
+    "ISOA2": "MH",
+    "ISOA3": "MHL"
   },
   {
     "Name": "Sint Maarten",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "SX",
-    "ISO_A3": "SXM"
+    "ISOA2": "SX",
+    "ISOA3": "SXM"
   },
   {
     "Name": "Liechtenstein",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "LI",
-    "ISO_A3": "LIE"
+    "ISOA2": "LI",
+    "ISOA3": "LIE"
   },
   {
     "Name": "British Virgin Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "VG",
-    "ISO_A3": "VGB"
+    "ISOA2": "VG",
+    "ISOA3": "VGB"
   },
   {
     "Name": "Monaco",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "MC",
-    "ISO_A3": "MCO"
+    "ISOA2": "MC",
+    "ISOA3": "MCO"
   },
   {
     "Name": "Gibraltar",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "GI",
-    "ISO_A3": "GIB"
+    "ISOA2": "GI",
+    "ISOA3": "GIB"
   },
   {
     "Name": "San Marino",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "SM",
-    "ISO_A3": "SMR"
+    "ISOA2": "SM",
+    "ISOA3": "SMR"
   },
   {
     "Name": "Saint Martin",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "MF",
-    "ISO_A3": "MAF"
+    "ISOA2": "MF",
+    "ISOA3": "MAF"
   },
   {
-    "Name": "Bonaire",
+    "Name": "Bonaire, Sint Eustatius and Saba",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "BQ",
-    "ISO_A3": "BES"
+    "ISOA2": "BQ",
+    "ISOA3": "BES"
   },
   {
     "Name": "Palau",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "PW",
-    "ISO_A3": "PLW"
+    "ISOA2": "PW",
+    "ISOA3": "PLW"
   },
   {
     "Name": "Anguilla",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "AI",
-    "ISO_A3": "AIA"
+    "ISOA2": "AI",
+    "ISOA3": "AIA"
   },
   {
     "Name": "Cook Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "CK",
-    "ISO_A3": "COK"
+    "ISOA2": "CK",
+    "ISOA3": "COK"
   },
   {
     "Name": "Nauru",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "NR",
-    "ISO_A3": "NRU"
+    "ISOA2": "NR",
+    "ISOA3": "NRU"
   },
   {
     "Name": "Wallis and Futuna",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "WF",
-    "ISO_A3": "WLF"
+    "ISOA2": "WF",
+    "ISOA3": "WLF"
   },
   {
     "Name": "Tuvalu",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "TV",
-    "ISO_A3": "TUV"
+    "ISOA2": "TV",
+    "ISOA3": "TUV"
   },
   {
-    "Name": "Saint Barthélemy",
+    "Name": "Saint Barthelemy",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "BL",
-    "ISO_A3": "BLM"
+    "ISOA2": "BL",
+    "ISOA3": "BLM"
   },
   {
     "Name": "Saint Pierre and Miquelon",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "PM",
-    "ISO_A3": "SPM"
+    "ISOA2": "PM",
+    "ISOA3": "SPM"
   },
   {
     "Name": "Saint Helena, Ascension and Tristan da Cunha",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "SH",
-    "ISO_A3": "SHN"
+    "ISOA2": "SH",
+    "ISOA3": "SHN"
   },
   {
     "Name": "Montserrat",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "MS",
-    "ISO_A3": "MSR"
+    "ISOA2": "MS",
+    "ISOA3": "MSR"
   },
   {
     "Name": "Falkland Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "FK",
-    "ISO_A3": "FLK"
+    "ISOA2": "FK",
+    "ISOA3": "FLK"
   },
   {
     "Name": "Norfolk Island",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "NF",
-    "ISO_A3": "NFK"
-  },
-  {
-    "Name": "Saba",
-    "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "BQ-SA",
-    "ISO_A3": "SAA"
+    "ISOA2": "NF",
+    "ISOA3": "NFK"
   },
   {
     "Name": "Christmas Island",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "CX",
-    "ISO_A3": "CXR"
+    "ISOA2": "CX",
+    "ISOA3": "CXR"
   },
   {
     "Name": "Niue",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "NU",
-    "ISO_A3": "NIU"
+    "ISOA2": "NU",
+    "ISOA3": "NIU"
   },
   {
     "Name": "Tokelau",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "TK",
-    "ISO_A3": "TKL"
+    "ISOA2": "TK",
+    "ISOA3": "TKL"
   },
   {
     "Name": "Vatican City",
     "IsOfficiallyRecognizedCountry": true,
-    "ISO_A2": "VA",
-    "ISO_A3": "VAT"
+    "ISOA2": "VA",
+    "ISOA3": "VAT"
   },
   {
     "Name": "Cocos (Keeling) Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "CC",
-    "ISO_A3": "CCK"
+    "ISOA2": "CC",
+    "ISOA3": "CCK"
   },
   {
     "Name": "Pitcairn Islands",
     "IsOfficiallyRecognizedCountry": false,
-    "ISO_A2": "PN",
-    "ISO_A3": "PCN"
+    "ISOA2": "PN",
+    "ISOA3": "PCN"
+  },
+  {
+    "Name": "British Indian Ocean Territory",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "IO",
+    "ISOA3": "IOT"
+  },
+  {
+    "Name": "Mayotte",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "YT",
+    "ISOA3": "MYT"
+  },
+  {
+    "Name": "Reunion",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "RE",
+    "ISOA3": "REU"
+  },
+  {
+    "Name": "United States Minor Outlying Islands",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "UM",
+    "ISOA3": "UMI"
+  },
+  {
+    "Name": "Antarctica",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "AQ",
+    "ISOA3": "ATA"
+  },
+  {
+    "Name": "French Guiana",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "GF",
+    "ISOA3": "GUF"
+  },
+  {
+    "Name": "Guadeloupe",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "GP",
+    "ISOA3": "GLP"
+  },
+  {
+    "Name": "Martinique",
+    "IsOfficiallyRecognizedCountry": false,
+    "ISOA2": "MQ",
+    "ISOA3": "MTQ"
   }
 ]

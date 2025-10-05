@@ -232,9 +232,9 @@
       "US"
     ],
     "Name": "America/Adak",
-    "Offset": 0,
+    "Offset": -600,
     "Abbreviation": "HST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Adak"
   },
   {
@@ -242,9 +242,9 @@
       "US"
     ],
     "Name": "America/Anchorage",
-    "Offset": 0,
+    "Offset": -540,
     "Abbreviation": "AKST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Anchorage"
   },
   {
@@ -252,7 +252,7 @@
       "BR"
     ],
     "Name": "America/Araguaina",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Araguaina"
@@ -262,7 +262,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Buenos_Aires",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Buenos_Aires"
@@ -272,7 +272,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Catamarca",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Catamarca"
@@ -282,7 +282,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Cordoba",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Cordoba"
@@ -292,7 +292,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Jujuy",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Jujuy"
@@ -302,7 +302,7 @@
       "AR"
     ],
     "Name": "America/Argentina/La_Rioja",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/La_Rioja"
@@ -312,7 +312,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Mendoza",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Mendoza"
@@ -322,7 +322,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Rio_Gallegos",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Rio_Gallegos"
@@ -332,7 +332,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Salta",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Salta"
@@ -342,7 +342,7 @@
       "AR"
     ],
     "Name": "America/Argentina/San_Juan",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/San_Juan"
@@ -352,7 +352,7 @@
       "AR"
     ],
     "Name": "America/Argentina/San_Luis",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/San_Luis"
@@ -362,7 +362,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Tucuman",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Tucuman"
@@ -372,7 +372,7 @@
       "AR"
     ],
     "Name": "America/Argentina/Ushuaia",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Argentina/Ushuaia"
@@ -382,7 +382,7 @@
       "PY"
     ],
     "Name": "America/Asuncion",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Asuncion"
@@ -392,7 +392,7 @@
       "BR"
     ],
     "Name": "America/Bahia",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Bahia"
@@ -402,7 +402,7 @@
       "MX"
     ],
     "Name": "America/Bahia_Banderas",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Bahia_Banderas"
@@ -412,7 +412,7 @@
       "BB"
     ],
     "Name": "America/Barbados",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
     "UsesDST": false,
     "Identifier": "America/Barbados"
@@ -422,7 +422,7 @@
       "BR"
     ],
     "Name": "America/Belem",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Belem"
@@ -432,7 +432,7 @@
       "BZ"
     ],
     "Name": "America/Belize",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Belize"
@@ -442,7 +442,7 @@
       "BR"
     ],
     "Name": "America/Boa_Vista",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/Boa_Vista"
@@ -452,7 +452,7 @@
       "CO"
     ],
     "Name": "America/Bogota",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "-05",
     "UsesDST": false,
     "Identifier": "America/Bogota"
@@ -462,9 +462,9 @@
       "US"
     ],
     "Name": "America/Boise",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Boise"
   },
   {
@@ -472,9 +472,9 @@
       "CA"
     ],
     "Name": "America/Cambridge_Bay",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Cambridge_Bay"
   },
   {
@@ -482,7 +482,7 @@
       "BR"
     ],
     "Name": "America/Campo_Grande",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/Campo_Grande"
@@ -492,7 +492,7 @@
       "MX"
     ],
     "Name": "America/Cancun",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
     "UsesDST": false,
     "Identifier": "America/Cancun"
@@ -502,7 +502,7 @@
       "VE"
     ],
     "Name": "America/Caracas",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/Caracas"
@@ -512,7 +512,7 @@
       "GF"
     ],
     "Name": "America/Cayenne",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Cayenne"
@@ -522,9 +522,9 @@
       "US"
     ],
     "Name": "America/Chicago",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Chicago"
   },
   {
@@ -532,7 +532,7 @@
       "MX"
     ],
     "Name": "America/Chihuahua",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Chihuahua"
@@ -542,9 +542,9 @@
       "MX"
     ],
     "Name": "America/Ciudad_Juarez",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Ciudad_Juarez"
   },
   {
@@ -552,7 +552,7 @@
       "CR"
     ],
     "Name": "America/Costa_Rica",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Costa_Rica"
@@ -562,7 +562,7 @@
       "CL"
     ],
     "Name": "America/Coyhaique",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Coyhaique"
@@ -572,7 +572,7 @@
       "BR"
     ],
     "Name": "America/Cuiaba",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/Cuiaba"
@@ -592,7 +592,7 @@
       "CA"
     ],
     "Name": "America/Dawson",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
     "UsesDST": false,
     "Identifier": "America/Dawson"
@@ -602,7 +602,7 @@
       "CA"
     ],
     "Name": "America/Dawson_Creek",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
     "UsesDST": false,
     "Identifier": "America/Dawson_Creek"
@@ -612,9 +612,9 @@
       "US"
     ],
     "Name": "America/Denver",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Denver"
   },
   {
@@ -622,9 +622,9 @@
       "US"
     ],
     "Name": "America/Detroit",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Detroit"
   },
   {
@@ -632,9 +632,9 @@
       "CA"
     ],
     "Name": "America/Edmonton",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Edmonton"
   },
   {
@@ -642,7 +642,7 @@
       "BR"
     ],
     "Name": "America/Eirunepe",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "-05",
     "UsesDST": false,
     "Identifier": "America/Eirunepe"
@@ -652,7 +652,7 @@
       "SV"
     ],
     "Name": "America/El_Salvador",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/El_Salvador"
@@ -662,7 +662,7 @@
       "CA"
     ],
     "Name": "America/Fort_Nelson",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
     "UsesDST": false,
     "Identifier": "America/Fort_Nelson"
@@ -672,7 +672,7 @@
       "BR"
     ],
     "Name": "America/Fortaleza",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Fortaleza"
@@ -682,9 +682,9 @@
       "CA"
     ],
     "Name": "America/Glace_Bay",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Glace_Bay"
   },
   {
@@ -692,9 +692,9 @@
       "CA"
     ],
     "Name": "America/Goose_Bay",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Goose_Bay"
   },
   {
@@ -702,9 +702,9 @@
       "TC"
     ],
     "Name": "America/Grand_Turk",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Grand_Turk"
   },
   {
@@ -712,7 +712,7 @@
       "GT"
     ],
     "Name": "America/Guatemala",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Guatemala"
@@ -722,7 +722,7 @@
       "EC"
     ],
     "Name": "America/Guayaquil",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "-05",
     "UsesDST": false,
     "Identifier": "America/Guayaquil"
@@ -732,7 +732,7 @@
       "GY"
     ],
     "Name": "America/Guyana",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/Guyana"
@@ -742,9 +742,9 @@
       "CA"
     ],
     "Name": "America/Halifax",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Halifax"
   },
   {
@@ -752,9 +752,9 @@
       "CU"
     ],
     "Name": "America/Havana",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Havana"
   },
   {
@@ -762,7 +762,7 @@
       "MX"
     ],
     "Name": "America/Hermosillo",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
     "UsesDST": false,
     "Identifier": "America/Hermosillo"
@@ -772,9 +772,9 @@
       "US"
     ],
     "Name": "America/Indiana/Indianapolis",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Indianapolis"
   },
   {
@@ -782,9 +782,9 @@
       "US"
     ],
     "Name": "America/Indiana/Knox",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Knox"
   },
   {
@@ -792,9 +792,9 @@
       "US"
     ],
     "Name": "America/Indiana/Marengo",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Marengo"
   },
   {
@@ -802,9 +802,9 @@
       "US"
     ],
     "Name": "America/Indiana/Petersburg",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Petersburg"
   },
   {
@@ -812,9 +812,9 @@
       "US"
     ],
     "Name": "America/Indiana/Tell_City",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Tell_City"
   },
   {
@@ -822,9 +822,9 @@
       "US"
     ],
     "Name": "America/Indiana/Vevay",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Vevay"
   },
   {
@@ -832,9 +832,9 @@
       "US"
     ],
     "Name": "America/Indiana/Vincennes",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Vincennes"
   },
   {
@@ -842,9 +842,9 @@
       "US"
     ],
     "Name": "America/Indiana/Winamac",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Indiana/Winamac"
   },
   {
@@ -852,9 +852,9 @@
       "CA"
     ],
     "Name": "America/Inuvik",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Inuvik"
   },
   {
@@ -862,9 +862,9 @@
       "CA"
     ],
     "Name": "America/Iqaluit",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Iqaluit"
   },
   {
@@ -872,7 +872,7 @@
       "JM"
     ],
     "Name": "America/Jamaica",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
     "UsesDST": false,
     "Identifier": "America/Jamaica"
@@ -882,9 +882,9 @@
       "US"
     ],
     "Name": "America/Juneau",
-    "Offset": 0,
+    "Offset": -540,
     "Abbreviation": "AKST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Juneau"
   },
   {
@@ -892,9 +892,9 @@
       "US"
     ],
     "Name": "America/Kentucky/Louisville",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Kentucky/Louisville"
   },
   {
@@ -902,9 +902,9 @@
       "US"
     ],
     "Name": "America/Kentucky/Monticello",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Kentucky/Monticello"
   },
   {
@@ -912,7 +912,7 @@
       "BO"
     ],
     "Name": "America/La_Paz",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/La_Paz"
@@ -922,7 +922,7 @@
       "PE"
     ],
     "Name": "America/Lima",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "-05",
     "UsesDST": false,
     "Identifier": "America/Lima"
@@ -932,9 +932,9 @@
       "US"
     ],
     "Name": "America/Los_Angeles",
-    "Offset": 0,
+    "Offset": -480,
     "Abbreviation": "PST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Los_Angeles"
   },
   {
@@ -942,7 +942,7 @@
       "BR"
     ],
     "Name": "America/Maceio",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Maceio"
@@ -952,7 +952,7 @@
       "NI"
     ],
     "Name": "America/Managua",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Managua"
@@ -962,7 +962,7 @@
       "BR"
     ],
     "Name": "America/Manaus",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/Manaus"
@@ -972,7 +972,7 @@
       "MQ"
     ],
     "Name": "America/Martinique",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
     "UsesDST": false,
     "Identifier": "America/Martinique"
@@ -982,9 +982,9 @@
       "MX"
     ],
     "Name": "America/Matamoros",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Matamoros"
   },
   {
@@ -992,7 +992,7 @@
       "MX"
     ],
     "Name": "America/Mazatlan",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
     "UsesDST": false,
     "Identifier": "America/Mazatlan"
@@ -1002,9 +1002,9 @@
       "US"
     ],
     "Name": "America/Menominee",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Menominee"
   },
   {
@@ -1012,7 +1012,7 @@
       "MX"
     ],
     "Name": "America/Merida",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Merida"
@@ -1022,9 +1022,9 @@
       "US"
     ],
     "Name": "America/Metlakatla",
-    "Offset": 0,
+    "Offset": -540,
     "Abbreviation": "AKST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Metlakatla"
   },
   {
@@ -1032,7 +1032,7 @@
       "MX"
     ],
     "Name": "America/Mexico_City",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Mexico_City"
@@ -1042,9 +1042,9 @@
       "PM"
     ],
     "Name": "America/Miquelon",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Miquelon"
   },
   {
@@ -1052,9 +1052,9 @@
       "CA"
     ],
     "Name": "America/Moncton",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Moncton"
   },
   {
@@ -1062,7 +1062,7 @@
       "MX"
     ],
     "Name": "America/Monterrey",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Monterrey"
@@ -1072,7 +1072,7 @@
       "UY"
     ],
     "Name": "America/Montevideo",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Montevideo"
@@ -1082,9 +1082,9 @@
       "US"
     ],
     "Name": "America/New_York",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/New_York"
   },
   {
@@ -1092,9 +1092,9 @@
       "US"
     ],
     "Name": "America/Nome",
-    "Offset": 0,
+    "Offset": -540,
     "Abbreviation": "AKST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Nome"
   },
   {
@@ -1102,7 +1102,7 @@
       "BR"
     ],
     "Name": "America/Noronha",
-    "Offset": 0,
+    "Offset": -120,
     "Abbreviation": "-02",
     "UsesDST": false,
     "Identifier": "America/Noronha"
@@ -1112,9 +1112,9 @@
       "US"
     ],
     "Name": "America/North_Dakota/Beulah",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/North_Dakota/Beulah"
   },
   {
@@ -1122,9 +1122,9 @@
       "US"
     ],
     "Name": "America/North_Dakota/Center",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/North_Dakota/Center"
   },
   {
@@ -1132,9 +1132,9 @@
       "US"
     ],
     "Name": "America/North_Dakota/New_Salem",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/North_Dakota/New_Salem"
   },
   {
@@ -1142,9 +1142,9 @@
       "GL"
     ],
     "Name": "America/Nuuk",
-    "Offset": 0,
+    "Offset": -120,
     "Abbreviation": "-02",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Nuuk"
   },
   {
@@ -1152,9 +1152,9 @@
       "MX"
     ],
     "Name": "America/Ojinaga",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Ojinaga"
   },
   {
@@ -1164,7 +1164,7 @@
       "KY"
     ],
     "Name": "America/Panama",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
     "UsesDST": false,
     "Identifier": "America/Panama"
@@ -1174,7 +1174,7 @@
       "SR"
     ],
     "Name": "America/Paramaribo",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Paramaribo"
@@ -1185,7 +1185,7 @@
       "CA"
     ],
     "Name": "America/Phoenix",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
     "UsesDST": false,
     "Identifier": "America/Phoenix"
@@ -1195,9 +1195,9 @@
       "HT"
     ],
     "Name": "America/Port-au-Prince",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Port-au-Prince"
   },
   {
@@ -1205,7 +1205,7 @@
       "BR"
     ],
     "Name": "America/Porto_Velho",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
     "UsesDST": false,
     "Identifier": "America/Porto_Velho"
@@ -1234,7 +1234,7 @@
       "VI"
     ],
     "Name": "America/Puerto_Rico",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
     "UsesDST": false,
     "Identifier": "America/Puerto_Rico"
@@ -1244,7 +1244,7 @@
       "CL"
     ],
     "Name": "America/Punta_Arenas",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Punta_Arenas"
@@ -1254,9 +1254,9 @@
       "CA"
     ],
     "Name": "America/Rankin_Inlet",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Rankin_Inlet"
   },
   {
@@ -1264,7 +1264,7 @@
       "BR"
     ],
     "Name": "America/Recife",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Recife"
@@ -1274,7 +1274,7 @@
       "CA"
     ],
     "Name": "America/Regina",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Regina"
@@ -1284,9 +1284,9 @@
       "CA"
     ],
     "Name": "America/Resolute",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Resolute"
   },
   {
@@ -1294,7 +1294,7 @@
       "BR"
     ],
     "Name": "America/Rio_Branco",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "-05",
     "UsesDST": false,
     "Identifier": "America/Rio_Branco"
@@ -1304,7 +1304,7 @@
       "BR"
     ],
     "Name": "America/Santarem",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Santarem"
@@ -1314,9 +1314,9 @@
       "CL"
     ],
     "Name": "America/Santiago",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "-04",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Santiago"
   },
   {
@@ -1324,7 +1324,7 @@
       "DO"
     ],
     "Name": "America/Santo_Domingo",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
     "UsesDST": false,
     "Identifier": "America/Santo_Domingo"
@@ -1334,7 +1334,7 @@
       "BR"
     ],
     "Name": "America/Sao_Paulo",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "America/Sao_Paulo"
@@ -1344,9 +1344,9 @@
       "GL"
     ],
     "Name": "America/Scoresbysund",
-    "Offset": 0,
+    "Offset": -120,
     "Abbreviation": "-02",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Scoresbysund"
   },
   {
@@ -1354,9 +1354,9 @@
       "US"
     ],
     "Name": "America/Sitka",
-    "Offset": 0,
+    "Offset": -540,
     "Abbreviation": "AKST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Sitka"
   },
   {
@@ -1364,9 +1364,9 @@
       "CA"
     ],
     "Name": "America/St_Johns",
-    "Offset": 0,
+    "Offset": -210,
     "Abbreviation": "NST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/St_Johns"
   },
   {
@@ -1374,7 +1374,7 @@
       "CA"
     ],
     "Name": "America/Swift_Current",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Swift_Current"
@@ -1384,7 +1384,7 @@
       "HN"
     ],
     "Name": "America/Tegucigalpa",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
     "UsesDST": false,
     "Identifier": "America/Tegucigalpa"
@@ -1394,9 +1394,9 @@
       "GL"
     ],
     "Name": "America/Thule",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Thule"
   },
   {
@@ -1404,9 +1404,9 @@
       "MX"
     ],
     "Name": "America/Tijuana",
-    "Offset": 0,
+    "Offset": -480,
     "Abbreviation": "PST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Tijuana"
   },
   {
@@ -1415,9 +1415,9 @@
       "BS"
     ],
     "Name": "America/Toronto",
-    "Offset": 0,
+    "Offset": -300,
     "Abbreviation": "EST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Toronto"
   },
   {
@@ -1425,9 +1425,9 @@
       "CA"
     ],
     "Name": "America/Vancouver",
-    "Offset": 0,
+    "Offset": -480,
     "Abbreviation": "PST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Vancouver"
   },
   {
@@ -1435,7 +1435,7 @@
       "CA"
     ],
     "Name": "America/Whitehorse",
-    "Offset": 0,
+    "Offset": -420,
     "Abbreviation": "MST",
     "UsesDST": false,
     "Identifier": "America/Whitehorse"
@@ -1445,9 +1445,9 @@
       "CA"
     ],
     "Name": "America/Winnipeg",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "CST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Winnipeg"
   },
   {
@@ -1455,9 +1455,9 @@
       "US"
     ],
     "Name": "America/Yakutat",
-    "Offset": 0,
+    "Offset": -540,
     "Abbreviation": "AKST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "America/Yakutat"
   },
   {
@@ -1505,7 +1505,7 @@
       "AQ"
     ],
     "Name": "Antarctica/Palmer",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "Antarctica/Palmer"
@@ -1515,7 +1515,7 @@
       "AQ"
     ],
     "Name": "Antarctica/Rothera",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "Antarctica/Rothera"
@@ -2302,9 +2302,9 @@
       "PT"
     ],
     "Name": "Atlantic/Azores",
-    "Offset": 0,
+    "Offset": -60,
     "Abbreviation": "-01",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "Atlantic/Azores"
   },
   {
@@ -2312,9 +2312,9 @@
       "BM"
     ],
     "Name": "Atlantic/Bermuda",
-    "Offset": 0,
+    "Offset": -240,
     "Abbreviation": "AST",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "Atlantic/Bermuda"
   },
   {
@@ -2332,7 +2332,7 @@
       "CV"
     ],
     "Name": "Atlantic/Cape_Verde",
-    "Offset": 0,
+    "Offset": -60,
     "Abbreviation": "-01",
     "UsesDST": false,
     "Identifier": "Atlantic/Cape_Verde"
@@ -2362,7 +2362,7 @@
       "GS"
     ],
     "Name": "Atlantic/South_Georgia",
-    "Offset": 0,
+    "Offset": -120,
     "Abbreviation": "-02",
     "UsesDST": false,
     "Identifier": "Atlantic/South_Georgia"
@@ -2372,7 +2372,7 @@
       "FK"
     ],
     "Name": "Atlantic/Stanley",
-    "Offset": 0,
+    "Offset": -180,
     "Abbreviation": "-03",
     "UsesDST": false,
     "Identifier": "Atlantic/Stanley"
@@ -2497,11 +2497,147 @@
   },
   {
     "Countries": [],
+    "Name": "Etc/GMT+1",
+    "Offset": -60,
+    "Abbreviation": "-01",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+1"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+10",
+    "Offset": -600,
+    "Abbreviation": "-10",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+10"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+11",
+    "Offset": -660,
+    "Abbreviation": "-11",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+11"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+12",
+    "Offset": -720,
+    "Abbreviation": "-12",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+12"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+2",
+    "Offset": -120,
+    "Abbreviation": "-02",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+2"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+3",
+    "Offset": -180,
+    "Abbreviation": "-03",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+3"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+4",
+    "Offset": -240,
+    "Abbreviation": "-04",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+4"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+5",
+    "Offset": -300,
+    "Abbreviation": "-05",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+5"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+6",
+    "Offset": -360,
+    "Abbreviation": "-06",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+6"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+7",
+    "Offset": -420,
+    "Abbreviation": "-07",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+7"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+8",
+    "Offset": -480,
+    "Abbreviation": "-08",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+8"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT+9",
+    "Offset": -540,
+    "Abbreviation": "-09",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT+9"
+  },
+  {
+    "Countries": [],
     "Name": "Etc/GMT-1",
     "Offset": 60,
     "Abbreviation": "+01",
     "UsesDST": false,
     "Identifier": "Etc/GMT-1"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT-10",
+    "Offset": 600,
+    "Abbreviation": "+10",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT-10"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT-11",
+    "Offset": 660,
+    "Abbreviation": "+11",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT-11"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT-12",
+    "Offset": 720,
+    "Abbreviation": "+12",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT-12"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT-13",
+    "Offset": 780,
+    "Abbreviation": "+13",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT-13"
+  },
+  {
+    "Countries": [],
+    "Name": "Etc/GMT-14",
+    "Offset": 840,
+    "Abbreviation": "+14",
+    "UsesDST": false,
+    "Identifier": "Etc/GMT-14"
   },
   {
     "Countries": [],
@@ -2566,142 +2702,6 @@
     "Abbreviation": "+09",
     "UsesDST": false,
     "Identifier": "Etc/GMT-9"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT-10",
-    "Offset": 600,
-    "Abbreviation": "+10",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT-10"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT-11",
-    "Offset": 660,
-    "Abbreviation": "+11",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT-11"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT-12",
-    "Offset": 720,
-    "Abbreviation": "+12",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT-12"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT-13",
-    "Offset": 780,
-    "Abbreviation": "+13",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT-13"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT-14",
-    "Offset": 840,
-    "Abbreviation": "+14",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT-14"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+1",
-    "Offset": 0,
-    "Abbreviation": "-01",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+1"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+2",
-    "Offset": 0,
-    "Abbreviation": "-02",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+2"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+3",
-    "Offset": 0,
-    "Abbreviation": "-03",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+3"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+4",
-    "Offset": 0,
-    "Abbreviation": "-04",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+4"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+5",
-    "Offset": 0,
-    "Abbreviation": "-05",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+5"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+6",
-    "Offset": 0,
-    "Abbreviation": "-06",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+6"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+7",
-    "Offset": 0,
-    "Abbreviation": "-07",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+7"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+8",
-    "Offset": 0,
-    "Abbreviation": "-08",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+8"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+9",
-    "Offset": 0,
-    "Abbreviation": "-09",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+9"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+10",
-    "Offset": 0,
-    "Abbreviation": "-10",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+10"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+11",
-    "Offset": 0,
-    "Abbreviation": "-11",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+11"
-  },
-  {
-    "Countries": [],
-    "Name": "Etc/GMT+12",
-    "Offset": 0,
-    "Abbreviation": "-12",
-    "UsesDST": false,
-    "Identifier": "Etc/GMT+12"
   },
   {
     "Countries": [],
@@ -3198,9 +3198,9 @@
       "CL"
     ],
     "Name": "Pacific/Easter",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "-06",
-    "UsesDST": false,
+    "UsesDST": true,
     "Identifier": "Pacific/Easter"
   },
   {
@@ -3238,7 +3238,7 @@
       "EC"
     ],
     "Name": "Pacific/Galapagos",
-    "Offset": 0,
+    "Offset": -360,
     "Abbreviation": "-06",
     "UsesDST": false,
     "Identifier": "Pacific/Galapagos"
@@ -3248,7 +3248,7 @@
       "PF"
     ],
     "Name": "Pacific/Gambier",
-    "Offset": 0,
+    "Offset": -540,
     "Abbreviation": "-09",
     "UsesDST": false,
     "Identifier": "Pacific/Gambier"
@@ -3280,7 +3280,7 @@
       "US"
     ],
     "Name": "Pacific/Honolulu",
-    "Offset": 0,
+    "Offset": -600,
     "Abbreviation": "HST",
     "UsesDST": false,
     "Identifier": "Pacific/Honolulu"
@@ -3330,7 +3330,7 @@
       "PF"
     ],
     "Name": "Pacific/Marquesas",
-    "Offset": 0,
+    "Offset": -570,
     "Abbreviation": "-0930",
     "UsesDST": false,
     "Identifier": "Pacific/Marquesas"
@@ -3350,7 +3350,7 @@
       "NU"
     ],
     "Name": "Pacific/Niue",
-    "Offset": 0,
+    "Offset": -660,
     "Abbreviation": "-11",
     "UsesDST": false,
     "Identifier": "Pacific/Niue"
@@ -3381,7 +3381,7 @@
       "UM"
     ],
     "Name": "Pacific/Pago_Pago",
-    "Offset": 0,
+    "Offset": -660,
     "Abbreviation": "SST",
     "UsesDST": false,
     "Identifier": "Pacific/Pago_Pago"
@@ -3401,7 +3401,7 @@
       "PN"
     ],
     "Name": "Pacific/Pitcairn",
-    "Offset": 0,
+    "Offset": -480,
     "Abbreviation": "-08",
     "UsesDST": false,
     "Identifier": "Pacific/Pitcairn"
@@ -3423,7 +3423,7 @@
       "CK"
     ],
     "Name": "Pacific/Rarotonga",
-    "Offset": 0,
+    "Offset": -600,
     "Abbreviation": "-10",
     "UsesDST": false,
     "Identifier": "Pacific/Rarotonga"
@@ -3433,7 +3433,7 @@
       "PF"
     ],
     "Name": "Pacific/Tahiti",
-    "Offset": 0,
+    "Offset": -600,
     "Abbreviation": "-10",
     "UsesDST": false,
     "Identifier": "Pacific/Tahiti"

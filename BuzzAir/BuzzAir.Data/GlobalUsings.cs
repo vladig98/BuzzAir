@@ -7,3 +7,4 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.EntityFrameworkCore.Migrations;
 global using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+global using BuzzAir.Data.ExtensionMethods;

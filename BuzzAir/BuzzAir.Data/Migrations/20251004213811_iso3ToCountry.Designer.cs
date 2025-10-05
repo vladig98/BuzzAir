@@ -3,6 +3,7 @@ using System;
 using BuzzAir.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BuzzAir.Data.Migrations
 {
     [DbContext(typeof(BuzzAirDbContext))]
-    partial class BuzzAirDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251004213811_iso3ToCountry")]
+    partial class iso3ToCountry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,6 +61,7 @@ namespace BuzzAir.Data.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("IATA")
+                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("character varying(3)");
 

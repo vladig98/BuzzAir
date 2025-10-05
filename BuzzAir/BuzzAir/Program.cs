@@ -15,10 +15,13 @@ builder.Services.AddCustomAppServices();
 
 WebApplication app = builder.Build();
 
+IDataSeeder dataSeeder = app.Services.GetRequiredService<IDataSeeder>();
+await dataSeeder.SeedAsync();
+
 app.ConfigureErrorHandling();
 app.ConfigureStaticFiles();
 app.ConfigureRoutingAndAuth();
 app.ConfigureEndpoints();
 app.MapSignalRHubs();
 
-app.Run();
+await app.RunAsync();

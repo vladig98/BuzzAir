@@ -1,7 +1,4 @@
-﻿using BuzzAir.Data.Configurations;
-using BuzzAir.Data.ExtensionMethods;
-
-namespace BuzzAir.Data.Data;
+﻿namespace BuzzAir.Data.Data;
 
 public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
 {

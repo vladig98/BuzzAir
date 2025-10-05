@@ -4,7 +4,8 @@ public class Country
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string Name { get; set; } = string.Empty;
-    public string ISO { get; set; } = string.Empty;
+    public string ISOA2 { get; set; } = string.Empty;
+    public string ISOA3 { get; set; } = string.Empty;
 
     // true for officially recognized countries and false for dependencies
     public bool IsOfficiallyRecognizedCountry { get; set; } = true;
