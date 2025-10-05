@@ -2,7 +2,22 @@
 
 public class Seat : Service
 {
-    public override decimal Price { get; set; } = Constants.SeatPrice;
-    public SeatType SeatType { get; set; } = SeatType.Normal;
-    public override string Name { get; set; } = nameof(Seat);
+    private Seat() { }
+
+    public Seat(SeatType type = SeatType.None)
+    {
+        SeatType = type;
+        Price = type switch
+        {
+            SeatType.None => Constants.SeatPriceNone,
+            SeatType.Normal => Constants.SeatPriceNormal,
+            SeatType.ExtraLegRoom => Constants.SeatPriceExtraLegRoom,
+            _ => throw new InvalidOperationException("Invalid seat type")
+        };
+    }
+
+    public override string Name { get; init; } = nameof(Seat);
+    public override decimal Price { get; init; }
+
+    public SeatType SeatType { get; init; }
 }

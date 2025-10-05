@@ -234,24 +234,32 @@ public class FlightService(
                                 .ToDictionaryAsync(x => x.Id, x => x.DepartureUTC, token);
     }
 
-    public Task<Dictionary<string, string>> GetFutureFlightsDestinationsBasedOnOriginAsync(string originId, CancellationToken token = default)
+    public Task<Dictionary<string, Dictionary<string, string>>> GetFutureFlightsDestinationsBasedOnOriginAsync(string originId, CancellationToken token = default)
     {
-        return dbContext.Flights.Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted && x.OriginId == originId)
+        return dbContext.Flights.AsNoTracking()
+                                .Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted && x.OriginId == originId)
                                 .Include(x => x.Destination)
-                                .Select(x => new { x.DestinationId, x.Destination.Name })
-                                .OrderBy(x => x.Name)
-                                .GroupBy(x => x.DestinationId)
-                                .ToDictionaryAsync(x => x.Key, x => x.First().Name, token);
+                                .ThenInclude(x => x.City)
+                                .ThenInclude(x => x.Country)
+                                .Select(x => x.Destination)
+                                .Distinct()
+                                .GroupBy(x => x.City.Country.Name)
+                                .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token);
     }
 
-    public Task<Dictionary<string, string>> GetFutureFlightsOriginsAsync(CancellationToken token = default)
+    public Task<Dictionary<string, Dictionary<string, string>>> GetFutureFlightsOriginsAsync(int pageIndex, int itemsPerPage, CancellationToken token = default)
     {
-        return dbContext.Flights.Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted)
+        return dbContext.Flights.AsNoTracking()
+                                .Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted)
                                 .Include(x => x.Origin)
-                                .Select(x => new { x.OriginId, x.Origin.Name })
-                                .OrderBy(x => x.Name)
-                                .GroupBy(x => x.OriginId)
-                                .ToDictionaryAsync(x => x.Key, x => x.First().Name, token);
+                                .ThenInclude(x => x.City)
+                                .ThenInclude(x => x.Country)
+                                .Select(x => x.Origin)
+                                .Distinct()
+                                .Skip(pageIndex * itemsPerPage)
+                                .Take(itemsPerPage)
+                                .GroupBy(x => x.City.Country.Name)
+                                .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token);
     }
 
     public Task<Dictionary<string, DateTime>> GetReturnFlightsDatesBasedOnOriginAndDestination(string originId, string destinationId, DateTime earliest, CancellationToken token = default)

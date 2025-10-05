@@ -1,4 +1,5 @@
 ﻿global using BuzzAir.Data.Enums;
+global using BuzzAir.Data.ExtensionMethods;
 global using BuzzAir.Data.Models;
 global using BuzzAir.Data.Models.ServicesModels;
 global using Microsoft.AspNetCore.Identity;
@@ -7,4 +8,3 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.EntityFrameworkCore.Migrations;
 global using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-global using BuzzAir.Data.ExtensionMethods;

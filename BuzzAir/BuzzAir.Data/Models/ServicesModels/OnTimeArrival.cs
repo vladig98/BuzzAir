@@ -2,6 +2,6 @@
 
 public class OnTimeArrival : Service
 {
-    public override decimal Price { get; set; } = Constants.OnTimeArrivalPrice;
-    public override string Name { get; set; } = nameof(OnTimeArrival);
+    public override decimal Price { get; init; } = Constants.OnTimeArrivalPrice;
+    public override string Name { get; init; } = nameof(OnTimeArrival);
 }

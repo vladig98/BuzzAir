@@ -1,5 +1,6 @@
 ﻿namespace BuzzAir.Controllers;
 
+[Authorize]
 public class BookingController(
     IFlightService flightService,
     IServicesService servicesService,

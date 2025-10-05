@@ -94,6 +94,107 @@ public class DataSeeder(IServiceProvider serviceProvider) : IDataSeeder
         await dbContext.States.AddRangeAsync(newStates);
         await dbContext.Cities.AddRangeAsync(newCities);
         _ = await dbContext.SaveChangesAsync();
+
+        await SeedFlights(dbContext);
+        await SeedServices(dbContext);
+    }
+
+    private static async Task SeedServices(BuzzAirDbContext dbContext)
+    {
+        if (!await dbContext.OnTimeArrivals.AnyAsync())
+        {
+            _ = await dbContext.OnTimeArrivals.AddAsync(new OnTimeArrival());
+        }
+
+        if (!await dbContext.Priorities.AnyAsync())
+        {
+            _ = await dbContext.Priorities.AddAsync(new Priority());
+        }
+
+        if (!await dbContext.AirportCheckIns.AnyAsync())
+        {
+            _ = await dbContext.AirportCheckIns.AddAsync(new AirportCheckIn());
+        }
+
+        if (!await dbContext.Flexibilities.AnyAsync())
+        {
+            _ = await dbContext.Flexibilities.AddAsync(new Flexibility());
+        }
+
+        if (!await dbContext.Seats.AnyAsync())
+        {
+            _ = await dbContext.Seats.AddAsync(new Seat(SeatType.None));
+            _ = await dbContext.Seats.AddAsync(new Seat(SeatType.Normal));
+            _ = await dbContext.Seats.AddAsync(new Seat(SeatType.ExtraLegRoom));
+        }
+
+        if (!await dbContext.Baggages.AnyAsync())
+        {
+            _ = await dbContext.Baggages.AddAsync(new Baggage(BaggageType.Cabin));
+            _ = await dbContext.Baggages.AddAsync(new Baggage(BaggageType.TwentyKilos));
+            _ = await dbContext.Baggages.AddAsync(new Baggage(BaggageType.ThirtyTwoKilos));
+        }
+
+        _ = await dbContext.SaveChangesAsync();
+    }
+
+    private static async Task SeedFlights(BuzzAirDbContext dbContext)
+    {
+        DateTime utcNow = DateTime.UtcNow;
+
+        if (await dbContext.Flights.AnyAsync(x => x.DepartureUTC > utcNow))
+        {
+            return;
+        }
+
+        DateTime startOfToday = new(utcNow.Year, utcNow.Month, utcNow.Day);
+        DateTime tomorrow = startOfToday.AddDays(1);
+        DateTime monthAhead = tomorrow.AddMonths(1);
+        decimal min_price = 9.99M;
+        decimal max_price = 999.99M;
+
+        List<decimal> prices = [.. Enumerable.Range(0, (int)((max_price - min_price) / 5)).Select(i => min_price + (i * 5))];
+
+        int diff = (int)(monthAhead - tomorrow).TotalSeconds;
+        int numberOfFlights = 10_000;
+
+        List<string> aircraft = await dbContext.Aircrafts.Select(x => x.Id).ToListAsync();
+        List<string> airports = await dbContext.Airports.Select(x => x.Id).ToListAsync();
+
+        List<Flight> flights = [];
+
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA5394 // Do not use insecure randomness
+        for (int i = 0; i < numberOfFlights; i++)
+        {
+            int flightDuration = Random.Shared.Next(30 * 60, 6 * 60 * 60);
+
+            Flight flight = new()
+            {
+                AircraftId = aircraft[Random.Shared.Next(aircraft.Count)],
+                OriginId = airports[Random.Shared.Next(airports.Count)],
+                DepartureUTC = tomorrow.AddSeconds(Random.Shared.Next(1, diff)),
+                FlightNumber = $"BZ-{Random.Shared.Next(1000, 9999)}",
+                PriceInEur = prices[Random.Shared.Next(prices.Count)],
+            };
+
+            flight.ArrivalUTC = flight.DepartureUTC.AddSeconds(flightDuration);
+
+            do
+            {
+                flight.DestinationId = airports[Random.Shared.Next(airports.Count)];
+            } while (flight.OriginId == flight.DestinationId);
+
+            flight.DepartureUTC = DateTime.SpecifyKind(flight.DepartureUTC, DateTimeKind.Utc);
+            flight.ArrivalUTC = DateTime.SpecifyKind(flight.ArrivalUTC, DateTimeKind.Utc);
+
+            flights.Add(flight);
+        }
+#pragma warning restore CA5394 // Do not use insecure randomness
+#pragma warning restore IDE0079 // Remove unnecessary suppression
+
+        await dbContext.Flights.AddRangeAsync(flights);
+        _ = await dbContext.SaveChangesAsync();
     }
 
     private static string GetCityId(

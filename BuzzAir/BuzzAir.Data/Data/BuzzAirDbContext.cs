@@ -16,7 +16,6 @@ public class BuzzAirDbContext : IdentityDbContext<ApplicationUser, IdentityRole,
     public DbSet<Passenger> Passengers { get; set; }
     public DbSet<PassengerService> PassengerServices { get; set; }
     public DbSet<Payment> Payments { get; set; }
-    public DbSet<Service> Services { get; set; }
     public DbSet<State> States { get; set; }
     public DbSet<Timezone> Timezones { get; set; }
     public DbSet<TravelDocument> TravelDocuments { get; set; }

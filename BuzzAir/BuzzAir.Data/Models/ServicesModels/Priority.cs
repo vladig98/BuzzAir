@@ -2,6 +2,6 @@
 
 public class Priority : Service
 {
-    public override decimal Price { get; set; } = Constants.PriorityPrice;
-    public override string Name { get; set; } = nameof(Priority);
+    public override decimal Price { get; init; } = Constants.PriorityPrice;
+    public override string Name { get; init; } = nameof(Priority);
 }

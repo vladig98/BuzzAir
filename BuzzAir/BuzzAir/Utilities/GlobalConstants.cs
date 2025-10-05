@@ -22,17 +22,10 @@ internal static class GlobalConstants
     public const string AdminRole = "Admin";
 
     // Misc
-    public const decimal PriceForCabin = 0;
-    public const decimal PriceFor20kg = 39;
-    public const decimal PriceFor32kg = 72;
     public const double MinimumTicketPrice = 10;
     public const double MaximumTicketPrice = 10_000;
     public const int MinimumFlightLength = 30;
     public const int MaximumFlightLength = 1200;
-
-    public const int CabinKilos = 10;
-    public const int TwentyKilos = 10;
-    public const int ThrityTwoKilos = 10;
 
     public const int MinimumNumberOfSeatsForAnAircraft = 50;
     public const int MaximumNumberOfSeatsForAnAircraft = 900;

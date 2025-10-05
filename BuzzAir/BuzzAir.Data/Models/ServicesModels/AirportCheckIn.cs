@@ -2,6 +2,6 @@
 
 public class AirportCheckIn : Service
 {
-    public override decimal Price { get; set; } = Constants.AirportCheckInPrice;
-    public override string Name { get; set; } = nameof(AirportCheckIn);
+    public override decimal Price { get; init; } = Constants.AirportCheckInPrice;
+    public override string Name { get; init; } = nameof(AirportCheckIn);
 }

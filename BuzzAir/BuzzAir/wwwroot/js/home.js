@@ -119,24 +119,52 @@
             }
         });
 
-        async function populateOriginOptions() {
+        let pageIndex = 0;
+        const itemsPerPage = 100;
+        let isLoading = false;
+        let hasMoreData = true;
+
+        async function populateOriginOptions(pageIndex = 0, pageSize = 100, append = false) {
+            if (isLoading) return;
+            isLoading = true;
+
             try {
-                const origins = await flightHub.invoke("GetOrigins");
-                if (!origins || !Object.keys(origins).length) throw new Error("No origins returned");
-                const sortedOrigins = Object.fromEntries(
-                    Object.entries(origins).sort(([, a], [, b]) => a.localeCompare(b))
-                );
-                originSelect.innerHTML = '<option selected disabled hidden value="">Choose departure...</option>';
-                Object.entries(sortedOrigins).forEach(([id, name]) => {
-                    const opt = document.createElement("option");
-                    opt.value = id;
-                    opt.textContent = name;
-                    originSelect.appendChild(opt);
-                });
+                const originsByCountry = await flightHub.invoke("GetOrigins", pageIndex, pageSize);
+                if (!originsByCountry || !Object.keys(originsByCountry).length) {
+                    hasMoreData = false;
+                    return;
+                }
+
+                if (!append) {
+                    originSelect.innerHTML = '<option selected disabled hidden value="">Choose departure...</option>';
+                }
+
+                // Sort countries alphabetically
+                const sortedCountries = Object.keys(originsByCountry).sort();
+
+                for (const country of sortedCountries) {
+                    const group = document.createElement("optgroup");
+                    group.label = country;
+
+                    const airports = Object.entries(originsByCountry[country])
+                        .sort(([, a], [, b]) => a.localeCompare(b));
+
+                    for (const [id, name] of airports) {
+                        const opt = document.createElement("option");
+                        opt.value = id;
+                        opt.textContent = name;
+                        group.appendChild(opt);
+                    }
+
+                    originSelect.appendChild(group);
+                }
+
                 originSelect.disabled = false;
-                log("Origins loaded");
+                log(`Loaded page ${pageIndex + 1}`);
             } catch (ex) {
                 warn("Failed to load origins:", ex.message || ex);
+            } finally {
+                isLoading = false;
             }
         }
 
@@ -147,18 +175,32 @@
                 warn("No destinations available");
                 return;
             }
-            const sortedDestinations = Object.fromEntries(
-                Object.entries(destinations).sort(([, a], [, b]) => a.localeCompare(b))
-            );
-            Object.entries(sortedDestinations).forEach(([id, name]) => {
-                const opt = document.createElement("option");
-                opt.value = id;
-                opt.textContent = name;
-                destinationSelect.appendChild(opt);
+
+            // Sort countries alphabetically
+            const sortedCountries = Object.keys(destinations).sort();
+
+            // Append countries and destinations
+            sortedCountries.forEach(country => {
+                const optgroup = document.createElement("optgroup");
+                optgroup.label = country;
+
+                const airports = Object.entries(destinations[country])
+                    .sort(([, a], [, b]) => a.localeCompare(b));
+
+                for (const [id, name] of airports) {
+                    const opt = document.createElement("option");
+                    opt.value = id;
+                    opt.textContent = name;
+                    optgroup.appendChild(opt);
+                }
+
+                destinationSelect.appendChild(optgroup);
             });
+
             destinationSelect.disabled = false;
-            log("Destinations populated");
+            log("Destinations populated and grouped by country");
         }
+
 
         async function loadDestinationsForOrigin(originId) {
             destinationSelect.disabled = true;
@@ -238,7 +280,39 @@
             if (!originId || !destinationId) return;
             try {
                 const payload = await flightHub.invoke("GetAvailableDates", originId, destinationId);
+                const returnDates = await flightHub.invoke("GetAvailableDates", destinationId, originId);
                 applyDepartureDates(payload, true);
+
+                // Check if there are any return dates
+                const hasReturnDates = Object.keys(returnDates || {}).length > 0;
+
+                // Find trip type radios
+                const oneWayRadio = document.querySelector("input[name='tripType'][value='OneWay']");
+                const returnRadio = document.querySelector("input[name='tripType'][value='Return']");
+
+                if (!hasReturnDates) {
+                    // Auto-select One Way and disable Return
+                    if (oneWayRadio) oneWayRadio.checked = true;
+                    if (returnRadio) {
+                        returnRadio.disabled = true;
+                        returnRadio.checked = false;
+                    }
+
+                    // Hide return date picker and clear any previous value
+                    if (window.returnPicker) {
+                        window.returnPicker.clear();
+                        window.returnPicker.set("enable", []);
+                    }
+                    returnInput.value = "";
+                    returnInput.disabled = true;
+                    returnWrapper.style.display = "none";
+
+                    log("No return dates available — switched to One Way mode");
+                } else {
+                    // Enable the Return radio if previously disabled
+                    if (returnRadio) returnRadio.disabled = false;
+                    returnWrapper.style.display = "block";
+                }
             } catch (ex) {
                 warn("Failed to load available departure dates:", ex.message || ex);
             }
@@ -253,10 +327,21 @@
             if (tripType !== "OneWay" && !availableReturnDatesSet.has(returnInput.value)) { e.preventDefault(); alert("Return date not allowed"); return; }
         });
 
+        originSelect.addEventListener("scroll", async () => {
+            if (
+                !hasMoreData ||
+                isLoading ||
+                originSelect.scrollTop + originSelect.clientHeight < originSelect.scrollHeight - 50
+            ) return;
+
+            pageIndex++;
+            await populateOriginOptions(pageIndex, itemsPerPage, true);
+        });
+
         try {
             await flightHub.start();
             log("SignalR connected");
-            await populateOriginOptions();
+            await populateOriginOptions(pageIndex, itemsPerPage);
         } catch (ex) {
             error("Failed to start SignalR:", ex.message || ex);
         }
