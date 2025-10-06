@@ -1,4 +1,6 @@
-﻿namespace BuzzAir.Services.DataSeeders;
+﻿using StackExchange.Redis;
+
+namespace BuzzAir.Services.DataSeeders;
 
 public class UserSeeder(
     UserManager<ApplicationUser> userManager,
@@ -33,15 +35,16 @@ public class UserSeeder(
             LastName = secrets.LastName,
             Gender = Enum.Parse<Gender>(secrets.Gender),
             PostalCode = secrets.PostalCode,
-            Street = secrets.Street
+            Street = secrets.Street,
+            Email = secrets.Email,
+            PhoneNumber = secrets.PhoneNumber,
+            UserName = secrets.UserName,
+            Id = Guid.NewGuid().ToString()
         };
 
-        _ = await userManager.CreateAsync(user);
-        _ = await userManager.AddPasswordAsync(user, secrets.Password);
-        _ = await userManager.AddToRolesAsync(user, [GlobalConstants.ADMIN_ROLE]);
+        _ = await userManager.CreateAsync(user, secrets.Password);
 
-        _ = await userManager.SetEmailAsync(user, secrets.Email);
-        _ = await userManager.SetPhoneNumberAsync(user, secrets.PhoneNumber);
-        _ = await userManager.SetUserNameAsync(user, secrets.UserName);
+        _ = await userManager.AddToRoleAsync(user, GlobalConstants.ADMIN_ROLE);
+        _ = await userManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), GlobalConstants.ADMIN_ROLE));
     }
 }

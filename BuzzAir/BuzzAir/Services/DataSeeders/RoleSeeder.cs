@@ -9,7 +9,7 @@ public class RoleSeeder(RoleManager<IdentityRole> roleManager) : IDataSeeder
             return;
         }
 
-        _ = await roleManager.CreateAsync(new IdentityRole() { Name = GlobalConstants.ADMIN_ROLE });
-        _ = await roleManager.CreateAsync(new IdentityRole() { Name = GlobalConstants.USER_ROLE });
+        _ = await roleManager.CreateAsync(new IdentityRole(GlobalConstants.ADMIN_ROLE));
+        _ = await roleManager.CreateAsync(new IdentityRole(GlobalConstants.USER_ROLE));
     }
 }
