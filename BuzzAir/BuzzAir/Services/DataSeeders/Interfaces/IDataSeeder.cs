@@ -1,4 +1,4 @@
-﻿namespace BuzzAir.Services.Interfaces;
+﻿namespace BuzzAir.Services.DataSeeders.Interfaces;
 
 public interface IDataSeeder
 {

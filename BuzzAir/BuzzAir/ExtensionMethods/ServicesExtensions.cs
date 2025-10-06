@@ -21,4 +21,20 @@ internal static class ServicesExtensions
 
         return services;
     }
+
+    public static IServiceCollection AddSeeders(this IServiceCollection services)
+    {
+        _ = services.AddKeyedScoped<IDataSeeder, CitySeeder>(GlobalConstants.CITY_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, CountrySeeder>(GlobalConstants.COUNTRY_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, TimezoneSeeder>(GlobalConstants.TIMEZONE_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, AirportSeeder>(GlobalConstants.AIRPORT_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, AircraftSeeder>(GlobalConstants.AIRCRAFT_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, ServicesSeeder>(GlobalConstants.SERVICES_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, FlightsSeeder>(GlobalConstants.FLIGHTS_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, RoleSeeder>(GlobalConstants.ROLE_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, UserSeeder>(GlobalConstants.USER_SEEDER);
+        _ = services.AddKeyedScoped<IDataSeeder, SeatMapSeeder>(GlobalConstants.SEAT_MAP_SEEDER);
+
+        return services;
+    }
 }

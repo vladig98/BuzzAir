@@ -3,6 +3,8 @@
 public class SeedingDataSecrets
 {
     public string CityName { get; set; } = string.Empty;
+    public string? StateName { get; set; }
+    public string CountryName { get; set; } = string.Empty;
     public string DOB { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;

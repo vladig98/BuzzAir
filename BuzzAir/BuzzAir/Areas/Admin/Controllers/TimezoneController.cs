@@ -1,7 +1,7 @@
 ﻿namespace BuzzAir.Areas.Admin.Controllers;
 
-[Authorize(Roles = GlobalConstants.AdminRole)]
-[Area(GlobalConstants.AdminRole)]
+[Authorize(Roles = GlobalConstants.ADMIN_ROLE)]
+[Area(GlobalConstants.ADMIN_ROLE)]
 public class TimezoneController(
     ITimezoneService timezoneService,
     IValidationService validationService) : Controller

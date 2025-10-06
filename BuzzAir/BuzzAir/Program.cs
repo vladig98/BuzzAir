@@ -1,9 +1,12 @@
+using BuzzAir.Services.DataSeeders.Interfaces;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 builder.Services.AddValidators();
+builder.Services.AddSeeders();
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddIdentityServices();

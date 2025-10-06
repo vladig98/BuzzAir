@@ -19,15 +19,18 @@ internal static class GlobalConstants
     public const string FLIGHTS_CACHE_KEY = "Flight:all";
 
     // Roles
-    public const string AdminRole = "Admin";
+    public const string ADMIN_ROLE = "Admin";
+    public const string USER_ROLE = "Admin";
 
-    // Misc
-    public const double MinimumTicketPrice = 10;
-    public const double MaximumTicketPrice = 10_000;
-    public const int MinimumFlightLength = 30;
-    public const int MaximumFlightLength = 1200;
-
-    public const int MinimumNumberOfSeatsForAnAircraft = 50;
-    public const int MaximumNumberOfSeatsForAnAircraft = 900;
-    public const int ItemsPerPage = 10;
+    // Keyed Services
+    public const string AIRCRAFT_SEEDER = nameof(AIRCRAFT_SEEDER);
+    public const string AIRPORT_SEEDER = nameof(AIRPORT_SEEDER);
+    public const string CITY_SEEDER = nameof(CITY_SEEDER);
+    public const string COUNTRY_SEEDER = nameof(COUNTRY_SEEDER);
+    public const string TIMEZONE_SEEDER = nameof(TIMEZONE_SEEDER);
+    public const string SERVICES_SEEDER = nameof(SERVICES_SEEDER);
+    public const string FLIGHTS_SEEDER = nameof(FLIGHTS_SEEDER);
+    public const string ROLE_SEEDER = nameof(ROLE_SEEDER);
+    public const string USER_SEEDER = nameof(USER_SEEDER);
+    public const string SEAT_MAP_SEEDER = nameof(SEAT_MAP_SEEDER);
 }
