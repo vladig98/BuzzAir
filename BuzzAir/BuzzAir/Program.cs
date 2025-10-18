@@ -1,5 +1,3 @@
-using BuzzAir.Services.DataSeeders.Interfaces;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();

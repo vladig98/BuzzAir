@@ -17,7 +17,7 @@ public class FlightsSeeder(BuzzAirDbContext dbContext) : IDataSeeder
         decimal min_price = 9.99M;
         decimal max_price = 999.99M;
 
-        List<decimal> prices = [.. Enumerable.Range(0, (int)((max_price - min_price) / 5)).Select(i => min_price + i * 5)];
+        List<decimal> prices = [.. Enumerable.Range(0, (int)((max_price - min_price) / 5)).Select(i => min_price + (i * 5))];
 
         int diff = (int)(monthAhead - tomorrow).TotalSeconds;
         int numberOfFlights = 10_000;
@@ -38,7 +38,7 @@ public class FlightsSeeder(BuzzAirDbContext dbContext) : IDataSeeder
                 AircraftId = aircraft[Random.Shared.Next(aircraft.Count)],
                 OriginId = airports[Random.Shared.Next(airports.Count)],
                 DepartureUTC = tomorrow.AddSeconds(Random.Shared.Next(1, diff)),
-                FlightNumber = $"BZ-{Random.Shared.Next(1000, 9999)}",
+                FlightNumber = $"BZ-{Random.Shared.Next(1_000, 10_000)}",
                 PriceInEur = prices[Random.Shared.Next(prices.Count)],
             };
 
@@ -51,6 +51,26 @@ public class FlightsSeeder(BuzzAirDbContext dbContext) : IDataSeeder
 
             flight.DepartureUTC = DateTime.SpecifyKind(flight.DepartureUTC, DateTimeKind.Utc);
             flight.ArrivalUTC = DateTime.SpecifyKind(flight.ArrivalUTC, DateTimeKind.Utc);
+
+            if (Random.Shared.NextDouble() > 0.5)
+            {
+                Flight returnFlight = new()
+                {
+                    AircraftId = flight.AircraftId,
+                    OriginId = flight.DestinationId,
+                    DepartureUTC = flight.DepartureUTC.AddDays(Random.Shared.Next(1, 8)),
+                    FlightNumber = $"BZ-{Random.Shared.Next(1_000, 10_000)}",
+                    PriceInEur = prices[Random.Shared.Next(prices.Count)],
+                    DestinationId = flight.OriginId
+                };
+
+                returnFlight.ArrivalUTC = returnFlight.DepartureUTC.AddSeconds(flightDuration);
+
+                returnFlight.DepartureUTC = DateTime.SpecifyKind(returnFlight.DepartureUTC, DateTimeKind.Utc);
+                returnFlight.ArrivalUTC = DateTime.SpecifyKind(returnFlight.ArrivalUTC, DateTimeKind.Utc);
+
+                flights.Add(returnFlight);
+            }
 
             flights.Add(flight);
         }
