@@ -24,22 +24,31 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select asp-for="OriginId" asp-items="Model.OriginAirports" class="form-select">
-                                        <option selected hidden disabled value="">Select origin</option>
-                                    </select>
-                                    <label asp-for="OriginId">Origin Airport</label>
+                                <div class="position-relative form-floating" style="max-width: 500px;">
+                                    <input type="hidden" id="originId" name="originId" required />
+                                    <input type="text" id="originAirport" class="form-control" placeholder="From" autocomplete="off" />
+                                    <label for="originAirport">From</label>
                                     <span asp-validation-for="OriginId" class="invalid-feedback d-block"></span>
+
+                                    <div id="originAirportResults"
+                                         class="border rounded p-2 bg-white position-absolute w-100"
+                                         style="max-height: 300px; overflow-y: auto; z-index: 1050; top: 100%; left: 0; display: none;">
+                                    </div>
                                 </div>
+
                             </div>
 
                             <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select asp-for="DestinationId" asp-items="Model.DestinationAirports" class="form-select">
-                                        <option selected hidden disabled value="">Select destination</option>
-                                    </select>
-                                    <label asp-for="DestinationId">Destination Airport</label>
+                                <div class="position-relative form-floating" style="max-width: 500px;">
+                                    <input type="hidden" id="destinationId" name="destinationId" required />
+                                    <input type="text" id="destinationAirport" class="form-control" placeholder="From" autocomplete="off" />
+                                    <label for="destinationAirport">To</label>
                                     <span asp-validation-for="DestinationId" class="invalid-feedback d-block"></span>
+
+                                    <div id="destinationAirportResults"
+                                         class="border rounded p-2 bg-white position-absolute w-100"
+                                         style="max-height: 300px; overflow-y: auto; z-index: 1050; top: 100%; left: 0; display: none;">
+                                    </div>
                                 </div>
                             </div>
 
@@ -90,3 +99,8 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/originSelect.js"></script>
+    <script src="~/js/destinationSelect.js"></script>
+}
