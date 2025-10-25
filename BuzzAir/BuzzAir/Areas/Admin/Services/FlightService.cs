@@ -234,32 +234,46 @@ public class FlightService(
                                 .ToDictionaryAsync(x => x.Id, x => x.DepartureUTC, token);
     }
 
-    public Task<Dictionary<string, Dictionary<string, string>>> GetFutureFlightsDestinationsBasedOnOriginAsync(string originId, CancellationToken token = default)
+    public Task<Dictionary<string, Dictionary<string, string>>> GetFutureFlightsDestinationsBasedOnOriginAsync(string originId, int pageIndex, int itemsPerPage, string keyword, CancellationToken token = default)
     {
-        return dbContext.Flights.AsNoTracking()
+        IQueryable<Airport> query = dbContext.Flights.AsNoTracking()
                                 .Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted && x.OriginId == originId)
                                 .Include(x => x.Destination)
                                 .ThenInclude(x => x.City)
                                 .ThenInclude(x => x.Country)
                                 .Select(x => x.Destination)
-                                .Distinct()
-                                .GroupBy(x => x.City.Country.Name)
-                                .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token);
+                                .Distinct();
+
+        return !string.IsNullOrWhiteSpace(keyword)
+            ? query.Where(x => EF.Functions.ILike(x.City.Name, $"%{keyword}%"))
+                        .Take(itemsPerPage)
+                        .GroupBy(x => x.City.Country.Name)
+                        .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token)
+            : query.Skip(pageIndex * itemsPerPage)
+                    .Take(itemsPerPage)
+                    .GroupBy(x => x.City.Country.Name)
+                    .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token);
     }
 
-    public Task<Dictionary<string, Dictionary<string, string>>> GetFutureFlightsOriginsAsync(int pageIndex, int itemsPerPage, CancellationToken token = default)
+    public Task<Dictionary<string, Dictionary<string, string>>> GetFutureFlightsOriginsAsync(int pageIndex, int itemsPerPage, string keyword, CancellationToken token = default)
     {
-        return dbContext.Flights.AsNoTracking()
+        IQueryable<Airport> query = dbContext.Flights.AsNoTracking()
                                 .Where(x => x.DepartureUTC > DateTime.UtcNow && !x.IsDeleted)
                                 .Include(x => x.Origin)
                                 .ThenInclude(x => x.City)
                                 .ThenInclude(x => x.Country)
                                 .Select(x => x.Origin)
-                                .Distinct()
-                                .Skip(pageIndex * itemsPerPage)
-                                .Take(itemsPerPage)
-                                .GroupBy(x => x.City.Country.Name)
-                                .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token);
+                                .Distinct();
+
+        return !string.IsNullOrWhiteSpace(keyword)
+            ? query.Where(x => EF.Functions.ILike(x.City.Name, $"%{keyword}%"))
+                        .Take(itemsPerPage)
+                        .GroupBy(x => x.City.Country.Name)
+                        .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token)
+            : query.Skip(pageIndex * itemsPerPage)
+                    .Take(itemsPerPage)
+                    .GroupBy(x => x.City.Country.Name)
+                    .ToDictionaryAsync(x => x.Key, x => x.ToDictionary(y => y.Id, y => y.Name), token);
     }
 
     public Task<Dictionary<string, DateTime>> GetReturnFlightsDatesBasedOnOriginAndDestination(string originId, string destinationId, DateTime earliest, CancellationToken token = default)

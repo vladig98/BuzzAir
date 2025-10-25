@@ -2,16 +2,6 @@
 
 public class FlightHub(IFlightService flightService) : Hub
 {
-    public Task<Dictionary<string, Dictionary<string, string>>> GetOrigins(int pageIndex, int itemsPerPage)
-    {
-        return flightService.GetFutureFlightsOriginsAsync(pageIndex, itemsPerPage, Context.ConnectionAborted);
-    }
-
-    public Task<Dictionary<string, Dictionary<string, string>>> GetDestinations(string originId)
-    {
-        return flightService.GetFutureFlightsDestinationsBasedOnOriginAsync(originId, Context.ConnectionAborted);
-    }
-
     public Task<Dictionary<string, DateTime>> GetAvailableDates(string originId, string destinationId)
     {
         return flightService.GetFlightsDatesBasedOnOriginAndDestination(originId, destinationId, Context.ConnectionAborted);

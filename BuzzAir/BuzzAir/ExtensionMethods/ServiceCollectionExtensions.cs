@@ -1,7 +1,4 @@
-﻿using BuzzAir.Services.DataSeeders;
-using BuzzAir.Services.DataSeeders.Interfaces;
-
-namespace BuzzAir.ExtensionMethods;
+﻿namespace BuzzAir.ExtensionMethods;
 
 internal static class ServiceCollectionExtensions
 {

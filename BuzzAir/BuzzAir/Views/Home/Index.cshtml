@@ -58,16 +58,24 @@
 
                 <!-- From / To -->
                 <div class="col-md-6">
-                    <label for="fromSelect" class="form-label">From</label>
-                    <select id="fromSelect" name="originId" class="form-select" required>
-                        <option value="">Select departure...</option>
-                    </select>
+                    <div id="originSelector" style="max-width: 500px;">
+                        <label for="originAirport" class="form-label">From</label>
+                        <input type="hidden" id="originId" name="originId" required />
+                        <input type="text" id="originAirport" class="form-control mb-2" placeholder="Type to search airports..." autocomplete="off" />
+
+                        <div id="originAirportResults" class="border rounded p-2 bg-white position-absolute" style="max-height: 300px; overflow-y: auto;">
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="toSelect" class="form-label">To</label>
-                    <select id="toSelect" name="destinationId" class="form-select" required disabled>
-                        <option value="">Select destination...</option>
-                    </select>
+                    <div id="destinationSelector" style="max-width: 500px;">
+                        <label for="destinationAirport" class="form-label">To</label>
+                        <input type="hidden" id="destinationId" name="destinationId" required />
+                        <input type="text" id="destinationAirport" class="form-control mb-2" placeholder="Type to search airports..." autocomplete="off" />
+
+                        <div id="destinationAirportResults" class="border rounded p-2 bg-white position-absolute" style="max-height: 300px; overflow-y: auto;">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Dates -->
@@ -99,4 +107,6 @@
 
 @section Scripts {
     <script src="~/js/home.js"></script>
+    <script src="~/js/originSelect.js"></script>
+    <script src="~/js/destinationSelect.js"></script>
 }

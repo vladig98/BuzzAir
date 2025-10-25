@@ -57,6 +57,7 @@ internal static class WebApplicationExtensions
         _ = app.MapHub<LocationHub>("/locationHub");
         _ = app.MapHub<FlightHub>("/flightHub");
         _ = app.MapHub<SeatMapHub>("/seatMapHub");
+        _ = app.MapHub<SearchHub>("/searchHub");
 
         return app;
     }
