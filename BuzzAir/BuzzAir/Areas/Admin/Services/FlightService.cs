@@ -38,7 +38,7 @@ public class FlightService(
 
     public async Task<List<FlightDTO>> GetAllDeletedFlightsAsync(int pageNumber, int itemsPerPage, CancellationToken token = default)
     {
-        int count = await dbContext.Cities.CountAsync(c => c.IsDeleted, token);
+        int count = await dbContext.Flights.CountAsync(c => c.IsDeleted, token);
 
         if (count == 0)
         {
