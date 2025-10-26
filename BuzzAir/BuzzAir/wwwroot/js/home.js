@@ -79,19 +79,30 @@
             error("Failed to start SignalR:", err);
         }
 
-        function updateTripTypeVisibility() {
-            const oneWay = document.querySelector("input[name='tripType']:checked")?.value === "OneWay";
+        let datesFetched = false; // NEW: haven't fetched yet
 
+        function updateTripTypeVisibility() {
+            const oneWaySelected = document.querySelector("input[name='tripType']:checked")?.value === "OneWay";
+
+            // If we haven't fetched dates from SignalR yet, don't lock anything.
+            // Just show/hide the return wrapper based on the selected radio.
+            if (!datesFetched) {
+                returnWrapper.style.display = oneWaySelected ? "none" : "block";
+                return;
+            }
+
+            // From this point on, we have fetched once and decide locking based on return dates.
             if (availableReturnDatesSet.size === 0) {
-                // No return dates
+                // No return dates: force OneWay and disable both radios so user can't change it.
                 returnWrapper.style.display = "none";
 
-                // Force OneWay selection
                 tripTypeRadios.forEach(r => {
-                    if (r.value === "Return") r.disabled = true;
                     if (r.value === "OneWay") {
                         r.checked = true;
-                        r.disabled = true;
+                        r.disabled = true; // keep OneWay selected and non-clickable
+                    } else if (r.value === "Return") {
+                        r.checked = false;
+                        r.disabled = true; // disable Return
                     }
                 });
 
@@ -100,16 +111,13 @@
                     window.returnPicker.set("enable", []);
                 }
                 returnInput.value = "";
-
             } else {
-                // Return dates exist
-                returnWrapper.style.display = oneWay ? "none" : "block";
+                // Return dates exist: enable both radios and show/hide wrapper based on selection
+                tripTypeRadios.forEach(r => r.disabled = false);
+                returnWrapper.style.display = oneWaySelected ? "none" : "block";
 
-                tripTypeRadios.forEach(r => {
-                    r.disabled = false; // all clickable
-                });
-
-                if (oneWay && window.returnPicker) {
+                // If OneWay currently selected, clear return picker so it doesn't confuse user
+                if (oneWaySelected && window.returnPicker) {
                     window.returnPicker.clear();
                     window.returnPicker.set("enable", []);
                     returnInput.value = "";
@@ -137,12 +145,21 @@
                 const returnDates = Object.values(retPayload || {}).map(d => formatISODate(new Date(d))).sort();
                 availableReturnDatesSet = new Set(returnDates);
 
+                // We have now invoked SignalR at least once
+                datesFetched = true;
+
+                // Now run visibility + locking logic
                 updateTripTypeVisibility();
 
                 log("Dates applied", { departures: availableDepartureDatesSet.size, returns: availableReturnDatesSet.size });
 
             } catch (err) {
                 warn("Failed to fetch dates:", err);
+
+                // Even on error, consider this an attempted fetch so we don't lock accidentally later.
+                // Optional: comment this out if you ONLY want locking after a successful fetch.
+                datesFetched = true;
+                updateTripTypeVisibility();
             }
         }
 
