@@ -9,7 +9,8 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
         Country country = new()
         {
             Name = viewModel.Name,
-            ISOA3 = viewModel.ISO,
+            ISOA2 = viewModel.ISO2,
+            ISOA3 = viewModel.ISO3,
             IsOfficiallyRecognizedCountry = viewModel.IsOfficiallyRecognizedCountry,
         };
 
@@ -45,7 +46,7 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
         }
 
         List<Country> countries = await countriesQuery.AsNoTracking().ToListAsync(token);
-        List<CountryDTO> dtos = [.. countries.Select(c => new CountryDTO(c.Id, c.Name, c.ISOA3, c.IsOfficiallyRecognizedCountry))];
+        List<CountryDTO> dtos = [.. countries.Select(c => new CountryDTO(c.Id, c.Name, c.ISOA2, c.ISOA3, c.IsOfficiallyRecognizedCountry))];
 
         return dtos;
     }
@@ -73,7 +74,7 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
         }
 
         List<Country> countries = await countriesQuery.AsNoTracking().ToListAsync(token);
-        List<CountryDTO> dtos = [.. countries.Select(c => new CountryDTO(c.Id, c.Name, c.ISOA3, c.IsOfficiallyRecognizedCountry))];
+        List<CountryDTO> dtos = [.. countries.Select(c => new CountryDTO(c.Id, c.Name, c.ISOA2, c.ISOA3, c.IsOfficiallyRecognizedCountry))];
 
         return dtos;
     }
@@ -96,7 +97,7 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
         Country country = await dbContext.Countries.FirstOrDefaultAsync(c => c.Id == countryId && !c.IsDeleted, token)
             ?? throw new KeyNotFoundException($"No country with id {countryId} could be found.");
 
-        CountryDTO dto = new(country.Id, country.Name, country.ISOA3, country.IsOfficiallyRecognizedCountry);
+        CountryDTO dto = new(country.Id, country.Name, country.ISOA2, country.ISOA3, country.IsOfficiallyRecognizedCountry);
         return dto;
     }
 
@@ -121,7 +122,10 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
             .ExecuteUpdateAsync(p => p
                 .SetProperty(
                     c => c.ISOA3,
-                    c => viewModel.ISO)
+                    c => viewModel.ISO3)
+                .SetProperty(
+                    c => c.ISOA2,
+                    c => viewModel.ISO2)
                 .SetProperty(
                     c => c.IsOfficiallyRecognizedCountry,
                     c => viewModel.IsOfficiallyRecognizedCountry)
@@ -135,7 +139,7 @@ public sealed class CountryService(BuzzAirDbContext dbContext) : ICountryService
         Country country = await dbContext.Countries.FirstOrDefaultAsync(c => c.Id == id && c.IsDeleted, token)
             ?? throw new KeyNotFoundException($"No country with id {id} could be found.");
 
-        CountryDTO dto = new(country.Id, country.Name, country.ISOA3, country.IsOfficiallyRecognizedCountry);
+        CountryDTO dto = new(country.Id, country.Name, country.ISOA2, country.ISOA3, country.IsOfficiallyRecognizedCountry);
         return dto;
     }
 

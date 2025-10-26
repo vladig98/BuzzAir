@@ -12,13 +12,21 @@ public class RestoreCountryVMValidator : AbstractValidator<RestoreCountryVM>
             .WithMessage("Country name must be at most 100 characters.");
 
         // ISO: required, exactly 2 uppercase letters
-        _ = RuleFor(x => x.ISO)
+        _ = RuleFor(x => x.ISO2)
             .NotEmpty()
-            .WithMessage("ISO code is required.")
+            .WithMessage("ISO2 code is required.")
             .Length(2)
-            .WithMessage("ISO code must be exactly 2 characters.")
+            .WithMessage("ISO2 code must be exactly 2 characters.")
             .Matches("^[A-Z]{2}$")
-            .WithMessage("ISO code must be two uppercase letters.");
+            .WithMessage("ISO2 code must be two uppercase letters.");
+
+        _ = RuleFor(x => x.ISO3)
+             .NotEmpty()
+             .WithMessage("ISO3 code is required.")
+             .Length(3)
+             .WithMessage("ISO3 code must be exactly 3 characters.")
+             .Matches("^[A-Z]{3}$")
+             .WithMessage("ISO3 code must be three uppercase letters.");
 
         // Id shouldn't be empty
         _ = RuleFor(x => x.Id)

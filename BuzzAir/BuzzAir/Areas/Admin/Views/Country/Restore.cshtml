@@ -15,7 +15,8 @@
                         @* hide the Id *@
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Name" />
-                        <input type="hidden" asp-for="ISO" />
+                        <input type="hidden" asp-for="ISO2" />
+                        <input type="hidden" asp-for="ISO3" />
                         <input type="hidden" asp-for="IsOfficiallyRecognizedCountry" />
 
                         <div class="col-12 form-floating">
@@ -24,8 +25,13 @@
                         </div>
 
                         <div class="col-md-6 form-floating">
-                            <input asp-for="ISO" class="form-control disabled" disabled readonly />
-                            <label asp-for="ISO">ISO</label>
+                            <input asp-for="ISO2" class="form-control disabled" disabled readonly />
+                            <label asp-for="ISO2">ISO2</label>
+                        </div>
+
+                        <div class="col-md-6 form-floating">
+                            <input asp-for="ISO3" class="form-control disabled" disabled readonly />
+                            <label asp-for="ISO3">ISO3</label>
                         </div>
 
                         <div class="col-md-6 form-check form-switch">

@@ -8,7 +8,8 @@ public static class CountryFactory
         EditCountryVM model = new()
         {
             Id = country.Id,
-            ISO = country.ISO,
+            ISO2 = country.Iso2,
+            ISO3 = country.Iso3,
             Name = country.Name,
             IsOfficiallyRecognizedCountry = country.IsOfficiallyRecognizedCountry
         };
@@ -22,7 +23,8 @@ public static class CountryFactory
         DeleteCountryVM model = new()
         {
             Id = country.Id,
-            ISO = country.ISO,
+            ISO2 = country.Iso2,
+            ISO3 = country.Iso3,
             Name = country.Name,
             IsOfficiallyRecognizedCountry = country.IsOfficiallyRecognizedCountry
         };
@@ -36,7 +38,8 @@ public static class CountryFactory
         RestoreCountryVM model = new()
         {
             Id = country.Id,
-            ISO = country.ISO,
+            ISO2 = country.Iso2,
+            ISO3 = country.Iso3,
             Name = country.Name,
             IsOfficiallyRecognizedCountry = country.IsOfficiallyRecognizedCountry
         };
