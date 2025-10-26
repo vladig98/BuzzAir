@@ -16,13 +16,33 @@ public class SeatMapHub(IFlightService flightService) : Hub
 
         List<SeatDTO> seats = [];
 
-        foreach (SeatMap map in seatMap)
+        for (int i = 0; i < seatMap.Count; i += 6)
         {
-            SeatType type = map.SeatType == SeatMapType.Normal ? SeatType.Normal : SeatType.ExtraLegRoom;
-            bool isTaken = takenSeats.Contains(map.SeatNumber);
+            // Left 3 seats
+            for (int j = i; j < i + 3 && j < seatMap.Count; j++)
+            {
+                SeatMap map = seatMap[j];
+                SeatType type = map.SeatType == SeatMapType.Normal ? SeatType.Normal : SeatType.ExtraLegRoom;
+                bool isTaken = takenSeats.Contains(map.SeatNumber);
 
-            SeatDTO dto = new(map.SeatNumber, type.ToString(), isTaken);
-            seats.Add(dto);
+                SeatDTO dto = new(map.SeatNumber, type.ToString(), isTaken, false);
+                seats.Add(dto);
+            }
+
+            // Gap
+            SeatDTO empty = new(0, string.Empty, false, true);
+            seats.Add(empty);
+
+            // Right 3 seats
+            for (int j = i + 3; j < i + 6 && j < seatMap.Count; j++)
+            {
+                SeatMap map = seatMap[j];
+                SeatType type = map.SeatType == SeatMapType.Normal ? SeatType.Normal : SeatType.ExtraLegRoom;
+                bool isTaken = takenSeats.Contains(map.SeatNumber);
+
+                SeatDTO dto = new(map.SeatNumber, type.ToString(), isTaken, false);
+                seats.Add(dto);
+            }
         }
 
         await Clients.Caller.SendAsync("ReceiveSeatMap", seats, direction, Context.ConnectionAborted);
