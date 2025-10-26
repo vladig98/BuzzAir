@@ -1,6 +1,4 @@
-﻿using BuzzAir.Services.DataSeeders.Interfaces;
-
-namespace BuzzAir.Services.DataSeeders;
+﻿namespace BuzzAir.Services.DataSeeders;
 
 public class AirportSeeder(BuzzAirDbContext dbContext) : IDataSeeder
 {
@@ -94,7 +92,7 @@ public class AirportSeeder(BuzzAirDbContext dbContext) : IDataSeeder
             string stateKey = $"{stateName}__{country.Name}";
             _ = states.TryGetValue(stateKey, out state);
 
-            if (state is null)
+            if (state is null && !stateName.Equals("na", StringComparison.OrdinalIgnoreCase))
             {
                 state = new State()
                 {

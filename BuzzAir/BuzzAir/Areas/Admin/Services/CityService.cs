@@ -66,6 +66,20 @@ public sealed class CityService(
         return dtos;
     }
 
+    public Task<Dictionary<string, Dictionary<string, string>>> GetAllCitiiesPaginatedAsync(int pageIndex, int itemsPerPage, string currentSearch, CancellationToken token)
+    {
+        IQueryable<City> query = dbContext.Cities.AsNoTracking()
+                                                 .Include(x => x.Country);
+
+        return !string.IsNullOrWhiteSpace(currentSearch)
+            ? query.Where(x => EF.Functions.ILike(x.Name, $"%{currentSearch}%"))
+                   .Take(itemsPerPage)
+                   .ToDictionaryAsync(x => x.Country.Name, x => new Dictionary<string, string>() { { x.Id, x.Name } }, token)
+            : query.Skip(itemsPerPage * pageIndex)
+                   .Take(itemsPerPage)
+                   .ToDictionaryAsync(x => x.Country.Name, x => new Dictionary<string, string>() { { x.Id, x.Name } }, token);
+    }
+
     public async Task<List<CityDTO>> GetAllDeletedCitiiesAsync(int? pageNumber, int? itemsPerPage, CancellationToken token = default)
     {
         int count = await dbContext.Cities.CountAsync(c => c.IsDeleted, token);

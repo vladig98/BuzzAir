@@ -68,6 +68,11 @@ public class CitySeeder(BuzzAirDbContext dbContext) : IDataSeeder
             return null;
         }
 
+        if (stateName.Equals("na", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+
         string key = $"{stateName}__{countryName}";
         bool stateExists = states.TryGetValue(key, out State? state);
 

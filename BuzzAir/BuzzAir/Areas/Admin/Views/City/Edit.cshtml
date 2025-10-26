@@ -36,7 +36,7 @@
                                 <label asp-for="CountryId">Country</label>
                                 <span asp-validation-for="CountryId" class="invalid-feedback d-block"></span>
                             </div>
-                            <div class="col-md-6 form-floating">
+                            <div class="col-md-6 form-floating" id="stateWrapper">
                                 <select asp-for="StateId" asp-items="Model.States" class="form-select" id="stateSelect">
                                     <option value="">Select a state</option>
                                 </select>

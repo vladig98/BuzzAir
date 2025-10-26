@@ -6,6 +6,7 @@ public interface ICityService
     Task DeleteAsync(string id, CancellationToken token = default);
     Task<bool> ExistsByIdAsync(string id, CancellationToken token = default);
     Task<List<CityDTO>> GetAllCitiiesAsync(int? pageNumber, int? itemsPerPage, CancellationToken token = default);
+    Task<Dictionary<string, Dictionary<string, string>>> GetAllCitiiesPaginatedAsync(int pageIndex, int itemsPerPage, string currentSearch, CancellationToken token);
     Task<List<CityDTO>> GetAllDeletedCitiiesAsync(int? pageNumber, int? itemsPerPage, CancellationToken token = default);
     Task<List<CityDTO>> GetCitiesByStateAndCountryAsync(string? stateId, string countryId, CancellationToken token = default);
     Task<CityDTO> GetCityByIdAsync(string id, CancellationToken token = default);
